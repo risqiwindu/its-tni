@@ -167,7 +167,7 @@
                     </li>
                     @endcan
 
-                   @can('access-group','attendance')
+                   {{-- @can('access-group','attendance')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-table"></i><span>{{ __lang('attendance') }}</span></a>
                         <ul class="dropdown-menu">
@@ -207,7 +207,7 @@
                             @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')">{{ __lang('all-downloads') }}</a></li>@endcan
                         </ul>
                     </li>
-                        @endcan
+                        @endcan --}}
                    @can('access-group','discussions')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>{{ __lang('discussions') }}</span></a>
@@ -217,7 +217,7 @@
                         </ul>
                     </li>
                         @endcan
-                    @can('access-group','tests')
+                    {{-- @can('access-group','tests')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-check-circle"></i><span>{{ __lang('tests') }}</span></a>
                         <ul class="dropdown-menu">
@@ -295,7 +295,7 @@
 
                             </ul>
                         </li>
-                    @endcan
+                    @endcan --}}
 
                     @can('access-group','settings')
                         <li class="dropdown">

@@ -303,7 +303,7 @@
                                           <li class="nav-item">
                                               <a class="nav-link top-nav" id="class-tab3" data-toggle="tab" href="#class3" role="tab" aria-controls="class" aria-selected="false"><i class="fa fa-table"></i> {{  __lang('class-index')  }}</a>
                                           </li>
-                                          <li class="nav-item">
+                                          <li class="nav-item" id="test">
                                             <video id="video" width="400" height="100" autoplay style="position: absolute;">
                                           </li>
                                           </ul>

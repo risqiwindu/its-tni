@@ -1,11 +1,11 @@
 const video = document.getElementById("video");
 
 Promise.all([
-  faceapi.nets.ssdMobilenetv1.loadFromUri("/app/public/client/models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("/app/public/client/models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("/app/public/client/models"),
-  faceapi.nets.ageGenderNet.loadFromUri("/app/public/client/models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("/app/public/client/models"),
+  faceapi.nets.ssdMobilenetv1.loadFromUri("/its-tni/public/client/models"),
+  faceapi.nets.faceRecognitionNet.loadFromUri("/its-tni/public/client/models"),
+  faceapi.nets.faceExpressionNet.loadFromUri("/its-tni/public/client/models"),
+  faceapi.nets.ageGenderNet.loadFromUri("/its-tni/public/client/models"),
+  faceapi.nets.faceLandmark68Net.loadFromUri("/its-tni/public/client/models"),
 ]).then(startWebcam);
 
 function startWebcam() {
@@ -28,7 +28,7 @@ function getLabeledFaceDescriptions() {
     labels.map(async (label) => {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`/app/public/client/labels/${label}/${i}.jpg`);
+        const img = await faceapi.fetchImage(`/its-tni/public/client/labels/${label}/${i}.jpg`);
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()

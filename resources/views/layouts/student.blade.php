@@ -46,9 +46,9 @@
                     @if(setting('menu_show_courses')==1)
                     <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">{{ __lang('online-courses') }}</a></li>
                     @endif
-                    @if(setting('menu_show_sessions')==1)
+                    {{-- @if(setting('menu_show_sessions')==1)
                     <li class="nav-item"><a href="{{ route('sessions') }}" class="nav-link">{{ __lang('upcoming-sessions') }}</a></li>
-                    @endif
+                    @endif --}}
                 </ul>
             </div>
             <form class="form-inline ml-auto" action="{{ route('courses') }}">
@@ -117,7 +117,7 @@
                             <li class="nav-item"><a href="{{ route('student.student.invoices') }}" class="nav-link">{{ __lang('invoices') }}</a></li> --}}
                         </ul>
                     </li>
-                    @if(setting('menu_show_certificates')==1 || setting('menu_show_downloads')==1)
+                    {{-- @if(setting('menu_show_certificates')==1 || setting('menu_show_downloads')==1)
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>{{ setting('label_downloads',__lang('resources')) }}</span></a>
                         <ul class="dropdown-menu dropdown-border">
@@ -142,7 +142,7 @@
 
                         </ul>
                     </li>
-                    @endif
+                    @endif --}}
 
                     @if(setting('menu_show_discussions')==1)
                     <li class="nav-item dropdown">
@@ -154,7 +154,7 @@
                     </li>
                     @endif
 
-                    @if(setting('menu_show_tests')==1)
+                    {{-- @if(setting('menu_show_tests')==1)
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-check-circle"></i><span>{{ setting('label_take_test',__lang('tests')) }}</span></a>
                         <ul class="dropdown-menu dropdown-border">
@@ -162,7 +162,7 @@
                             <li class="nav-item"><a href="{{ route('student.test.statement') }}" class="nav-link">{{ __lang('statement-of-result') }}</a></li>
                         </ul>
                     </li>
-                    @endif
+                    @endif --}}
                 </ul>
             </div>
         </nav>

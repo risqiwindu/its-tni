@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
@@ -46,9 +47,14 @@ class CatalogController extends Controller
             $filter=null;
         }
 
-        $group = request()->get('group', null);
-        if (empty($group)) {
+        $id = Auth::user()->id;
+        $user = DB::table('kuesioner_status')->where('user_id', $id)->first();
+
+        // $group = request()->get('group', null);
+        if (empty($user)) {
             $group=null;
+        }else{
+            $group = $user->course_category_id;
         }
 
         $sort = request()->get('sort', null);
@@ -138,7 +144,11 @@ class CatalogController extends Controller
         );
 
         if(isStudent()){
-            return view('site.catalog.courses',$output);
+            if (empty($user)) {
+                return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dahulu untuk dapat melihat course!');
+             } else{
+                return view('site.catalog.courses',$output);
+             }
         }
 
         if(frontendEnabled()){

@@ -180,7 +180,7 @@
         @if(setting('menu_show_certificates')==1 || setting('menu_show_tests')==1 )
         <div class="col-md-5">
 
-            @if(setting('menu_show_certificates')==1)
+            {{-- @if(setting('menu_show_certificates')==1)
             <div class="card card-primary">
                 <div class="card-header">
                     <h4><i class="fa fa-certificate"></i> {{ __lang('certificates') }}</h4>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
             
                 <div class="card card-primary">
                     <div class="card-header">
@@ -248,20 +248,20 @@
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
                 <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions',__lang('my-courses')) }}</a></li>
-                @if(setting('menu_show_homework')==1)
+                {{-- @if(setting('menu_show_homework')==1)
                 <li class="list-group-item"><a href="{{ route('student.assignment.index') }}"><i class="fas fa-edit"></i> {{ __lang('homework') }}</a> </li>
-                @endif
+                @endif --}}
 
                 @if(setting('menu_show_discussions')==1)
                 <li class="list-group-item"><a href="{{ route('student.forum.index') }}"><i class="fas fa-comments"></i> {{ __lang('student-forum') }}</a> </li>
                 <li class="list-group-item"><a href="{{ route('student.student.discussion') }}"><i class="fas fa-comment"></i> {{ __lang('instructor-chat') }}</a> </li>
                 @endif
-                @if(setting('menu_show_downloads')==1)
+                {{-- @if(setting('menu_show_downloads')==1)
                 <li class="list-group-item"><a href="{{ route('student.download.index') }}"><i class="fas fa-download"></i> {{ __lang('downloads') }}</a> </li>
                 @endif
                 @if(setting('menu_show_certificates')==1)
                 <li class="list-group-item"><a href="{{ route('student.student.certificates') }}"><i class="fas fa-certificate"></i> {{ __lang('certificates') }}</a> </li>
-                @endif
+                @endif --}}
                 <li class="list-group-item"><a href="{{ route('student.student.camera') }}"><i class="fas fa-camera"></i> Camera</a> </li>
             </ul>
 

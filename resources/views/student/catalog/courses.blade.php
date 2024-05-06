@@ -132,7 +132,7 @@
 
     </div>
 
-    <div class="col-md-3">
+    {{-- <div class="col-md-3">
 
         @if($subCategories || $parent)
             <ul class="list-group mb-5">
@@ -195,7 +195,7 @@
         </div>
 
 
-    </div>
+    </div> --}}
 
 </div>
 @endsection

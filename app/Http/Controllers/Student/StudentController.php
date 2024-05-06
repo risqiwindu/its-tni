@@ -1414,18 +1414,21 @@ class StudentController extends Controller {
             $tampil = 'Audio';
             $deskripsi = 'Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat. Gaya pembelajar auditori adalah dimana seseorang lebih cepat menyerap informasi melalui apa yang ia dengarkan. Penjelasan tertulis akan lebih mudah ditangkap oleh para pembelajar auditori ini.';
             $a = round(($jawabanA / 30)*100, 2);
+            $id = 2;
         }
         elseif($jawabanB > $jawabanA AND $jawabanB > $jawabanC)
         {
             $tampil = 'Visual';
             $deskripsi = 'Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata. Artinya bukti-bukti konkret harus diperlihatkan terlebih dahulu agar mereka paham, gaya belajar seperti ini mengandalkan penglihatan atau melihat dulu buktinya untuk kemudian mempercayainya.';
             $a = round(($jawabanB / 30)*100, 2);
+            $id = 1;
         }
         elseif($jawabanC > $jawabanA AND $jawabanC > $jawabanB)
         {
             $tampil = 'Kinestetik';
             $deskripsi = 'Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya. Gaya pembelajar kinestetik cenderung mampu memahami sesuatu dengan adanya keterlibatan langsung, daripada mendengarkan ceramah atau membaca dari sebuah buku. Gaya belajar kinestetik suka melakukan hal-hal dan menggunakan tubuh mereka untuk mengingat fakta, seperti "memanggil" (dialing) nomor telepon pada telepon genggam mereka. Gaya belajar kinestetik, berarti belajar dengan menyentuh dan melakukan.';
             $a = round(($jawabanC / 30)*100, 2);
+            $id = 3;
         }
         elseif($jawabanA = $jawabanB AND $jawabanA > $jawabanC)
         {
@@ -1455,7 +1458,8 @@ class StudentController extends Controller {
         
         StudentKuesionerStatus::create([
             'user_id' => Auth::user()->id,
-            'status_belajar' => $tampil
+            'status_belajar' => $tampil,
+            'course_category_id' => $id
         ]);
         
         return view('student.GayaBelajar.hasil',compact('tampil','deskripsi','a','id'))->with('alert','Berhasl Menyimpan Status');

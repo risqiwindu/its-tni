@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="row">
-        @can('access','view_payments')
+        {{-- @can('access','view_payments')
         <div class="col-lg-8 col-md-12 col-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -166,7 +166,7 @@
             </div>
         </div>
             @endcan
-    </div>
+    </div> --}}
 
     @can('access','view_students')
     <div class="row">
@@ -199,7 +199,7 @@
     </div>
     @endcan
 
-    <div class="row">
+    {{-- <div class="row">
         @can('access','view_payments')
         <div class="col-lg-6 col-md-6 col-12">
             <div class="card">
@@ -277,7 +277,7 @@
 
         </div>
             @endcan
-    </div>
+    </div> --}}
 
 @endsection
 @section('footer')
