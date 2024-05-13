@@ -1385,11 +1385,33 @@ class StudentController extends Controller {
     {
         $pageTitle = 'Test Gaya Belajar';
         $dt_kuesioner1 = StudentKuesioner::whereBetween('id', [1, 10])->paginate(10);
+        $dt_kuesioner  = StudentKuesioner::all();
+        $question = $dt_kuesioner[0]; // Ambil pertanyaan pertama
+        $currentQuestionNumber = 1;
         $dt_kuesioner2 = StudentKuesioner::whereBetween('id', [11, 20])->paginate(10);
         $dt_kuesioner3 = StudentKuesioner::whereBetween('id', [21, 30])->paginate(10);
-        return view('student.GayaBelajar.test', compact('dt_kuesioner1','dt_kuesioner2','dt_kuesioner3','pageTitle'));
+        return view('student.GayaBelajar.test', compact('dt_kuesioner','dt_kuesioner1','dt_kuesioner2','dt_kuesioner3','pageTitle'));
+        
     }
-    
+
+    public function submit(Request $request)
+    {
+        
+        $questionNumber = session()->get('current_question');
+
+        // Cek apakah masih ada pertanyaan berikutnya
+        if ($questionNumber < 30) {
+            // Jika ada pertanyaan berikutnya, update nomor pertanyaan saat ini di session
+            session()->put('current_question', $questionNumber + 1);
+
+            // Redirect ke halaman quiz berikutnya
+            return redirect()->route('student.student.test');
+        } else {
+            // Jika sudah pertanyaan terakhir, redirect ke halaman hasil atau submit
+            return redirect()->route('quiz.submit');
+        }
+    }
+
     public function testProses(Request $request)
     {
         $id = Auth::user()->id;

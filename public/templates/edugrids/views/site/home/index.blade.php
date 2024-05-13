@@ -49,14 +49,14 @@
                                             <h5 class="wow fadeInUp" data-wow-delay=".3s">{{ toption('slideshow','sub_heading'.$i) }}</h5>
                                             <h1 class="wow fadeInUp" data-wow-delay=".5s"   @if(!empty(toption('slideshow','heading_font_color'.$i))) class="slhc{{ $i }}" @endif     >{{ toption('slideshow','slide_heading'.$i) }}</h1>
                                             <p class="wow fadeInUp" data-wow-delay=".7s"    @if(!empty(toption('slideshow','text_font_color'.$i))) class="sltx{{ $i }}" @endif   >{!!  nl2br(toption('slideshow','slide_text'.$i))  !!}</p>
-                                            <div class="button wow fadeInUp" data-wow-delay=".9s">
+                                            <!-- <div class="button wow fadeInUp" data-wow-delay=".9s">
                                                 @if(!empty(toption('slideshow','button_1_text'.$i)))
                                                     <a href="{{ url(toption('slideshow','url_1'.$i)) }}" class="btn">{{ toption('slideshow','button_1_text'.$i) }}</a>
                                                 @endif
                                                 @if(!empty(toption('slideshow','button_2_text'.$i)))
                                                     <a href="{{ url(toption('slideshow','url_2'.$i)) }}" class="btn alt-btn">{{ toption('slideshow','button_2_text'.$i) }}</a>
                                                 @endif
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>

@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="{{ asset('client/css/admin.css') }}">
     <link href="{{ asset('client/vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+    
     @if(!empty(setting('dashboard_color')))
         @include('partials.dashboard-css',['color'=>setting('dashboard_color')])
     @endif
@@ -180,7 +187,6 @@
                     </div>
                 </div>
                 @show
-
                 <div class="section-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger alert-dismissible show fade">
@@ -317,6 +323,8 @@
 <script src="{{ asset('client/themes/admin/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('client/themes/admin/assets/js/custom.js') }}"></script>
 <script src="{{ asset('client/vendor/select2/js/select2.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 
 <script src="{{ asset('client/app/lib.js') }}"></script>
 {!! setting('general_foot_scripts') !!}

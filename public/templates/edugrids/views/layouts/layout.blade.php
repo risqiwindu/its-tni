@@ -250,14 +250,14 @@
                                 @endforeach
 
                             </ul>
-                            @if(toption('navigation','search_form')==1)
+                            <!-- @if(toption('navigation','search_form')==1)
                             <form action="{{ route('courses') }}"  class="d-flex search-form">
                                 <input class="form-control me-2" name="filter" type="search" placeholder="{{ __lang('search-courses') }}"
                                        aria-label="{{ __lang('search-courses') }}">
                                 <button class="btn btn-outline-success" type="submit"><i
                                         class="lni lni-search-alt"></i></button>
                             </form>
-                            @endif
+                            @endif -->
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->
                 </div>

@@ -7,14 +7,14 @@
         <h4>{{ __lang('your-cart') }}</h4>
          <div class="card-header-action">
 
-             <div class="dropdown">
+             {{-- <div class="dropdown">
                  <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">{{ __lang('select-currency') }}</a>
                  <div class="dropdown-menu">
                      @foreach($currencies as $currency)
                      <a href="{{ route('cart.currency',['currency'=>$currency->id]) }}" class="dropdown-item has-icon">{{ $currency->country->symbol_left }} - {{ $currency->country->currency_name }}</a>
                          @endforeach
                  </div>
-             </div>
+             </div> --}}
          </div>
     </div>
     <div class="card-body">
@@ -24,7 +24,7 @@
             <thead>
             <tr>
                 <th>{{  __lang('item')  }}</th>
-                <th class="text-center">{{  __lang('total')  }}</th>
+                {{-- <th class="text-center">{{  __lang('total')  }}</th> --}}
                 <th> </th>
             </tr>
             </thead>
@@ -67,7 +67,7 @@
                         </div>
                     </div></td>
 
-                <td class="col-sm-1 col-md-1 text-center pt-2"  ><strong>{{ price($session->fee) }}</strong></td>
+                {{-- <td class="col-sm-1 col-md-1 text-center pt-2"  ><strong>{{ price($session->fee) }}</strong></td> --}}
                 <td class="col-sm-1 col-md-1 pt-2"  >
 
                     <a class="btn btn-danger" href="{{ route('cart.remove',['course'=>$session->id]) }}"><i class="fa fa-trash"></i> {{  __lang('remove')  }}</a>
@@ -97,7 +97,7 @@
     </div>
             <div class="row">
 
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 @if($cart->isCourse())
                 <div class="card card-primary">
                     <div class="card-header">{{  __lang('coupon')  }}</div>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                     @endif
-            </div>
+            </div> --}}
 
 
                 <div class="col-md-5">
@@ -152,16 +152,16 @@
                                 @endif <a href="{{ route('cart.remove-coupon') }}">{{  strtolower(__lang('remove'))  }}</a></td>
                         </tr>
                         @endif
-                        <tr>
+                        {{-- <tr>
 
                             <td><h3>{{  __lang('total')  }}</h3></td>
                             <td class="text-right"><h3><strong>{{ price(getCart()->getCurrentTotal()) }}</strong></h3></td>
-                        </tr>
+                        </tr> --}}
                     </table>
                     <div class="row">
                         <div class="col-md-6"  >
                             <a class="btn btn-link btn-block" href="@if(getCart()->isCertificate()){{ route('student.student.certificates')  }}@else{{ route('courses') }}@endif">
-                                <i class="fa fa-cart-plus"></i> {{  __lang('continue-shopping')  }}
+                                <i class="fa fa-cart-plus"></i> {{  __lang('search')  }}
                             </a>
 
                         </div>

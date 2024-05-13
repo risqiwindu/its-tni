@@ -126,7 +126,7 @@
 
                             <li ><a class="nav-link" href="{{ route('admin.student.sessions') }}">{{ __lang('all-courses-session') }} </a></li>
                             <li><a class="nav-link" href="{{ route('admin.session.groups') }}">{{  __lang('manage-categories') }}</a></li>
-                              <li><a class="nav-link" href="{{ route('admin.student.invoices') }}">{{ __lang('invoices') }}</a></li>
+                            {{-- <li><a class="nav-link" href="{{ route('admin.student.invoices') }}">{{ __lang('invoices') }}</a></li> --}}
 
                         </ul>
                     </li>
@@ -139,10 +139,10 @@
                             @can('access','add_student')<li ><a class="nav-link" href="@route('admin.student.add')">{{ __lang('add-student') }}</a></li>@endcan
                                 @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')">{{ __lang('all-students') }}</a></li>@endcan
                                 @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.active')">{{ __lang('active-students') }}</a></li>@endcan
-                                @can('access','bulk_enroll')<li ><a class="nav-link" href="@route('admin.student.massenroll')">{{ __lang('bulk-enroll') }}</a></li>@endcan
+                                {{-- @can('access','bulk_enroll')<li ><a class="nav-link" href="@route('admin.student.massenroll')">{{ __lang('bulk-enroll') }}</a></li>@endcan
                                 @can('access','export_student')<li ><a class="nav-link" href="@route('admin.student.import')">{{ __lang('import-export') }}</a></li>@endcan
                                 @can('access','message_students')<li ><a class="nav-link" href="@route('admin.student.mailsession')">{{ __lang('message-students') }}</a></li>@endcan
-                                @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.code')">{{ __lang('verify-code') }}</a></li>@endcan
+                                @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.code')">{{ __lang('verify-code') }}</a></li>@endcan --}}
                         </ul>
                     </li>
                     @endcan

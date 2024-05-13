@@ -1,29 +1,50 @@
 @extends('layouts.student')
 @section('innerTitle','Test Gaya Belajar')
-@section('breadcrumb')
-@include('admin.partials.crumb',[
-    'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            route('student.student.kuesioner')=>'Gaya Belajar',
-            route('student.student.instruksi')=>'Test'
-        ]])
-@endsection
 @section('content')
 <style>
+.row{
+  margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 #regForm {
-    background-color: #ffffff;
     margin: 100px auto;
     margin-top: 5px;
     padding: 40px;
     width: 80%;
     min-width: 300px;
+    /* font-family: "Averia Serif Libre", cursive; */
+	  background-color: rgb(19, 18, 21);
+	  color: #ffffff;
   }
   
   /* Hide all steps by default: */
   .tab {
     display: none;
+	  align-items: center;
+	  justify-content: center;
   }
-  
+
+  h2{
+    margin-bottom: 20px;
+  }
+
+  .form-check label {
+	  display: block;
+	  padding: 20px 60px;
+	  background: #1d1d42;
+	  border: 2px solid rgba(255, 255, 255, 0.1);
+	  border-radius: 8px;
+	  cursor: pointer;
+	  font-size: 18px;
+	  font-weight: 400;
+	  min-width: 250px;
+	  white-space: nowrap;
+	  position: relative;
+	  transition: 0.4s ease-in-out 0s;
+}
+
   /* Make circles that indicate the steps of the form: */
   .step {
     height: 15px;
@@ -50,111 +71,56 @@
   .carousel-control-next{
       top: 75%;
 }
+
+.form-check-input{
+  cursor: pointer;
+}
 </style>
     <div class="row">
         <form id="regForm" action="{{ route('student.student.proses') }}" method="POST">
             @csrf
-            <h1>Form</h1>
-            <h1>Kuesioner Tipe Belajar:</h1>
-            
-               <!-- One "tab" for each step in the form: -->
-            <div class="tab">
-              @foreach ($dt_kuesioner1 as $data )
-              <br>
+              @foreach ($dt_kuesioner as $data )
+              <div class="tab">
               <div class="content" id="{{ $data->id }}">
-                Pertanyaan {{ $data->id }}
-                <p>{{ $data->pertanyaan}}</p>
+                <h2>Pertanyaan {{ $data->id }}</h2>
+                <h2>{{ $data->pertanyaan}}</h2>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">
                   <label>
-                    {{ $data->jawabanAudio }}
+                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">{{ $data->jawabanAudio }}
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">
                   <label>
-                    {{ $data->jawabanVisual }}
+                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">{{ $data->jawabanVisual }}
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">
                   <label>
-                    {{ $data->jawabanKinestetik }}
+                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">{{ $data->jawabanKinestetik }}
                   </label>
                 </div>
+                {{-- <br>
+                @if ($loop->last)
+                <button type="submit">Submit</button>
+                @else
+                <button type="button" onclick="myFunction();">Next</button>
+                @endif --}}
               </div>
-              @endforeach
             </div>
-            
-            <div class="tab">
-              @foreach ($dt_kuesioner2 as $data )
-              <br>
-              Pertanyaan {{ $data->id }}
-              <div class="content" id="{{ $data->id }}">
-                <p>{{ $data->pertanyaan}}</p>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a">
-                  <label>
-                    {{ $data->jawabanAudio }}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">
-                  <label>
-                    {{ $data->jawabanVisual }}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">
-                  <label>
-                    {{ $data->jawabanKinestetik }}
-                  </label>
-                </div>
-              </div>
               @endforeach
-            </div>
-            
-            <div class="tab">
-              @foreach ($dt_kuesioner3 as $data )
-              <br>
-              Pertanyaan {{ $data->id }}
-              <div class="content" id="{{ $data->id }}">
-                <p>{{ $data->pertanyaan}}</p>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a">
-                  <label>
-                    {{ $data->jawabanAudio }}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">
-                  <label>
-                    {{ $data->jawabanVisual }}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">
-                  <label>
-                    {{ $data->jawabanKinestetik }}
-                  </label>
-                </div>
-              </div>
-              @endforeach
-            </div>
             
             <div style="overflow:auto;">
               <div style="float:right; padding:2%;">
-                <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                 <button type="button" class="btn btn-primary" id="nextBtn" onclick="myFunction();">Next</button>
               </div>
             </div>
             
-            <!-- Circles which indicates the steps of the form: -->
+            {{-- <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;">
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
-            </div>
+            </div> --}}
             
             </form>
     </div>
@@ -237,7 +203,6 @@
       //... and adds the "active" class to the current step:
       x[n].className += " active";
       }
-
 
     </script>
 @endsection

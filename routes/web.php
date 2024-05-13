@@ -508,6 +508,7 @@ Route::group(['middleware'=>['auth','student'],'prefix' => 'student', 'as' => 's
     Route::any('student/kuesioner','StudentController@kuesioner')->name('student.kuesioner');
     Route::any('student/instruksi','StudentController@instruksi')->name('student.instruksi');
     Route::any('student/test','StudentController@test')->name('student.test');
+    Route::any('student/submit','StudentController@submit')->name('student.submit');
     Route::any('student/proses','StudentController@testProses')->name('student.proses');
     Route::any('student/camera','StudentController@camera')->name('student.camera');
 
