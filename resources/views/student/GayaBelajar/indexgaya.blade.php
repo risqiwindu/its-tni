@@ -8,48 +8,11 @@
         ]])
 @endsection --}}
 @section('content')
-<style>
-  * The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
   <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup slider-item-first-visible slider-nav-autoplay" data-slider-nav-autoplay-interval="5000">
     <div class="slider-container">
-        <div class="p-3 p-xl-5 text-light slide-visible" style="background-image: url('https://i.pinimg.com/originals/84/52/4b/84524b346a541a33e4ecca7a02133f38.jpg')">
+        <div class="p-3 p-xl-5 text-light slide-visible" style="background-image: url('https://i.pinimg.com/originals/84/52/4b/84524b346a541a33e4ecca7a02133f38.jpg'); background-size: 100% 100%;">
         </div>
         <div class="p-3 p-xl-5 text-light slide-visible align-items-center justify-center" style="background-color: #2f3e46;">
             <h3 class="text-uppercase h5">Ayo kenali tipe gaya belajar kamu</h3>
@@ -58,7 +21,7 @@
             </p>
             <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
         </div>
-        <div class="p-3 p-xl-5 text-light" style="background-image: url('https://i.pinimg.com/originals/ac/73/2d/ac732db89aa945fc43b4d0fc2646b604.gif')">
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Visual.png') }}'); background-size: 100% 100%;">
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-color: #354f52;">
             <h3 class="text-uppercase h5">TIPE GAYA BELAJAR VISUAL</h3>
@@ -67,7 +30,7 @@
             </p>
             <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
         </div>
-        <div class="p-3 p-xl-5 text-light" style="background-image: url('https://www.reactiongifs.com/r/sbs.gif')">
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Auditory.png') }}'); background-size: 100% 100%;">
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
             <h3 class="text-uppercase h5">TIPE GAYA BELAJAR AUDIO</h3>
@@ -76,7 +39,7 @@
             </p>
             <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
         </div>
-        <div class="p-3 p-xl-5 text-light" style="background-image: url('https://i.pinimg.com/originals/f9/e7/a0/f9e7a02065d880479c13d61b5d60f4f2.gif')">
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}')">
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
             <h3 class="text-uppercase h5">TIPE GAYA BELAJAR KINESTETIK</h3>
@@ -99,41 +62,5 @@
         <button aria-label="Go to slide"></button>
     </div>
 </div>
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
-
-<script>
-  // Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("modal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
 @endsection

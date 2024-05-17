@@ -191,13 +191,39 @@ p {
 </style>
 <div class="row">
     <article class="card" id="card">
-        <img
+      @if ( $tampil == 'Audio')
+      <img
+      class="card__background"
+      src="{{ asset('img/Auditory.png') }}"
+      alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+      width="1920"
+      height="2193"
+    />
+      @elseif ( $tampil == 'Visual')
+      <img
+      class="card__background"
+      src="{{ asset('img/Visual.png') }}"
+      alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+      width="1920"
+      height="2193"
+    />
+    @elseif ( $tampil == 'Kinestetik')
+    <img
+    class="card__background"
+    src="{{ asset('img/Kinestethic.png') }}"
+    alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+    width="1920"
+    height="2193"
+  />
+    @else
+    <img
           class="card__background"
           src="https://i.imgur.com/QYWAcXk.jpeg"
           alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
           width="1920"
           height="2193"
         />
+      @endif
         <div class="card__content | flow">
           <div class="card__content--container | flow">
             <h2 class="card__title">{{ $tampil }} {{ $a }}%</h2>

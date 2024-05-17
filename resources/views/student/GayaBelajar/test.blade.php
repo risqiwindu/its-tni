@@ -15,8 +15,8 @@
     width: 80%;
     min-width: 300px;
     /* font-family: "Averia Serif Libre", cursive; */
-	  background-color: rgb(19, 18, 21);
-	  color: #ffffff;
+	  background-color: #fff;
+	  color: black;
   }
   
   /* Hide all steps by default: */
@@ -33,7 +33,7 @@
   .form-check label {
 	  display: block;
 	  padding: 20px 60px;
-	  background: #1d1d42;
+	  background: #52796f;
 	  border: 2px solid rgba(255, 255, 255, 0.1);
 	  border-radius: 8px;
 	  cursor: pointer;
