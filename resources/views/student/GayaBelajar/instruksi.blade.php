@@ -15,16 +15,16 @@
                             <ul class="slider-container text-dark py-4" tabindex="-1" style="outline: none;" id="swiffyBenefits">
                                 <li class="slide-visible">
                                     <div class="card border-0 h-100 shadow text-light"  style="background-color: #52796f">
-                                        <img src="{{ asset('img/2.jpg') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Feature rich">
+                                        <img src="{{ asset('img/instruksi1.png') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Feature rich">
                                         <div class="card-body p-2 p-lg-3">
-                                            <p class="card-text">Tes ini terdiri dari 42 pernyataan, maka bacalah setiap pernyataan tersebut dengan baik dan teliti.</p>
+                                            <p class="card-text">Tes ini terdiri dari 30 pernyataan, maka bacalah setiap pernyataan tersebut dengan baik dan teliti.</p>
                                             
                                         </div>
                                     </div>
                                 </li>
                                 <li class="">
                                     <div class="card border-0 h-100 shadow text-light" style="background-color: #52796f">
-                                        <img src="{{ asset('img/3.jpg') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Modern CSS">
+                                        <img src="{{ asset('img/Kinestethic.png') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Modern CSS">
                                         <div class="card-body p-2 p-lg-3">
                                             <p class="card-text">Pilihlah pernyataan yang sesuai dengan diri Anda</p>
                                         </div>
@@ -32,7 +32,7 @@
                                 </li>
                                 <li class="">
                                     <div class="card border-0 h-100 shadow text-light" style="background-color: #52796f">
-                                        <img src="{{ asset('img/4.jpg') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Setup using markup">
+                                        <img src="{{ asset('img/instruksi2.png') }}" class="card-img-top mt-2" style="height: 15rem;" alt="Setup using markup">
                                         <div class="card-body p-2 p-lg-3">
                                             <p class="card-text">Apabila pernyataan tersebut sesuai dengan diri Anda pilih salah satu dari tiga pernyataan yang sesuai</p>
                                         </div>

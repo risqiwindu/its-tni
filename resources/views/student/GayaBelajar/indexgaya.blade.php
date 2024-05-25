@@ -39,7 +39,7 @@
             </p>
             <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
         </div>
-        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}')">
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}'); background-size: 100% 100%;">
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
             <h3 class="text-uppercase h5">TIPE GAYA BELAJAR KINESTETIK</h3>

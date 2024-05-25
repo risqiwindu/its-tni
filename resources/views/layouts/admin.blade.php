@@ -167,7 +167,7 @@
                     </li>
                     @endcan
 
-                   {{-- @can('access-group','attendance')
+                   @can('access-group','attendance')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-table"></i><span>{{ __lang('attendance') }}</span></a>
                         <ul class="dropdown-menu">
@@ -189,7 +189,7 @@
                         </ul>
                     </li>
                     @endcan
-                    @can('access-group','revision_notes')
+                    {{-- @can('access-group','revision_notes')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-list-alt"></i><span>{{ __lang('revision-notes') }}</span></a>
                         <ul class="dropdown-menu">
@@ -198,7 +198,7 @@
 
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
                     @can('access-group','downloads')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>{{ __lang('downloads') }}</span></a>
@@ -207,7 +207,7 @@
                             @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')">{{ __lang('all-downloads') }}</a></li>@endcan
                         </ul>
                     </li>
-                        @endcan --}}
+                        @endcan
                    @can('access-group','discussions')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>{{ __lang('discussions') }}</span></a>
@@ -217,7 +217,7 @@
                         </ul>
                     </li>
                         @endcan
-                    {{-- @can('access-group','tests')
+                    @can('access-group','tests')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-check-circle"></i><span>{{ __lang('tests') }}</span></a>
                         <ul class="dropdown-menu">
@@ -227,7 +227,7 @@
                     </li>
                         @endcan
 
-                    @can('access-group','survey')
+                    {{-- @can('access-group','survey')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-flag-checkered"></i><span>{{ __lang('surveys') }}</span></a>
                         <ul class="dropdown-menu">
@@ -245,14 +245,14 @@
                             @can('access','view_certificates')<li ><a class="nav-link" href="@route('admin.certificate.track')">{{ __lang('track-certificates') }}</a></li>@endcan
                         </ul>
                     </li>
-                            @endcan
+                            @endcan --}}
                     @can('access-group','reports')
                     <li class="dropdown">
                         <a href="@route('admin.report.index')" class="nav-link"><i class="fas fa-chart-bar"></i><span>{{ __lang('reports') }}</span></a>
 
                     </li>
                             @endcan
-                    @can('access-group','blog')
+                    {{-- @can('access-group','blog')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i><span>{{ __lang('blog') }}</span></a>
                         <ul class="dropdown-menu">
@@ -277,16 +277,16 @@
 
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
 
-                    @can('access-group','files')
+                    {{-- @can('access-group','files')
                         <li class="dropdown">
                             <a  onclick="window.open('{{ route('admin.filemanager.home') }}', '{{ __lang('filemanager') }}', 'width=1100, height=530',true);" href="javascript:;" href="#" class="nav-link"><i class="fas fa-file-archive"></i><span>{{ __lang('filemanager') }}</span></a>
 
                         </li>
-                    @endcan
+                    @endcan --}}
 
-                    @can('access-group','articles')
+                    {{-- @can('access-group','articles')
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-ruler"></i><span>{{ __lang('articles') }}</span></a>
                             <ul class="dropdown-menu">
