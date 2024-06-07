@@ -4,7 +4,7 @@
 @section('content')
     <div class="card card-primary">
      <div class="card-header">
-        <h4>{{ __lang('your-cart') }}</h4>
+        <h4>Keranjang Course Anda</h4>
          <div class="card-header-action">
 
              {{-- <div class="dropdown">
@@ -23,7 +23,7 @@
         <table class="table table-hover mb-3">
             <thead>
             <tr>
-                <th>{{  __lang('item')  }}</th>
+                <th>Course</th>
                 {{-- <th class="text-center">{{  __lang('total')  }}</th> --}}
                 <th> </th>
             </tr>
@@ -166,8 +166,8 @@
 
                         </div>
                         <div class="col-md-6"    >
-                            <button type="button" onclick="$('#cart-form').submit()" class="btn btn-success btn-block">
-                                <i class="fa fa-money-bill"></i>  {{  __lang('checkout')  }}
+                            <button type="button" onclick="$('#cart-form').submit()" class="btn btn-primary btn-block" style="background-color: #097969;">
+                                <i class="fa fa-money-bill"></i>  Enroll
                             </button>
                         </div>
                     </div>

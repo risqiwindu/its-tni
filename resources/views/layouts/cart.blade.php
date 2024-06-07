@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('page-title') - {{ setting('general_site_name') }}</title>
+    <title>Keranjang - {{ setting('general_site_name') }}</title>
 
     @if(!empty(setting('image_icon')))
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset(setting('image_icon')) }}">

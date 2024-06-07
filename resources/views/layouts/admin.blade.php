@@ -104,11 +104,11 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li class="menu-header">@lang('default.menu')</li>
-                    <li><a href="@route('admin.dashboard')" class="nav-link"><i class="fas fa-fire"></i><span>@lang('default.dashboard')</span></a></li>
+                    <li><a href="@route('admin.dashboard')" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a></li>
 
                     @can('access-group','course')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>{{ __lang('courses-sessions') }}</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Course</span></a>
                         <ul class="dropdown-menu">
 
                             <li class="dropdown">
@@ -158,7 +158,7 @@
                     @endcan
                     @can('access-group','video')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-video"></i><span>{{ __lang('video-library') }}</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-video"></i><span>Video</span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_video')<li ><a class="nav-link" href="@route('admin.video.add')">{{ __lang('add-video') }}</a></li>@endcan
                                 @can('access','view_videos')<li ><a class="nav-link" href="@route('admin.video.index')">{{ __lang('all-videos') }}</a></li>@endcan
@@ -181,7 +181,7 @@
                     @endcan
                     @can('access-group','homework')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>{{ __lang('homework') }}</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Assignment</span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_homework')<li ><a class="nav-link" href="@route('admin.assignment.add')">{{ __lang('add-homework') }}</a></li>@endcan
                             @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')">{{ __lang('view-all') }}</a></li>@endcan
@@ -201,7 +201,7 @@
                     @endcan --}}
                     @can('access-group','downloads')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>{{ __lang('downloads') }}</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>Download</span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_download')<li ><a class="nav-link" href="@route('admin.download.add')">{{ __lang('create-download') }}</a></li>@endcan
                             @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')">{{ __lang('all-downloads') }}</a></li>@endcan
@@ -358,7 +358,7 @@
 
                 </ul>
 
-                @if(config('app.credits')==true)
+                {{-- @if(config('app.credits')==true)
                     @if(saas())
                         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                             <a target="_blank" href="https://traineasy.net/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
@@ -372,7 +372,7 @@
                     </a>
                 </div>
                     @endif
-                @endif
+                @endif --}}
 
 
             </aside>

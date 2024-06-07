@@ -4,12 +4,12 @@
     {!! clean($errors->first('name', '<p class="help-block">:message</p>')) !!}
 </div>
 <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
-    <label for="last_name" class="control-label">@lang('default.last-name')</label>
+    <label for="last_name" class="control-label">Nama Belakang</label>
     <input class="form-control" name="last_name" type="text" id="name" value="{{ old('last_name',isset($admin->last_name) ? $admin->last_name : '') }}" >
     {!! clean($errors->first('last_name', '<p class="help-block">:message</p>')) !!}
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-    <label for="email" class="control-label">@lang('default.email')</label>
+    <label for="email" class="control-label">Email</label>
     <input class="form-control" name="email" type="text" id="email" value="{{ old('email',isset($admin->email) ? $admin->email : '') }}" >
     {!! clean($errors->first('email', '<p class="help-block">:message</p>')) !!}
 </div>

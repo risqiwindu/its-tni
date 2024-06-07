@@ -18,7 +18,7 @@
                     <form method="POST" action="{{ route('login') }}" class="needs-validation"   >
                         @csrf
                         <div class="form-group">
-                            <label for="email">{{ __lang('email') }}</label>
+                            <label for="email">Email</label>
                             <input id="email" type="email" class="form-control login-email @error('email') is-invalid @enderror"  name="email" tabindex="1"  value="{{ old('email') }}"   required autofocus autocomplete="email" >
 
                             <div class="invalid-feedback">
@@ -33,10 +33,10 @@
 
                         <div class="form-group">
                             <div class="d-block">
-                                <label for="password" class="control-label">{{ __lang('password') }}</label>
+                                <label for="password" class="control-label">Password</label>
                                 <div class="float-right">
                                     <a href="{{ route('password.request') }}" class="text-small">
-                                        {{ __lang('lost-password') }}
+                                        Lupa Password
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" style="background-color: #097969;">
                                 {{ __lang('sign-in') }}
                             </button>
                         </div>
@@ -94,7 +94,7 @@
                     <br>
                     <h1><i class="fa fa-user"></i></h1>
                     <br>
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-block btn-lg">{{ __lang('register') }}</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-block btn-lg" style="background-color: #097969;">Sign Up</a>
                 </div>
                 @endif
 
@@ -109,7 +109,7 @@
     @if($enableRegistration)
 
     <div class="mt-5 text-muted text-center">
-        {{ __lang('dont-have-account') }} <a href="{{ route('register') }}">{{ __lang('create-one') }}</a>
+        {{ __lang('dont-have-account') }} <a href="{{ route('register') }}">Sign Up</a>
     </div>
     @endif
 

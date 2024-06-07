@@ -3,8 +3,9 @@
 @section('breadcrumb')
 @endsection
 @section('content')
-<div class="row" id="test">
-    <h1>Test Cam</h1>
+<div class="row" id="test" style="position: absolute;
+margin-left: -50px;
+left: 30%;">
     <video id="video" width="400" height="250" autoplay style="position: absolute;">
 </div>
     <script defer src="{{ asset('client/js/face-api.min.js') }}"></script>

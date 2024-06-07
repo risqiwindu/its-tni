@@ -3,8 +3,8 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            url('/')=>__lang('home'),
-            '#'=>__lang('dashboard')
+            url('/')=>'Home',
+            '#'=>'Dashboard'
         ]])
 @endsection
 @section('content')
@@ -17,7 +17,7 @@
 
                 <div class="card card-danger">
                  <div class="card-header">
-                     <div ><h4><i class="fa fa-edit"></i> {{ __lang('homework') }}</h4></div>
+                     <div ><h4><i class="fa fa-edit"></i> Assignment</h4></div>
 
                 </div>
                 <div class="card-body">
@@ -33,7 +33,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses',__lang('courses-sessions')) }}</h4>
+                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses','Course Saya') }}</h4>
                     <div class="card-header-action">
                         <a href="{{ route('student.student.mysessions') }}" class="btn btn-primary">{{ __lang('view-all') }}</a>
 
@@ -247,7 +247,7 @@
         <div class="col-md-2">
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
-                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions',__lang('my-courses')) }}</a></li>
+                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Course Saya') }}</a></li>
                 {{-- @if(setting('menu_show_homework')==1)
                 <li class="list-group-item"><a href="{{ route('student.assignment.index') }}"><i class="fas fa-edit"></i> {{ __lang('homework') }}</a> </li>
                 @endif --}}

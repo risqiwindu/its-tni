@@ -180,7 +180,7 @@
                                         @endif
                             @else
 
-                                <li><a href="{{ route('cart') }}"><i class="lni lni-cart"></i> {{ __lang('your-cart') }}@if(getCart()->getTotalItems()>0) ({{ getCart()->getTotalItems() }}) @endif</a></li>
+                                <li><a href="{{ route('cart') }}"><i class="lni lni-cart"></i> Keranjang Course @if(getCart()->getTotalItems()>0) ({{ getCart()->getTotalItems() }}) @endif</a></li>
                             @endif
 
                         </ul>
@@ -190,11 +190,11 @@
                     <div class="toolbar-login">
                         <div class="button">
                             @guest
-                                <a href="{{ route('register') }}">{{ __lang('register') }}</a>
-                                <a href="{{ route('login') }}" class="btn">@lang('default.login')</a>
+                                <a href="{{ route('register') }}">Sign Up</a>
+                                <a href="{{ route('login') }}" class="btn">Login</a>
                             @else
                                 <a  onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" href="{{ route('logout') }}" >{{ __lang('logout') }}</a>
+                                                     document.getElementById('logout-form').submit();" href="{{ route('logout') }}" >Logout</a>
                                 <a href="{{ route('home') }}" class="btn">@lang('default.my-account')</a>
                             @endif
 

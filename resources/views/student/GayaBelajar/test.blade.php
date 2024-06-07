@@ -64,7 +64,7 @@
   
   /* Mark the steps that are finished and valid: */
   .step.finish {
-    background-color: #3B71CA;
+    background-color: #3B71CA;  
   }
 
   .carousel-control-prev,
@@ -83,21 +83,25 @@
               <div class="tab">
               <div class="content" id="{{ $data->id }}">
                 <h2>Pertanyaan {{ $data->id }}</h2>
-                <h2>{{ $data->pertanyaan}}</h2>
-                <div class="form-check">
-                  <label>
-                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">{{ $data->jawabanAudio }}
-                  </label>
+                <div class="pertanyaan">
+                  <h2>{{ $data->pertanyaan}}</h2>
+                <div class="pilihan">
+                  <div class="form-check">
+                    <label>
+                      <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">{{ $data->jawabanAudio }}
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label>
+                      <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">{{ $data->jawabanVisual }}
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label>
+                      <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">{{ $data->jawabanKinestetik }}
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <label>
-                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="b" value="b">{{ $data->jawabanVisual }}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label>
-                    <input class="form-check-input" type="radio" name="{{ $data->id }}" id="c" value="c">{{ $data->jawabanKinestetik }}
-                  </label>
                 </div>
                 {{-- <br>
                 @if ($loop->last)
@@ -144,7 +148,7 @@
             document.getElementById("nextBtn").innerHTML = "Next";
           }
       // ... and run a function that displays the correct step indicator:
-      fixStepIndicator(n)
+      fixStepIndicator(n);
       }
 
       function nextPrev(n) {
@@ -202,7 +206,6 @@
       }
       //... and adds the "active" class to the current step:
       x[n].className += " active";
-      }
-
+      }     
     </script>
 @endsection

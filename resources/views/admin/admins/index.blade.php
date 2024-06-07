@@ -34,7 +34,8 @@
                                         <th></th>
                                         <th>@lang('default.name')</th>
 
-                                        <th>@lang('default.email')</th><th>@lang('default.enabled')</th>
+                                        <th>Email</th>
+                                        <th>@lang('default.enabled')</th>
                                         <th>@lang('default.role')</th>
                                         <th>@lang('default.actions')</th>
                                     </tr>

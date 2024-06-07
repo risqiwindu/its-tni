@@ -155,7 +155,7 @@
                                     </div>
                                     <div  >
                                         <button type="submit" class="btn btn-success btn-block">
-                                            {{  __lang('checkout')  }} <span class="glyphicon glyphicon-play"></span>
+                                            Enroll <span class="glyphicon glyphicon-play"></span>
                                         </button>
                                     </div>
                                 </div>

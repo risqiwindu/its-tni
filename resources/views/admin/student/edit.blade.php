@@ -44,7 +44,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <div >
-                                                            <label for="password1" class="control-label">{{ formLabel($form->get('last_name')) }}</label>
+                                                            <label for="password1" class="control-label">Nama Belakang</label>
                                                         </div>
                                                         <div >
                                                             {{ formElement($form->get('last_name')) }}   <p class="help-block">{{ formElementErrors($form->get('last_name')) }}</p>
@@ -64,7 +64,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <div >
-                                                            <label for="password1" class="control-label">{{ formLabel($form->get('email')) }}</label>
+                                                            <label for="password1" class="control-label">Email</label>
                                                         </div>
                                                         <div >
                                                             {{ formElement($form->get('email')) }}   <p class="help-block">{{ formElementErrors($form->get('email')) }}</p>
@@ -208,7 +208,7 @@
 
 
                                             <div class="form-footer col-lg-offset-1 col-md-offset-2 col-sm-offset-3">
-                                                <button type="submit" class="btn btn-primary btn-block">{{__lang('save-changes')}}</button>
+                                                <button type="submit" class="btn btn-primary btn-block">Simpan</button>
                                             </div>
 
                                         </form>

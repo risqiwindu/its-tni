@@ -22,14 +22,14 @@
                         <input id="frist_name" type="text" class="form-control" name="name" value="{{ old('name') }}"   autofocus="" required>
                     </div>
                     <div class="form-group col-6">
-                        <label for="last_name">{{ __lang('last-name') }}</label>
+                        <label for="last_name">Nama Belakang</label>
                         <input id="last_name" type="text" class="form-control" name="last_name"  value="{{ old('last_name') }}" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-6">
-                        <label for="email">{{ __lang('email') }}</label>
+                        <label for="email">Email</label>
                         <input id="email" type="email" class="form-control" name="email"  value="{{ old('email') }}" required >
                         <div class="invalid-feedback">
                         </div>
@@ -48,7 +48,7 @@
 
                 <div class="row">
                     <div class="form-group col-6">
-                        <label for="password" class="d-block">{{ __lang('password') }}</label>
+                        <label for="password" class="d-block">Password</label>
                         <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
                         <div id="pwindicator" class="pwindicator">
                             <div class="bar"></div>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group col-6">
-                        <label for="password2" class="d-block">{{ __lang('confirm-password') }}</label>
+                        <label for="password2" class="d-block">Konfirmasi Password</label>
                         <input id="password2" type="password" class="form-control" name="password_confirmation" required>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #097969;">
                         {{ __lang('Register') }}
                     </button>
                 </div>
