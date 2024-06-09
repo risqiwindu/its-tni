@@ -4,7 +4,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
+            route('student.dashboard')=>'dashboard',
             '#'=>$pageTitle
         ]])
 @endsection
@@ -132,7 +132,7 @@
 
     </div>
 
-    {{-- <div class="col-md-3">
+    <div class="col-md-3">
 
         @if($subCategories || $parent)
             <ul class="list-group mb-5">
@@ -156,13 +156,14 @@
         <ul class="list-group">
             <li class="list-group-item active">{{ __lang('categories') }}</li>
             <li class="list-group-item"><a href="{{ route('courses') }}">{{ __lang('all-courses') }}</a></li>
+            <li class="list-group-item @if(request()->get('group') == 1) active @endif"><a href="{{ route('courses') }}?group=1">Visual</a></li>
             @foreach($categories as $category)
                 <li class="list-group-item @if(request()->get('group') == $category->id) active @endif"><a href="{{ route('courses') }}?group={{ $category->id }}">{{ $category->name }}</a></li>
             @endforeach
 
         </ul>
 
-        <div class="card mt-3  " data-toggle="card-collapse" data-open="false">
+        {{-- <div class="card mt-3  " data-toggle="card-collapse" data-open="false">
             <div class="card-header card-collapse-trigger">
                 {{  __lang('Filter')  }}
             </div>
@@ -192,10 +193,10 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
 
 
-    </div> --}}
+    </div>
 
 </div>
 @endsection

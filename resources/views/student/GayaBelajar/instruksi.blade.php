@@ -10,7 +10,7 @@
                         </p>
                     </div>
                     <div class="col-12 col-lg-7 col-xl-8 py-xl-6" style="background-color: #097969">
-                        <div class="swiffy-slider h-80 slider-item-reveal slider-indicators-outside slider-indicators-round slider-nav-outside-expand slider-nav-visible slider-nav-animation slider-nav-animation-scale slider-item-first-visible slider-nav-autohide slider-nav-arrow slider-nav-light" data-slider-nav-animation-threshold="0.4">
+                        <div class="swiffy-slider h-80 slider-item-reveal slider-indicators-outside slider-indicators-round slider-nav-outside-expand slider-nav-visible slider-nav-animation slider-nav-animation-scale slider-item-first-visible slider-nav-autohide slider-nav-arrow slider-nav-dark" data-slider-nav-animation-threshold="0.4">
                             <ul class="slider-container text-dark py-4" tabindex="-1" style="outline: none;" id="swiffyBenefits">
                                 <li class="slide-visible">
                                     <div class="card border-0 h-100 shadow text-light"  style="background-color: #097969">

@@ -208,7 +208,7 @@ class CatalogController extends Controller {
             $id = $this->getId();
 
         //$categories = $sessionCategoryTable->getLimitedRecords(100);
-        
+       
         $categories = CourseCategory::whereNull('parent_id')->orderBy('sort_order')->where('enabled',1)->limit(100)->get();
 
         $pageTitle = __lang('Online Courses');

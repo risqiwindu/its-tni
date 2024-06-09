@@ -8,7 +8,7 @@
         ]])
 @endsection
 @section('content')
-<style>
+{{-- <style>
     @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
 
 :root {
@@ -190,6 +190,7 @@ p {
 
 </style>
 <div class="row">
+  <div class="col-3">
     <article class="card" id="card">
       @if ( $tampil == 'Audio')
       <img
@@ -233,10 +234,204 @@ p {
           </div>
         </div>
       </article>
+  </div>
+  <div class="col-9">
+    <h1>Test</h1>
+  </div>
 </div>
 <script>
     window.onload = function() {
   document.getElementById("card").focus();
 }
-</script>
+</script> --}}
+
+<style>
+:root {
+  --contentHeight: 30vh;
+  --sectionWidth: 1000px;
+}
+
+section {
+  max-width: var(--sectionWidth);
+  margin: 40px auto;
+  width: 97%;
+  color: black;
+}
+
+summary {
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 22px;
+  transition: .3s;
+  border-bottom: 2px solid;
+  user-select: none;
+}
+
+details > div {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 100%;
+  user-select: none;
+  padding: 0 20px;
+  font-family: "Karla", sans-serif;
+  line-height: 1.5;
+}
+
+details > div > img {
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+details > div > p {
+  flex: 1;
+  text-align: center;
+  align-content: center;
+  font-weight: bold;
+}
+
+details[open] > summary {
+   color: green;
+}
+
+@media (min-width: 768px) {
+  details[open] > div > p {
+    opacity: 0;
+    animation-name: showContent;
+    animation-duration: 0.6s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  details[open] > div {
+    animation-name: slideDown;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  details[open] > div > img {
+    opacity: 0;
+    height: 100%;
+    margin: 0;
+    animation-name: showImage;
+    animation-duration: 0.3s;
+    animation-delay: 0.15s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+
+  to {
+    opacity: 1;
+    height: var(--contentHeight);
+    padding: 20px;
+  }
+}
+
+@keyframes showImage {
+  from {
+    opacity: 0;
+    clip-path: inset(50% 0 50% 0);
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes showContent {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
+
+<section>
+  @if ( $tampil == 'Audio')
+  <details open>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p>
+    </div>
+  </details>
+  <details>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>{{ $deskripsiVisual }}</p>  
+    </div>
+  </details>
+  <details>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
+    </div>
+  </details>
+  @elseif ( $tampil == 'Visual')
+  <details open>
+    <summary>Visual</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>The Swiss psychologist and psychiatrist Carl Jung was one of the major forces responsible for bringing psychological (having to do with the mind and its processes) thought and its theories into the twentieth century.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>The work of Sigmund Freud, the Austrian founder of psychoanalysis, marked the beginning of a modern, dynamic psychology by providing the first well-organized explanation of the inner mental forces determining human behavior.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Kinestetik</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>Austrian psychiatrist Alfred Adler was credited with developing several important theories on the motivation of human behavior. He founded the school of individual psychology, a comprehensive "science of living" that focuses on the uniqueness of the individual
+        and a person's relationships with society.</p>
+    </div>
+  </details>
+  @elseif ( $tampil == 'Kinestetik')
+  <details open>
+    <summary>Kinestetik</summary>
+    <div>
+      <img src="{{  asset('img/Kinestethic.png')  }}" />
+      <p>The Swiss psychologist and psychiatrist Carl Jung was one of the major forces responsible for bringing psychological (having to do with the mind and its processes) thought and its theories into the twentieth century.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>The work of Sigmund Freud, the Austrian founder of psychoanalysis, marked the beginning of a modern, dynamic psychology by providing the first well-organized explanation of the inner mental forces determining human behavior.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Visual</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>Austrian psychiatrist Alfred Adler was credited with developing several important theories on the motivation of human behavior. He founded the school of individual psychology, a comprehensive "science of living" that focuses on the uniqueness of the individual
+        and a person's relationships with society.</p>
+    </div>
+  </details>
+  @endif
+</section>
 @endsection

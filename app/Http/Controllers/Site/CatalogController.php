@@ -50,11 +50,13 @@ class CatalogController extends Controller
         $id = Auth::user()->id;
         $user = DB::table('kuesioner_status')->where('user_id', $id)->first();
 
-        // $group = request()->get('group', null);
+        
         if (empty($user)) {
             $group=null;
-        }else{
-            $group = $user->course_category_id;
+        }
+        else{
+            // $group = $user->course_category_id;
+            $group = request()->get('group', null);
         }
 
         $sort = request()->get('sort', null);
@@ -102,6 +104,8 @@ class CatalogController extends Controller
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
 
+        
+        
         //$categories = $sessionCategoryTable->getLimitedRecords(100);
         $categories = CourseCategory::whereNull('parent_id')->orderBy('sort_order')->where('enabled',1)->limit(100)->get();
 

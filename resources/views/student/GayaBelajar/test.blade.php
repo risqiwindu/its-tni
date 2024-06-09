@@ -79,13 +79,14 @@
     <div class="row">
         <form id="regForm" action="{{ route('student.student.proses') }}" method="POST">
             @csrf
+            {{ $no = 0; }}
               @foreach ($dt_kuesioner as $data )
               <div class="tab">
               <div class="content" id="{{ $data->id }}">
-                <h2>Pertanyaan {{ $data->id }}</h2>
+                <h2>Pertanyaan {{ $no = $no + 1 }}</h2>
                 <div class="pertanyaan">
                   <h2>{{ $data->pertanyaan}}</h2>
-                <div class="pilihan">
+                <div class="options">
                   <div class="form-check">
                     <label>
                       <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">{{ $data->jawabanAudio }}
@@ -132,9 +133,27 @@
       var currentTab = 0; // Current tab is set to be the first tab (0)
       showTab(currentTab); // Display the current tab
 
+      function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+      }
+
+      function shuffleOptions(container) {
+      const options = Array.from(container.children);
+      const shuffledOptions = shuffle(options);
+
+      container.innerHTML = '';
+      shuffledOptions.forEach(option => container.appendChild(option));
+      }
+
       function showTab(n) {
       // This function will display the specified tab of the form ...
       var x = document.getElementsByClassName("tab");
+      const optionsContainer = x[n].querySelector('.options');
+      shuffleOptions(optionsContainer);
       x[n].style.display = "block";
       // ... and fix the Previous/Next buttons:
         if (n == 0) {
@@ -192,6 +211,11 @@
         alert('Cek Kembali Jawabanmu!');
         } else {
         console.log('aman');
+        if (currentTab + 1 < x.length) {
+      const nextTab = x[currentTab + 1];
+      const optionsContainer = nextTab.querySelector('.options');
+      shuffleOptions(optionsContainer);
+    }
         nextPrev(1);
         }
 
