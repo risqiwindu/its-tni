@@ -148,6 +148,8 @@ video.addEventListener("play", async () => {
     count: 0,
   };
 
+  const emotionArray = [];
+
   const startTime = Date.now();
 
   const intervalId = setInterval(async () => {
@@ -189,7 +191,7 @@ video.addEventListener("play", async () => {
     if (Date.now() - startTime >= 60000) {
       clearInterval(intervalId);
       stopWebcam();
-      analyzeEmotions(emotionData);
+      analyzeEmotions(emotionData, emotionArray);
     }
   }, 100);
 });
@@ -201,7 +203,7 @@ function stopWebcam() {
   video.srcObject = null;
 }
 
-function analyzeEmotions(data) {
+function analyzeEmotions(data, emotionArray) {
   const averageEmotions = {};
   for (const [emotion, value] of Object.entries(data)) {
     if (emotion !== "count") {
@@ -236,13 +238,17 @@ function analyzeEmotions(data) {
     emotionPercentages[emotion] = ((value / totalEmotions) * 100).toFixed(2);
   }
 
+  // Store the results in the array and log it
+  emotionArray.push(emotionPercentages);
+  console.log("Emotion percentages:", emotionPercentages);
+
   // Display the results
   displayResults(emotionPercentages);
 }
 
 function displayResults(emotionPercentages) {
   // Hide the detection page and show the results page
-  document.getElementById('detection-page').style.display = 'none';
+  document.getElementById('test').style.display = 'none';
   document.getElementById('results-page').style.display = 'block';
 
   const tbody = document.getElementById('results-table').getElementsByTagName('tbody')[0];
@@ -254,6 +260,7 @@ function displayResults(emotionPercentages) {
     cellPercentage.textContent = `${percentage}%`;
   }
 }
+
 
 
 
