@@ -82,6 +82,7 @@
 // });
 
 const video = document.getElementById("video");
+const stopButton = document.getElementById("stop-button");
 
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri("/its-tni/public/client/models"),
@@ -149,10 +150,11 @@ video.addEventListener("play", async () => {
   };
 
   const emotionArray = [];
-
-  const startTime = Date.now();
+  let isStopped = false;
 
   const intervalId = setInterval(async () => {
+    if (isStopped) return;
+
     const detections = await faceapi
       .detectAllFaces(video)
       .withFaceLandmarks()
@@ -186,14 +188,14 @@ video.addEventListener("play", async () => {
         emotionData.count += 1;
       }
     });
-
-    // Stop after 1 minute and analyze emotions
-    if (Date.now() - startTime >= 60000) {
-      clearInterval(intervalId);
-      stopWebcam();
-      analyzeEmotions(emotionData, emotionArray);
-    }
   }, 100);
+
+  stopButton.addEventListener("click", () => {
+    isStopped = true;
+    clearInterval(intervalId);
+    stopWebcam();
+    analyzeEmotions(emotionData, emotionArray);
+  });
 });
 
 function stopWebcam() {
@@ -210,31 +212,12 @@ function analyzeEmotions(data, emotionArray) {
       averageEmotions[emotion] = value / data.count;
     }
   }
-  console.log("Average emotions in 1 minute:", averageEmotions);
-
-  // Reallocate neutral emotion to other emotions
-  const nonNeutralEmotions = {};
-  let totalNonNeutral = 0;
-
-  for (const [emotion, value] of Object.entries(averageEmotions)) {
-    if (emotion !== "neutral") {
-      nonNeutralEmotions[emotion] = value;
-      totalNonNeutral += value;
-    }
-  }
-
-  if (totalNonNeutral > 0) {
-    const neutralValue = averageEmotions["neutral"];
-    for (const emotion in nonNeutralEmotions) {
-      const proportion = nonNeutralEmotions[emotion] / totalNonNeutral;
-      nonNeutralEmotions[emotion] += proportion * neutralValue;
-    }
-  }
+  console.log("Average emotions in the session:", averageEmotions);
 
   // Calculate the percentage
-  const totalEmotions = Object.values(nonNeutralEmotions).reduce((a, b) => a + b, 0);
+  const totalEmotions = Object.values(averageEmotions).reduce((a, b) => a + b, 0);
   const emotionPercentages = {};
-  for (const [emotion, value] of Object.entries(nonNeutralEmotions)) {
+  for (const [emotion, value] of Object.entries(averageEmotions)) {
     emotionPercentages[emotion] = ((value / totalEmotions) * 100).toFixed(2);
   }
 
@@ -260,6 +243,10 @@ function displayResults(emotionPercentages) {
     cellPercentage.textContent = `${percentage}%`;
   }
 }
+
+
+
+
 
 
 

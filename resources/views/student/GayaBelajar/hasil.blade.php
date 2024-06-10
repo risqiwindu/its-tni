@@ -362,7 +362,7 @@ details[open] > summary {
 </style>
 
 <section>
-  @if ( $tampil == 'Audio')
+  @if ( $tampil == 'Audio Visual')
   <details open>
     <summary>Audio {{ $audio }}%</summary>
     <div>
@@ -386,50 +386,153 @@ details[open] > summary {
       </p>
     </div>
   </details>
-  @elseif ( $tampil == 'Visual')
+  @elseif ( $tampil == 'Audio Kinestetik')
   <details open>
-    <summary>Visual</summary>
-    <div>
-      <img src="{{ asset('img/Visual.png') }}" />
-      <p>The Swiss psychologist and psychiatrist Carl Jung was one of the major forces responsible for bringing psychological (having to do with the mind and its processes) thought and its theories into the twentieth century.</p>
-    </div>
-  </details>
-  <details>
-    <summary>Audio</summary>
+    <summary>Audio {{ $audio }}%</summary>
     <div>
       <img src="{{ asset('img/Auditory.png') }}" />
-      <p>The work of Sigmund Freud, the Austrian founder of psychoanalysis, marked the beginning of a modern, dynamic psychology by providing the first well-organized explanation of the inner mental forces determining human behavior.</p>
-    </div>
+      <p>{{ $deskripsiAudio }}</p></div>
   </details>
   <details>
-    <summary>Kinestetik</summary>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
     <div>
       <img src="{{ asset('img/Kinestethic.png') }}" />
-      <p>Austrian psychiatrist Alfred Adler was credited with developing several important theories on the motivation of human behavior. He founded the school of individual psychology, a comprehensive "science of living" that focuses on the uniqueness of the individual
-        and a person's relationships with society.</p>
-    </div>
-  </details>
-  @elseif ( $tampil == 'Kinestetik')
-  <details open>
-    <summary>Kinestetik</summary>
-    <div>
-      <img src="{{  asset('img/Kinestethic.png')  }}" />
-      <p>The Swiss psychologist and psychiatrist Carl Jung was one of the major forces responsible for bringing psychological (having to do with the mind and its processes) thought and its theories into the twentieth century.</p>
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
     </div>
   </details>
   <details>
-    <summary>Audio</summary>
-    <div>
-      <img src="{{ asset('img/Auditory.png') }}" />
-      <p>The work of Sigmund Freud, the Austrian founder of psychoanalysis, marked the beginning of a modern, dynamic psychology by providing the first well-organized explanation of the inner mental forces determining human behavior.</p>
-    </div>
-  </details>
-  <details>
-    <summary>Visual</summary>
+    <summary>Visual {{ $visual }}%</summary>
     <div>
       <img src="{{ asset('img/Visual.png') }}" />
-      <p>Austrian psychiatrist Alfred Adler was credited with developing several important theories on the motivation of human behavior. He founded the school of individual psychology, a comprehensive "science of living" that focuses on the uniqueness of the individual
-        and a person's relationships with society.</p>
+      <p>
+        {{ $deskripsiVisual }}
+      </p>
+    </div>
+  </details>
+  @elseif ($tampil == 'Visual Audio')
+  <details open>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>
+        {{ $deskripsiVisual }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p></div>
+  </details>
+  <details>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
+    </div>
+  </details>
+  @elseif ($tampil == 'Visual Kinestetik')
+  <details open>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>
+        {{ $deskripsiVisual }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p></div>
+  </details>
+  @elseif ($tampil == 'Kinestetik Audio')
+  <details open>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p></div>
+  </details>
+  <details>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>
+        {{ $deskripsiVisual }}
+      </p>
+    </div>
+  </details>
+  @elseif ($tampil == 'Kinestetik Visual')
+  <details open>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>
+        {{ $deskripsiVisual }}
+      </p>
+    </div>
+  </details>
+  <details>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p></div>
+  </details>
+  @elseif ($tampil == 'Audio, Visual, dan Kinestetik')
+  <details open>
+    <summary>Audio {{ $audio }}%</summary>
+    <div>
+      <img src="{{ asset('img/Auditory.png') }}" />
+      <p>{{ $deskripsiAudio }}</p>
+    </div>
+  </details>
+  <details>
+    <summary>Visual {{ $visual }}%</summary>
+    <div>
+      <img src="{{ asset('img/Visual.png') }}" />
+      <p>{{ $deskripsiVisual }}</p>  
+    </div>
+  </details>
+  <details>
+    <summary>Kinestetik {{ $kinestetik }}%</summary>
+    <div>
+      <img src="{{ asset('img/Kinestethic.png') }}" />
+      <p>
+        {{ $deskripsiKinestetik }}
+      </p>
     </div>
   </details>
   @endif

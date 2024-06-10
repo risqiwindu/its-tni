@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle',$pageTitle)
-@section('innerTitle',$pageTitle)
+@section('pageTitle','Course')
+@section('innerTitle','Course')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>'dashboard',
-            '#'=>$pageTitle
+            'Course'
         ]])
 @endsection
 
@@ -13,7 +13,7 @@
 
 <div class="row">
 
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="row">
         @php  foreach($paginator as $row):  @endphp
             @php  if($row->type=='c'): @endphp
@@ -132,7 +132,7 @@
 
     </div>
 
-    <div class="col-md-3">
+    {{-- <div class="col-md-3">
 
         @if($subCategories || $parent)
             <ul class="list-group mb-5">
@@ -161,7 +161,7 @@
                 <li class="list-group-item @if(request()->get('group') == $category->id) active @endif"><a href="{{ route('courses') }}?group={{ $category->id }}">{{ $category->name }}</a></li>
             @endforeach
 
-        </ul>
+        </ul> --}}
 
         {{-- <div class="card mt-3  " data-toggle="card-collapse" data-open="false">
             <div class="card-header card-collapse-trigger">
