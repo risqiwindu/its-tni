@@ -22,7 +22,7 @@
             @endif
 
         </div>
-        <div class="col-md-8">
+        {{-- <div class="col-md-8">
             <div class="card course-info profile-widget mt-0">
                 <div class="profile-widget-header">
                     <div class="profile-widget-items">
@@ -81,7 +81,7 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-md-8">

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use App\StudentKuesionerStatus;
 
 class LoginController extends Controller
 {
@@ -60,7 +61,12 @@ class LoginController extends Controller
             return route('admin.dashboard');
         }
         elseif($user->role_id==2){
-            return route('student.student.kuesioner');
+            if(StudentKuesionerStatus::where('user_id', '=', $user->id)->count() > 0){
+                return route('student.dashboard');
+            }
+            else{
+                return route('student.student.kuesioner');
+            }
         }
     }
 

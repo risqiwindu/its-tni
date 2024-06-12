@@ -1367,7 +1367,18 @@ class StudentController extends Controller {
     {
         $id = Auth::user()->id;
         if (StudentKuesionerStatus::where('user_id', '=', $id)->count() > 0) {
-            return redirect()->back()->with('alert', 'Oops! Kamu sudah pernah melakukan tes gaya belajar sebelumnya!');
+            // return redirect()->back()->with('alert', 'Oops! Kamu sudah pernah melakukan tes gaya belajar sebelumnya!');
+            $hasil = StudentKuesionerStatus::where('user_id', '=', $id)->first();
+            $tampil = $hasil->status_belajar;
+            $deskripsiAudio = 'Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat.';
+            $deskripsiVisual = 'Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata.';
+            $deskripsiKinestetik = 'Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya.';
+            $id = json_decode($hasil->course_category_id);
+            $audio = $hasil->audio;
+            $visual = $hasil->visual;
+            $kinestetik = $hasil->kinestetik;
+            return view('student.GayaBelajar.hasil', compact('tampil', 'deskripsiAudio', 'deskripsiVisual', 'deskripsiKinestetik', 'id', 'audio', 'visual', 'kinestetik'));
+
          } else{
             $pageTitle = 'Gaya Belajar';
             return view('student.GayaBelajar.indexgaya',compact('pageTitle'));
@@ -1408,79 +1419,6 @@ class StudentController extends Controller {
         }
     }
 
-    // public function testProses(Request $request)
-    // {
-    //     $id = Auth::user()->id;
-    //     $jawaban = $request->all();
-    //     $jawabanA = 0; //AUDIO
-    //     $jawabanB = 0; //VISUAL
-    //     $jawabanC = 0; //KINESTETIK
-    //     for ($i = 0; $i < count($jawaban); $i++) {
-    //         if ($request->$i === 'a') {
-    //             $jawabanA = $jawabanA + 1;
-    //         }
-    //         else if($request->$i === 'b'){
-    //             $jawabanB = $jawabanB + 1;
-    //         }
-    //         else if($request->$i === 'c'){
-    //             $jawabanC = $jawabanC + 1;
-    //         }
-    //     }
-
-    //     $deskripsiAudio = 'Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat. Gaya pembelajar auditori adalah dimana seseorang lebih cepat menyerap informasi melalui apa yang ia dengarkan. Penjelasan tertulis akan lebih mudah ditangkap oleh para pembelajar auditori ini.';
-    //     $deskripsiVisual = 'Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata. Artinya bukti-bukti konkret harus diperlihatkan terlebih dahulu agar mereka paham, gaya belajar seperti ini mengandalkan penglihatan atau melihat dulu buktinya untuk kemudian mempercayainya.';
-    //     $deskripsiKinestetik = 'Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya. Gaya pembelajar kinestetik cenderung mampu memahami sesuatu dengan adanya keterlibatan langsung, daripada mendengarkan ceramah atau membaca dari sebuah buku. Gaya belajar kinestetik suka melakukan hal-hal dan menggunakan tubuh mereka untuk mengingat fakta, seperti "memanggil" (dialing) nomor telepon pada telepon genggam mereka. Gaya belajar kinestetik, berarti belajar dengan menyentuh dan melakukan.';
-    //     $audio = round(($jawabanA / 30)*100, 2);
-    //     $visual = round(($jawabanB / 30)*100, 2);
-    //     $kinestetik = round(($jawabanC / 30)*100, 2);    
-
-    //     if($jawabanA > $jawabanB AND $jawabanA > $jawabanC AND $jawabanB > $jawabanC)
-    //     {
-    //         $tampil = 'Audio Visual';
-    //         $id = [2, 1];
-    //     }
-    //     elseif($jawabanA > $jawabanB AND $jawabanA > $jawabanC AND $jawabanC > $jawabanB)
-    //     {
-    //         $tampil = 'Audio Kinestetik';
-    //         $id = [2,3];
-    //     }
-    //     elseif($jawabanB > $jawabanA AND $jawabanB > $jawabanC AND  $jawabanA > $jawabanC)
-    //     {
-    //         $tampil = 'Visual Audio';
-    //         $id = [1,2];
-    //     }
-    //     elseif($jawabanB > $jawabanA AND $jawabanB > $jawabanA AND $jawabanC > $jawabanA)
-    //     {
-    //         $tampil = 'Visual Kinestetik';
-    //         $id = [2,3];
-    //     }
-    //     elseif($jawabanC > $jawabanA AND $jawabanC > $jawabanB AND $jawabanA > $jawabanB)
-    //     {
-    //         $tampil = 'Kinestetik Audio';
-    //         $id = [3,2];
-
-    //     }
-    //     elseif($jawabanC > $jawabanB AND $jawabanC > $jawabanA AND $jawabanB > $jawabanA)
-    //     {
-    //         $tampil = 'Kinestetik Visual';
-    //         $id = [3,1];
-    //     }
-    //     elseif($jawabanA = $jawabanB AND $jawabanA = $jawabanC AND $jawabanB = $jawabanC)
-    //     {
-    //         $tampil = 'Audio, Visual, dan Kinestetik';
-    //         $id = [1,2,3];
-    //     }
-        
-    //     StudentKuesionerStatus::create([
-    //         'user_id' => Auth::user()->id,
-    //         'status_belajar' => $tampil,
-    //         'course_category_id' => json_encode($id)
-    //     ]);
-        
-    //     return view('student.GayaBelajar.hasil',compact('tampil','deskripsiAudio','deskripsiVisual','deskripsiKinestetik','id','audio','visual','kinestetik'))->with('alert','Berhasl Menyimpan Status');
-        
-    // }
-
     public function testProses(Request $request)
 {
     $id = Auth::user()->id;
@@ -1500,9 +1438,9 @@ class StudentController extends Controller {
         }
     }
 
-    $deskripsiAudio = 'Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat. Gaya pembelajar auditori adalah dimana seseorang lebih cepat menyerap informasi melalui apa yang ia dengarkan.';
-    $deskripsiVisual = 'Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata. Artinya bukti-bukti konkret harus diperlihatkan terlebih dahulu agar mereka paham, gaya belajar seperti ini mengandalkan penglihatan atau melihat dulu buktinya untuk kemudian mempercayainya.';
-    $deskripsiKinestetik = 'Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya. Gaya pembelajar kinestetik cenderung mampu memahami sesuatu dengan adanya keterlibatan langsung, daripada mendengarkan ceramah atau membaca dari sebuah buku.';
+    $deskripsiAudio = 'Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat.';
+    $deskripsiVisual = 'Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata.';
+    $deskripsiKinestetik = 'Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya.';
 
     // Assuming there are 30 questions
     $totalQuestions = 30;
@@ -1540,7 +1478,10 @@ class StudentController extends Controller {
     StudentKuesionerStatus::create([
         'user_id' => Auth::user()->id,
         'status_belajar' => $tampil,
-        'course_category_id' => json_encode($id)
+        'course_category_id' => json_encode($id),
+        'audio' => $audio,
+        'visual' => $visual,
+        'kinestetik' => $kinestetik
     ]);
 
     return view('student.GayaBelajar.hasil', compact('tampil', 'deskripsiAudio', 'deskripsiVisual', 'deskripsiKinestetik', 'id', 'audio', 'visual', 'kinestetik'))->with('alert', 'Berhasil Menyimpan Status');

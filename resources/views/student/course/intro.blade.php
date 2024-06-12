@@ -15,14 +15,14 @@
             @else
                 <img  class="rounded-circle profile-widget-picture"  src="{{ asset('img/course.png') }}" >
             @endif
-            <div class="profile-widget-items">
+            {{-- <div class="profile-widget-items">
                 <div class="profile-widget-item">
                     <div class="profile-widget-item-value pt-2 pb-1">{{ __lang('introduction') }}</div>
                 </div>
                 <div class="profile-widget-item">
                     <a class="btn btn-success btn-lg " href="{{  $classLink  }}"><i class="fa fa-play-circle"></i> {{  __lang('start-course')  }}</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="profile-widget-description">
             <div>
@@ -46,7 +46,7 @@
                             <div  >
                                 <p>{!! $sessionRow->introduction !!}  </p>
                             </div>
-                            <a class="btn btn-success btn-lg float-right" href="{{  $classLink  }}"><i class="fa fa-play-circle"></i> {{  __lang('start-course')  }}</a>
+                            <a class="btn btn-primary btn-lg float-right" href="{{  $classLink  }}"><i class="fa fa-play-circle"></i> Mulai Course</a>
 
                         </div>
 

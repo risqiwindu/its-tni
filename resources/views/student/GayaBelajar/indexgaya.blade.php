@@ -19,7 +19,7 @@
             <p>
                 Terdapat 3 tipe gaya belajar yang terdiri dari visual, audio, dan kinestetik. Tiga tipe gaya belajar tersebut dapat diimplementasikan dalam diri setiap orang dimana setiap memiliki gaya belajarnya sendiri. Ayo lakukan test gaya belajar untuk mengetahui manakah tipe gaya belajar kamu.
             </p>
-            <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
+            
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Visual.png') }}'); background-size: 100% 100%;">
         </div>
@@ -28,7 +28,7 @@
             <p>
               Gaya belajar visual menyerap informasi terkait dengan visual, warna, gambar, peta, diagram dan belajar dari apa yang dilihat oleh mata. Artinya bukti-bukti konkret harus diperlihatkan terlebih dahulu agar mereka paham, gaya belajar seperti ini mengandalkan penglihatan atau melihat dulu buktinya untuk kemudian mempercayainya.
             </p>
-            <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
+            
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Auditory.png') }}'); background-size: 100% 100%;">
         </div>
@@ -37,7 +37,7 @@
             <p>
               Gaya belajar auditori adalah gaya belajar dengan cara mendengar, yang memberikan penekanan pada segala jenis bunyi dan kata, baik yang diciptakan maupun yang diingat. Gaya pembelajar auditori adalah dimana seseorang lebih cepat menyerap informasi melalui apa yang ia dengarkan.
             </p>
-            <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
+            
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}'); background-size: 100% 100%;">
         </div>
@@ -45,6 +45,15 @@
             <h3 class="text-uppercase h5">TIPE GAYA BELAJAR KINESTETIK</h3>
             <p>
               Gaya belajar kinestetik dapat belajar paling baik dengan berinteraksi atau mengalami hal-hal di sekitarnya. Gaya pembelajar kinestetik cenderung mampu memahami sesuatu dengan adanya keterlibatan langsung, daripada mendengarkan ceramah atau membaca dari sebuah buku.
+            </p>
+            
+        </div>
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}'); background-size: 100% 100%;">
+        </div>
+        <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
+            <h3 class="text-uppercase h5">AYO LAKUKAN TEST!</h3>
+            <p>
+              Untuk mengetahui kamu termasuk tipe gaya belajar audio, visual, atau kinestetik, ayo lakukan test gaya belajar dengan menjawab beberapa pertanyaan yang tersedia. Tunggu apalagi ayo lakukan test gaya belajar!.
             </p>
             <a href="{{ route('student.student.instruksi') }}" class="btn btn-outline-light">Lakukan Test</a>
         </div>

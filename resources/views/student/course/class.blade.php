@@ -19,7 +19,7 @@
                 <div class="profile-widget-item">
                     <div class="profile-widget-item-value  pt-2 pb-1">{{ $classRow->name }}</div>
                 </div>
-                <div class="profile-widget-item">
+                {{-- <div class="profile-widget-item">
                     @php  if($previous):  @endphp
                     <a class="btn btn-primary btn-lg" href="{{  $previous  }}"><i class="fa fa-chevron-circle-left"></i> {{  __lang('previous')  }}</a>
                     @php  endif;  @endphp
@@ -27,7 +27,7 @@
                     @php  if($next):  @endphp
                     <a class="btn btn-primary btn-lg " href="{{  $next  }}">{{  __lang('start-class')  }} <i class="fa fa-chevron-circle-right"></i></a>
                     @php  endif;  @endphp
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="profile-widget-description">
@@ -53,7 +53,7 @@
                             @php  endif;  @endphp
 
                             @php  if($next):  @endphp
-                            <a class="btn btn-primary btn-lg float-right" href="{{  $next  }}">{{  __lang('start-class')  }} <i class="fa fa-chevron-circle-right"></i></a>
+                            <a class="btn btn-primary btn-lg float-right" href="{{  $next  }}">Mulai Kelas <i class="fa fa-chevron-circle-right"></i></a>
                             @php  endif;  @endphp
                         </div>
                     </div>

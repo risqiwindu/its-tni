@@ -9,12 +9,12 @@
 </div>
 
 <div id="results-page" style="display: none;">
-    <h1>Emotion Analysis Results</h1>
+    <h1>Hasil Deteksi Emosi :</h1>
     <table id="results-table">
       <thead>
         <tr>
-          <th>Emotion</th>
-          <th>Percentage</th>
+          <th>Emosi</th>
+          <th>Persentase Emosi</th>
         </tr>
       </thead>
       <tbody></tbody>
