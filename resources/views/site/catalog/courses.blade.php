@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle','Course')
-@section('innerTitle','Course')
+@section('pageTitle','Materi Pembelajaran')
+@section('innerTitle','Materi Pembelajaran')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>'dashboard',
-            'Course'
+            route('student.dashboard')=>'Dashboard',
+            'Materi Pembelajaran'
         ]])
 @endsection
 

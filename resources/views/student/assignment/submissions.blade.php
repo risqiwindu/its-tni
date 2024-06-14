@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle',$pageTitle)
-@section('innerTitle',$pageTitle)
+@section('pageTitle','Assigment Submission')
+@section('innerTitle','Assigment Submission')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            '#'=>__lang('my-submissions')
+            route('student.dashboard')=>'Dashboard',
+            '#'=>'Assigment Submission'
         ]])
 @endsection
 

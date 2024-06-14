@@ -3,7 +3,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            url('/')=>'Home',
+            url('/')=>'Beranda',
             '#'=>'Dashboard'
         ]])
 @endsection
@@ -33,7 +33,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses','Course Saya') }}</h4>
+                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses','Materi Saya') }}</h4>
                     <div class="card-header-action">
                         <a href="{{ route('student.student.mysessions') }}" class="btn btn-primary">{{ __lang('view-all') }}</a>
 
@@ -247,7 +247,7 @@
         <div class="col-md-2">
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
-                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Course Saya') }}</a></li>
+                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Materi Saya') }}</a></li>
                 {{-- @if(setting('menu_show_homework')==1)
                 <li class="list-group-item"><a href="{{ route('student.assignment.index') }}"><i class="fas fa-edit"></i> {{ __lang('homework') }}</a> </li>
                 @endif --}}

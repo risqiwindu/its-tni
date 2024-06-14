@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle',$pageTitle)
-@section('innerTitle',$pageTitle)
+@section('pageTitle','Materi Terdaftar')
+@section('innerTitle','Materi Terdaftar')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            '#'=>'Materi Terdaftar'
         ]])
 @endsection
 
@@ -35,10 +35,10 @@
                         </a>
                     </div>
                     <div class="article-details">
-                        <div class="article-category"><a href="{{  route('student.'.$type.'-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]) }}">{{ courseType($row->type) }}
+                        {{-- <div class="article-category"><a href="{{  route('student.'.$type.'-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]) }}">{{ courseType($row->type) }}
                             </a> <div class="bullet"></div>
                             <a href="{{  route('student.'.$type.'-details',['id'=>$row->id,'slug'=>safeUrl($row->name)]) }}">{{ $course->lessons()->count() }} {{ __lang('classes') }}</a>
-                        </div>
+                        </div> --}}
                         <div class="article-title">
                             <h2><a href="{{  route('student.'.$type.'-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]) }}">{{ $row->name }}</a></h2>
                         </div>

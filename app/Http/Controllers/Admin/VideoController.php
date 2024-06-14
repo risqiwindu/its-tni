@@ -281,8 +281,8 @@ class VideoController extends Controller
 
         }
 
-        $maxSize = $this->setting('general_video_max_size',200).'MB';
-        $maxSizeB = floatval($this->setting('general_video_max_size',200)) * 1048576 ;
+        $maxSize = $this->setting('general_video_max_size',250).'MB';
+        $maxSizeB = floatval($this->setting('general_video_max_size',250)) * 1048576 ;
         return view('admin.video.add',['pageTitle'=>__lang('Add Videos'),'maxSize'=>$maxSize,'maxSizeB'=>$maxSizeB]);
     }
 
@@ -304,7 +304,7 @@ class VideoController extends Controller
 
         $filter = new InputFilter();
 
-        $maxSize = $this->setting('general_video_max_size',200) * 1048576 ;
+        $maxSize = $this->setting('general_video_max_size',250) * 1048576 ;
 
         $input = new Input('files');
         $input->setRequired(true);

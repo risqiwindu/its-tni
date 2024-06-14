@@ -137,7 +137,7 @@ details[open] > summary {
       </details>
     </div>
     <div class="col">
-      <details>
+      <details open>
         <summary>Visual {{ $visual }}%</summary>
         <div>
           <img src="{{ asset('img/Visual.png') }}" />
@@ -200,7 +200,7 @@ details[open] > summary {
       </p>
     </div>
   </details>
-  <details>
+  <details open>
     <summary>Audio {{ $audio }}%</summary>
     <div>
       <img src="{{ asset('img/Auditory.png') }}" />
@@ -225,7 +225,7 @@ details[open] > summary {
       </p>
     </div>
   </details>
-  <details>
+  <details open>
     <summary>Kinestetik {{ $kinestetik }}%</summary>
     <div>
       <img src="{{ asset('img/Kinestethic.png') }}" />
@@ -250,7 +250,7 @@ details[open] > summary {
       </p>
     </div>
   </details>
-  <details>
+  <details open>
     <summary>Audio {{ $audio }}%</summary>
     <div>
       <img src="{{ asset('img/Auditory.png') }}" />
@@ -275,7 +275,7 @@ details[open] > summary {
       </p>
     </div>
   </details>
-  <details>
+  <details open>
     <summary>Visual {{ $visual }}%</summary>
     <div>
       <img src="{{ asset('img/Visual.png') }}" />
@@ -298,7 +298,7 @@ details[open] > summary {
       <p>{{ $deskripsiAudio }}</p>
     </div>
   </details>
-  <details>
+  <details open>
     <summary>Visual {{ $visual }}%</summary>
     <div>
       <img src="{{ asset('img/Visual.png') }}" />

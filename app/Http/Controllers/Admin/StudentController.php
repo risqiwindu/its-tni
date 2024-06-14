@@ -645,7 +645,7 @@ class StudentController extends Controller
         $paginator->setItemCountPerPage(30);
         return view('admin.student.sessions',array(
             'paginator'=>$paginator,
-            'pageTitle'=>__lang('courses-and-sessions').'  ('.$totalRecords.')',
+            'pageTitle'=>'Materi Pembelajaran'.'  ('.$totalRecords.')',
             'attendanceTable'=>$attendanceTable,
             'studentSessionTable'=>$studentSessionTable,
             'filter'=>$filter,

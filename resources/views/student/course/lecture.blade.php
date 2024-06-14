@@ -157,7 +157,7 @@
 <div id="app">
     <div class="main-wrapper main-wrapper-1" id="content">
         <div class="navbar-bg"></div>
-        <nav class="navbar navbar-expand-lg main-navbar">
+        <nav class="navbar navbar-expand-lg main-navbar" style="background-color: #097969">
 
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">

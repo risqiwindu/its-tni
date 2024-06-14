@@ -4,8 +4,8 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            '#'=>'Download'
         ]])
 @endsection
 

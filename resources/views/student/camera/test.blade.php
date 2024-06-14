@@ -5,7 +5,7 @@
 @section('content')
 <div class="row" id="test" style="position: absolute; margin-left: -50px; left: 30%;">
     <video id="video" width="400" height="250" autoplay style="position: absolute;"></video>
-    <button id="stop-button" style="position: absolute; top: 260px;">Stop and Analyze</button>
+    <button id="stop-button" style="position: absolute; top: 260px;" class="btn btn-primary">Stop and Analyze</button>
 </div>
 
 <div id="results-page" style="display: none;">

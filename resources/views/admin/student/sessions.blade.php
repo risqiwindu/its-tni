@@ -2,8 +2,8 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
-            '#'=>__lang('courses-sessions')
+            route('admin.dashboard')=>'Dashboard',
+            '#'=>'Materi Pembelajaran'
         ]])
 @endsection
 
@@ -33,7 +33,8 @@
                 <a class="dropdown-item" href="{{ route('admin.student.addsession',['type'=>'b'])  }}">{{ __lang('training-online') }}</a>
             </div>
         </div>
-        <button class="btn btn-success"  data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="fa fa-filter"></i> {{ __lang('filter') }}</button>
+        <br> <br>
+        {{-- <button class="btn btn-success"  data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="fa fa-filter"></i> {{ __lang('filter') }}</button>
         <br> <br>
         <div class="collapse" id="collapseFilter">
             <div class="card card-body">
@@ -80,7 +81,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
     <div class="row">
         @foreach($paginator as $row)
             @php

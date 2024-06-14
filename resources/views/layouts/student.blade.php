@@ -49,9 +49,9 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Beranda</a></li>
                     @if(setting('menu_show_courses')==1)
-                    <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Course</a></li>
+                    <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Materi Pembelajaran</a></li>
                     @endif
                     {{-- @if(setting('menu_show_sessions')==1)
                     <li class="nav-item"><a href="{{ route('sessions') }}" class="nav-link">{{ __lang('upcoming-sessions') }}</a></li>
@@ -63,7 +63,7 @@
                     <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                 </ul>
                 <div class="search-element">
-                    <input name="filter" class="form-control" type="search" placeholder="Cari Course" aria-label="Search" data-width="250">
+                    <input name="filter" class="form-control" type="search" placeholder="Cari Materi" aria-label="Search" data-width="250">
                     <button class="btn" type="submit"><i class="fas fa-search"></i></button>
 
                 </div>
@@ -113,7 +113,7 @@
                         <a href="{{ route('student.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('student.student.mysessions') }}" class="nav-link"><i class="fas fa-chalkboard-teacher"></i><span>Course Saya</span></a>
+                        <a href="{{ route('student.student.mysessions') }}" class="nav-link"><i class="fas fa-chalkboard-teacher"></i><span>Materi Saya</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher"></i><span>{{ setting('label_my_sessions',__lang('my-courses')) }}</span></a>

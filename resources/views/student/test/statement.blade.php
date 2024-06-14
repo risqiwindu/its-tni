@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle',$pageTitle)
-@section('innerTitle',$pageTitle)
+@section('pageTitle','Hasil Test')
+@section('innerTitle','Hasil Test')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            '#'=>'Hasil Test'
         ]])
 @endsection
 
@@ -17,7 +17,7 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>{{ __lang('course-session') }}</th>
+        <th>Materi</th>
         <th></th>
     </tr>
     </thead>

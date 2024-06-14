@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle',$pageTitle)
-@section('innerTitle',$pageTitle)
+@section('pageTitle','Disksui Chat')
+@section('innerTitle','Disksui Chat')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            '#'=>'Dikusi Chat'
         ]])
 @endsection
 
