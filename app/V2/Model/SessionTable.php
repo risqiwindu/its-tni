@@ -36,7 +36,7 @@ class SessionTable extends BaseTable {
     }
 
 
-    public function getPaginatedRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$futureOnly=false,$payment=null)
+    public function getPaginatedRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$futureOnly=false,$payment=null, $role_id=null,$admin_role=null)
     {
 
 
@@ -50,7 +50,10 @@ class SessionTable extends BaseTable {
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
         }
 
-        if(!GLOBAL_ACCESS){
+        // if(!GLOBAL_ACCESS){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
+        if($role_id == 1 && $admin_role != 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
 
@@ -137,7 +140,7 @@ class SessionTable extends BaseTable {
         return $resultSet;
     }
 
-    public function getTotalRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$futureOnly=false,$payment=null)
+    public function getTotalRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$futureOnly=false,$payment=null,$role_id=null,$admin_role=null)
     {
 
 
@@ -151,7 +154,10 @@ class SessionTable extends BaseTable {
             $select->where(['course_categories.id'=>$group]);
         }
 
-        if(!GLOBAL_ACCESS){
+        // if(!GLOBAL_ACCESS){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
+        if($role_id == 1 && $admin_role != 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
 
@@ -234,7 +240,7 @@ class SessionTable extends BaseTable {
 
 
 
-    public function getPaginatedCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null)
+    public function getPaginatedCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$role_id=null)
     {
 
 
@@ -249,7 +255,11 @@ class SessionTable extends BaseTable {
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
         }
 
-        if(!GLOBAL_ACCESS){
+        // if(!GLOBAL_ACCESS){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
+
+        if($role_id == 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
 
@@ -328,7 +338,7 @@ class SessionTable extends BaseTable {
         return $resultSet;
     }
 
-    public function getTotalCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null)
+    public function getTotalCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$role_id=null)
     {
 
 
@@ -342,7 +352,11 @@ class SessionTable extends BaseTable {
             $select->where(['course_categories.id'=>$group]);
         }
 
-        if(!GLOBAL_ACCESS){
+        // if(!GLOBAL_ACCESS){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
+
+        if($role_id == 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
 
@@ -415,16 +429,22 @@ class SessionTable extends BaseTable {
     }
 
 
-    public function getValidSessions($paginated=false,$type=null)
+    public function getValidSessions($paginated=false,$type=null,$role_id=null)
     {
         $select = new Select($this->tableName);
         $select->order('start_date desc');
 
 
             $select->where(array('enabled'=>1,'end_date > '.time()));
-        if(!GLOBAL_ACCESS){
+
+        // if(!GLOBAL_ACCESS){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
+
+        if($role_id == 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
+
         if(!empty($type)){
             if(is_array($type)){
                 $sql= '(';

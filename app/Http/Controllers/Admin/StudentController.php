@@ -42,6 +42,8 @@ use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
 use Laminas\InputFilter\InputFilter;
 use Laminas\Validator\File\IsImage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -637,12 +639,22 @@ class StudentController extends Controller
         }
         $select->setValueOptions($options);
         $select->setValue($group);
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
 
-        $paginator = $table->getPaginatedRecords(true,null,null,$filter,$group,$sort,$type,false,$payment);
-        $totalRecords = $table->getTotalRecords(true,null,null,$filter,$group,$sort,$type,false,$payment);
+        $paginator = $table->getPaginatedRecords(true,null,null,$filter,$group,$sort,$type,false,$payment,$role_id,$admin_role);
+
+        // Hitung total record untuk paginator
+        
+        $totalRecords = $table->getTotalRecords(true,null,null,$filter,$group,$sort,$type,false,$payment,$role_id,$admin_role);
 
         $paginator->setCurrentPageNumber((int)$request->get('page', 1));
         $paginator->setItemCountPerPage(30);
+        
+
         return view('admin.student.sessions',array(
             'paginator'=>$paginator,
             'pageTitle'=>'Materi Pembelajaran'.'  ('.$totalRecords.')',
@@ -661,6 +673,7 @@ class StudentController extends Controller
         ));
 
     }
+    
 
     public function addsession(Request $request,$type){
         $table = new SessionTable();

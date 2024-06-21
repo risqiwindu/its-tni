@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('innerTitle',__lang('dashboard'))
-@section('pageTitle',__lang('dashboard'))
+@section('innerTitle','Dashboard')
+@section('pageTitle','Dashboard')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard')
+            route('admin.dashboard')=>'Dashboard'
         ]])
 @endsection
 

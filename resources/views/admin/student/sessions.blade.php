@@ -470,5 +470,4 @@
                     )
                 ) }}
 </section>
-
 @endsection
