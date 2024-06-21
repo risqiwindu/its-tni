@@ -191,105 +191,129 @@ details[open] > summary {
     </details>
   </div>
   @elseif ($tampil == 'Visual Audio')
-  <details open>
-    <summary>Visual {{ $visual }}%</summary>
-    <div>
-      <img src="{{ asset('img/Visual.png') }}" />
-      <p>
-        {{ $deskripsiVisual }}
-      </p>
+  <div class="row">
+    <div class="col">
+      <details open>
+        <summary>Visual {{ $visual }}%</summary>
+        <div>
+          <img src="{{ asset('img/Visual.png') }}" />
+          <p>
+            {{ $deskripsiVisual }}
+          </p>
+        </div>
+      </details>
+      <details open>
+        <summary>Audio {{ $audio }}%</summary>
+        <div>
+          <img src="{{ asset('img/Auditory.png') }}" />
+          <p>{{ $deskripsiAudio }}</p></div>
+      </details>
     </div>
-  </details>
-  <details open>
-    <summary>Audio {{ $audio }}%</summary>
-    <div>
-      <img src="{{ asset('img/Auditory.png') }}" />
-      <p>{{ $deskripsiAudio }}</p></div>
-  </details>
-  <details>
-    <summary>Kinestetik {{ $kinestetik }}%</summary>
-    <div>
-      <img src="{{ asset('img/Kinestethic.png') }}" />
-      <p>
-        {{ $deskripsiKinestetik }}
-      </p>
-    </div>
-  </details>
+  </div>
+  <div class="row">
+    <details>
+      <summary>Kinestetik {{ $kinestetik }}%</summary>
+      <div>
+        <img src="{{ asset('img/Kinestethic.png') }}" />
+        <p>
+          {{ $deskripsiKinestetik }}
+        </p>
+      </div>
+    </details>
+  </div>
   @elseif ($tampil == 'Visual Kinestetik')
-  <details open>
-    <summary>Visual {{ $visual }}%</summary>
-    <div>
-      <img src="{{ asset('img/Visual.png') }}" />
-      <p>
-        {{ $deskripsiVisual }}
-      </p>
+  <div class="row">
+    <div class="col">
+      <details open>
+        <summary>Visual {{ $visual }}%</summary>
+        <div>
+          <img src="{{ asset('img/Visual.png') }}" />
+          <p>
+            {{ $deskripsiVisual }}
+          </p>
+        </div>
+      </details>
+      <details open>
+        <summary>Kinestetik {{ $kinestetik }}%</summary>
+        <div>
+          <img src="{{ asset('img/Kinestethic.png') }}" />
+          <p>
+            {{ $deskripsiKinestetik }}
+          </p>
+        </div>
+      </details>
     </div>
-  </details>
-  <details open>
-    <summary>Kinestetik {{ $kinestetik }}%</summary>
-    <div>
-      <img src="{{ asset('img/Kinestethic.png') }}" />
-      <p>
-        {{ $deskripsiKinestetik }}
-      </p>
-    </div>
-  </details>
-  <details>
-    <summary>Audio {{ $audio }}%</summary>
-    <div>
-      <img src="{{ asset('img/Auditory.png') }}" />
-      <p>{{ $deskripsiAudio }}</p></div>
-  </details>
+  </div>
+  <div class="row">
+    <details>
+      <summary>Audio {{ $audio }}%</summary>
+      <div>
+        <img src="{{ asset('img/Auditory.png') }}" />
+        <p>{{ $deskripsiAudio }}</p></div>
+    </details>
+  </div>
   @elseif ($tampil == 'Kinestetik Audio')
-  <details open>
-    <summary>Kinestetik {{ $kinestetik }}%</summary>
-    <div>
-      <img src="{{ asset('img/Kinestethic.png') }}" />
-      <p>
-        {{ $deskripsiKinestetik }}
-      </p>
+  <div class="row">
+    <div class="col">
+      <details open>
+        <summary>Kinestetik {{ $kinestetik }}%</summary>
+        <div>
+          <img src="{{ asset('img/Kinestethic.png') }}" />
+          <p>
+            {{ $deskripsiKinestetik }}
+          </p>
+        </div>
+      </details>
+      <details open>
+        <summary>Audio {{ $audio }}%</summary>
+        <div>
+          <img src="{{ asset('img/Auditory.png') }}" />
+          <p>{{ $deskripsiAudio }}</p></div>
+      </details>
     </div>
-  </details>
-  <details open>
-    <summary>Audio {{ $audio }}%</summary>
-    <div>
-      <img src="{{ asset('img/Auditory.png') }}" />
-      <p>{{ $deskripsiAudio }}</p></div>
-  </details>
-  <details>
-    <summary>Visual {{ $visual }}%</summary>
-    <div>
-      <img src="{{ asset('img/Visual.png') }}" />
-      <p>
-        {{ $deskripsiVisual }}
-      </p>
-    </div>
-  </details>
+  </div>
+  <div class="row">
+    <details>
+      <summary>Visual {{ $visual }}%</summary>
+      <div>
+        <img src="{{ asset('img/Visual.png') }}" />
+        <p>
+          {{ $deskripsiVisual }}
+        </p>
+      </div>
+    </details>
+  </div>
   @elseif ($tampil == 'Kinestetik Visual')
-  <details open>
-    <summary>Kinestetik {{ $kinestetik }}%</summary>
-    <div>
-      <img src="{{ asset('img/Kinestethic.png') }}" />
-      <p>
-        {{ $deskripsiKinestetik }}
-      </p>
+  <div class="row">
+    <div class="col">
+      <details open>
+        <summary>Kinestetik {{ $kinestetik }}%</summary>
+        <div>
+          <img src="{{ asset('img/Kinestethic.png') }}" />
+          <p>
+            {{ $deskripsiKinestetik }}
+          </p>
+        </div>
+      </details>
+      <details open>
+        <summary>Visual {{ $visual }}%</summary>
+        <div>
+          <img src="{{ asset('img/Visual.png') }}" />
+          <p>
+            {{ $deskripsiVisual }}
+          </p>
+        </div>
+      </details>
     </div>
-  </details>
-  <details open>
-    <summary>Visual {{ $visual }}%</summary>
-    <div>
-      <img src="{{ asset('img/Visual.png') }}" />
-      <p>
-        {{ $deskripsiVisual }}
-      </p>
-    </div>
-  </details>
-  <details>
-    <summary>Audio {{ $audio }}%</summary>
-    <div>
-      <img src="{{ asset('img/Auditory.png') }}" />
-      <p>{{ $deskripsiAudio }}</p></div>
-  </details>
+  </div>
+  <div class="row">
+    <details>
+      <summary>Audio {{ $audio }}%</summary>
+      <div>
+        <img src="{{ asset('img/Auditory.png') }}" />
+        <p>{{ $deskripsiAudio }}</p></div>
+    </details>
+  </div>
   @elseif ($tampil == 'Audio, Visual, dan Kinestetik')
   <details open>
     <summary>Audio {{ $audio }}%</summary>
