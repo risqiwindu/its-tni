@@ -1,10 +1,14 @@
 @extends('layouts.student')
 @section('pageTitle',$pageTitle)
 @section('innerTitle',$sessionRow->name)
-@section('breadcrumb')
+{{-- @section('breadcrumb')
     @include('admin.partials.crumb',[
-    'crumbs'=>$customCrumbs])
-@endsection
+    'crumbs'=>[
+            route('student.dashboard')=>'Dashboard',
+            route('student.student.mysessions')=>'Kelas Saya',
+            '#'=>'Detail Kelas'
+        ]])
+@endsection --}}
 
 @section('content')
 
@@ -32,10 +36,10 @@
                     <li class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{  __lang('introduction')  }}</a></li>
                     <li  class="nav-item"><a class="nav-link"  href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-table"></i> {{  __lang('table-of-contents')  }}</a></li>
                     <li  class="nav-item"><a class="nav-link"  href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a></li>
-                    <li  class="nav-item"><a class="nav-link"  href="#progress" aria-controls="progress" role="tab" data-toggle="tab"><i class="fa fa-chart-bar"></i> {{  __lang('progress')  }}</a></li>
+                    {{-- <li  class="nav-item"><a class="nav-link"  href="#progress" aria-controls="progress" role="tab" data-toggle="tab"><i class="fa fa-chart-bar"></i> {{  __lang('progress')  }}</a></li>
                     @php  if(!empty($sessionRow->enable_discussion)): @endphp
                     <li  class="nav-item"><a class="nav-link"  href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab"><i class="fa fa-comments"></i> {{  __lang('discuss')  }}</a></li>
-                    @php  endif;  @endphp
+                    @php  endif;  @endphp --}}
                 </ul>
 
                 <!-- Tab panes -->
@@ -46,7 +50,7 @@
                             <div  >
                                 <p>{!! $sessionRow->introduction !!}  </p>
                             </div>
-                            <a class="btn btn-primary btn-lg float-right" href="{{  $classLink  }}"><i class="fa fa-play-circle"></i> Mulai Course</a>
+                            <a class="btn btn-primary btn-lg float-right" href="{{  $classLink  }}"><i class="fa fa-play-circle"></i> Mulai Kelas</a>
 
                         </div>
 

@@ -99,7 +99,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                
                                 <a class="btn btn-primary btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> {{ __lang('details') }}</a>
+                                
                             </div>
                         </div>
 

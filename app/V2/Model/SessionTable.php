@@ -255,6 +255,7 @@ class SessionTable extends BaseTable {
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
         }
 
+
         // if(!GLOBAL_ACCESS){
         //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         // }
@@ -262,7 +263,8 @@ class SessionTable extends BaseTable {
         if($role_id == 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }elseif($role_id != 1 && $student_course != null){
-            $select->where($this->tableName.'.id', '!=',5);
+            
+            $select->where([$this->tableName.'.id']);
         }
 
         if(!empty($type)){

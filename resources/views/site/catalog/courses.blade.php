@@ -97,7 +97,22 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                {{-- @foreach ($test as $coba)
+                                @if ($row->id == $coba->course_id)
+                                <a class="btn btn-success btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> Masuk Kelas</a>
+                                @else
                                 <a class="btn btn-primary btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> {{ __lang('details') }}</a>
+                                @endif
+                                @endforeach --}}
+                                @if ($test->contains('course_id', $row->id))
+                                    <a class="btn btn-success btn-block" href="{{ route('student.course.intro',['id'=>$row->id]) }}">
+                                        <i class="fa fa-info-circle"></i> Masuk Kelas
+                                    </a>
+                                @else
+                                    <a class="btn btn-primary btn-block" href="{{ route('course', ['course' => $row->id, 'slug' => safeUrl($row->name)]) }}">
+                                        <i class="fa fa-info-circle"></i> {{ __lang('details') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         

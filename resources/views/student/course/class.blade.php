@@ -1,10 +1,10 @@
 @extends('layouts.student')
 @section('pageTitle',$course->name.': '.$classRow->name)
 @section('innerTitle',$course->name)
-@section('breadcrumb')
+{{-- @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>$customCrumbs])
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="card profile-widget  mt-5">
