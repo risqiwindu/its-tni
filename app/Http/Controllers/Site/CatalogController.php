@@ -156,7 +156,7 @@ class CatalogController extends Controller
 
         if(isStudent()){
             if (empty($user)) {
-                return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dahulu untuk dapat melihat course!');
+                return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dahulu untuk dapat melihat kelas!');
              } else{
                 return view('site.catalog.courses',$output);
              }
