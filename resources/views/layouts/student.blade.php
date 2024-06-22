@@ -41,7 +41,7 @@
 <div id="app">
     <div class="main-wrapper container">
         <div class="navbar-bg"></div>
-        <nav class="navbar navbar-expand-lg main-navbar">
+        <nav class="navbar navbar-expand-lg main-navbar" style="margin-top: 15px">
             <a href="{{ url('/') }}" class="navbar-brand sidebar-gone-hide">{{ limitLength(setting('general_site_name'),17) }}</a>
             <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
             <div class="nav-collapse">
@@ -49,10 +49,53 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Beranda</a></li>
+                    <li class="nav-item">
+                        <a href="{{ route('student.dashboard') }}" class="nav-link"><span>Dashboard</span></a>
+                    </li>
                     @if(setting('menu_show_courses')==1)
-                    <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Materi Pembelajaran</a></li>
+                    <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Kelas</a></li>
                     @endif
+                    <li class="nav-item">
+                        <a href="{{ route('student.student.mysessions') }}" class="nav-link"><span>Kelas Saya</span></a>
+                    </li>
+                    @if(setting('menu_show_certificates')==1 || setting('menu_show_downloads')==1)
+                    <li class="nav-item">
+                        <a href="{{ route('student.download.index') }}" class="nav-link"><span>Download</span></a>
+                    </li>
+                    @endif
+                    @if(setting('menu_show_homework')==1)
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tugas</span></a>
+                        <ul class="dropdown-menu dropdown-border">
+
+                            <li class="nav-item"><a href="{{ route('student.assignment.index') }}" class="nav-link">{{ __lang('view-all') }}</a></li>
+
+                            <li class="nav-item"><a href="{{ route('student.assignment.submissions') }}" class="nav-link">{{ __lang('my-submissions') }}</a></li>
+
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if(setting('menu_show_tests')==1)
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tes</span></a>
+                        <ul class="dropdown-menu dropdown-border">
+                            <li class="nav-item"><a href="{{ route('student.test.index') }}" class="nav-link">{{ __lang('browse-tests') }}</a></li>
+                            <li class="nav-item"><a href="{{ route('student.test.statement') }}" class="nav-link">{{ __lang('statement-of-result') }}</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if(setting('menu_show_discussions')==1)
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Diskusi</span></a>
+                        <ul class="dropdown-menu dropdown-border">
+                            <li class="nav-item"><a href="{{ route('student.student.discussion') }}" class="nav-link">{{ __lang('instructor-chat') }}</a></li>
+                            <li class="nav-item"><a href="{{ route('student.forum.index') }}" class="nav-link">{{ __lang('student-forum') }}</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
                     {{-- @if(setting('menu_show_sessions')==1)
                     <li class="nav-item"><a href="{{ route('sessions') }}" class="nav-link">{{ __lang('upcoming-sessions') }}</a></li>
                     @endif --}}
@@ -105,7 +148,7 @@
 
 
 
-        <nav class="navbar navbar-secondary navbar-expand-lg">
+        {{-- <nav class="navbar navbar-secondary navbar-expand-lg">
             <div class="container">
                 <ul class="navbar-nav">
 
@@ -115,7 +158,7 @@
                     <li class="nav-item">
                         <a href="{{ route('student.student.mysessions') }}" class="nav-link"><i class="fas fa-chalkboard-teacher"></i><span>Materi Saya</span></a>
                     </li>
-                    {{-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher"></i><span>{{ setting('label_my_sessions',__lang('my-courses')) }}</span></a>
                         <ul class="dropdown-menu dropdown-border">
                             <li class="nav-item"><a href="{{ route('student.student.mysessions') }}" class="nav-link">{{ __lang('enrolled-courses') }}</a></li>
@@ -126,12 +169,12 @@
                             <li class="nav-item"><a href="{{ route('student.student.surveys') }}" class="nav-link">{{ __lang('surveys') }}</a></li>
                             <li class="nav-item"><a href="{{ route('student.student.invoices') }}" class="nav-link">{{ __lang('invoices') }}</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
                     @if(setting('menu_show_certificates')==1 || setting('menu_show_downloads')==1)
                     <li class="nav-item">
                         <a href="{{ route('student.download.index') }}" class="nav-link"><i class="fas fa-download"></i><span>Download</span></a>
                     </li>
-                    {{-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>{{ setting('label_downloads',__lang('resources')) }}</span></a>
                         <ul class="dropdown-menu dropdown-border">
                             @if(setting('menu_show_certificates')==1)
@@ -141,7 +184,7 @@
                             <li class="nav-item"><a href="{{ route('student.download.index') }}" class="nav-link">{{ __lang('downloads') }}</a></li>
                             @endif
                         </ul>
-                    </li> --}}
+                    </li>
                     @endif
 
                     @if(setting('menu_show_homework')==1)
@@ -178,7 +221,7 @@
                     @endif
                 </ul>
             </div>
-        </nav>
+        </nav> --}}
 
         <!-- Main Content -->
         <div class="main-content">

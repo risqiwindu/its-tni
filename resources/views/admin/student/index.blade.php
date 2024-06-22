@@ -42,8 +42,8 @@
 									<th>{{ __lang('id') }}</th>
                                     <th></th>
 									<th>{{ __lang('first-name') }}</th>
-									<th>{{ __lang('last-name') }}</th>
-									<th>{{ __lang('courses-sessions') }}</th>
+									<th>Nama Belakang</th>
+									<th>Kelas</th>
 									<th class="text-right1"  >{{__lang('actions')}}</th>
 								</tr>
 							</thead>

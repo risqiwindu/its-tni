@@ -64,6 +64,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\View\Model\ViewModel;
 use App\V2\Model\StudentTable;
 use App\V2\Model\HomeworkTable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\View\Components\Alert;
 
 /**
@@ -1487,6 +1488,31 @@ class StudentController extends Controller {
     return view('student.GayaBelajar.hasil', compact('tampil', 'deskripsiAudio', 'deskripsiVisual', 'deskripsiKinestetik', 'id', 'audio', 'visual', 'kinestetik'))->with('alert', 'Berhasil Menyimpan Status');
 }
 
+    public function pilihKelas(Request $request)
+    {
+        $id = Auth::user()->id;
+        $course = $request->id;
+        $student = DB::table('students')->where('user_id', $id)->first();
+        $student_id = $student->id;
+        $existingCourse = DB::table('student_courses')
+                        ->where('student_id', $student_id)
+                        ->where('course_id', $course)
+                        ->first();
+
+    if ($existingCourse) {
+        // Jika siswa sudah memilih kelas ini, kembalikan dengan pesan peringatan
+        return back()->with('alert', 'Anda sudah memilih kelas ini!');
+    } else {
+        // Jika siswa belum memilih kelas ini, tambahkan data student_course baru
+        StudentCourse::create([
+            'student_id' => $student_id,
+            'course_id'  => $course
+        ]);
+
+        // Setelah berhasil menambahkan kelas, kembalikan ke halaman utama siswa dengan pesan sukses
+        return redirect()->route('student.index.index')->with('alert', 'Kelas berhasil ditambahkan! Silakan cek pada menu Kelas Saya untuk melihat kelas yang Anda ikuti.');
+    }
+    }
 
     public function camera()
     {

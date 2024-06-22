@@ -240,7 +240,7 @@ class SessionTable extends BaseTable {
 
 
 
-    public function getPaginatedCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$role_id=null)
+    public function getPaginatedCourseRecords($paginated=false,$id=null,$activeOnly=false,$filter=null,$group=null,$order=null,$type=null,$role_id=null, $student_course=null)
     {
 
 
@@ -261,6 +261,8 @@ class SessionTable extends BaseTable {
 
         if($role_id == 1){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        }elseif($role_id != 1 && $student_course != null){
+            $select->where($this->tableName.'.id', '!=',5);
         }
 
         if(!empty($type)){

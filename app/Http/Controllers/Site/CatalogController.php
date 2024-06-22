@@ -6,6 +6,7 @@ use App\Course;
 use App\CourseCategory;
 use App\Http\Controllers\Controller;
 use App\Lib\HelperTrait;
+use App\StudentCourse;
 use App\V2\Form\DiscussionForm;
 use App\V2\Model\DownloadFileTable;
 use App\V2\Model\DownloadSessionTable;
@@ -100,12 +101,11 @@ class CatalogController extends Controller
 
 
         $groupTable = new SessionCategoryTable();
-
-
-        $paginator = $table->getPaginatedCourseRecords(true,null,true,$filter,$group,$sort,'c');
-
-
-
+        $student = DB::table('students')->where('user_id', $id)->first();
+        $student_id = $student->id;
+        $student_course = StudentCourse::where('student_id', $student_id)->get();
+        $role_id = Auth::user()->role_id;
+        $paginator = $table->getPaginatedCourseRecords(true,null,true,$filter,$group,$sort,'c',$role_id,$student_course);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
@@ -150,7 +150,8 @@ class CatalogController extends Controller
             'categories'=>$categories,
             'description'=>$description,
             'subCategories'=>$subCategories,
-            'parent'=>$parent
+            'parent'=>$parent,
+            'test'=>$student_course
         );
 
         if(isStudent()){

@@ -79,7 +79,10 @@
     <div class="row">
         <form id="regForm" action="{{ route('student.student.proses') }}" method="POST">
             @csrf
-            {{ $no = 0; }}
+            @php
+              $no = 0;
+            @endphp
+            
               @foreach ($dt_kuesioner as $data )
               <div class="tab">
               <div class="content" id="{{ $data->id }}">

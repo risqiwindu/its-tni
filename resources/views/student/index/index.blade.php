@@ -33,7 +33,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses','Materi Saya') }}</h4>
+                    <h4><i class="fa fa-book"></i> {{ setting('label_sessions_courses','Kelas Saya') }}</h4>
                     <div class="card-header-action">
                         <a href="{{ route('student.student.mysessions') }}" class="btn btn-primary">{{ __lang('view-all') }}</a>
 
@@ -42,7 +42,7 @@
                 <div class="card-body">
                     <div class="summary">
                         <div class="summary-item">
-                            <h6>{{ __lang('enrolled-courses') }} <span class="text-muted">({{ $mysessions['total'] }} {{__lang('Items')}})</span></h6>
+                            <h6>Kelas Saya <span class="text-muted">({{ $mysessions['total'] }})</span></h6>
                             <ul class="list-unstyled list-unstyled-border">
 
                                 @foreach($mysessions['paginator'] as $row)
@@ -77,8 +77,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="text-muted text-small"><a href="{{ $url }}">{{ \App\Course::find($row->course_id)->lessons()->count() }} {{ __lang('classes') }}</a>
-                                            <div class="bullet"></div> {{ courseType($row->type) }}</div>
+                                        <div class="text-muted text-small"><a href="{{ $url }}">{{ \App\Course::find($row->course_id)->lessons()->count() }} Materi</a>
                                     </div>
                                 </li>
                                 @endforeach
@@ -247,7 +246,7 @@
         <div class="col-md-2">
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
-                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Materi Saya') }}</a></li>
+                <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Kelas Saya') }}</a></li>
                 {{-- @if(setting('menu_show_homework')==1)
                 <li class="list-group-item"><a href="{{ route('student.assignment.index') }}"><i class="fas fa-edit"></i> {{ __lang('homework') }}</a> </li>
                 @endif --}}

@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle','Materi Terdaftar')
-@section('innerTitle','Materi Terdaftar')
+@section('pageTitle','Kelas Saya')
+@section('innerTitle','Kelas Saya')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>'Dashboard',
-            '#'=>'Materi Terdaftar'
+            '#'=>'Kelas Saya'
         ]])
 @endsection
 
@@ -44,7 +44,7 @@
                         </div>
                         <div class="article-details">{{ limitLength($course->short_description,300) }}</div>
 
-                        <div class="row pl-2">
+                        {{-- <div class="row pl-2">
                             @foreach($course->admins()->limit(4)->get() as $admin)
 
                                 <div class="article-user col-md-6">
@@ -87,7 +87,7 @@
                                                     </div>
                                 @endsection
                             @endforeach
-                        </div>
+                        </div> --}}
 
 
 

@@ -511,6 +511,7 @@ Route::group(['middleware'=>['auth','student'],'prefix' => 'student', 'as' => 's
     Route::any('student/submit','StudentController@submit')->name('student.submit');
     Route::any('student/proses','StudentController@testProses')->name('student.proses');
     Route::any('student/camera','StudentController@camera')->name('student.camera');
+    Route::any('student/pilihKelas','StudentController@pilihKelas')->name('student.pilihKelas');
 
 
     Route::any('test/index','TestController@index')->name('test.index');

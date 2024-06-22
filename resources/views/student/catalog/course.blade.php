@@ -4,9 +4,9 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            route('student.student.mysessions')=>__lang('my-courses'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            route('student.student.mysessions')=>'Kelas Saya',
+            '#'=>'Detail Kelas'
         ]])
 @endsection
 
@@ -80,14 +80,14 @@
                     <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-info-circle"></i> {{  __lang('details')  }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-table"></i> {{  __lang('classes')  }}</a>
+                    <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-table"></i> Materi</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-chalkboard-teacher"></i> {{  __lang('instructors')  }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="test-tab3" data-toggle="tab" href="#test3" role="tab" aria-controls="test" aria-selected="false"><i class="fa fa-check"></i> {{  __lang('tests')  }}</a>
-                </li>
+                </li> --}}
             </ul>
             <div class="tab-content" id="myTabContent2">
                 <div class="tab-pane fade show active" id="home3" role="tabpanel" aria-labelledby="home-tab3">
@@ -446,7 +446,7 @@
         </div> --}}
     </div>
     <div class="col-md-4">
-        <table id="course-specs" class="table table-striped">
+        {{-- <table id="course-specs" class="table table-striped">
             @php  if(!empty($row->session_date)): @endphp
             <tr>
                 <td >{{  __lang('starts')  }}</td>
@@ -505,9 +505,9 @@
 
 
 
-        </table>
+        </table> --}}
 
-        <a class="btn btn-primary btn-block btn-lg" href="{{  $resumeLink  }}"><i class="fa fa-play-circle"></i> {{  __lang('resume-course')  }}</a>
+        <a class="btn btn-primary btn-block btn-lg" href="{{  $resumeLink  }}"><i class="fa fa-play-circle"></i> Lanjutkan Kelas</a>
 
 
     </div>

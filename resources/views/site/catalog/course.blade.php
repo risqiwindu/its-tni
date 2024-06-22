@@ -1,12 +1,12 @@
 @extends('layouts.student')
-@section('pageTitle',$course->name)
-@section('innerTitle',$course->name)
+@section('Detail Kelas',$course->name)
+@section('Detail Kelas',$course->name)
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('student.dashboard')=>__lang('dashboard'),
-            route('courses')=>__lang('courses'),
-            '#'=>$pageTitle
+            route('student.dashboard')=>'Dashboard',
+            route('courses')=>'Kelas',
+            '#'=>'Detail Kelas'
         ]])
 @endsection
 
@@ -32,7 +32,7 @@
                         {!! clean($row->short_description) !!}
                     </p>
 
-                    <a class="btn btn-primary  btn-lg" href="{{  route('cart.add',['course'=>$course->id])  }}"><i class="fa fa-cart-plus"></i> {{  __lang('enroll')  }} @if(setting('general_show_fee')==1) (@if(empty($row->payment_required)){{  __lang('free')  }}@else{{ price($row->fee) }}@endif) @endif</a>
+                    {{-- <a class="btn btn-primary  btn-lg" href="{{  route('cart.add',['course'=>$course->id])  }}"><i class="fa fa-cart-plus"></i> {{  __lang('enroll')  }} @if(setting('general_show_fee')==1) (@if(empty($row->payment_required)){{  __lang('free')  }}@else{{ price($row->fee) }}@endif) @endif</a> --}}
                 </div>
 
             </div>
@@ -45,16 +45,16 @@
                             <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-info-circle"></i> {{  __lang('details')  }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-table"></i> {{  __lang('classes')  }}</a>
+                            <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-table"></i> Materi</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-chalkboard-teacher"></i> {{  __lang('instructors')  }}</a>
                         </li>
                         @if($course->has('certificates'))
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact4" role="tab" aria-controls="certificate" aria-selected="false"><i class="fa fa-file-pdf"></i> {{  __lang('certificates')  }}</a>
                             </li>
-                        @endif
+                        @endif --}}
 
                     </ul>
                     <div class="tab-content" id="myTabContent2">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <table id="course-specs" class="table table-striped">
+                    {{-- <table id="course-specs" class="table table-striped">
                         @php  if(!empty($row->session_date)): @endphp
                         <tr>
                             <td >{{  __lang('starts')  }}</td>
@@ -221,11 +221,15 @@
 
 
 
-                    </table>
+                    </table> --}}
+                    <form action="{{ route('student.student.pilihKelas') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{ $row->id }}" id="id" name="id">
+                        <button class="btn btn-primary btn-block btn-lg" type="submit">Pilih Kelas</button>
+                        {{-- <a class="btn btn-primary btn-block btn-lg" href="{{  route('cart.add',['course'=>$course->id])  }}"><i class="fa fa-plus"></i> Pilih Kelas</a> --}}
+                    </form>
 
-                    <a class="btn btn-primary btn-block btn-lg" href="{{  route('cart.add',['course'=>$course->id])  }}"><i class="fa fa-cart-plus"></i> {{  __lang('enroll')  }}</a>
-
-
+                    
                 </div>
 
             </div>

@@ -1,11 +1,11 @@
 @extends('layouts.student')
-@section('pageTitle','Materi Pembelajaran')
-@section('innerTitle','Materi Pembelajaran')
+@section('pageTitle','Kelas')
+@section('innerTitle','Kelas')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>'Dashboard',
-            'Materi Pembelajaran'
+            'Kelas'
         ]])
 @endsection
 
@@ -13,8 +13,6 @@
 
 <div class="row">
 
-    <div class="col-md-12">
-        <div class="row">
         @php  foreach($paginator as $row):  @endphp
             @php  if($row->type=='c'): @endphp
             @php  $type='course';  @endphp
@@ -25,7 +23,7 @@
                 $course = \App\Course::find($row->id);
             @endphp
 
-        <div class="col-md-6">
+        <div class="col-12 col-md-4 col-lg-4">
             <article class="article article-style-c">
                 <div class="article-header">
                     <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">
@@ -39,16 +37,16 @@
                     </a>
                 </div>
                 <div class="article-details">
-                    <div class="article-category"><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ courseType($row->type) }}
+                    {{-- <div class="article-category"><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ courseType($row->type) }}
                         </a> <div class="bullet"></div>
                         <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $course->lessons()->count() }} {{ __lang('classes') }}</a>
-                    </div>
+                    </div> --}}
                     <div class="article-title">
                         <h2><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $row->name }}</a></h2>
                     </div>
                     <div class="article-details">{{ limitLength($course->short_description,300) }}</div>
 
-                    <div class="row pl-2">
+                    {{-- <div class="row pl-2">
                         @foreach($course->admins()->limit(4)->get() as $admin)
 
                             <div class="article-user col-md-6">
@@ -91,7 +89,7 @@
                             </div>
                         @endsection
                         @endforeach
-                    </div>
+                    </div> --}}
 
 
 
@@ -102,6 +100,7 @@
                                 <a class="btn btn-primary btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> {{ __lang('details') }}</a>
                             </div>
                         </div>
+                        
 
                     </div>
                 </div>
