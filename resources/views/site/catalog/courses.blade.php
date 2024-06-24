@@ -26,7 +26,11 @@
         <div class="col-12 col-md-4 col-lg-4">
             <article class="article article-style-c">
                 <div class="article-header">
-                    <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">
+                    @if ($test->contains('course_id', $row->id))
+                        <a href="{{ route('student.course.intro',['id'=>$row->id]) }}">
+                    @else
+                        <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">
+                    @endif
                         @if(!empty($row->picture))
                             <div class="article-image" data-background="{{ resizeImage($row->picture,671,480,basePath()) }}">
                             </div>
@@ -42,7 +46,11 @@
                         <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $course->lessons()->count() }} {{ __lang('classes') }}</a>
                     </div> --}}
                     <div class="article-title">
-                        <h2><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $row->name }}</a></h2>
+                        @if ($test->contains('course_id', $row->id))
+                            <h2><a href="{{ route('student.course.intro',['id'=>$row->id])}}">{{ $row->name }}</a></h2>
+                        @else
+                            <h2><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $row->name }}</a></h2>
+                        @endif
                     </div>
                     <div class="article-details">{{ limitLength($course->short_description,300) }}</div>
 
