@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>{{ __lang('online-courses') }}</h4>
+                        <h4>Kelas</h4>
                     </div>
                     <div class="card-body">
                         {{ $totalCourses }}
@@ -54,7 +54,7 @@
             </a>
             @endcan
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             @can('access-group','course')
             <a href="{{ route('admin.student.sessions') }}">
                 @endcan
@@ -74,7 +74,7 @@
                 @can('access-group','course')
             </a>
             @endcan
-        </div>
+        </div> --}}
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             @can('access','view_classes')
             <a href="{{ route('admin.lesson.index') }}">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>{{ __lang('classes') }}</h4>
+                        <h4>Materi</h4>
                     </div>
                     <div class="card-body">
                         {{ $totalClasses }}

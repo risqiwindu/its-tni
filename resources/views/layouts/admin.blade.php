@@ -108,10 +108,12 @@
 
                     @can('access-group','course')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Course</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i><span>Kelas</span></a>
                         <ul class="dropdown-menu">
+                            <li ><a class="nav-link" href="{{ route('admin.student.sessions') }}">Semua Kelas </a></li>
+                            <li><a class="nav-link" href="{{ route('admin.session.groups') }}">Kategori</a></li>
 
-                            <li class="dropdown">
+                            {{-- <li class="dropdown">
                                 <a href="#" class="nav-link has-dropdown"><span>{{ __lang('add-new') }}</span></a>
                                 <ul class="dropdown-menu">
                                     @can('access','add_course')
@@ -122,10 +124,7 @@
                                     <li><a class="nav-link" href="{{ route('admin.student.addsession',['type'=>'b']) }}">{{ __lang('training-online') }}</a></li>
                                     @endcan
                                 </ul>
-                            </li>
-
-                            <li ><a class="nav-link" href="{{ route('admin.student.sessions') }}">{{ __lang('all-courses-session') }} </a></li>
-                            <li><a class="nav-link" href="{{ route('admin.session.groups') }}">{{  __lang('manage-categories') }}</a></li>
+                            </li> --}}
                             {{-- <li><a class="nav-link" href="{{ route('admin.student.invoices') }}">{{ __lang('invoices') }}</a></li> --}}
 
                         </ul>
@@ -133,26 +132,27 @@
                     @endcan
 
                     @can('access-group','student')
-                    <li class="dropdown">
+                    @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')"><i class="fas fa-users"></i><span>Siswa</span></a></li>@endcan
+                    {{-- <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span><?= __lang('students') ?></span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_student')<li ><a class="nav-link" href="@route('admin.student.add')">{{ __lang('add-student') }}</a></li>@endcan
                                 @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')">{{ __lang('all-students') }}</a></li>@endcan
                                 @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.active')">{{ __lang('active-students') }}</a></li>@endcan
-                                {{-- @can('access','bulk_enroll')<li ><a class="nav-link" href="@route('admin.student.massenroll')">{{ __lang('bulk-enroll') }}</a></li>@endcan
+                                @can('access','bulk_enroll')<li ><a class="nav-link" href="@route('admin.student.massenroll')">{{ __lang('bulk-enroll') }}</a></li>@endcan
                                 @can('access','export_student')<li ><a class="nav-link" href="@route('admin.student.import')">{{ __lang('import-export') }}</a></li>@endcan
                                 @can('access','message_students')<li ><a class="nav-link" href="@route('admin.student.mailsession')">{{ __lang('message-students') }}</a></li>@endcan
-                                @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.code')">{{ __lang('verify-code') }}</a></li>@endcan --}}
+                                @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.code')">{{ __lang('verify-code') }}</a></li>@endcan
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                     @can('access-group','classes')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher "></i><span>{{ __lang('classes') }}</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher "></i><span>Materi</span></a>
                         <ul class="dropdown-menu">
-                            @can('access','add_class')<li ><a class="nav-link" href="@route('admin.lesson.add')">{{ __lang('add-class') }}</a></li>@endcan
-                            @can('access','view_classes')<li ><a class="nav-link" href="@route('admin.lesson.index')">{{ __lang('all-classes') }}</a></li>@endcan
-                            @can('access','view_class_groups')<li ><a class="nav-link" href="@route('admin.lesson.groups')">{{ __lang('manage-class-groups') }}</a></li>@endcan
+                            {{-- @can('access','add_class')<li ><a class="nav-link" href="@route('admin.lesson.add')">{{ __lang('add-class') }}</a></li>@endcan --}}
+                            @can('access','view_classes')<li ><a class="nav-link" href="@route('admin.lesson.index')">Semua Materi</a></li>@endcan
+                            @can('access','view_class_groups')<li ><a class="nav-link" href="@route('admin.lesson.groups')">Grup Materi</a></li>@endcan
                         </ul>
                     </li>
                     @endcan
@@ -180,14 +180,15 @@
                     </li>
                     @endcan
                     @can('access-group','homework')
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Assignment</span></a>
+                    @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')"><i class="fas fa-edit"></i><span>Tugas</span></a></li>@endcan
+                    {{-- <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Tugas</span></a>
                         <ul class="dropdown-menu">
-                            @can('access','add_homework')<li ><a class="nav-link" href="@route('admin.assignment.add')">{{ __lang('add-homework') }}</a></li>@endcan
+                            @can('access','add_homework')<li ><a class="nav-link" href="@route('admin.assignment.add')">Tambah Tugas</a></li>@endcan
                             @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')">{{ __lang('view-all') }}</a></li>@endcan
 
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                     {{-- @can('access-group','revision_notes')
                     <li class="dropdown">
@@ -200,13 +201,14 @@
                     </li>
                     @endcan --}}
                     @can('access-group','downloads')
-                    <li class="dropdown">
+                    @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')"><i class="fas fa-download"></i><span>Download</span></a></li>@endcan
+                    {{-- <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>Download</span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_download')<li ><a class="nav-link" href="@route('admin.download.add')">{{ __lang('create-download') }}</a></li>@endcan
                             @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')">{{ __lang('all-downloads') }}</a></li>@endcan
                         </ul>
-                    </li>
+                    </li> --}}
                         @endcan
                    @can('access-group','discussions')
                     <li class="dropdown">
@@ -218,13 +220,14 @@
                     </li>
                         @endcan
                     @can('access-group','tests')
-                    <li class="dropdown">
+                    @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Tes</span></a></li>@endcan
+                    {{-- <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-check-circle"></i><span>{{ __lang('tests') }}</span></a>
                         <ul class="dropdown-menu">
                             @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.add')">{{ __lang('add-test') }}</a></li>@endcan
                             @can('access','add_test')<li ><a class="nav-link" href="@route('admin.test.index')">{{ __lang('all-tests') }}</a></li>@endcan
                         </ul>
-                    </li>
+                    </li> --}}
                         @endcan
 
                     {{-- @can('access-group','survey')

@@ -27,12 +27,13 @@
 <div >
 			<div >
 				<div class="card">
+                    @if ($admin_role == 1)
 					<div class="card-header">
+                        
                         <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'student','action'=>'add')) }}"><i class="fa fa-plus"></i> {{ __lang('add-student') }}</a>
 
-
-
 					</div>
+                    @endif
 					<div class="card-body">
 
                         <div class="table-responsive">
@@ -57,14 +58,22 @@
 									<td>{{ $row->name }}</td>
 									<td>{{  $row->last_name }}</td>
 									<td><strong>{{ $studentSessionTable->getTotalForStudent($row->id) }}</strong></td>
-
-									<td >
+                                    @if ($admin_role == 1)
+                                    <td >
 										<a href="{{ adminUrl(array('controller'=>'student','action'=>'edit','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('edit')}}"><i class="fa fa-edit"></i></a>
                                         <a href="#" onclick="openModal('{{__lang('enroll')}}','{{ adminUrl(array('controller'=>'student','action'=>'enroll','id'=>$row->id)) }}')"  data-toggle="tooltip" data-placement="top" data-original-title="Enroll"   title="{{ __lang('Enroll') }}" type="button" class="btn btn-xs btn-primary btn-equal"  ><i class="fa fa-plus"></i></a>
 
                                         <button   data-id="{{ $row->id }}" data-toggle="modal" data-target="#simpleModal" title="@lang('default.view')" type="button" class="btn btn-xs btn-primary btn-equal viewbutton"  ><i class="fa fa-eye"></i></button>
 										<a onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ adminUrl(array('controller'=>'student','action'=>'delete','id'=>$row->id)) }}"  class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('delete')}}"><i class="fa fa-trash"></i></a>
 									</td>
+                                    @else
+                                    <td>
+                                        <a href="#" onclick="openModal('{{__lang('enroll')}}','{{ adminUrl(array('controller'=>'student','action'=>'enroll','id'=>$row->id)) }}')"  data-toggle="tooltip" data-placement="top" data-original-title="Enroll"   title="{{ __lang('Enroll') }}" type="button" class="btn btn-xs btn-primary btn-equal"  ><i class="fa fa-plus"></i></a>
+
+                                    <button   data-id="{{ $row->id }}" data-toggle="modal" data-target="#simpleModal" title="@lang('default.view')" type="button" class="btn btn-xs btn-primary btn-equal viewbutton"  ><i class="fa fa-eye"></i></button>
+                                    </td>
+                                    @endif
+									
 								</tr>
 								  @php endforeach;  @endphp
 
@@ -110,7 +119,7 @@
                 <div class="modal-body" id="info">
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{ __lang('close') }}</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
                 </div>
             </div>
         </div>

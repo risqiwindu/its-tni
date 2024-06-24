@@ -96,13 +96,18 @@ class StudentController extends Controller
 
         $paginator->setCurrentPageNumber((int)$request->get('page', 1));
         $paginator->setItemCountPerPage(30);
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
         return viewModel('admin',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
             'pageTitle'=>__lang('Students').': '.$total,
             'filter'=>$filter,
             'text'=>$text,
             'attendanceTable'=>$attendanceTable,
-            'studentSessionTable'=> new StudentSessionTable()
+            'studentSessionTable'=> new StudentSessionTable(),
+            'admin_role' => $admin_role
 
         ));
 

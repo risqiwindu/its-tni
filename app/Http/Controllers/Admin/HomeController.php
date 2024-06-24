@@ -12,7 +12,9 @@ use App\V2\Model\StudentSessionTable;
 use App\V2\Model\TestTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Psy\Readline\Hoa\Console;
 
 class HomeController extends Controller
 {
@@ -20,9 +22,30 @@ class HomeController extends Controller
     public function index(Request $request){
 
         $output =[];
+        $role_id = Auth::user()->role_id;
         //get total students
         $studentsTable = new StudentSessionTable();
-        $output['totalStudents'] = User::where('role_id',2)->whereHas('student')->count();
+        $id_admin = DB::table('admins')
+                    ->where('user_id', Auth::user()->id)
+                    ->first();
+        $id_admin = $id_admin->id;
+        $courses = DB::table('courses')
+                   ->join('student_courses','courses.id','=','student_courses.course_id')
+                   ->select('student_courses.student_id')
+                   ->where('courses.admin_id', $id_admin)
+                   ->distinct('student_courses.student_id')
+                   ->count('student_courses.student_id');        
+        
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
+        if($admin_role != 1){
+            $output['totalStudents'] = $courses;
+        }else{
+            $output['totalStudents'] = User::where('role_id',2)->whereHas('student')->count();
+        }
+       
 
         $sessionTable = new SessionTable();
         $output['totalSessions'] = $sessionTable->getPaginatedRecords(false,null,true,null,null,null,['s','b'],true)->count();
