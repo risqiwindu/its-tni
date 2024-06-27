@@ -3,7 +3,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>'Dashboard',
-            '#'=>'Materi Pembelajaran'
+            '#'=>'Kelas'
         ]])
 @endsection
 
@@ -24,14 +24,17 @@
 
     <section class="section">
         <div class="dropdown d-inline mr-2">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="{{ route('admin.session.addcourse')  }}"><button class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
+                Tambah Kelas
+            </button></a>
+            {{-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ __lang('add-new') }}
             </button>
             <div class="dropdown-menu wide-btn">
                 <a class="dropdown-item" href="{{ route('admin.session.addcourse')  }}">{{ __lang('online-course') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.student.addsession',['type'=>'s'])  }}">{{ __lang('training-session') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.student.addsession',['type'=>'b'])  }}">{{ __lang('training-online') }}</a>
-            </div>
+            </div> --}}
         </div>
         <br> <br>
         {{-- <button class="btn btn-success"  data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="fa fa-filter"></i> {{ __lang('filter') }}</button>
@@ -110,9 +113,10 @@
                         <img alt="image" src="{{ profilePictureUrl(\App\Admin::find($row->admin_id)->user->picture) }}">
                         <div class="article-user-details">
                             <div class="user-detail-name">
-                                <a href="#">{{ adminName($row->admin_id) }}</a>
+                                {{-- <a href="#">{{ adminName($row->admin_id) }}</a> --}}
+                                <a href="#">{{ \App\Admin::find($row->admin_id)->user->name }} {{ \App\Admin::find($row->admin_id)->user->last_name }}</a>
                             </div>
-                            <div class="text-job">{{ \App\Admin::find($row->admin_id)->user->role->name }}</div>
+                            {{-- <div class="text-job">{{ \App\Admin::find($row->admin_id)->user->role->name }}</div> --}}
                         </div>
                     </div>
                         @endif

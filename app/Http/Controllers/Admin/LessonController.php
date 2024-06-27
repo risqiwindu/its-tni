@@ -86,7 +86,7 @@ class LessonController extends Controller
       //  $paginator->setItemCountPerPage(30);
         return viewModel('admin',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
-            'pageTitle'=>__lang('Classes'),
+            'pageTitle'=>'Materi',
             'lectureTable'=> new LectureTable(),
             'filter'=>$filter,
             'group'=>$group,

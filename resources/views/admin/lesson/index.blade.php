@@ -3,7 +3,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
+            route('admin.dashboard')=>'Dashboard',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -24,7 +24,7 @@
 @section('content')
 <div>
 			<div >
-                <a class="btn btn-primary" href="{{ adminUrl(array('controller'=>'lesson','action'=>'add')) }}"><i class="fa fa-plus"></i> {{ __lang('add-class') }}</a>
+                <a class="btn btn-primary" href="{{ adminUrl(array('controller'=>'lesson','action'=>'add')) }}"><i class="fa fa-plus"></i> Tambah Materi</a>
                 <button class="btn btn-success"  data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="fa fa-filter"></i> {{ __lang('filter') }}</button>
 
                 <div class="collapse" id="collapseFilter">

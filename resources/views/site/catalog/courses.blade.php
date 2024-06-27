@@ -54,7 +54,7 @@
                     </div>
                     <div class="article-details">{{ limitLength($course->short_description,300) }}</div>
 
-                    {{-- <div class="row pl-2">
+                    <div class="row pl-2">
                         @foreach($course->admins()->limit(4)->get() as $admin)
 
                             <div class="article-user col-md-6">
@@ -63,7 +63,8 @@
                                     <div class="user-detail-name">
                                         <a href="#" data-toggle="modal" data-target="#adminModal-{{ $admin->id }}">{{ limitLength(adminName($admin->id),20) }}</a>
                                     </div>
-                                    <div class="text-job">{{ $admin->user->role->name }}</div>
+                                    {{-- <div class="text-job">{{ $admin->user->role->name }}</div> --}}
+                                    <div class="text-job">Dosen</div>
                                 </div>
                             </div>
 
@@ -97,7 +98,7 @@
                             </div>
                         @endsection
                         @endforeach
-                    </div> --}}
+                    </div>
 
 
 

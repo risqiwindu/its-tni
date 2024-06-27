@@ -269,6 +269,7 @@ details[open] > summary {
         <div>
           <img src="{{ asset('img/Auditory.png') }}" />
           <p>{{ $deskripsiAudio }}</p></div>
+        </div>
       </details>
     </div>
   </div>

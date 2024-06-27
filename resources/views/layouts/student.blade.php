@@ -53,7 +53,8 @@
                         <a href="{{ route('student.dashboard') }}" class="nav-link"><span>Dashboard</span></a>
                     </li>
                     @if(setting('menu_show_courses')==1)
-                    <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Kelas</a></li>
+                    {{-- <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Kelas</a></li> --}}
+                    <li class="nav-item"><a href="{{ route('groupcourse') }}" class="nav-link">Kelas</a></li>
                     @endif
                     <li class="nav-item">
                         <a href="{{ route('student.student.mysessions') }}" class="nav-link"><span>Kelas Saya</span></a>

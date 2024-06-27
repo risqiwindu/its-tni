@@ -46,18 +46,20 @@ class CatalogController extends Controller
 
         if (empty($filter)) {
             $filter=null;
+        }else{
+            $filter = 'Internet Of Things';
         }
 
         $id = Auth::user()->id;
         $user = DB::table('kuesioner_status')->where('user_id', $id)->first();
 
-        
         if (empty($user)) {
             $group=null;
         }
         else{
             $kat = $user->course_category_id;
             $group = json_decode($kat, true);
+            $filter = $request->query('filter');
             // $group = request()->get('group', null);
             // $group = [1];
             // // If you want to add another ID to the group, you can do it here
@@ -340,5 +342,12 @@ class CatalogController extends Controller
 
     }
 
+    public function groupcourse()
+    {
+        $course = DB::table('courses')
+                ->groupBy('name')
+                ->get();
+        return view('site.catalog.groupcourse', compact('course'));
+    }
 
 }
