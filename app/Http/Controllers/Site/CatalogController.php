@@ -46,8 +46,6 @@ class CatalogController extends Controller
 
         if (empty($filter)) {
             $filter=null;
-        }else{
-            $filter = 'Internet Of Things';
         }
 
         $id = Auth::user()->id;
@@ -347,7 +345,15 @@ class CatalogController extends Controller
         $course = DB::table('courses')
                 ->groupBy('name')
                 ->get();
-        return view('site.catalog.groupcourse', compact('course'));
+        $id = Auth::user()->id;
+        $user = DB::table('kuesioner_status')->where('user_id', $id)->first();
+        if(isStudent()){
+            if (empty($user)) {
+                return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dahulu untuk dapat melihat kelas!');
+             } else{
+                return view('site.catalog.groupcourse', compact('course'));
+             }
+        }
     }
 
 }
