@@ -39,7 +39,7 @@
 
                     </div>
                 </div>
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <div class="summary">
                         <div class="summary-item">
                             <h6>Kelas Saya <span class="text-muted">({{ $mysessions['total'] }})</span></h6>
@@ -85,7 +85,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
 
@@ -233,7 +233,7 @@
                     <div class="card-header">
                         <h4><i class="fa fa-thumbs-up"></i> Gaya Belajar</h4>
                         <div class="card-header-action">
-                            <a class="btn btn-primary" href="{{ route('student.student.kuesioner') }}">Test</a>
+                            <a class="btn btn-primary" href="{{ route('student.student.kuesioner') }}">Lihat</a>
                         </div>
                     </div>
                     <div class="card-body">

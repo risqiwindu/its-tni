@@ -289,20 +289,20 @@
 
                       <ul class="nav nav-pills mt-5" id="myTab3" role="tablist">
                                             <li class="nav-item">
-                                              <a class="nav-link active top-nav" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-desktop"></i> {{  __lang('lecture')  }}</a>
+                                              <a class="nav-link active top-nav" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-desktop"></i> Materi</a>
                                             </li>
                                             <li class="nav-item">
-                                              <a class="nav-link top-nav" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a>
+                                              <a class="nav-link top-nav" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-download"></i> Download</a>
                                             </li>
                                             @if($course->enable_discussion==1)
                                             <li class="nav-item">
-                                              <a class="nav-link top-nav" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-comments"></i> {{  __lang('discuss')  }}</a>
+                                              <a class="nav-link top-nav" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-comments"></i> Diskusi</a>
                                             </li>
                                             @endif
 
-                                          <li class="nav-item">
+                                          {{-- <li class="nav-item">
                                               <a class="nav-link top-nav" id="class-tab3" data-toggle="tab" href="#class3" role="tab" aria-controls="class" aria-selected="false"><i class="fa fa-table"></i> {{  __lang('class-index')  }}</a>
-                                          </li>
+                                          </li> --}}
                                           <li class="nav-item" id="test">
                                             <video id="video" width="400" height="100" autoplay style="position: absolute;">
                                           </li>
@@ -605,16 +605,7 @@
                                                             @php  endif;  @endphp
 
                                                         </div>
-                                                        <div style="margin-top: 5px">
-
-
-                                                            <form class="ajaxform" action="{{  route(MODULE.'.course.bookmark')  }}?{{ http_build_query(request()->query()) }}" method="post">
-                                                                @csrf
-                                                                <input type="hidden" name="id" value="{{  $page->id  }}"/>
-                                                                <input type="hidden" name="course_id" value="{{  $course->id  }}"/>
-                                                                <button  style="margin-bottom: 5px"  type="submit" class="btn btn-sm btn-success float-right"><i class="fa fa-bookmark"></i> {{  __lang('bookmark')  }}</button>
-                                                            </form>
-                                                        </div>
+                                                        
                                                         <form action="{{  route(MODULE.'.course.loglecture')  }}?{{ http_build_query(request()->query()) }}" method="post">
                                                             @csrf
                                                             <div class="mt-5" style=" clear: both;" >
@@ -623,10 +614,10 @@
                                                                 <a  style="margin-bottom: 20px"  class="btn btn-primary btn-lg" href="{{  route(MODULE.'.course.lecture'.$append,['lecture'=>$previous->id,'course'=>$sessionId])  }}"><i class="fa fa-chevron-left"></i> {{  __lang('previous-lecture')  }}</a>
 
                                                                 @php  elseif($previousLesson):  @endphp
-                                                                <a  style="margin-bottom: 20px"  class="btn btn-primary btn-lg" href="{{  route(MODULE.'.course.class'.$append,['lesson'=>$previousLesson->id,'course'=>$sessionId])  }}"><i class="fa fa-chevron-left"></i> {{  __lang('previous-class')  }}</a>
+                                                                <a  style="margin-bottom: 20px"  class="btn btn-primary btn-lg" href="{{  route(MODULE.'.course.class'.$append,['lesson'=>$previousLesson->id,'course'=>$sessionId])  }}"><i class="fa fa-chevron-left"></i> Materi Sebelumnya</a>
 
                                                                 @php  else:  @endphp
-                                                                <a  style="margin-bottom: 20px"  class="btn btn-primary btn-lg" href="{{  route(MODULE.'.course.class'.$append,['lesson'=>$lecture->lesson_id,'course'=>$sessionId])  }}"><i class="fa fa-chevron-left"></i> {{  __lang('class-details')  }}</a>
+                                                                <a  style="margin-bottom: 20px"  class="btn btn-primary btn-lg" href="{{  route(MODULE.'.course.class'.$append,['lesson'=>$lecture->lesson_id,'course'=>$sessionId])  }}"><i class="fa fa-chevron-left"></i> Detail Materi</a>
 
                                                                 @php  endif;  @endphp
                                                                 @php  endif;  @endphp
@@ -649,7 +640,7 @@
 
                                                                 <input type="hidden" name="course_id" value="{{  $sessionId  }}"/>
                                                                 <input type="hidden" name="lecture_id" value="{{  $lecture->id  }}"/>
-                                                                <button class="btn btn-primary btn-lg float-right" type="submit"><i class="fa fa-check-circle"></i> {{  __lang('complete-lecture')  }}</button>
+                                                                <button class="btn btn-primary btn-lg float-right" type="submit"><i class="fa fa-check-circle"></i> Lanjut Materi Berikutnya</button>
                                                                 <p style="text-align: right; clear: both">
                                                                     <small>{{  __lang('complete-lecture-note')  }}</small>
                                                                 </p>

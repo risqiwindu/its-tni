@@ -507,9 +507,10 @@
 
         </table> --}}
 
-        <a class="btn btn-primary btn-block btn-lg" href="{{  $resumeLink  }}"><i class="fa fa-play-circle"></i> Lanjutkan Kelas</a>
+        <a class="btn btn-primary btn-block btn-lg" href="{{  $resumeLink  }}"><i class="fa fa-play-circle"></i> Masuk Kelas</a>
+        
 
-
+        
     </div>
 
 </div>

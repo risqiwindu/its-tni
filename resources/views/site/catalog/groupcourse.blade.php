@@ -30,13 +30,13 @@
                 <div class="article-title">
                    {{ $row->name }}
                 </div>
-                <div class="article-details">Ini adalah kumpulan kelas untuk materi {{ $row->name }}</div>
+                <div class="article-details">Ini adalah kumpulan kelas untuk materi {{ $row->nama_materi }}</div>
 
                 <div class="article-footer">
 
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ route('courses', ['filter' => $row->name, 'slug' => safeUrl($row->name)]) }}" class="btn btn-primary btn-block">Lihat</a>
+                            <a href="{{ route('courses', ['filter' => $row->nama_materi, 'slug' => safeUrl($row->nama_materi)]) }}" class="btn btn-primary btn-block">Lihat</a>
                         </div>
                     </div>
                     

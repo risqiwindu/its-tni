@@ -343,7 +343,7 @@ class CatalogController extends Controller
     public function groupcourse()
     {
         $course = DB::table('courses')
-                ->groupBy('name')
+                ->groupBy('nama_materi')
                 ->get();
         $id = Auth::user()->id;
         $user = DB::table('kuesioner_status')->where('user_id', $id)->first();

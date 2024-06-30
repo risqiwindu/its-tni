@@ -341,4 +341,6 @@ details[open] > summary {
   </details>
   @endif
 </section>
+<a href="{{ route('groupcourse') }}"><button class="btn btn-primary">Pilih Kelas</button></a>
+
 @endsection

@@ -107,7 +107,7 @@ function startWebcam() {
 }
 
 function getLabeledFaceDescriptions() {
-  const labels = ["sandi"];
+  const labels = ["sandi","bobi kurniawan"];
   return Promise.all(
     labels.map(async (label) => {
       const descriptions = [];
@@ -171,7 +171,7 @@ video.addEventListener("play", async () => {
     });
 
     results.forEach((result, i) => {
-      if (result.label === "sandi") {
+      if (result.label === "bobi kurniawan") {
         const box = resizedDetections[i].detection.box;
         const age = resizedDetections[i].age;
         const drawBox = new faceapi.draw.DrawBox(box, {

@@ -33,12 +33,14 @@
         <div class="profile-widget-description">
             <!-- Nav tabs -->
             <ul class="nav nav-pills" role="tablist">
-                <li class="nav-item"><a  class="nav-link active"  href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{  __lang('introduction')  }}</a></li>
+                <li class="nav-item">@php  if($next):  @endphp
+                    <a class="btn btn-primary btn-lg float-right" href="{{  $next  }}">Mulai Kelas <i class="fa fa-chevron-circle-right"></i></a>
+                    @php  endif;  @endphp</li>
+                {{-- <li class="nav-item"><a  class="nav-link active"  href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{  __lang('introduction')  }}</a></li>
                 <li class="nav-item"><a  class="nav-link"  href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-table"></i> {{  __lang('table-of-contents')  }}</a></li>
-                <li class="nav-item"><a   class="nav-link"  href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a></li>
+                <li class="nav-item"><a   class="nav-link"  href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a></li> --}}
 
             </ul>
-
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
@@ -47,7 +49,7 @@
                         <div class="panel-body">
                             <p>{!! $classRow->introduction !!}    </p>
                         </div>
-                        <div class="panel-footer" style="min-height: 65px">
+                        {{-- <div class="panel-footer" style="min-height: 65px">
                             @php  if($previous):  @endphp
                             <a class="btn btn-primary btn-lg" href="{{  $previous  }}"><i class="fa fa-chevron-circle-left"></i> {{  __lang('previous')  }}</a>
                             @php  endif;  @endphp
@@ -55,7 +57,7 @@
                             @php  if($next):  @endphp
                             <a class="btn btn-primary btn-lg float-right" href="{{  $next  }}">Mulai Kelas <i class="fa fa-chevron-circle-right"></i></a>
                             @php  endif;  @endphp
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
