@@ -65,7 +65,10 @@
                     </li>
                     @endif
                     @if(setting('menu_show_homework')==1)
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><span>Tugas</span></a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tugas</span></a>
                         <ul class="dropdown-menu dropdown-border">
 
@@ -74,27 +77,33 @@
                             <li class="nav-item"><a href="{{ route('student.assignment.submissions') }}" class="nav-link">{{ __lang('my-submissions') }}</a></li>
 
                         </ul>
-                    </li>
+                    </li> --}}
                     @endif
 
                     @if(setting('menu_show_tests')==1)
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><span>Tes</span></a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tes</span></a>
                         <ul class="dropdown-menu dropdown-border">
                             <li class="nav-item"><a href="{{ route('student.test.index') }}" class="nav-link">{{ __lang('browse-tests') }}</a></li>
                             <li class="nav-item"><a href="{{ route('student.test.statement') }}" class="nav-link">{{ __lang('statement-of-result') }}</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     @endif
 
                     @if(setting('menu_show_discussions')==1)
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><span>Diskusi</span></a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Diskusi</span></a>
                         <ul class="dropdown-menu dropdown-border">
                             <li class="nav-item"><a href="{{ route('student.student.discussion') }}" class="nav-link">{{ __lang('instructor-chat') }}</a></li>
                             <li class="nav-item"><a href="{{ route('student.forum.index') }}" class="nav-link">{{ __lang('student-forum') }}</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     @endif
 
                     {{-- @if(setting('menu_show_sessions')==1)

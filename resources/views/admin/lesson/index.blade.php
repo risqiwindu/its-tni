@@ -68,11 +68,6 @@
 								<tr>
 									<th>{{ __lang('id') }}</th>
 									<th>{{ __lang('name') }}</th>
-                                    <th>{{ __lang('class-type') }}</th>
-									<th>{{ __lang('sort-order') }}</th>
-                                    @php if(GLOBAL_ACCESS): @endphp
-                                    <th>{{ __lang('created-by') }}</th>
-                                    @php endif;  @endphp
 									<th class="text-right1" >{{__lang('actions')}}</th>
 								</tr>
 							</thead>
@@ -81,17 +76,6 @@
 								<tr>
 									<td><span class="label label-success">{{ $row->id }}</span></td>
 								  	<td>{{ $row->name }}</td>
-                                    <td>{{ ($row->type=='s')? __lang('physical-location'):__lang('online') }}
-                                    @php if($row->type=='c'): @endphp
-                                        ( <a style="text-decoration: underline" href="{{ adminUrl(array('controller'=>'lecture','action'=>'index','id'=>$row->id)) }}">{{ $lectureTable->getTotalLectures($row->id) }} {{ __lang('lectures') }}</a> )
-                                        @php endif;  @endphp
-                                    </td>
-
-                                    <td>{{ $row->sort_order }}</td>
-                                    @php if(GLOBAL_ACCESS): @endphp
-                                        <td>{{ adminName($row->admin_id) }}</td>
-                                    @php endif;  @endphp
-
 									<td class="text-right1">
 
                                         <div class="dropdown d-inline mr-2">

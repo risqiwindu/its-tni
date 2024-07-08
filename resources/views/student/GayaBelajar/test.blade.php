@@ -89,7 +89,7 @@
                 <h2>Pertanyaan {{ $no = $no + 1 }}</h2>
                 <div class="pertanyaan">
                   <h2>{{ $data->pertanyaan}}</h2>
-                <div class="options">
+                <div class="options" style="color: #fff">
                   <div class="form-check">
                     <label>
                       <input class="form-check-input" type="radio" name="{{ $data->id }}" id="a" value="a" required="">{{ $data->jawabanAudio }}

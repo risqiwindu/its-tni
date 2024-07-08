@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
 use Laminas\InputFilter\InputFilter;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -77,8 +79,11 @@ class LessonController extends Controller
         $select->setValueOptions($options);
         $select->setValue($group);
 
-
-
+        $admin_id = Auth::user()->id;
+        $admin = DB::table('admins')
+                      ->where('user_id', $admin_id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
         $paginator = $table->getLessons(true,$filter,$group,$sort);
 
 

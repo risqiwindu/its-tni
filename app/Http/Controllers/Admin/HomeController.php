@@ -52,7 +52,16 @@ class HomeController extends Controller
         $output['totalCourses'] = $sessionTable->getPaginatedRecords(false,null,true,null,null,null,'c')->count();
 
         $lessonTable = new LessonTable();
-        $output['totalClasses'] = $lessonTable->getTotal();
+        $course_lesson = DB::table('courses')
+                   ->join('course_lesson','courses.id','=','course_lesson.course_id')
+                   ->select('*')
+                   ->where('courses.admin_id', $id_admin)
+                   ->count('course_lesson.lesson_id');
+        if($admin_role != 1){
+            $output['totalClasses'] = $course_lesson;
+        }else{
+            $output['totalClasses'] = $lessonTable->getTotal();
+        }
 
         $testTable = new TestTable();
         $output['totalTests'] = $testTable->getActivePaginatedRecords()->count();

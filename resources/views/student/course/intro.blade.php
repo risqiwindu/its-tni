@@ -34,8 +34,8 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-pills" role="tablist">
                     <li class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{  __lang('introduction')  }}</a></li>
-                    <li  class="nav-item"><a class="nav-link"  href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-table"></i> {{  __lang('table-of-contents')  }}</a></li>
-                    <li  class="nav-item"><a class="nav-link"  href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a></li>
+                    <li  class="nav-item"><a class="nav-link"  href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-table"></i> Materi</a></li>
+                    {{-- <li  class="nav-item"><a class="nav-link"  href="#resources" aria-controls="resources" role="tab" data-toggle="tab"><i class="fa fa-download"></i> {{  __lang('resources')  }}</a></li> --}}
                     {{-- <li  class="nav-item"><a class="nav-link"  href="#progress" aria-controls="progress" role="tab" data-toggle="tab"><i class="fa fa-chart-bar"></i> {{  __lang('progress')  }}</a></li>
                     @php  if(!empty($sessionRow->enable_discussion)): @endphp
                     <li  class="nav-item"><a class="nav-link"  href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab"><i class="fa fa-comments"></i> {{  __lang('discuss')  }}</a></li>

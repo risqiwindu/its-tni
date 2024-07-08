@@ -171,7 +171,7 @@ video.addEventListener("play", async () => {
     });
 
     results.forEach((result, i) => {
-      if (result.label === "bobi kurniawan") {
+      if (result.label === "bobi kurniawan" || "sandi") {
         const box = resizedDetections[i].detection.box;
         const age = resizedDetections[i].age;
         const drawBox = new faceapi.draw.DrawBox(box, {

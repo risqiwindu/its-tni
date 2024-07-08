@@ -10,8 +10,7 @@ class Lesson extends Model
 
     public function assignments(){
         return $this->hasMany(Assignment::class);
-    }
-
+    }                                                                                                                                    
     public function attendances(){
         return $this->hasMany(Attendance::class);
     }

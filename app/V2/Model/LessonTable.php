@@ -12,6 +12,7 @@ namespace App\V2\Model;
 
 use App\Lesson;
 use App\Lib\BaseTable;
+use Illuminate\Support\Facades\DB;
 
 class LessonTable extends BaseTable {
 
@@ -61,7 +62,7 @@ class LessonTable extends BaseTable {
         return $rowset;
     }
 
-    public function getLessons($paginated=false,$filter=null,$group=null,$order=null,$perPage=30)
+    public function getLessons($paginated=false,$filter=null,$group=null,$order=null,$perPage=30,$admin_id=null,$admin_role=null)
     {
         if(empty($group)){
             $select = Lesson::where('id','>',0);
@@ -72,6 +73,8 @@ class LessonTable extends BaseTable {
             });
 
         }
+
+           
 
         if(!GLOBAL_ACCESS){
             $select->where(['admin_id'=>ADMIN_ID]);
