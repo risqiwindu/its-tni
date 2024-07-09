@@ -84,7 +84,12 @@ class LessonController extends Controller
                       ->where('user_id', $admin_id)
                       ->first();
         $admin_role = $admin->admin_role_id;
-        $paginator = $table->getLessons(true,$filter,$group,$sort);
+        $course_lesson_ids = DB::table('courses')
+                       ->join('course_lesson', 'courses.id', '=', 'course_lesson.course_id')
+                       ->select('course_lesson.lesson_id')
+                       ->where('courses.admin_id', $admin_role)
+                       ->pluck('lesson_id');
+        $paginator = $table->getLessons(true,$filter,$group,$sort,$course_lesson_ids,$admin_role);
 
 
        // $paginator->setCurrentPageNumber((int)request()->get('page', 1));

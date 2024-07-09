@@ -13,6 +13,7 @@ namespace App\V2\Model;
 use App\Lesson;
 use App\Lib\BaseTable;
 use Illuminate\Support\Facades\DB;
+use Psy\Readline\Hoa\Console;
 
 class LessonTable extends BaseTable {
 
@@ -62,7 +63,7 @@ class LessonTable extends BaseTable {
         return $rowset;
     }
 
-    public function getLessons($paginated=false,$filter=null,$group=null,$order=null,$perPage=30,$admin_id=null,$admin_role=null)
+    public function getLessons($paginated=false,$filter=null,$group=null,$order=null,$course_lesson_ids=null,$admin_role=null,$perPage=30)
     {
         if(empty($group)){
             $select = Lesson::where('id','>',0);
@@ -74,10 +75,15 @@ class LessonTable extends BaseTable {
 
         }
 
-           
-
-        if(!GLOBAL_ACCESS){
-            $select->where(['admin_id'=>ADMIN_ID]);
+        if($admin_role != 1){
+            
+            if ($course_lesson_ids->isEmpty()) {
+                // Array kosong, tidak ada data untuk ditampilkan
+                $select = collect(); // Menggunakan koleksi kosong
+            } else {
+                // Array tidak kosong, jalankan query kedua
+                $select->whereIn('id', $course_lesson_ids)->get();
+            }
         }
 
         switch($order){
