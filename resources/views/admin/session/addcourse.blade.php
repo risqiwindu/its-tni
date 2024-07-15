@@ -69,11 +69,12 @@
                     </li>
                 </ul>
                 <div id="step-1">
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div>
-                                    <label for="password1" class="control-label"><span class="required">*</span>{{ __lang('course-name') }}</label>
+                                    <label for="password1" class="control-label"><span class="required">*</span>Nama Materi Kuliah</label>
                                 </div>
                                 <div>
                                     {{ formElement($form->get('session_name')) }}
@@ -109,7 +110,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div>
-                                    <label for="password1" class="control-label">{{ __lang('course-description') }}</label>
+                                    <label for="password1" class="control-label">Deskripsi Kelas</label>
                                 </div>
                                 <div>
                                     {{ formElement($form->get('description'))  }}
@@ -126,7 +127,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div>
-                                    <label for="password1" class="control-label">{{ __lang('introduction') }}</label>
+                                    <label for="password1" class="control-label">Kata Pengantar</label>
                                 </div>
                                 <div>
                                     {{ formElement($form->get('introduction'))  }}

@@ -341,7 +341,7 @@ class CourseController extends Controller {
             'lectures'=>$lectures,
             'session'=>$sessionEntity,
             'module'=>MODULE,
-            'course'=>$course
+            'course'=>$course,
         ];
 
         $output['customCrumbs'] = [

@@ -30,6 +30,7 @@ use App\V2\Model\StudentSessionTable;
 use App\V2\Model\StudentTestTable;
 use App\V2\Model\TestQuestionTable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
@@ -274,44 +275,49 @@ class CatalogController extends Controller {
             if ($studentSessionTable->enrolled($studentId, $id)) {
                 $studentCourse = $this->getStudent()->studentCourses()->where('course_id',$id)->first();
             $enrolled = true;
+                        $lesson = DB::table('course_lesson')
+                                    ->where('course_id', $id)
+                                    ->first();
+                        $resumeLink = route('student.course.class',['lesson'=>$lesson->lesson_id,'course'=>$id]);
                 //check if student has started lecture
-                if($studentLectureTable->hasLecture($studentId,$id)){
-                    $lecture = $studentLectureTable->getLecture($studentId,$id);
-                    if ($lecture && $sessionLessonTable->lessonExists($id,$lecture->lesson_id)){
+            //     if($studentLectureTable->hasLecture($studentId,$id)){
+            //         $lecture = $studentLectureTable->getLecture($studentId,$id);
+            //         if ($lecture && $sessionLessonTable->lessonExists($id,$lecture->lesson_id)){
 
-                        $lectureId = $lecture->lecture_id;
-                        //get next lecture
-                         $lectureTable = new LectureTable();
-                         $next = $lectureTable->getNextLecture($lecture->lecture_id);
+                        
+            //             // $lectureId = $lecture->lecture_id;
+            //             // //get next lecture
+            //             //  $lectureTable = new LectureTable();
+            //             //  $next = $lectureTable->getNextLecture($lecture->lecture_id);
 
-                         if($next){
-                             $lecture = $next;
-                             $lectureId = $lecture->id;
-                         }
+            //             //  if($next){
+            //             //      $lecture = $next;
+            //             //      $lectureId = $lecture->id;
+            //             //  }
 
-                        if($lecture->sort_order == 1){
-                          //  $resumeLink = $this->url()->fromRoute('view-class', ['classId' => $lecture->lesson_id, 'sessionId' => $id]);
-                            $resumeLink = route('student.course.class',['lesson'=>$lecture->lesson_id,'course'=>$id]);
-                        }
-                        else{
-                           // $resumeLink = $this->url()->fromRoute('view-lecture', ['lectureId' => $lecture->lecture_id, 'sessionId' => $id]);
-                            $resumeLink = route('student.course.lecture',['lecture'=>$lectureId,'course'=>$id]);
+            //             // if($lecture->sort_order == 1){
+            //             //   //  $resumeLink = $this->url()->fromRoute('view-class', ['classId' => $lecture->lesson_id, 'sessionId' => $id]);
+            //             //     $resumeLink = route('student.course.class',['lesson'=>$lecture->lesson_id,'course'=>$id]);
+            //             // }
+            //             // else{
+            //             //    // $resumeLink = $this->url()->fromRoute('view-lecture', ['lectureId' => $lecture->lecture_id, 'sessionId' => $id]);
+            //             //     $resumeLink = route('student.course.lecture',['lecture'=>$lectureId,'course'=>$id]);
 
-                        }
+            //             // }
 
-                    }
-                    else{
-                        $resumeLink = route('student.course.intro',['id'=>$id]);
+            //         }
+            //         else{
+            //             $resumeLink = route('student.course.intro',['id'=>$id]);
 
-                    }
+            //         }
 
-                }
-                else{
+            //     }
+            //     else{
 
-                   // $resumeLink = $this->url()->fromRoute('application/default', ['controller' => 'course', 'action' => 'intro','id'=>$id]);
-                        $resumeLink = route('student.course.intro',['id'=>$id]);
+            //        // $resumeLink = $this->url()->fromRoute('application/default', ['controller' => 'course', 'action' => 'intro','id'=>$id]);
+            //             $resumeLink = route('student.course.intro',['id'=>$id]);
 
-                }
+            //     }
 
             }
 

@@ -133,4 +133,5 @@ class LectureTable extends BaseTable {
     }
 
 
+
 }

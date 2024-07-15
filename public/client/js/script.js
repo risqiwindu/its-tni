@@ -1,88 +1,8 @@
-// const video = document.getElementById("video");
-
-// Promise.all([
-//   faceapi.nets.ssdMobilenetv1.loadFromUri("/its-tni/public/client/models"),
-//   faceapi.nets.faceRecognitionNet.loadFromUri("/its-tni/public/client/models"),
-//   faceapi.nets.faceExpressionNet.loadFromUri("/its-tni/public/client/models"),
-//   faceapi.nets.ageGenderNet.loadFromUri("/its-tni/public/client/models"),
-//   faceapi.nets.faceLandmark68Net.loadFromUri("/its-tni/public/client/models"),
-// ]).then(startWebcam);
-
-// function startWebcam() {
-//   navigator.mediaDevices
-//     .getUserMedia({
-//       video: true,
-//       audio: false,
-//     })
-//     .then((stream) => {
-//       video.srcObject = stream;
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
-
-// function getLabeledFaceDescriptions() {
-//   const labels = ["sandi"];
-//   return Promise.all(
-//     labels.map(async (label) => {
-//       const descriptions = [];
-//       for (let i = 1; i <= 2; i++) {
-//         const img = await faceapi.fetchImage(`/its-tni/public/client/labels/${label}/${i}.jpg`);
-//         const detections = await faceapi
-//           .detectSingleFace(img)
-//           .withFaceLandmarks()
-//           .withFaceExpressions()
-//           .withAgeAndGender()
-//           .withFaceDescriptor();
-//         descriptions.push(detections.descriptor);
-//       }
-//       return new faceapi.LabeledFaceDescriptors(label, descriptions);
-//     })
-//   );
-// }
-
-// video.addEventListener("play", async () => {
-//   const labeledFaceDescriptors = await getLabeledFaceDescriptions();
-//   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors);
-
-//   const test = document.getElementById('test');
-//   const canvas = faceapi.createCanvasFromMedia(video);
-//   canvas.style.position = 'absolute';
-//   test.append(canvas);
-
-//   const displaySize = { width: video.width, height: video.height };
-//   faceapi.matchDimensions(canvas, displaySize);
-
-//   setInterval(async () => {
-//     const detections = await faceapi
-//       .detectAllFaces(video)
-//       .withFaceLandmarks()
-//       .withFaceExpressions()
-//       .withAgeAndGender()
-//       .withFaceDescriptors();
-
-//     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-
-//     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-
-//     const results = resizedDetections.map((d) => {
-//       return faceMatcher.findBestMatch(d.descriptor);
-//     });
-//     results.forEach((result, i) => {
-//       const box = resizedDetections[i].detection.box;
-//       const age = resizedDetections[i].age;
-//       const drawBox = new faceapi.draw.DrawBox(box, {
-//         label: result + ' Umur : ' + Math.round(age),
-//       });
-//       drawBox.draw(canvas);
-//       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-//     });
-//   }, 100);
-// });
-
 const video = document.getElementById("video");
-const stopButton = document.getElementById("stop-button");
+let canvas;
+let isVideoPlaying = false;
+let lastNotificationTime = 0;
+let isLoading = true;
 
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri("/its-tni/public/client/models"),
@@ -100,155 +20,155 @@ function startWebcam() {
     })
     .then((stream) => {
       video.srcObject = stream;
+      video.play();
+      isVideoPlaying = true;
+
+      video.style.display = "block";
+      isLoading = false;
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-function getLabeledFaceDescriptions() {
-  const labels = ["sandi","bobi kurniawan"];
+function getLabeledFaceDescriptions(label) {
   return Promise.all(
-    labels.map(async (label) => {
-      const descriptions = [];
-      for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`/its-tni/public/client/labels/${label}/${i}.jpg`);
-        const detections = await faceapi
+    Array.from({ length: 2 }, (_, i) => {
+      const imgPath = `/its-tni/public/client/labels/${label}/${i}.jpg`;
+      return faceapi.fetchImage(imgPath).then(async (img) => {
+        const detection = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
           .withFaceExpressions()
           .withAgeAndGender()
           .withFaceDescriptor();
-        descriptions.push(detections.descriptor);
-      }
-      return new faceapi.LabeledFaceDescriptors(label, descriptions);
+        return detection.descriptor;
+      });
     })
-  );
+  ).then((descriptors) => {
+    return new faceapi.LabeledFaceDescriptors(label, descriptors);
+  });
 }
+
+function showNotification(message, videoId) {
+  const notification = document.createElement("div");
+  notification.className = "notification";
+  
+  const iframe = document.createElement("iframe");
+  iframe.width = "560";
+  iframe.height = "315";
+  iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  iframe.frameBorder = "0";
+  iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+  iframe.allowFullscreen = true;
+
+  notification.appendChild(iframe);
+  document.body.appendChild(notification);
+
+  // Mengatur posisi notifikasi di tengah layar
+  const windowHeight = window.innerHeight;
+  const notificationHeight = notification.offsetHeight;
+  notification.style.top = `${(windowHeight - notificationHeight) / 2}px`;
+
+  setTimeout(() => {
+    notification.remove();
+  }, 2 * 60 * 1000);
+}
+
+const loadingOverlay = document.createElement("div");
+loadingOverlay.className = "loading-overlay";
+loadingOverlay.innerText = "Loading..."; // Pesan loading bisa disesuaikan
+
+document.body.appendChild(loadingOverlay);
 
 video.addEventListener("play", async () => {
-  const labeledFaceDescriptors = await getLabeledFaceDescriptions();
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors);
+  if (isLoading) {
+    // Tampilkan elemen loading saat proses inisialisasi
+    loadingOverlay.style.display = "flex";
+  }
+  
+  const label = "sandi"; // Ganti dengan label yang diinginkan
 
-  const test = document.getElementById('test');
-  const canvas = faceapi.createCanvasFromMedia(video);
-  canvas.style.position = 'absolute';
-  test.append(canvas);
+  try {
+    const labeledFaceDescriptors = await getLabeledFaceDescriptions(label);
+    const faceMatcher = new faceapi.FaceMatcher([labeledFaceDescriptors]);
 
-  const displaySize = { width: video.width, height: video.height };
-  faceapi.matchDimensions(canvas, displaySize);
-
-  const emotionData = {
-    neutral: 0,
-    happy: 0,
-    sad: 0,
-    angry: 0,
-    fearful: 0,
-    disgusted: 0,
-    surprised: 0,
-    count: 0,
-  };
-
-  const emotionArray = [];
-  let isStopped = false;
-
-  const intervalId = setInterval(async () => {
-    if (isStopped) return;
-
-    const detections = await faceapi
-      .detectAllFaces(video)
-      .withFaceLandmarks()
-      .withFaceExpressions()
-      .withAgeAndGender()
-      .withFaceDescriptors();
-
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-
-    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-
-    const results = resizedDetections.map((d) => {
-      return faceMatcher.findBestMatch(d.descriptor);
-    });
-
-    results.forEach((result, i) => {
-      if (result.label === "bobi kurniawan" || "sandi") {
-        const box = resizedDetections[i].detection.box;
-        const age = resizedDetections[i].age;
-        const drawBox = new faceapi.draw.DrawBox(box, {
-          label: result + ' Umur : ' + Math.round(age),
-        });
-        drawBox.draw(canvas);
-        faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-
-        // Collect emotion data
-        const expressions = resizedDetections[i].expressions;
-        for (const [emotion, value] of Object.entries(expressions)) {
-          emotionData[emotion] += value;
-        }
-        emotionData.count += 1;
-      }
-    });
-  }, 100);
-
-  stopButton.addEventListener("click", () => {
-    isStopped = true;
-    clearInterval(intervalId);
-    stopWebcam();
-    analyzeEmotions(emotionData, emotionArray);
-  });
-});
-
-function stopWebcam() {
-  const stream = video.srcObject;
-  const tracks = stream.getTracks();
-  tracks.forEach((track) => track.stop());
-  video.srcObject = null;
-}
-
-function analyzeEmotions(data, emotionArray) {
-  const averageEmotions = {};
-  for (const [emotion, value] of Object.entries(data)) {
-    if (emotion !== "count") {
-      averageEmotions[emotion] = value / data.count;
+    if (canvas) {
+      canvas.remove();
     }
+
+    const test = document.getElementById('test');
+    canvas = faceapi.createCanvasFromMedia(video);
+    canvas.style.position = 'absolute';
+    test.append(canvas);
+
+    const displaySize = { width: video.width, height: video.height };
+    faceapi.matchDimensions(canvas, displaySize);
+
+    const interval = setInterval(async () => {
+      const detections = await faceapi
+        .detectAllFaces(video)
+        .withFaceLandmarks()
+        .withFaceExpressions()
+        .withAgeAndGender()
+        .withFaceDescriptors();
+
+      const resizedDetections = faceapi.resizeResults(
+        detections,
+        displaySize
+      );
+
+      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+      resizedDetections.forEach((detection) => {
+        const bestMatch = faceMatcher.findBestMatch(detection.descriptor);
+        if (bestMatch.label === label) {
+          const box = detection.detection.box;
+          const age = Math.round(detection.age);
+          const labelInfo = `${bestMatch.toString()} - Age: ${age}`;
+
+          const drawBox = new faceapi.draw.DrawBox(box, {
+            label: labelInfo,
+          });
+          drawBox.draw(canvas);
+
+          faceapi.draw.drawFaceExpressions(canvas, detection);
+
+          const highestEmotion = Object.keys(detection.expressions).reduce(
+            (a, b) =>
+              detection.expressions[a] > detection.expressions[b] ? a : b
+          );
+
+          if (highestEmotion === "happy" && isVideoPlaying) {
+            const currentTime = Date.now();
+            if (currentTime - lastNotificationTime > 2 * 60 * 1000) { // Check if 2 minutes have passed since last notification
+              showNotification("User is feeling happy! Watch this fun video:", "3df8CooYnSs?si=hwzDF0uP4uvvf1GX&amp;controls=0");
+              lastNotificationTime = currentTime;
+
+              // Stop the video
+              const stream = video.srcObject;
+              const tracks = stream.getTracks();
+              tracks.forEach(track => track.stop());
+              video.srcObject = null;
+              isVideoPlaying = false;
+
+              // Clear the canvas
+              canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+
+              // Restart the video after 2 minutes
+              setTimeout(() => {
+                startWebcam();
+              }, 2 * 60 * 1000); // 2 minutes in milliseconds
+            }
+          }
+        }
+      });
+      loadingOverlay.style.display = "none";
+      isLoading = false;
+    }, 1000);
+  } catch (error) {
+    console.error("Error in face detection:", error);
+    loadingOverlay.style.display = "none"; // Sembunyikan elemen loading jika terjadi kesalahan
+    isLoading = false;
   }
-  console.log("Average emotions in the session:", averageEmotions);
-
-  // Calculate the percentage
-  const totalEmotions = Object.values(averageEmotions).reduce((a, b) => a + b, 0);
-  const emotionPercentages = {};
-  for (const [emotion, value] of Object.entries(averageEmotions)) {
-    emotionPercentages[emotion] = ((value / totalEmotions) * 100).toFixed(2);
-  }
-
-  // Store the results in the array and log it
-  emotionArray.push(emotionPercentages);
-  console.log("Emotion percentages:", emotionPercentages);
-
-  // Display the results
-  displayResults(emotionPercentages);
-}
-
-function displayResults(emotionPercentages) {
-  // Hide the detection page and show the results page
-  document.getElementById('test').style.display = 'none';
-  document.getElementById('results-page').style.display = 'block';
-
-  const tbody = document.getElementById('results-table').getElementsByTagName('tbody')[0];
-  for (const [emotion, percentage] of Object.entries(emotionPercentages)) {
-    const row = tbody.insertRow();
-    const cellEmotion = row.insertCell(0);
-    const cellPercentage = row.insertCell(1);
-    cellEmotion.textContent = emotion;
-    cellPercentage.textContent = `${percentage}%`;
-  }
-}
-
-
-
-
-
-
-
-
-
+});
