@@ -135,6 +135,7 @@
     align-items: center;
     font-size: 24px;
   }
+    
     </style>
 
 
