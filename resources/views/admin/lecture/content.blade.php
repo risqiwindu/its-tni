@@ -287,7 +287,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -330,7 +330,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -368,7 +368,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -412,7 +412,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -457,7 +457,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -497,7 +497,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -529,7 +529,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -566,7 +566,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>
@@ -621,7 +621,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __lang('close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary">{{ __lang('save-changes') }}</button>
                     </div>
                 </form>

@@ -36,7 +36,7 @@
 
                                         <th>Email</th>
                                         <th>@lang('default.enabled')</th>
-                                        <th>@lang('default.role')</th>
+                                        {{-- <th>@lang('default.role')</th> --}}
                                         <th>@lang('default.actions')</th>
                                     </tr>
                                 </thead>
@@ -48,12 +48,12 @@
                                             <img  class="mr-3 rounded-circle"    width="50" src="{{ profilePictureUrl($item->picture) }}" />
                                         </td>
                                         <td>{{ $item->name }} {{ $item->last_name }}</td><td>{{ $item->email }}</td><td>{{ boolToString($item->enabled) }}</td>
-                                        <td>
+                                        {{-- <td>
                                             @if($item->admin)
                                             {{ $item->admin->adminRole->name }}
                                             @endif
 
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <form method="POST" action="{{ url('/admin/admins' . '/' . $item->id) }}" accept-charset="UTF-8" class="int_inlinedisp" id="form{{ $item->id}}">
                                 

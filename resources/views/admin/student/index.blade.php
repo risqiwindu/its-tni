@@ -60,7 +60,7 @@
 									<td><strong>{{ $studentSessionTable->getTotalForStudent($row->id) }}</strong></td>
                                     @if ($admin_role == 1)
                                     <td >
-										<a href="{{ adminUrl(array('controller'=>'student','action'=>'edit','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('edit')}}"><i class="fa fa-edit"></i></a>
+										<a href="{{ adminUrl(array('controller'=>'student','action'=>'edit','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="#" onclick="openModal('{{__lang('enroll')}}','{{ adminUrl(array('controller'=>'student','action'=>'enroll','id'=>$row->id)) }}')"  data-toggle="tooltip" data-placement="top" data-original-title="Enroll"   title="{{ __lang('Enroll') }}" type="button" class="btn btn-xs btn-primary btn-equal"  ><i class="fa fa-plus"></i></a>
 
                                         <button   data-id="{{ $row->id }}" data-toggle="modal" data-target="#simpleModal" title="@lang('default.view')" type="button" class="btn btn-xs btn-primary btn-equal viewbutton"  ><i class="fa fa-eye"></i></button>

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
   async function getLabeledFaceDescriptions() {
-    const labels = ["sandi"];
+    const labels = ["bobi kurniawan"];
     console.log("Getting labeled face descriptions...");
     return Promise.all(
       labels.map(async (label) => {
@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
             );
             const result = faceMatcher.findBestMatch(detection.descriptor);
             let displayName = result.toString(); // Default to the matched label
-            if (result.label === "sandi") {
-              displayName = "sandi"; // Customize display name if the label is 'fadil'
+            if (result.label === "bobi kurniawan") {
+              displayName = "bobi kurniawan"; // Customize display name if the label is 'fadil'
             }
             const text = `${displayName}, ${age.toFixed(
               0

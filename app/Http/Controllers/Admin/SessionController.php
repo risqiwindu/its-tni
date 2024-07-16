@@ -189,7 +189,7 @@ class SessionController extends Controller
         $output['form'] = $form;
         $output['action'] = route('admin.session.addcourse');
         $output['type'] = $type;
-        $output['pageTitle'] = __lang('Add Online Course');
+        $output['pageTitle'] ='Tambah Kelas';
         $output['lessonGroupTable'] = new LessonToLessonGroupTable();
         return view('admin.session.addcourse',$output);
 
@@ -394,7 +394,7 @@ class SessionController extends Controller
         $addClassView = app(LessonController::class)->add($request);
         $this->data = $this->data + $addClassView->getData();
 
-        $this->data['pageTitle'] = __lang('Manage Classes').': '.$session->name;
+        $this->data['pageTitle'] = 'Kelola Materi'.': '.$session->name;
 
         return view('admin.session.courseclasses',$this->data);
     }
@@ -753,7 +753,7 @@ class SessionController extends Controller
 
 
         $output['form'] = $form;
-        $output['pageTitle']= __lang('Add Course Category');
+        $output['pageTitle']= 'Tambah Kategori';
         $output['action']='addgroup';
         $output['id']=null;
         return viewModel('admin',__CLASS__,__FUNCTION__,$output);

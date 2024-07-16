@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.session.groups')=>__lang('course-categories'),
+            route('admin.session.groups')=>'Kategori',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection

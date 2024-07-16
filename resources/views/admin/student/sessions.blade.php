@@ -153,20 +153,20 @@
                                     </button>
                                     <div class="dropdown-menu wider-btn">
                                         @if($row->type != 'c')
-                                            <a class="dropdown-item has-icon" href="{{ route('admin.student.editsession',['id'=>$row->id]) }}"><i class="fa fa-edit"></i> {{ __lang('edit') }}</a>
-                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.sessionclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> {{ __lang('manage-classes') }}</a>
+                                            <a class="dropdown-item has-icon" href="{{ route('admin.student.editsession',['id'=>$row->id]) }}"><i class="fa fa-edit"></i> Edit</a>
+                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.sessionclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> Kelola Materi</a>
                                         @else
-                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.editcourse',['id'=>$row->id]) }}"><i class="fa fa-edit"></i> {{ __lang('edit') }}</a>
-                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.courseclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> {{ __lang('manage-classes') }}</a>
-                                            <a class="dropdown-item has-icon"  target="_blank" href="{{ route('admin.course.intro',['id'=>$row->id]) }}"><i class="fa fa-play"></i> {{ __lang('try-course') }}</a>
+                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.editcourse',['id'=>$row->id]) }}"><i class="fa fa-edit"></i> Edit</a>
+                                            <a class="dropdown-item has-icon" href="{{ route('admin.session.courseclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> Kelola Materi</a>
+                                            <a class="dropdown-item has-icon"  target="_blank" href="{{ route('admin.course.intro',['id'=>$row->id]) }}"><i class="fa fa-play"></i> Coba Kelas</a>
                                         @endif
-                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.sessionstudents',['id'=>$row->id]) }}"><i class="fa fa-users"></i> {{ __lang('view-enrolled') }}</a>
+                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.sessionstudents',['id'=>$row->id]) }}"><i class="fa fa-users"></i> Lihat Siswa</a>
 
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon" href="{{ route('admin.student.instructors',['id'=>$row->id]) }}"><i class="fa fa-user"></i> {{ __lang('manage-instructors') }}</a>
                                         @endif
                                         <a class="dropdown-item has-icon" href="{{ route('admin.student.mailsession',['id'=>$row->id]) }}"><i class="fa fa-envelope"></i> {{ __lang('send-message-enrolled') }}</a>
-                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.duplicatesession',['id'=>$row->id]) }}"><i class="fa fa-copy"></i> {{ __lang('duplicate') }}</a>
+                                        {{-- <a class="dropdown-item has-icon" href="{{ route('admin.student.duplicatesession',['id'=>$row->id]) }}"><i class="fa fa-copy"></i> {{ __lang('duplicate') }}</a> --}}
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon"  onclick="openModal('{{ __lang('change-type') }}: {{ addslashes($row->name) }}','{{ route('admin.session.sessiontype',['id'=>$row->id]) }}')" href="#" ><i class="fa fa-arrows-alt-v"></i> {{ __lang('change-session-type') }}</a>
                                         @endif

@@ -17,7 +17,7 @@
 						<header></header>
 
                         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addlecture">
-                            <i class="fa fa-plus"></i> {{ __lang('add-lecture') }}
+                            <i class="fa fa-plus"></i> Tambah Konten Materi
                         </button>
 
 					</div>
@@ -44,7 +44,7 @@
 
 									<td class="text-right1">
                                         <a href="{{ adminUrl(array('controller'=>'lecture','action'=>'content','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('manage-content') }}"><i class="fa fa-file-video"></i></a>
-										<a href="{{ adminUrl(array('controller'=>'lecture','action'=>'edit','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('edit')}}"><i class="fa fa-edit"></i></a>
+										<a href="{{ adminUrl(array('controller'=>'lecture','action'=>'edit','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                                         <a href="{{ adminUrl(array('controller'=>'lecture','action'=>'files','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('manage-downloads') }}"><i class="fa fa-download"></i></a>
                                         <a onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ adminUrl(array('controller'=>'lecture','action'=>'delete','id'=>$row->id)) }}"  class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('delete')}}"><i class="fa fa-trash"></i></a>
 									</td>
@@ -88,14 +88,14 @@
                     <form method="post" class="form" action="{{ adminUrl(['controller'=>'lecture','action'=>'add','id'=>$lesson->id]) }}">
 @csrf
                     <div class="modal-header">
-                    <h5 class="modal-title">{{ __lang('add-lecture-to') }} {{ $lesson->name }}</h5>
+                    <h5 class="modal-title">Tambahkan konten materi {{ $lesson->name }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="title">{{ __lang('lecture-title') }}</label>
+                                <label for="title">Judul Konten Materi</label>
                                 <input name="title" class="form-control " required="required" value="" type="text">
                             </div>
                             <div class="form-group">

@@ -11,8 +11,8 @@
 
 @section('content')
 <p>
-    {{ __lang('drag-and-drop-rows') }}
-    <a class="btn btn-primary float-right" href="#"  data-toggle="modal" data-target="#addClassModal"><i class="fa fa-plus"></i> {{ __lang('Add Class') }}</a>
+    <a class="btn btn-primary float-right" href="#"  data-toggle="modal" data-target="#addClassModal"><i class="fa fa-plus"></i> Tambahkan Materi</a>
+    <br>
 </p>
 
 
@@ -20,8 +20,8 @@
     <thead>
     <tr>
         <th>#</th>
-        <th  data-sort="string">{{ __lang('class-name') }}</th>
-        <th>{{ __lang('lectures') }}</th>
+        <th  data-sort="string">Nama Materi</th>
+        <th>Konten Materi</th>
         <th>{{ __lang('opening-date') }}</th>
         <th></th>
     </tr>
@@ -35,8 +35,8 @@
             <td>{{$sessionLesson->lectures()->count()}}</td>
             <td><input placeholder="optional" style="max-width: 150px" data-id="{{$sessionLesson->id}}" name="lesson_date_{{$sessionLesson->id}}" id="lesson_date_{{$sessionLesson->id}}" class="form-control date lesson_date" value="{{showDate('Y-m-d',$sessionLesson->pivot->lesson_date)}}" type="text"/></td>
             <td>
-                <a target="_blank" class="btn btn-primary" href="{{ adminUrl(array('controller'=>'lesson','action'=>'edit','id'=>$sessionLesson->id)) }}"><i class="fa fa-edit"></i> {{ __lang('edit') }}</a>
-                <a target="_blank" class="btn btn-success" href="{{ adminUrl(array('controller'=>'lecture','action'=>'index','id'=>$sessionLesson->id)) }}"><i class="fa fa-file-video"></i> {{ __lang('lectures') }}</a>
+                <a target="_blank" class="btn btn-primary" href="{{ adminUrl(array('controller'=>'lesson','action'=>'edit','id'=>$sessionLesson->id)) }}"><i class="fa fa-edit"></i> Edit</a>
+                <a target="_blank" class="btn btn-success" href="{{ adminUrl(array('controller'=>'lecture','action'=>'index','id'=>$sessionLesson->id)) }}"><i class="fa fa-file-video"></i> Konten Materi</a>
                 <div class="btn-group dropup">
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-trash"></i> {{ __lang('delete') }}
@@ -49,7 +49,7 @@
 
                     </ul>
                 </div>
-                <a target="_blank" class="btn btn-success" href="{{ adminUrl(array('controller'=>'lesson','action'=>'files','id'=>$sessionLesson->id)) }}"><i class="fa fa-download"></i> {{ __lang('downloads') }}</a>
+                <a target="_blank" class="btn btn-success" href="{{ adminUrl(array('controller'=>'lesson','action'=>'files','id'=>$sessionLesson->id)) }}"><i class="fa fa-download"></i> Download</a>
 
             </td>
         </tr>
@@ -86,7 +86,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">{{ __lang('add') }}      @php if($session->lessons()->count()==0): @endphp
                         {{ __lang('your-first') }}
-                        @php endif;  @endphp {{ __lang('class') }}</h4>
+                        @php endif;  @endphp Materi</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                 </div>
@@ -97,14 +97,14 @@
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
 
 
-                        <ul class="nav nav-pills" id="myTab3" role="tablist">
+                        {{-- <ul class="nav nav-pills" id="myTab3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true">{{ __lang('new-class') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false">{{ __lang('existing-class') }}</a>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <div class="tab-content" id="myTabContent2">
                             <div class="tab-pane fade show active" id="home3" role="tabpanel" aria-labelledby="home-tab3">
 
@@ -129,7 +129,7 @@
 
 
                                                     <div class="form-group">
-                                                        {{ formLabel($form->get('name')) }}
+                                                        Nama Materi
                                                         {{ formElement($form->get('name')) }}   <p class="help-block">{{ formElementErrors($form->get('name')) }}</p>
 
                                                     </div>

@@ -662,7 +662,7 @@ class StudentController extends Controller
 
         return view('admin.student.sessions',array(
             'paginator'=>$paginator,
-            'pageTitle'=>'Materi Pembelajaran'.'  ('.$totalRecords.')',
+            'pageTitle'=>'Kelas'.'  ('.$totalRecords.')',
             'attendanceTable'=>$attendanceTable,
             'studentSessionTable'=>$studentSessionTable,
             'filter'=>$filter,

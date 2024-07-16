@@ -3,8 +3,8 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.student.sessions')=>__('default.courses'),
-            '#'=>isset($pageTitle)?$pageTitle:''
+            route('admin.student.sessions')=>'Kelas',
+            '#'=>'Tambah Kelas'
         ]])
 @endsection
 
@@ -14,7 +14,7 @@
     <div class="card">
 
             <div class="card-header">
-                <h4>{{ __lang('setup-course') }}</h4>
+                <h4>Atur Kelas Anda</h4>
                 <div class="card-header-action">
                     <a href="#" onclick="$('#sessionform').submit()" class="btn btn-primary">
                        <i class="fa fa-save"></i> {{ __lang('save') }}
@@ -36,7 +36,7 @@
                             <span class="step_no">1</span>
                             <span class="step_descr">
                                               {{ __lang('info') }}<br />
-                                              <small>{{ __lang('basic-course-data') }}</small>
+                                              <small>Data Kelas Dasar</small>
                                           </span>
                         </a>
                     </li>
@@ -45,7 +45,7 @@
                             <span class="step_no">2</span>
                             <span class="step_descr">
                                               {{ __lang('options') }}<br />
-                                              <small>{{ __lang('course-options') }}</small>
+                                              <small>Opsi Kelas</small>
                                           </span>
                         </a>
                     </li>

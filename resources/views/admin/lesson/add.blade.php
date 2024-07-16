@@ -21,7 +21,7 @@
 
 
 									<div class="form-group">
-											{{ formLabel($form->get('name')) }}
+											Nama Materi
 										 {{ formElement($form->get('name')) }}   <p class="help-block">{{ formElementErrors($form->get('name')) }}</p>
 
 									</div>
