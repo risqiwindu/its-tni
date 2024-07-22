@@ -1460,7 +1460,7 @@ class StudentController extends Controller {
         $id = [1, 2];
     } elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && $jawabanC > $jawabanA || $jawabanB == $jawabanC && $jawabanB > $jawabanA) {
         $tampil = 'Visual Kinestetik';
-        $id = [2, 3];
+        $id = [1, 3];
     } elseif ($jawabanC > $jawabanA && $jawabanC > $jawabanB && $jawabanA > $jawabanB || $jawabanC == $jawabanA && $jawabanA > $jawabanB) {
         $tampil = 'Kinestetik Audio';
         $id = [3, 2];
