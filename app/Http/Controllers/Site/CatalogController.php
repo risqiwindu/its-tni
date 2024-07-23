@@ -58,12 +58,6 @@ class CatalogController extends Controller
             $kat = $user->course_category_id;
             $group = json_decode($kat, true);
             $filter = $request->query('filter');
-            // $group = request()->get('group', null);
-            // $group = [1];
-            // If you want to add another ID to the group, you can do it here
-            // For example, let's say you want to add the ID 5 to the group:
-            // $additionalCategoryId = 2; // or fetch this dynamically if needed
-            // $group[] = $group1;
         }
 
         $sort = request()->get('sort', null);

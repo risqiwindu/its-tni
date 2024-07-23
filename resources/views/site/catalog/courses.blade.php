@@ -27,7 +27,7 @@
             <article class="article article-style-c">
                 <div class="article-header">
                     @if ($test->contains('course_id', $row->id))
-                        <a href="{{ route('student.course.intro',['id'=>$row->id]) }}">
+                        <a href="{{  route('student.'.'course'.'-details',['id'=>$row->id,'slug'=>safeUrl($row->name)]) }}">
                     @else
                         <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">
                     @endif
@@ -41,13 +41,9 @@
                     </a>
                 </div>
                 <div class="article-details">
-                    {{-- <div class="article-category"><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ courseType($row->type) }}
-                        </a> <div class="bullet"></div>
-                        <a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $course->lessons()->count() }} {{ __lang('classes') }}</a>
-                    </div> --}}
                     <div class="article-title">
                         @if ($test->contains('course_id', $row->id))
-                            <h2><a href="{{ route('student.course.intro',['id'=>$row->id])}}">{{ $row->name }}</a></h2>
+                            <h2><a href="{{  route('student.'.'course'.'-details',['id'=>$row->id,'slug'=>safeUrl($row->name)]) }}">{{ $row->name }}</a></h2>
                         @else
                             <h2><a href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}">{{ $row->name }}</a></h2>
                         @endif
@@ -63,7 +59,6 @@
                                     <div class="user-detail-name">
                                         <a href="#" data-toggle="modal" data-target="#adminModal-{{ $admin->id }}">{{ limitLength(adminName($admin->id),20) }}</a>
                                     </div>
-                                    {{-- <div class="text-job">{{ $admin->user->role->name }}</div> --}}
                                     <div class="text-job">Dosen</div>
                                 </div>
                             </div>
@@ -106,15 +101,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                {{-- @foreach ($test as $coba)
-                                @if ($row->id == $coba->course_id)
-                                <a class="btn btn-success btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> Masuk Kelas</a>
-                                @else
-                                <a class="btn btn-primary btn-block" href="{{ route('course',['course'=>$course->id,'slug'=>safeUrl($course->name)]) }}"><i class="fa fa-info-circle"></i> {{ __lang('details') }}</a>
-                                @endif
-                                @endforeach --}}
                                 @if ($test->contains('course_id', $row->id))
-                                    <a class="btn btn-success btn-block" href="{{ route('student.course.intro',['id'=>$row->id]) }}">
+                                    {{-- <a class="btn btn-success btn-block" href="{{ route('student.course.intro',['id'=>$row->id]) }}"> --}}
+                                        <a class="btn btn-success btn-block" href="{{  route('student.'.'course'.'-details',['id'=>$row->id,'slug'=>safeUrl($row->name)]) }}">
                                         <i class="fa fa-info-circle"></i> Masuk Kelas
                                     </a>
                                 @else
@@ -154,72 +143,6 @@
 
 
     </div>
-
-    {{-- <div class="col-md-3">
-
-        @if($subCategories || $parent)
-            <ul class="list-group mb-5">
-                <li class="list-group-item active">{{ __lang('sub-categories') }}</li>
-                @if($parent)
-                    <li class="list-group-item">
-                        <a href="{{ route('courses') }}?group={{ $parent->id }}" ><strong>{{ __lang('parent') }}: {{ $parent->name }}</strong></a>
-                    </li>
-                @endif
-
-                @if($subCategories)
-                    @foreach($subCategories as $category)
-                        <li class="list-group-item">
-                            <a href="{{ route('courses') }}?group={{ $category->id }}" >{{ $category->name }}</a>
-                        </li>
-                    @endforeach
-                @endif
-            </ul>
-        @endif
-
-        <ul class="list-group">
-            <li class="list-group-item active">{{ __lang('categories') }}</li>
-            <li class="list-group-item"><a href="{{ route('courses') }}">{{ __lang('all-courses') }}</a></li>
-            <li class="list-group-item @if(request()->get('group') == 1) active @endif"><a href="{{ route('courses') }}?group=1">Visual</a></li>
-            @foreach($categories as $category)
-                <li class="list-group-item @if(request()->get('group') == $category->id) active @endif"><a href="{{ route('courses') }}?group={{ $category->id }}">{{ $category->name }}</a></li>
-            @endforeach
-
-        </ul> --}}
-
-        {{-- <div class="card mt-3  " data-toggle="card-collapse" data-open="false">
-            <div class="card-header card-collapse-trigger">
-                {{  __lang('Filter')  }}
-            </div>
-            <div class="card-body">
-                <form id="filterform" class="form" role="form"  method="get" action="{{  route('courses') }}">
-                    <div class="form-group input-group margin-none">
-                        <div class="margin-none">
-                            <input type="hidden" name="group" value="{{  $group  }}"/>
-
-                            <div class="form-group">
-                                <label  for="filter">{{  __lang('search')  }}</label>
-                                {{  formElement($text)  }}
-                            </div>
-                            <div  class="form-group">
-                                <label  for="group">{{  __lang('sort')  }}</label>
-                                {{  formElement($sortSelect)  }}
-                            </div>
-
-                            <div >
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> {{  __lang('filter')  }}</button>
-                                <button type="button" onclick="$('#filterform input, #filterform select').val(''); $('#filterform').submit();" class="btn btn-secondary">{{  __lang('clear')  }}</button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-        </div> --}}
-
-
     </div>
-
 </div>
 @endsection

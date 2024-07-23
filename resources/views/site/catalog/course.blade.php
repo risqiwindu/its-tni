@@ -32,7 +32,6 @@
                         {!! clean($row->short_description) !!}
                     </p>
 
-                    {{-- <a class="btn btn-primary  btn-lg" href="{{  route('cart.add',['course'=>$course->id])  }}"><i class="fa fa-cart-plus"></i> {{  __lang('enroll')  }} @if(setting('general_show_fee')==1) (@if(empty($row->payment_required)){{  __lang('free')  }}@else{{ price($row->fee) }}@endif) @endif</a> --}}
                 </div>
 
             </div>
@@ -47,14 +46,6 @@
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-table"></i> Materi</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-chalkboard-teacher"></i> {{  __lang('instructors')  }}</a>
-                        </li>
-                        @if($course->has('certificates'))
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab4" data-toggle="tab" href="#contact4" role="tab" aria-controls="certificate" aria-selected="false"><i class="fa fa-file-pdf"></i> {{  __lang('certificates')  }}</a>
-                            </li>
-                        @endif --}}
 
                     </ul>
                     <div class="tab-content" id="myTabContent2">
@@ -162,66 +153,6 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    {{-- <table id="course-specs" class="table table-striped">
-                        @php  if(!empty($row->session_date)): @endphp
-                        <tr>
-                            <td >{{  __lang('starts')  }}</td>
-                            <td  >{{  showDate('d/M/Y',$row->session_date) }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-
-                        @php  if(!empty($row->session_end_date)): @endphp
-                        <tr>
-                            <td >{{  __lang('ends')  }}</td>
-                            <td>{{  showDate('d/M/Y',$row->session_end_date) }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-                        @php  if(!empty($row->enrollment_closes)): @endphp
-                        <tr>
-                            <td >{{  __lang('enrollment-closes')  }}</td>
-                            <td>{{  showDate('d/M/Y',$row->enrollment_closes) }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-
-                        @php  if(!empty($row->length)): @endphp
-                        <tr>
-
-                            <td>{{  __lang('length')  }}</td>
-                            <td>{{  $row->length }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-
-
-                        @php  if(!empty($row->effort)): @endphp
-                        <tr>
-
-                            <td>{{  __lang('effort')  }}</td>
-                            <td>{{  $row->effort }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-                        @php  if(!empty($row->enable_chat)): @endphp
-                        <tr>
-
-                            <td>{{  __lang('live-chat')  }}</td>
-                            <td>{{  __lang('enabled')  }}</td>
-                        </tr>
-                        @php  endif;  @endphp
-                        @php  if(setting('general_show_fee')==1): @endphp
-                        <tr>
-                            <td>{{  __lang('fee')  }}</td>
-                            <td>@php  if(empty($row->payment_required)): @endphp
-                                {{  __lang('free')  }}
-                                @php  else:  @endphp
-                                {{  price($row->fee) }}
-                                @php  endif;  @endphp</td>
-                        </tr>
-                        @php  endif;  @endphp
-
-
-
-
-
-                    </table> --}}
                     <form action="{{ route('student.student.pilihKelas') }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{ $row->id }}" id="id" name="id">

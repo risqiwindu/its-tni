@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
   async function getLabeledFaceDescriptions() {
-    const labels = ["bobi kurniawan"];
+    const labels = ["bobi kurniawan", "sandi"];
     console.log("Getting labeled face descriptions...");
     return Promise.all(
       labels.map(async (label) => {

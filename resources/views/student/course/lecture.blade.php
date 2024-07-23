@@ -167,7 +167,78 @@
                 display: none;
             }
         }
+
+        #test canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        }
+
+        .loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  border: 4px solid #Fff;
+  top: 50%;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  
+  25% {
+    height: 0%;
+  }
+  
+  50% {
+    height: 100%;
+  }
+  
+  75% {
+    height: 100%;
+  }
+  
+  100% {
+    height: 0%;
+  }
+}
+    }
     </style>
+
     @php  if(defined('ENABLE_CHAT')): @endphp
     {!!  setting('general_chat_code') !!}
     @php  endif;  @endphp
@@ -325,11 +396,13 @@
                                             </li>
                                             @endif
 
-                                          {{-- <li class="nav-item">
-                                              <a class="nav-link top-nav" id="class-tab3" data-toggle="tab" href="#class3" role="tab" aria-controls="class" aria-selected="false"><i class="fa fa-table"></i> {{  __lang('class-index')  }}</a>
-                                          </li> --}}
-                                          <li class="nav-item" id="test">
-                                            <video id="video" width="400" height="100" autoplay style="position: absolute;">
+                                          <li class="nav-item">
+                                            <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem; z-index: 999;">
+                                                <span class="loader"><span class="loader-inner"></span></span>
+                                            </div>
+                                            <div class="row" id="test" style="position: absolute; margin-left: -50px; left: 30%;">
+                                                <video id="video" width="400" height="100" autoplay style="position: absolute;"></video>
+                                            </div>
                                           </li>
                                           </ul>
                                           <div class="tab-content" id="myTabContent2">
