@@ -39,53 +39,6 @@
 
                     </div>
                 </div>
-                {{-- <div class="card-body">
-                    <div class="summary">
-                        <div class="summary-item">
-                            <h6>Kelas Saya <span class="text-muted">({{ $mysessions['total'] }})</span></h6>
-                            <ul class="list-unstyled list-unstyled-border">
-
-                                @foreach($mysessions['paginator'] as $row)
-                                <li class="media">
-                                    @php
-                                        if($row->type=='c'){
-                                                $url = route('student.course-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]);
-                                            }
-                                            else{
-                                                $url = route('student.session-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]);
-                                            }
-                                    @endphp
-
-                                    <a href="{{ $url }}">
-
-                                        @if(!empty($row->picture))
-                                            <img class="mr-3 rounded" src="{{ resizeImage($row->picture,671,480,basePath()) }}" alt="product" width="50">
-
-                                        @else
-                                            <img class="mr-3 rounded" src="{{ asset('img/course.png') }}" alt="product" width="50">
-
-                                        @endif
-                                    </a>
-                                    <div class="media-body">
-                                        <div class="media-right"><a class="btn btn-primary btn-sm" href="{{ $url }}"><i class="fa fa-play-circle"></i> {{ __lang('view') }}</a></div>
-                                        <div class="media-title"><a href="{{ $url }}">{{ limitLength($row->name,100) }}</a>
-
-                                            <div style="width: 70%">
-                                                <div class="progress" data-height="3" >
-                                                    <div class="progress-bar" role="progressbar" data-width="{{ $controller->getStudentProgress($row->course_id) }}%" aria-valuenow="{{ $controller->getStudentProgress($row->course_id) }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="text-muted text-small"><a href="{{ $url }}">{{ \App\Course::find($row->course_id)->lessons()->count() }} Materi</a>
-                                    </div>
-                                </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
 
 
@@ -178,56 +131,6 @@
         </div>
         @if(setting('menu_show_certificates')==1 || setting('menu_show_tests')==1 )
         <div class="col-md-5">
-
-            {{-- @if(setting('menu_show_certificates')==1)
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h4><i class="fa fa-certificate"></i> {{ __lang('certificates') }}</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        @foreach($certificate['paginator'] as $row)
-                        <div class="col text-center">
-                            <a href="{{ route('student.student.downloadcertificate',['id'=>$row->certificate_id]) }}">
-                                <h1><i class="fa fa-file-pdf"></i></h1>
-                             </a>
-                            <div class="mt-2 font-weight-bold">{{ $row->certificate_name }}</div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if(setting('menu_show_tests')==1)
-            <div class="card card-info">
-                <div class="card-header">
-                    <h4><i class="fas fa-check-circle"></i> {{ __lang('tests') }}</h4>
-                    <div class="card-header-action"><a class="btn btn-primary" href="{{ route('student.test.statement') }}">{{ __lang('view-all') }}</a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="summary">
-                        <div class="summary-item">
-                            <h6>{{ __lang('your-recent-performance') }}</h6>
-                            <ul class="list-unstyled list-unstyled-border">
-                                @foreach($student->studentTests()->orderBy('id','desc')->limit(5)->get() as $testResult)
-                                <li class="media">
-
-                                    <div class="media-body">
-                                        <div class="media-right">{{ round($testResult->score) }}%</div>
-                                        <div class="media-title"><a href="{{ route('student.test.taketest',['id'=>$testResult->test_id]) }}">{{ $testResult->test->name }}</a></div>
-                                        <div class="text-muted text-small">{{ __lang('taken-on') }}    {{ \Illuminate\Support\Carbon::parse($testResult->created_at)->format('d m Y') }}</div>
-                                    </div>
-                                </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif --}}
             
                 <div class="card card-primary">
                     <div class="card-header">
@@ -247,20 +150,10 @@
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
                 <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Kelas Saya') }}</a></li>
-                {{-- @if(setting('menu_show_homework')==1)
-                <li class="list-group-item"><a href="{{ route('student.assignment.index') }}"><i class="fas fa-edit"></i> {{ __lang('homework') }}</a> </li>
-                @endif --}}
-
                 @if(setting('menu_show_discussions')==1)
                 <li class="list-group-item"><a href="{{ route('student.forum.index') }}"><i class="fas fa-comments"></i> {{ __lang('student-forum') }}</a> </li>
                 <li class="list-group-item"><a href="{{ route('student.student.discussion') }}"><i class="fas fa-comment"></i> {{ __lang('instructor-chat') }}</a> </li>
                 @endif
-                {{-- @if(setting('menu_show_downloads')==1)
-                <li class="list-group-item"><a href="{{ route('student.download.index') }}"><i class="fas fa-download"></i> {{ __lang('downloads') }}</a> </li>
-                @endif
-                @if(setting('menu_show_certificates')==1)
-                <li class="list-group-item"><a href="{{ route('student.student.certificates') }}"><i class="fas fa-certificate"></i> {{ __lang('certificates') }}</a> </li>
-                @endif --}}
                 <li class="list-group-item"><a href="{{ route('student.student.camera') }}"><i class="fas fa-camera"></i> Camera</a> </li>
             </ul>
 

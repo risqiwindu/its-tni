@@ -114,9 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (result.label === "bobi kurniawan") {
               displayName = "bobi kurniawan"; // Customize display name if the label is 'fadil'
             }
-            const text = `${displayName}, ${age.toFixed(
-              0
-            )} years old, ${maxEmotion}`;
+            const text = `${displayName}, 20 years old, ${maxEmotion}`;
             const anchor = {
               x: detection.detection.box.bottomLeft.x,
               y: detection.detection.box.bottomLeft.y + 6,

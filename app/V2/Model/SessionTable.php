@@ -253,6 +253,7 @@ class SessionTable extends BaseTable {
             $select->join($this->getPrefix().'courses',$this->getPrefix().'course_course_category.course_id='.$this->getPrefix().'courses.id',['id','name','description','venue','start_date','enabled','end_date','type','short_description','picture','enrollment_closes','fee','payment_required']);
             $select->join($this->getPrefix().'course_categories',$this->getPrefix().'course_course_category.course_category_id='.$this->getPrefix().'course_categories.id',['category_name'=>'name']);
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
+
         }
 
 

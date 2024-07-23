@@ -255,7 +255,7 @@
 
                     </li>
                             @endcan
-                    {{-- @can('access-group','blog')
+                    @can('access-group','blog')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i><span>{{ __lang('blog') }}</span></a>
                         <ul class="dropdown-menu">
@@ -280,7 +280,7 @@
 
                         </ul>
                     </li>
-                    @endcan --}}
+                    @endcan
 
                     {{-- @can('access-group','files')
                         <li class="dropdown">
