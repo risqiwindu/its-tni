@@ -14,6 +14,8 @@ use Illuminate\Support\Carbon;
 use Laminas\Db\Sql\Select;
 use Laminas\Paginator\Adapter\DbSelect;
 use Laminas\Paginator\Paginator;
+use Illuminate\Support\Facades\DB;
+
 
 class SessionTable extends BaseTable {
 
@@ -254,6 +256,21 @@ class SessionTable extends BaseTable {
             $select->join($this->getPrefix().'course_categories',$this->getPrefix().'course_course_category.course_category_id='.$this->getPrefix().'course_categories.id',['category_name'=>'name']);
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
 
+            if($group === [2,1]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id DESC'
+                ]);
+            }elseif($group === [3,1]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id DESC'
+                ]);
+            }elseif($group === [3,2]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id DESC'
+                ]);
+            }
+            
+            
         }
 
 
