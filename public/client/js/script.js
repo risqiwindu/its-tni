@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (result.label === "bobi kurniawan") {
               displayName = "bobi kurniawan"; // Customize display name if the label is 'fadil'
             }
-            const text = `${displayName}, 24 th, ${maxEmotion}`;
+            const text = `${displayName}, 39 th, ${maxEmotion}`;
             const anchor = {
               x: detection.detection.box.bottomLeft.x,
               y: detection.detection.box.bottomLeft.y + 6,
