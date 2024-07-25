@@ -42,7 +42,7 @@
                         <div class="article-title">
                             <h2><a href="{{  route('student.'.$type.'-details',['id'=>$row->course_id,'slug'=>safeUrl($row->name)]) }}">{{ $row->name }}</a></h2>
                         </div>
-                        <div class="article-details">{{ limitLength($course->short_description,300) }}</div>
+                        <div class="article-details"><b>{{ limitLength($course->short_description,300) }}</b></div>
 
                         {{-- <div class="row pl-2">
                             @foreach($course->admins()->limit(4)->get() as $admin)

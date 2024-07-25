@@ -48,7 +48,7 @@
             </p>
             
         </div>
-        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Kinestethic.png') }}'); background-size: 100% 100%;">
+        <div class="p-3 p-xl-5 text-light" style="background-image: url('{{ asset('img/Thumbs Up.png') }}'); background-size: 100% 100%;">
         </div>
         <div class="p-3 p-xl-5 text-light" style="background-color: #52796f;">
             <h3 class="text-uppercase h5">AYO LAKUKAN TEST!</h3>

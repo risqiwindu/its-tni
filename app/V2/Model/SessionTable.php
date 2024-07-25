@@ -268,6 +268,18 @@ class SessionTable extends BaseTable {
                 $select->order([
                     $this->getPrefix().'course_categories.id DESC'
                 ]);
+            }elseif($group === [1,2]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id ASC'
+                ]);
+            }elseif($group === [1,3]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id ASC'
+                ]);
+            }elseif($group === [2,3]){
+                $select->order([
+                    $this->getPrefix().'course_categories.id ASC'
+                ]);
             }
             
             
