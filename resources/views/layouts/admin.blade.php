@@ -156,16 +156,19 @@
                         </ul>
                     </li>
                     @endcan
-                    @can('access-group','video')
+
+                    @can('access','view_videos')<li ><a class="nav-link" href="@route('admin.video.index')"><i class="fas fa-video"></i><span>Video</span></a></li>@endcan
+
+                    {{-- @can('access-group','video')
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-video"></i><span>Video</span></a>
+                        <a href="@route('admin.video.index')" class="nav-link has-dropdown"><i class="fas fa-video"></i><span>Video</span></a>
                         <ul class="dropdown-menu">
                             @can('access','add_video')<li ><a class="nav-link" href="@route('admin.video.add')">{{ __lang('add-video') }}</a></li>@endcan
                                 @can('access','view_videos')<li ><a class="nav-link" href="@route('admin.video.index')">{{ __lang('all-videos') }}</a></li>@endcan
                                 @can('access','view_video_space')<li ><a class="nav-link" href="@route('admin.video.disk')">{{ __lang('disk-space-usage') }}</a></li>@endcan
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
 
                    @can('access-group','attendance')
                     <li class="dropdown">
@@ -179,38 +182,16 @@
                         </ul>
                     </li>
                     @endcan
+
                     @can('access-group','homework')
-                    @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')"><i class="fas fa-edit"></i><span>Tugas</span></a></li>@endcan
-                    {{-- <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-edit"></i><span>Tugas</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','add_homework')<li ><a class="nav-link" href="@route('admin.assignment.add')">Tambah Tugas</a></li>@endcan
-                            @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')">{{ __lang('view-all') }}</a></li>@endcan
-
-                        </ul>
-                    </li> --}}
+                        @can('access','view_homework_list')<li ><a class="nav-link" href="@route('admin.assignment.index')"><i class="fas fa-edit"></i><span>Tugas</span></a></li>@endcan
                     @endcan
-                    {{-- @can('access-group','revision_notes')
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-list-alt"></i><span>{{ __lang('revision-notes') }}</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','add_note')<li ><a class="nav-link" href="@route('admin.homework.add')">{{ __lang('add-note') }}</a></li>@endcan
-                            @can('access','view_notes')<li ><a class="nav-link" href="@route('admin.homework.index')">{{ __lang('view-archive') }}</a></li>@endcan
 
-                        </ul>
-                    </li>
-                    @endcan --}}
                     @can('access-group','downloads')
-                    @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')"><i class="fas fa-download"></i><span>Download</span></a></li>@endcan
-                    {{-- <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-download"></i><span>Download</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','add_download')<li ><a class="nav-link" href="@route('admin.download.add')">{{ __lang('create-download') }}</a></li>@endcan
-                            @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')">{{ __lang('all-downloads') }}</a></li>@endcan
-                        </ul>
-                    </li> --}}
-                        @endcan
-                   @can('access-group','discussions')
+                        @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')"><i class="fas fa-download"></i><span>Download</span></a></li>@endcan
+                    @endcan
+
+                    @can('access-group','discussions')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>{{ __lang('discussions') }}</span></a>
                         <ul class="dropdown-menu">
@@ -218,37 +199,12 @@
                             @can('access','view_forum_topics')<li ><a class="nav-link" href="@route('admin.forum.index')">{{ __lang('student-forum') }}</a></li>@endcan
                         </ul>
                     </li>
-                        @endcan
-                    @can('access-group','tests')
-                    @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Tes</span></a></li>@endcan
-                    {{-- <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-check-circle"></i><span>{{ __lang('tests') }}</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.add')">{{ __lang('add-test') }}</a></li>@endcan
-                            @can('access','add_test')<li ><a class="nav-link" href="@route('admin.test.index')">{{ __lang('all-tests') }}</a></li>@endcan
-                        </ul>
-                    </li> --}}
-                        @endcan
+                    @endcan
 
-                    {{-- @can('access-group','survey')
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-flag-checkered"></i><span>{{ __lang('surveys') }}</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','add_survey')<li ><a class="nav-link" href="@route('admin.survey.add')">{{ __lang('add-survey') }}</a></li>@endcan
-                            @can('access','view_surveys')<li ><a class="nav-link" href="@route('admin.survey.index')">{{ __lang('all-surveys') }}</a></li>@endcan
-                        </ul>
-                    </li>
-                        @endcan
-                    @can('access-group','certificates')
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-pdf"></i><span>{{ __lang('certificates') }}</span></a>
-                        <ul class="dropdown-menu">
-                            @can('access','add_certificate')<li ><a class="nav-link" href="@route('admin.certificate.add')">{{ __lang('create-certificate') }}</a></li>@endcan
-                            @can('access','view_certificates')<li ><a class="nav-link" href="@route('admin.certificate.index')">{{ __lang('manage-certificates') }}</a></li>@endcan
-                            @can('access','view_certificates')<li ><a class="nav-link" href="@route('admin.certificate.track')">{{ __lang('track-certificates') }}</a></li>@endcan
-                        </ul>
-                    </li>
-                            @endcan --}}
+                    @can('access-group','tests')
+                        @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Tes</span></a></li>@endcan
+                    @endcan
+
                     @can('access-group','reports')
                     <li class="dropdown">
                         <a href="@route('admin.report.index')" class="nav-link"><i class="fas fa-chart-bar"></i><span>{{ __lang('reports') }}</span></a>
@@ -281,24 +237,6 @@
                         </ul>
                     </li>
                     @endcan
-
-                    {{-- @can('access-group','files')
-                        <li class="dropdown">
-                            <a  onclick="window.open('{{ route('admin.filemanager.home') }}', '{{ __lang('filemanager') }}', 'width=1100, height=530',true);" href="javascript:;" href="#" class="nav-link"><i class="fas fa-file-archive"></i><span>{{ __lang('filemanager') }}</span></a>
-
-                        </li>
-                    @endcan --}}
-
-                    {{-- @can('access-group','articles')
-                        <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-ruler"></i><span>{{ __lang('articles') }}</span></a>
-                            <ul class="dropdown-menu">
-                                @can('access','add_article')<li ><a class="nav-link" href="{{ route('admin.articles.create') }}">{{ __lang('add-articles') }}</a></li>@endcan
-                                @can('access','view_articles')<li ><a class="nav-link" href="{{ route('admin.articles.index') }}">{{ __lang('view-articles') }}</a></li>@endcan
-
-                            </ul>
-                        </li>
-                    @endcan --}}
 
                     @can('access-group','settings')
                         <li class="dropdown">
@@ -360,22 +298,6 @@
 
 
                 </ul>
-
-                {{-- @if(config('app.credits')==true)
-                    @if(saas())
-                        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                            <a target="_blank" href="https://traineasy.net/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                                <i class="fa fa-question-circle"></i> @lang('default.help')
-                            </a>
-                        </div>
-                    @else
-                <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                    <a target="_blank" href="https://intermaticsng.com/docs/category/1" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                        <i class="fa fa-question-circle"></i> @lang('default.help')
-                    </a>
-                </div>
-                    @endif
-                @endif --}}
 
 
             </aside>

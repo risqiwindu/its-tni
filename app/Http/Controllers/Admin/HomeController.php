@@ -118,6 +118,8 @@ class HomeController extends Controller
 
         $output['invoices'] = Invoice::latest()->limit(10)->get();
 
+        $output['AdminRole'] = $admin_role;
+
         return view('admin.home.index',$output);
     }
 

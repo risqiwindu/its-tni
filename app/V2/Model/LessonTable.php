@@ -63,7 +63,7 @@ class LessonTable extends BaseTable {
         return $rowset;
     }
 
-    public function getLessons($paginated=false,$filter=null,$group=null,$order=null,$course_lesson_ids=null,$admin_role=null,$perPage=30)
+    public function getLessons($paginated=false,$filter=null,$group=null,$order=null, $id_lesson=null,$admin_role=null,$perPage=30)
     {
         if(empty($group)){
             $select = Lesson::where('id','>',0);
@@ -75,15 +75,21 @@ class LessonTable extends BaseTable {
 
         }
 
-        if($admin_role != 1){
+        // if($admin_role != 1){
             
-            if ($course_lesson_ids->isEmpty()) {
-                // Array kosong, tidak ada data untuk ditampilkan
-                $select = collect(); // Menggunakan koleksi kosong
-            } else {
-                // Array tidak kosong, jalankan query kedua
-                $select->whereIn('id', $course_lesson_ids)->get();
-            }
+        //     if ($course_lesson_ids->isEmpty()) {
+        //         // Array kosong, tidak ada data untuk ditampilkan
+        //         $select = collect(); // Menggunakan koleksi kosong
+        //     } else {
+        //         // Array tidak kosong, jalankan query kedua
+        //         $select->whereIn('id', $course_lesson_ids)->get();
+        //     }
+        // }
+
+        if ($admin_role == 1) {
+            $select = Lesson::where('id', '>', 0);
+        } else {
+            $select = Lesson::whereIn('id', $id_lesson);
         }
 
         switch($order){
