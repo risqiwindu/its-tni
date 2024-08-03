@@ -47,6 +47,7 @@
 
     <link href="{{ asset('client/vendor/videojs/video-js.css') }}" rel="stylesheet">
     <script src="{{ asset('client/vendor/videojs/video.js') }}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style type="text/css">
 
         .nav-tabs .nav-item  a{
