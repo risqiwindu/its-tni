@@ -81,8 +81,8 @@
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
         <span class="loader"><span class="loader-inner"></span></span></div>
     <div class="row" id="test" style="position: absolute; margin-left: -50px; left: 30%;">
-        <video id="video" width="400" height="250" autoplay style="position: absolute;"></video>
-        <button id="stop-button" style="position: absolute; top: 260px;" class="btn btn-primary">Stop and Analyze</button>
+        <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
+        {{-- <button id="stop-button" style="position: absolute; top: 260px;" class="btn btn-primary">Stop and Analyze</button> --}}
     </div>
       
 

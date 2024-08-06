@@ -237,7 +237,6 @@
     height: 0%;
   }
 }
-    }
     </style>
 
     @php  if(defined('ENABLE_CHAT')): @endphp
@@ -401,8 +400,8 @@
                                             <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem; z-index: 999;">
                                                 <span class="loader"><span class="loader-inner"></span></span>
                                             </div>
-                                            <div class="row" id="test" style="position: absolute; margin-left: -50px; left: 30%;">
-                                                <video id="video" width="400" height="100" autoplay style="position: absolute;"></video>
+                                            <div class="row" id="test" style="position: absolute; ight: 0; top: 0; margin: 20px; z-index: 999;">
+                                                <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
                                             </div>
                                           </li>
                                           </ul>
@@ -452,6 +451,11 @@
                                                 </ul>
 
                                                 <!-- Tab panes -->
+
+                                                <script>
+                                                    var coba;
+                                                </script>
+
                                                 <div class="tab-content gallery">
                                                     @php  $count = 1;   @endphp
                                                     @php  foreach($pages as $page): @endphp
@@ -471,7 +475,9 @@
 
                                                                 @php  $video = \App\Video::find(intval($page->content));  @endphp
                                                                 @php  if($video ): @endphp
-
+                                                                <script>
+                                                                    coba = {{ $video->id  }};
+                                                                </script>
                                                                     @if(saas())
                                                                             <div class="embed-responsive embed-responsive-16by9">
 
@@ -617,14 +623,16 @@
                                                                                         src: "{!! $url !!}",
                                                                                         type: "{{ $type }}"
                                                                                     });
+                                                                                    
 
                                                                                     @else
                                                                                     player.src({
                                                                                         src: "{{ route("{$module}.course.serve",['id'=>$video->id]) }}",
                                                                                         type: "{{ mime_content_type($file) }}"
                                                                                     });
+                                                        
                                                                                     @endif
-
+        
                                                                                 </script>
 
 
