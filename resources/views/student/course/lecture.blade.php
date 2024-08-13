@@ -454,6 +454,7 @@
 
                                                 <script>
                                                     var coba;
+                                                    var kategori = {{ $kategori_id }};
                                                 </script>
 
                                                 <div class="tab-content gallery">

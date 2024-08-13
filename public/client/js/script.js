@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
   let eyeClosureStart = null;
   let eyeClosureTimeout = null;
   let isCurrentlySleepy = false;
+  let tampilanAudio = 'https://www.youtube.com/embed/5GesG4nWRO8?si=GtkHE-Gm9kc1tqXQ';
+  let tampilanVisual = 'https://www.youtube.com/embed/JH6QhW_ar1o?si=7no5YhxP8_LinDqD';
+  let tampilanKinestetik = 'https://www.youtube.com/embed/dPpRyEb-3tc';
+  let tampil;
 
   console.log("Loading models...");
   
@@ -273,8 +277,16 @@ document.addEventListener("DOMContentLoaded", function() {
       videoContainer.style.zIndex = '1000';
       videoContainer.id = 'video-container';
 
+      if(kategori == 1){
+        tampil = tampilanVisual;
+      }else if(kategori == 2){
+        tampil = tampilanAudio;
+      }else if(kategori == 3){
+        tampil = tampilanKinestetik;
+      }
+
       const iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/dPpRyEb-3tc';
+      iframe.src = tampil;
       iframe.width = '560';
       iframe.height = '315';
       iframe.style.border = 'none';

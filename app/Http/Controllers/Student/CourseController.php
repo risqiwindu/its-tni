@@ -48,6 +48,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Session\Container;
 use Laminas\View\Model\ViewModel;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller {
 
@@ -320,6 +321,11 @@ class CourseController extends Controller {
         $lectures = $lectureTable->getRecordsOrdered($lecture->lesson_id);
 
         $sessionEntity = Course::find($sessionId);
+
+        $kategori = DB::table('course_course_category')
+                    ->where('course_id', $sessionId)
+                    ->first();
+        $kategori_id = $kategori->course_category_id;            
         $output = [
           'pageTitle'=>__lang('Class').': '.$lecture->name,
             'pages'=>$pages,
@@ -342,6 +348,7 @@ class CourseController extends Controller {
             'session'=>$sessionEntity,
             'module'=>MODULE,
             'course'=>$course,
+            'kategori_id'=>$kategori_id,
         ];
 
         $output['customCrumbs'] = [
