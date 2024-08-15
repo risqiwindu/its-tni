@@ -49,6 +49,7 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Session\Container;
 use Laminas\View\Model\ViewModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller {
 
@@ -272,6 +273,11 @@ class CourseController extends Controller {
 
         $lectureId = $lecture->id;
         $sessionId = $course->id;
+        $id = Auth::user()->id;
+        $cek = DB::table('students')
+                        ->where('user_id', $id)
+                        ->first();
+        $student_id = $cek->id;
         $this->checkLectureOrder($lectureId,$sessionId);
 
         $sessionLessonTable = new SessionLessonTable();
@@ -490,6 +496,34 @@ class CourseController extends Controller {
         return $viewModel;
 
     }
+
+    // public function storeAnalyze(Request $request)
+    // {
+    //     // Validate the incoming request
+    // $validated = $request->validate([
+    //     'student_id' => 'required|integer',
+    //     'course_id' => 'required|integer',
+    //     'lecture_id' => 'required|integer',
+    //     'percentages' => 'required|array'
+    // ]);
+
+    // $data = [
+    //     'student_id' => $validated['student_id'],
+    //     'course_id' => $validated['course_id'],
+    //     'lecture_id' => $validated['lecture_id'],
+    //     'lesson_id' => 22,
+    //     'emotion' => json_encode($validated['percentages']), // Mengubah array menjadi JSON
+    // ];
+
+    // // Menyisipkan data ke dalam tabel emotion_analyses
+    // $updated = DB::table('student_emotion')->insert($data);
+
+
+    // return response()->json([
+    //     'message' => $updated ? 'Data stored successfully' : 'No records updated.',
+    //     'success' => $updated
+    // ]);
+    // }
 
     public function zoomInit(Request $request, LecturePage $lecturePage){
 
@@ -729,6 +763,20 @@ class CourseController extends Controller {
             $lecture = $request->post('lecture_id');
             $session = $request->post('course_id');
 
+            $emotionData = $request->input('emotionData');
+            
+            if ($emotionData) {
+                $combinedData = json_decode($emotionData, true);
+
+                // Insert data into the database
+                DB::table('student_emotion')->insert([
+                    'course_id' => $session,
+                    'lecture_id' => $lecture,
+                    'emotion' => json_encode($combinedData), // Convert the array to JSON string
+                ]);
+            } else {
+                return redirect()->back()->withErrors('No emotion data received.');
+            }
 
             $lectureTable = new LectureTable();
             $lectureRow = $lectureTable->getRecord($lecture);

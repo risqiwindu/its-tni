@@ -37,6 +37,7 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Session\Container;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller {
 
@@ -50,7 +51,17 @@ class TestController extends Controller {
         $testQuestionTable = new TestQuestionTable();
         $studentTestTable = new StudentTestTable();
 
-        $paginator = $table->getStudentRecords($this->getId());
+        $courses = DB::table('student_courses')
+        ->where('student_id', $this->getId())
+        ->get();
+    
+        // Ambil semua course_id dari koleksi
+        $course_ids = $courses->pluck('course_id')->toArray();
+    
+        // Menyimpan course_id dalam array
+        $course_id = empty($course_ids) ? [] : [$course_ids];
+
+        $paginator = $table->getStudentRecords($this->getId(), $course_id);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);

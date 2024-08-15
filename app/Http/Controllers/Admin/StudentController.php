@@ -2808,5 +2808,34 @@ class StudentController extends Controller
 
         return view('admin.student.code',compact('students','pageTitle'));
     }
+    
+    public function hasil_emosi()
+    {
+        // Mengambil data dari database
+    $hasil = DB::table('student_emotion')->get();
+
+    // Mengolah data untuk ditampilkan dalam satu field
+    $emosi = $hasil->map(function ($item) {
+        // Menganggap 'emotion' berisi JSON string
+        $emotionData = json_decode($item->emotion, true);
+
+        // Menggabungkan data emosi menjadi string
+        $emotionString = '';
+        foreach ($emotionData as $emotion) {
+            $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
+        }
+
+        // Menyimpan data ke dalam satu field tampilan
+        return [
+            'id' => $item->id,
+            'course_id' => $item->course_id,
+            'lecture_id' => $item->lecture_id,
+            'emotion' => rtrim($emotionString, '; ')
+        ];
+    });
+
+    // Mengirim data ke view
+    return view('admin.hasil_emosi.emosi', ['emosi' => $emosi]);
+    }
 
 }

@@ -18,6 +18,7 @@ use App\V2\Model\StudentSessionTable;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Illuminate\Support\Facades\DB;
 
 
 class DownloadController extends Controller {
@@ -31,7 +32,17 @@ class DownloadController extends Controller {
         $downloadSessionTable = new DownloadSessionTable();
         $studentSessionTable = new StudentSessionTable();
 
-        $paginator = $studentSessionTable->getDownloads($this->getId());
+        $courses = DB::table('student_courses')
+        ->where('student_id', $this->getId())
+        ->get();
+    
+        // Ambil semua course_id dari koleksi
+        $course_ids = $courses->pluck('course_id')->toArray();
+    
+        // Menyimpan course_id dalam array
+        $course_id = empty($course_ids) ? [] : [$course_ids];
+
+        $paginator = $studentSessionTable->getDownloads($this->getId(), $course_id);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);

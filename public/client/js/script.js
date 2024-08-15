@@ -200,42 +200,37 @@ document.addEventListener("DOMContentLoaded", function() {
     emotionData.count++;
   }
 
-  // stopButton.addEventListener("click", () => {
-  //   video.pause();
-  //   video.srcObject.getTracks().forEach(track => track.stop());
-  //   document.getElementById("test").style.display = "none";
-  //   document.getElementById("results-page").style.display = "block";
-  //   analyzeEmotions();
-  // });
+  stopButton.addEventListener("click", () => {
+    video.pause();
+    video.srcObject.getTracks().forEach((track) => track.stop());
+    analyzeEmotions();
+  });
 
   function analyzeEmotions() {
     if (emotionData.count > 0) {
       const percentages = Object.keys(emotionData).reduce((acc, cur) => {
         if (cur !== "count") {
-          acc[cur] = ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
+          acc[cur] =
+            ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
         }
-        return acc;
-      }, {});
-      displayResults(percentages);
-    } else {
-      console.log("No emotions detected.");
-    }
-  }
+            return acc;
+        }, {});
 
-  function displayResults(percentages) {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+        const emotionEntries = Object.entries(percentages);
+
+        // Set combined data to hidden input in form
+        const emotionInput = document.getElementById("emotionData");
+        if (emotionInput) {
+            emotionInput.value = JSON.stringify(emotionEntries);
+            // Submit the form
+            document.getElementById("emotionForm").submit();
+        } else {
+            console.error("Element with ID 'emotionData' not found.");
+        }
+    } else {
+        console.log("No emotions detected.");
     }
-    const tbody = document.getElementById("results-table").getElementsByTagName("tbody")[0];
-    tbody.innerHTML = "";
-    Object.entries(percentages).forEach(([emotion, percentage]) => {
-      const row = tbody.insertRow();
-      const cellEmotion = row.insertCell(0);
-      const cellPercentage = row.insertCell(1);
-      cellEmotion.textContent = emotion;
-      cellPercentage.textContent = percentage;
-    });
-  }
+}
 
   function resetDetection() {
     eyeClosureStart = null;

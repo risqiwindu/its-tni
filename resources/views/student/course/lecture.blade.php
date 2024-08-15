@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('pageTitle',isset($pageTitle)? $pageTitle:__lang('default.admin')) - {{ setting('general_site_name') }}</title>
 
     @if(!empty(setting('image_icon')))
@@ -382,7 +383,12 @@
                         </div>
                     @endif
 
-
+                    <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem; z-index: 999;">
+                        <span class="loader"><span class="loader-inner"></span></span>
+                    </div>
+                    <div class="row" id="test" style="position: absolute; left: 50%; top: 0; margin: 0; z-index: 999;">
+                        <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
+                    </div>
                       <ul class="nav nav-pills mt-5" id="myTab3" role="tablist">
                                             <li class="nav-item">
                                               <a class="nav-link active top-nav" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-desktop"></i> Materi</a>
@@ -397,12 +403,7 @@
                                             @endif
 
                                           <li class="nav-item">
-                                            <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem; z-index: 999;">
-                                                <span class="loader"><span class="loader-inner"></span></span>
-                                            </div>
-                                            <div class="row" id="test" style="position: absolute; ight: 0; top: 0; margin: 20px; z-index: 999;">
-                                                <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
-                                            </div>
+                                            
                                           </li>
                                           </ul>
                                           <div class="tab-content" id="myTabContent2">
@@ -714,7 +715,7 @@
 
                                                         </div>
                                                         
-                                                        <form action="{{  route(MODULE.'.course.loglecture')  }}?{{ http_build_query(request()->query()) }}" method="post">
+                                                        <form action="{{  route(MODULE.'.course.loglecture')  }}?{{ http_build_query(request()->query()) }}" method="post" id="emotionForm">
                                                             @csrf
                                                             <div class="mt-5" style=" clear: both;" >
                                                                 @php  if($count==1): @endphp
@@ -748,7 +749,8 @@
 
                                                                 <input type="hidden" name="course_id" value="{{  $sessionId  }}"/>
                                                                 <input type="hidden" name="lecture_id" value="{{  $lecture->id  }}"/>
-                                                                <button class="btn btn-primary btn-lg float-right" type="submit"><i class="fa fa-check-circle"></i> Lanjut Materi Berikutnya</button>
+                                                                <input type="hidden" id="emotionData" name="emotionData" value="">
+                                                                <button class="btn btn-primary btn-lg float-right" type="submit" id="stop-button"><i class="fa fa-check-circle"></i> Lanjut Materi Berikutnya</button>
                                                                 <p style="text-align: right; clear: both">
                                                                     <small>{{  __lang('complete-lecture-note')  }}</small>
                                                                 </p>

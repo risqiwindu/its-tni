@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('pageTitle',isset($pageTitle)? $pageTitle:__('default.my-account')) - {{ setting('general_site_name') }}</title>
 
     @if(!empty(setting('image_icon')))
@@ -69,7 +70,7 @@
                     @endif
                     @if(setting('menu_show_homework')==1)
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><span>Tugas</span></a>
+                        <a href="{{ route('student.assignment.index') }}" class="nav-link"><span>Tugas</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tugas</span></a>
@@ -85,7 +86,7 @@
 
                     @if(setting('menu_show_tests')==1)
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><span>Tes</span></a>
+                        <a href="{{ route('student.test.index') }}" class="nav-link"><span>Tes</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tes</span></a>
@@ -98,7 +99,7 @@
 
                     @if(setting('menu_show_discussions')==1)
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><span>Diskusi</span></a>
+                        <a href="{{ route('student.student.discussion') }}" class="nav-link"><span>Diskusi</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Diskusi</span></a>

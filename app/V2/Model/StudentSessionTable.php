@@ -317,15 +317,14 @@ class StudentSessionTable extends BaseTable {
 
     }
 
-    public function getAssignments($id){
+    public function getAssignments($id, $course_id){
 
         $select = new Select($this->tableName);
 
         $now = Carbon::now()->toDateString();
 
-
         $select->order($this->getPrefix().'assignments.created_at desc');
-        $select->where(array('student_courses.student_id'=>$id,"(due_date > '$now' OR allow_late='1')","opening_date < '$now'",'schedule_type'=>'s'))
+        $select->where(array('student_courses.student_id'=>$id,"(due_date > '$now' OR allow_late='1')","opening_date < '$now'",'schedule_type'=>'s','student_courses.student_id'=>$course_id))
             ->join($this->getPrefix().'assignments',$this->tableName.'.course_id='.$this->getPrefix().'assignments.course_id',array('title','instruction','allow_late','due_date','created_at','assignment_type'=>'type','passmark','admin_id','assignment_id'=>'id'))
             ->join($this->getPrefix().'courses',$this->tableName.'.course_id='.$this->getPrefix().'courses.id',array('course_name'=>'name'))
             ->columns([]);
@@ -346,6 +345,7 @@ class StudentSessionTable extends BaseTable {
             return $paginator;
 
     }
+
 
     public function getTotalAssignments($id){
 
@@ -377,10 +377,10 @@ class StudentSessionTable extends BaseTable {
 
     }
 
-    public function getDownloads($id){
+    public function getDownloads($id, $course_id){
         $select = new Select($this->tableName);
         $select->order($this->getPrefix().'course_download.id desc');
-        $select->where(array('student_id'=>$id,'downloads.enabled'=>1))
+        $select->where(array('student_id'=>$id,'downloads.enabled'=>1,'course_download.course_id' => $course_id))
             ->join($this->getPrefix().'course_download',$this->tableName.'.course_id=course_download.course_id',[])
             ->join($this->getPrefix().'courses',$this->tableName.'.course_id='.$this->getPrefix().'courses.id',array('course_name'=>'name'))
             ->join($this->getPrefix().'downloads',$this->getPrefix().'course_download.download_id='.$this->getPrefix().'downloads.id',array('download_id'=>'id','download_name'=>'name'));

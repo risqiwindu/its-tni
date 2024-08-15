@@ -326,6 +326,8 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('widget/process/{id}','WidgetController@process')->name('widget.process');
     Route::any('widget/delete/{id}','WidgetController@delete')->name('widget.delete');
 
+    Route::any('student/hasil_emosi','StudentController@hasil_emosi')->name('student.hasil_emosi');
+
     if(env('APP_MODE')=='saas'){
         $videoController = 'VideoSaasController';
     }

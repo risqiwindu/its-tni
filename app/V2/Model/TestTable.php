@@ -97,13 +97,15 @@ class TestTable extends BaseTable{
         return $rowset;
     }
 
-    public function getStudentRecords($studentId){
+    public function getStudentRecords($studentId, $course_id){
 
         $today = "'".Carbon::now()->toDateTimeString()."'";
         $select1 = new Select('student_courses');
         $select1->join($this->getPrefix().'course_test',$this->getPrefix().'student_courses.course_id='.$this->getPrefix().'course_test.course_id',array())
                 ->join($this->getPrefix().'tests',$this->getPrefix().'course_test.test_id='.$this->getPrefix().'tests.id',['test_id'=>'id','name','enabled','minutes','allow_multiple','passmark','private','show_result'])
-                ->where([$this->getPrefix().'student_courses.student_id'=>$studentId])
+                ->where([$this->getPrefix().'student_courses.student_id'=>$studentId,
+                $this->getPrefix().'student_courses.course_id'=>$course_id
+                       ])
                 ->where([$this->getPrefix().'tests.enabled'=>'1'])
                 ->where($this->getPrefix()."course_test.opening_date < $today OR ".$this->getPrefix()."course_test.opening_date=0 OR ".$this->getPrefix()."course_test.opening_date  IS NULL")
                 ->where($this->getPrefix()."course_test.closing_date > $today OR ".$this->getPrefix()."course_test.closing_date=0 OR ".$this->getPrefix()."course_test.closing_date IS NULL")

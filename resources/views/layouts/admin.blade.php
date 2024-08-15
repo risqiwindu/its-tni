@@ -146,6 +146,7 @@
                         </ul>
                     </li> --}}
                     @endcan
+                    <li ><a class="nav-link" href="@route('admin.student.hasil_emosi')"><i class="fas fa-users"></i><span>Emosi</span></a></li>
                     @can('access-group','classes')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher "></i><span>Materi</span></a>

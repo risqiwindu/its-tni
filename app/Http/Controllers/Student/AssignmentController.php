@@ -17,6 +17,7 @@ use App\V2\Model\AssignmentSubmissionTable;
 use App\V2\Model\AssignmentTable;
 use App\V2\Model\StudentSessionTable;
 use App\Lib\BaseForm;
+use Illuminate\Support\Facades\DB;
 use Laminas\Form\Element\File;
 use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
@@ -54,7 +55,17 @@ class AssignmentController extends Controller {
         $studentSessionTable = new StudentSessionTable();
         $submissionTable = new AssignmentSubmissionTable();
 
-        $paginator = $studentSessionTable->getAssignments($studentId);
+        $courses = DB::table('student_courses')
+        ->where('student_id', $studentId)
+        ->get();
+    
+        // Ambil semua course_id dari koleksi
+        $course_ids = $courses->pluck('course_id')->toArray();
+    
+        // Menyimpan course_id dalam array
+        $course_id = empty($course_ids) ? [] : [$course_ids];
+
+        $paginator = $studentSessionTable->getAssignments($studentId, $course_id);
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
         return view('student.assignment.index',[

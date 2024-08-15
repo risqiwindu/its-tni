@@ -82,7 +82,7 @@
         <span class="loader"><span class="loader-inner"></span></span></div>
     <div class="row" id="test" style="position: absolute; margin-left: -50px; left: 30%;">
         <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
-        {{-- <button id="stop-button" style="position: absolute; top: 260px;" class="btn btn-primary">Stop and Analyze</button> --}}
+        <button id="stop-button" style="position: absolute; top: 260px;" class="btn btn-primary">Stop and Analyze</button>
     </div>
       
 
