@@ -10,9 +10,30 @@ document.addEventListener("DOMContentLoaded", function() {
   let tampilanVisual = 'https://www.youtube.com/embed/JH6QhW_ar1o?si=7no5YhxP8_LinDqD';
   let tampilanKinestetik = 'https://www.youtube.com/embed/dPpRyEb-3tc';
   let tampil;
+  let startTime;
+  var videoId = 'video' + coba;
+  var player = videojs(videoId);
+  var isVideoPlaying = false; // Variabel untuk melacak status pemutaran
+
+  // ... kode Anda yang lain ...
+  
+  player.on('play', () => {
+      isVideoPlaying = true;
+      stopButton.disabled = true;
+  });
+  
+  player.on('ended', () => {
+      isVideoPlaying = false;
+      stopButton.disabled = false;
+  });
+  
+  // Pada awal eksekusi atau saat tombol play ditekan untuk pertama kali:
+  if (!isVideoPlaying) {
+      stopButton.disabled = true;
+  }
 
   console.log("Loading models...");
-  
+
   function loadModels() {
     return Promise.all([
       faceapi.nets.ssdMobilenetv1.loadFromUri("/its-tni/public/client/models"),
@@ -30,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   function getLabeledFaceDescriptions() {
-    const labels = ["sandi", "bobi kurniawan"];
+    const nama = document.getElementById('name').value;
+    const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
+    // const labels = [nama];
     console.log("Getting labeled face descriptions...");
     return Promise.all(labels.map(async (label) => {
       const descriptions = [];
@@ -64,6 +87,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function startWebcam(labeledDescriptors) {
     console.log("Starting webcam...");
+    if (!startTime) {
+      startTime = Date.now(); // Catat waktu awal hanya jika belum ada
+    }
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
       .then((streamObj) => {
         stream = streamObj; // Save stream reference
@@ -217,11 +244,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }, {});
 
         const emotionEntries = Object.entries(percentages);
-
+        // Hitung waktu yang telah berlalu
+        const endTime = Date.now();
+        const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
+        const lamaWaktu = document.getElementById("lamaWaktu");
         // Set combined data to hidden input in form
         const emotionInput = document.getElementById("emotionData");
-        if (emotionInput) {
+        if (emotionInput && lamaWaktu) {
             emotionInput.value = JSON.stringify(emotionEntries);
+            lamaWaktu.value = elapsedTimeInMinutes;
             // Submit the form
             document.getElementById("emotionForm").submit();
         } else {
@@ -246,8 +277,10 @@ document.addEventListener("DOMContentLoaded", function() {
       video.style.display =  "none";
     }
 
-    var videoId = 'video' + coba;
-    var player = videojs(videoId);
+    // Check if the video is in full-screen mode
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+  }
     if (player) {
         player.pause(); // Pause the video
     }

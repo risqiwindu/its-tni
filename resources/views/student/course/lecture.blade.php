@@ -457,7 +457,7 @@
                                                     var coba;
                                                     var kategori = {{ $kategori_id }};
                                                 </script>
-
+                                                <input type="hidden" value="{{ $name }}" id="name">
                                                 <div class="tab-content gallery">
                                                     @php  $count = 1;   @endphp
                                                     @php  foreach($pages as $page): @endphp
@@ -750,6 +750,7 @@
                                                                 <input type="hidden" name="course_id" value="{{  $sessionId  }}"/>
                                                                 <input type="hidden" name="lecture_id" value="{{  $lecture->id  }}"/>
                                                                 <input type="hidden" id="emotionData" name="emotionData" value="">
+                                                                <input type="hidden" id="lamaWaktu" name="lamaWaktu" value="">
                                                                 <button class="btn btn-primary btn-lg float-right" type="submit" id="stop-button"><i class="fa fa-check-circle"></i> Lanjut Materi Berikutnya</button>
                                                                 <p style="text-align: right; clear: both">
                                                                     <small>{{  __lang('complete-lecture-note')  }}</small>

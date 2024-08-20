@@ -161,8 +161,7 @@ class StudentController extends Controller
 
             $form->setInputFilter($filter);
             $data = $request->all();
-
-
+            
             //	$form->setData($data);
             $form->setData(array_merge_recursive(
                 $request->all(),
@@ -205,7 +204,6 @@ class StudentController extends Controller
                 ]);
 
                 $studentId = $user->student->id;
-
 
                 //store dp
                 if(!empty($data['picture']['name'])){
@@ -2808,34 +2806,62 @@ class StudentController extends Controller
 
         return view('admin.student.code',compact('students','pageTitle'));
     }
-    
-    public function hasil_emosi()
+
+    public function kelas_emosi()
     {
-        // Mengambil data dari database
-    $hasil = DB::table('student_emotion')->get();
+        $course = DB::table('courses')
+                ->where('admin_id',  $this->getAdministratorID())
+                ->get();
+        return view('admin.hasil_emosi.kelas', compact('course'));
+    }
+    
+    public function hasil_emosi($course_id)
+{
+    $hasil = DB::table('student_emotion')
+        ->join('students', 'student_emotion.student_id', '=', 'students.id')
+        ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
+        ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
+        ->join('users', 'users.id', '=', 'students.user_id')
+        ->select(
+            'student_emotion.emotion', 
+            'student_emotion.course_id',
+            'student_emotion.lecture_id',
+            'student_emotion.student_id',
+            'courses.name as course_name',
+            'lectures.title as lecture_title',
+            'users.name as name'
+        )
+        ->where('student_emotion.course_id', $course_id)
+        ->get()
+        ->groupBy('student_id'); // Group by student_id
 
-    // Mengolah data untuk ditampilkan dalam satu field
-    $emosi = $hasil->map(function ($item) {
-        // Menganggap 'emotion' berisi JSON string
-        $emotionData = json_decode($item->emotion, true);
-
-        // Menggabungkan data emosi menjadi string
-        $emotionString = '';
-        foreach ($emotionData as $emotion) {
-            $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
-        }
-
-        // Menyimpan data ke dalam satu field tampilan
+    // Process data for display
+    $emosi = $hasil->map(function ($items, $student_id) {
+        $course_name = $items->first()->course_name ?? '';
+        $name = $items->first()->name ?? '';
         return [
-            'id' => $item->id,
-            'course_id' => $item->course_id,
-            'lecture_id' => $item->lecture_id,
-            'emotion' => rtrim($emotionString, '; ')
+            'student_id' => $student_id,
+            'course_name' => $course_name,
+            'name' => $name,
+            'data' => $items->map(function ($item) {
+                $emotionData = json_decode($item->emotion, true);
+                $emotionString = '';
+                foreach ($emotionData as $emotion) {
+                    $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
+                }
+                return [
+                    'course_id' => $item->course_id,
+                    'lecture_id' => $item->lecture_id,
+                    'course_name' => $item->course_name,
+                    'lecture_title' => $item->lecture_title,
+                    'emotion' => rtrim($emotionString, '; ')
+                ];
+            })
         ];
     });
 
-    // Mengirim data ke view
     return view('admin.hasil_emosi.emosi', ['emosi' => $emosi]);
-    }
+}
+
 
 }

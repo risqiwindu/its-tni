@@ -274,10 +274,11 @@ class CourseController extends Controller {
         $lectureId = $lecture->id;
         $sessionId = $course->id;
         $id = Auth::user()->id;
-        $cek = DB::table('students')
-                        ->where('user_id', $id)
-                        ->first();
-        $student_id = $cek->id;
+        $name = Auth::user()->name;
+        // $cek = DB::table('students')
+        //                 ->where('user_id', $id)
+        //                 ->first();
+        // $student_id = $cek->id;
         $this->checkLectureOrder($lectureId,$sessionId);
 
         $sessionLessonTable = new SessionLessonTable();
@@ -355,6 +356,7 @@ class CourseController extends Controller {
             'module'=>MODULE,
             'course'=>$course,
             'kategori_id'=>$kategori_id,
+            'name' => $name,
         ];
 
         $output['customCrumbs'] = [
@@ -764,15 +766,22 @@ class CourseController extends Controller {
             $session = $request->post('course_id');
 
             $emotionData = $request->input('emotionData');
-            
+            $lamaWaktu   = $request->input('lamaWaktu');    
+
             if ($emotionData) {
                 $combinedData = json_decode($emotionData, true);
 
-                // Insert data into the database
-                DB::table('student_emotion')->insert([
+                // Update if exists, or insert if not
+                DB::table('student_emotion')->updateOrInsert(
+                [
                     'course_id' => $session,
                     'lecture_id' => $lecture,
-                    'emotion' => json_encode($combinedData), // Convert the array to JSON string
+                    'student_id' => $this->getId(),
+                ],
+                [
+                    'emotion' => json_encode($combinedData),
+                    'lamaWaktu' => $lamaWaktu, // Convert the array to JSON string
+                    'updated_at' => now()
                 ]);
             } else {
                 return redirect()->back()->withErrors('No emotion data received.');
