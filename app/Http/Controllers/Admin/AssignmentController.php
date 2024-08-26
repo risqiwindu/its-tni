@@ -22,8 +22,9 @@ class AssignmentController extends Controller
     public function index(Request $request){
         $table = new AssignmentTable();
         $submissionTable = new AssignmentSubmissionTable();
+        $admin_id =  $this->getAdministratorID();
 
-        $paginator = $table->getPaginatedRecords(true);
+        $paginator = $table->getPaginatedRecords(true, $admin_id);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);

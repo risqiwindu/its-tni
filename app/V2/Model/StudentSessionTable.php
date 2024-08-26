@@ -324,7 +324,7 @@ class StudentSessionTable extends BaseTable {
         $now = Carbon::now()->toDateString();
 
         $select->order($this->getPrefix().'assignments.created_at desc');
-        $select->where(array('student_courses.student_id'=>$id,"(due_date > '$now' OR allow_late='1')","opening_date < '$now'",'schedule_type'=>'s','student_courses.student_id'=>$course_id))
+        $select->where(array('student_courses.student_id'=>$id,"(due_date > '$now' OR allow_late='1')","opening_date < '$now'",'schedule_type'=>'s','student_courses.course_id'=>$course_id))
             ->join($this->getPrefix().'assignments',$this->tableName.'.course_id='.$this->getPrefix().'assignments.course_id',array('title','instruction','allow_late','due_date','created_at','assignment_type'=>'type','passmark','admin_id','assignment_id'=>'id'))
             ->join($this->getPrefix().'courses',$this->tableName.'.course_id='.$this->getPrefix().'courses.id',array('course_name'=>'name'))
             ->columns([]);

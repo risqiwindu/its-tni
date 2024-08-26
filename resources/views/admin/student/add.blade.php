@@ -46,6 +46,47 @@
 
 
 
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="nim" class="control-label">NIM</label>
+										</div>
+										<div >
+											{{ formElement($form->get('nim')) }}   <p class="help-block">{{ formElementErrors($form->get('nim')) }}</p>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+											<div >
+												<label for="department" class="control-label">Department</label>
+											</div>
+											<div >
+												{{ formElement($form->get('department')) }}   <p class="help-block">{{ formElementErrors($form->get('department')) }}</p>
+											</div>
+										</div>
+                                    </div>
+
+
+
+
+
+
+
+
+                            </div>
 
 
 
@@ -92,11 +133,6 @@
 
 
                             </div>
-
-
-
-
-
 
 
 

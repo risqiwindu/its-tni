@@ -22,10 +22,14 @@ class AssignmentTable extends BaseTable {
     protected $accountId = true;
 
 
-    public function getPaginatedRecords($paginated=false,$sid=null)
+    public function getPaginatedRecords($paginated=false,$admin_id=null,$sid=null)
     {
         $select = new Select($this->tableName);
         $select->join($this->getPrefix().'courses',$this->getPrefix()."{$this->tableName}.course_id=".$this->getPrefix()."courses.id",['course_name'=>'name']);
+        
+        if($admin_id != 1){
+            $select->where([$this->tableName.'.admin_id'=>$admin_id]);
+        }
 
         if (isset($sid)) {
             $select->where(array($this->getPrefix().'courses.id'=>$sid));

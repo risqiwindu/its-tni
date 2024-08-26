@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let eyeClosureStart = null;
     let eyeClosureTimeout = null;
     let isCurrentlySleepy = false;
-  
+    let canvas = null;
     console.log("Loading models...");
   
     function loadModels() {
@@ -79,7 +79,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function initializeDetection(labeledDescriptors) {
       const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
-      const canvas = faceapi.createCanvasFromMedia(video);
+      if (canvas) {
+            canvas.remove();
+        }
+      canvas = faceapi.createCanvasFromMedia(video);
       document.getElementById("test").appendChild(canvas);
       const displaySize = { width: video.width, height: video.height };
       faceapi.matchDimensions(canvas, displaySize);
@@ -268,9 +271,10 @@ document.addEventListener("DOMContentLoaded", function() {
         videoContainer.id = 'video-container';
   
         const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/5GesG4nWRO8?si=GtkHE-Gm9kc1tqXQ';
+        iframe.src = 'https://flappybird.io/';
+        iframe.scrolling = 'no';
         iframe.width = '560';
-        iframe.height = '315';
+        iframe.height = '600';
         iframe.style.border = 'none';
         iframe.id = 'video-iframe';
   
@@ -306,16 +310,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const iframeElement = document.getElementById('video-iframe');
         iframeElement.addEventListener('load', function() {
           setTimeout(function() {
-            videoContainer.remove();
-          loader.style.display = "flex";
-          video.style.display =  "block";
-          loadModels()
-            .then(getLabeledFaceDescriptions)
-            .then(startWebcam)
-            .catch((e) => {
-              console.error("Failed to reload models:", e);
-              loader.innerText = "Failed to reload models";
-            });
+            if (videoContainer.parentNode) { // Check if the container is still visible
+                videoContainer.remove();
+                loader.style.display = "flex";
+                video.style.display = "block";
+                loadModels()
+                    .then(getLabeledFaceDescriptions)
+                    .then(startWebcam)
+                    .catch((e) => {
+                        console.error("Failed to reload models:", e);
+                        loader.innerText = "Failed to reload models";
+                    });
+            }
         }, 60000);
         });
       });

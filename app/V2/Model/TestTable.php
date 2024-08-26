@@ -23,10 +23,14 @@ class TestTable extends BaseTable{
     protected $accountId = true;
 
 
-    public function getPaginatedRecords($paginated=false,$id=null,$filter=null)
+    public function getPaginatedRecords($paginated=false,$id=null,$filter=null,$admin_id=null)
     {
         $select = new Select($this->tableName);
         $select->order($this->primary.' desc');
+
+        if($admin_id != 1){
+            $select->where(['admin_id'=>$admin_id]);
+        }
 
         if($this->accountId && !GLOBAL_ACCESS){
             $select->where(['admin_id'=>ADMIN_ID]);

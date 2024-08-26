@@ -41,7 +41,10 @@ class TestController extends Controller
         if (empty($filter)) {
             $filter=null;
         }
-        $paginator = $table->getPaginatedRecords(true,null,$filter);
+
+        $admin_id =  $this->getAdministratorID();
+
+        $paginator = $table->getPaginatedRecords(true,null,$filter,$admin_id);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);

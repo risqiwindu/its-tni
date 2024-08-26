@@ -44,6 +44,9 @@ use Laminas\InputFilter\InputFilter;
 use Laminas\Validator\File\IsImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class StudentController extends Controller
 {
@@ -160,8 +163,10 @@ class StudentController extends Controller
         if ($request->isMethod('post')) {
 
             $form->setInputFilter($filter);
-            $data = $request->all();
+            $data = $request->all(); 
             
+            
+
             //	$form->setData($data);
             $form->setData(array_merge_recursive(
                 $request->all(),
@@ -179,6 +184,8 @@ class StudentController extends Controller
                     'mobile_number'=>$data['mobile_number'],
                     'email'=>$data['email'],
                     'status'=>$data['status'],
+                    'nim' => $data['nim'],
+                    'department' => $data['department']
                 ];
 
 
@@ -200,7 +207,9 @@ class StudentController extends Controller
                     'email'=>$data['email']
                 ]);
                 $user->student()->create([
-                    'mobile_number'=>$data['mobile_number']
+                    'mobile_number'=>$data['mobile_number'],
+                    'nim'=>$data['nim'],
+                    'department'=>$data['department']
                 ]);
 
                 $studentId = $user->student->id;
@@ -2809,9 +2818,18 @@ class StudentController extends Controller
 
     public function kelas_emosi()
     {
-        $course = DB::table('courses')
+        $role = DB::table('admins')
+                ->where('id', $this->getAdministratorID())
+                ->first();
+        $role_id = $role->id;
+        if($role_id == 1){
+            $course = DB::table('courses')
+                ->get();
+        }else{
+            $course = DB::table('courses')
                 ->where('admin_id',  $this->getAdministratorID())
                 ->get();
+        }
         return view('admin.hasil_emosi.kelas', compact('course'));
     }
     

@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let eyeClosureStart = null;
   let eyeClosureTimeout = null;
   let isCurrentlySleepy = false;
+  let canvas = null;
   let tampilanAudio = 'https://www.youtube.com/embed/5GesG4nWRO8?si=GtkHE-Gm9kc1tqXQ';
   let tampilanVisual = 'https://www.youtube.com/embed/JH6QhW_ar1o?si=7no5YhxP8_LinDqD';
   let tampilanKinestetik = 'https://www.youtube.com/embed/dPpRyEb-3tc';
@@ -109,7 +110,10 @@ document.addEventListener("DOMContentLoaded", function() {
   
   function initializeDetection(labeledDescriptors) {
     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
-    const canvas = faceapi.createCanvasFromMedia(video);
+    if (canvas) {
+      canvas.remove();
+  }
+    canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("test").appendChild(canvas);
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
@@ -352,16 +356,18 @@ document.addEventListener("DOMContentLoaded", function() {
       const iframeElement = document.getElementById('video-iframe');
       iframeElement.addEventListener('load', function() {
         setTimeout(function() {
-          videoContainer.remove();
-        loader.style.display = "flex";
-        video.style.display =  "block";
-        loadModels()
-          .then(getLabeledFaceDescriptions)
-          .then(startWebcam)
-          .catch((e) => {
-            console.error("Failed to reload models:", e);
-            loader.innerText = "Failed to reload models";
-          });
+          if (videoContainer.parentNode) { // Check if the container is still visible
+            videoContainer.remove();
+            loader.style.display = "flex";
+            video.style.display = "block";
+            loadModels()
+                .then(getLabeledFaceDescriptions)
+                .then(startWebcam)
+                .catch((e) => {
+                    console.error("Failed to reload models:", e);
+                    loader.innerText = "Failed to reload models";
+                });
+        }
       }, 60000);
       });
     });

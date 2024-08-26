@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['user_id','mobile_number','api_token','token_expires'];
+    protected $fillable = ['user_id','nim','department','mobile_number','api_token','token_expires'];
 
     public function assignmentSubmissions(){
         return $this->hasMany(AssignmentSubmission::class);
