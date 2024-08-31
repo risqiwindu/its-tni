@@ -136,6 +136,24 @@
 
 
 
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="password1" class="control-label">{{ formLabel($form->get('image')) }}</label>
+										</div>
+										<div >
+
+											{{ formElement($form->get('image')) }} <p class="help-block">{{ formElementErrors($form->get('image')) }}</p>
+										</div>
+										<div>
+											<input type="file" name="file" id="file">
+										</div>
+									</div>
+								</div>
+                            </div>
+
+
 
 
                           <div class="row">

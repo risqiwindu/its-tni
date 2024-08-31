@@ -175,7 +175,7 @@
                 <div id="step-2" class="container">
 
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
@@ -199,12 +199,12 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
-                                    <label for="password1" class="control-label">{{ __lang('effort') }}</label>
+                                    <label for="password1" class="control-label">Waktu Upaya</label>
                                 </div>
                                 <div >
                                     {{ formElement($form->get('effort')) }}
@@ -215,7 +215,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
-                                    <label for="password1" class="control-label">{{ __lang('length') }}</label>
+                                    <label for="password1" class="control-label">Lama Kelas Dibuka</label>
                                 </div>
                                 <div >
                                     {{ formElement($form->get('length')) }}
@@ -230,7 +230,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
 
-                                <label for="password1" class="control-label">{{ __lang('course-categories') }} ({{ __lang('optional') }})</label>
+                                <label for="password1" class="control-label">Kategori Kelas</label>
 
                                 <div>
 
@@ -350,7 +350,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
-                                    <label for="password1" class="control-label">{{ __lang('course-start-date') }} ({{ __lang('optional') }})</label>
+                                    <label for="password1" class="control-label">Tanggal Mulai Kelas</label>
                                 </div>
                                 <div >
                                     {{ formElement($form->get('session_date')) }}
@@ -363,7 +363,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
-                                    <label for="password1" class="control-label">{{ __lang('course-end-date') }} ({{ __lang('optional') }})</label>
+                                    <label for="password1" class="control-label">Tanggal Akhir Kelas</label>
                                 </div>
                                 <div >
                                     {{ formElement($form->get('session_end_date')) }}
@@ -384,7 +384,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
-                                    <label for="password1" class="control-label">{{ __lang('enrollment-closes') }} ({{ __lang('optional') }})</label>
+                                    <label for="password1" class="control-label">Tanggal Penutupan Enroll Kelas</label>
                                 </div>
                                 <div >
                                     {{ formElement($form->get('enrollment_closes')) }}

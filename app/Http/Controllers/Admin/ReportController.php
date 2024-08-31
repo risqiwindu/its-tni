@@ -22,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -99,7 +101,13 @@ class ReportController extends Controller
         $select->setValueOptions($options);
         $select->setValue($group);
 
-        $paginator = $table->getPaginatedRecords(true,null,null,$filter,$group,$sort,$type);
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
+
+        $paginator = $table->getPaginatedRecords(true,null,null,$filter,$group,$sort,$type,false,null,$role_id,$admin_role);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);

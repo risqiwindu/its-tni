@@ -143,7 +143,7 @@ class LessonController extends Controller
 
                 $output['flash_message'] = __lang('Record Added!');
                 $form = new LessonForm(null,$this->getServiceLocator());
-                session()->flash('flash_message',__lang('Class Added'));
+                session()->flash('flash_message','Materi Ditambahkan!');
 
                 //now check if session id is present
                 if(isset($_GET['sessionId'])){
@@ -206,7 +206,7 @@ class LessonController extends Controller
         $output['no_image']= resizeImage('img/no_image.jpg', 100, 100,$this->getBaseUrl());
 
         $output['form'] = $form;
-        $output['pageTitle']= __lang('Add Class');
+        $output['pageTitle']= 'Tambah Materi';
         $output['action']='add';
         $output['id']=null;
         return viewModel('admin',__CLASS__,__FUNCTION__,$output);

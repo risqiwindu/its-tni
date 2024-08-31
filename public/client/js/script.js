@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   const video = document.getElementById("video-frame");
   const stopButton = document.getElementById("stop-button");
+  const lanjut = document.getElementById("lanjut");
   const loader = document.getElementById("loader");
   let stream = null;
   let eyeClosureStart = null;
@@ -23,9 +24,21 @@ document.addEventListener("DOMContentLoaded", function() {
       stopButton.disabled = true;
   });
   
+  function stopWebcam() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      video.srcObject = null; 
+      video.style.display = "none"; // Hide the video element
+      canvas.remove();
+      resetDetection();
+      analyzeEmotions();
+    }
+  }
+
   player.on('ended', () => {
-      isVideoPlaying = false;
-      stopButton.disabled = false;
+    isVideoPlaying = false;
+    stopButton.disabled = false;
+    stopWebcam();
   });
   
   // Pada awal eksekusi atau saat tombol play ditekan untuk pertama kali:
@@ -112,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
     if (canvas) {
       canvas.remove();
-  }
+    }
     canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("test").appendChild(canvas);
     const displaySize = { width: video.width, height: video.height };
@@ -258,7 +271,10 @@ document.addEventListener("DOMContentLoaded", function() {
             emotionInput.value = JSON.stringify(emotionEntries);
             lamaWaktu.value = elapsedTimeInMinutes;
             // Submit the form
-            document.getElementById("emotionForm").submit();
+            // document.getElementById("emotionForm").submit();
+            // hideElement("layout_content");
+            // showElement(results-page);
+            displayResults(percentages);
         } else {
             console.error("Element with ID 'emotionData' not found.");
         }
@@ -284,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if the video is in full-screen mode
     if (document.fullscreenElement) {
       document.exitFullscreen();
-  }
+    }
     if (player) {
         player.pause(); // Pause the video
     }
@@ -343,6 +359,9 @@ document.addEventListener("DOMContentLoaded", function() {
         loadModels()
           .then(getLabeledFaceDescriptions)
           .then(startWebcam)
+          .then(function() {
+            return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+          })
           .catch((e) => {
             console.error("Failed to reload models:", e);
             loader.innerText = "Failed to reload models";
@@ -363,6 +382,10 @@ document.addEventListener("DOMContentLoaded", function() {
             loadModels()
                 .then(getLabeledFaceDescriptions)
                 .then(startWebcam)
+                .then(function() {
+                  player.muted(false);
+                  return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+                })
                 .catch((e) => {
                     console.error("Failed to reload models:", e);
                     loader.innerText = "Failed to reload models";
@@ -372,6 +395,28 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+
+  function displayResults(percentages) {
+    // Display the results page and hide the layout content
+    document.getElementById('results-page').style.display = 'block';
+    document.getElementById('layout_content').style.display = 'none';
+    
+    const tbody = document.getElementById("results-table").getElementsByTagName("tbody")[0];
+    tbody.innerHTML = "";
+    
+    // Populate the results table with emotion data
+    Object.entries(percentages).forEach(([emotion, percentage]) => {
+        const row = tbody.insertRow();
+        const cellEmotion = row.insertCell(0);
+        const cellPercentage = row.insertCell(1);
+        cellEmotion.textContent = emotion;
+        cellPercentage.textContent = percentage;
+    });
+}
+
+lanjut.addEventListener("click", () => {
+    document.getElementById("emotionForm").submit();
+});
 
   loadModels()
     .then(getLabeledFaceDescriptions)

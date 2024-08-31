@@ -94,6 +94,20 @@ document.addEventListener("DOMContentLoaded", function() {
           .withAgeAndGender()
           .withFaceDescriptors()
           .then((detections) => {
+
+            if (detections.length === 0) {
+              // Jika tidak ada wajah terdeteksi, tampilkan pesan peringatan dan lanjutkan proses deteksi
+              Swal.fire({
+                title: 'Wajah Tidak Terdeteksi',
+                text: 'Harap posisikan wajah Anda di depan kamera',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+              }).then(() => {
+                requestAnimationFrame(processVideoFrame); // Melanjutkan deteksi setelah peringatan ditampilkan
+              });
+              return; // Hentikan eksekusi lebih lanjut sampai Swal selesai
+            }
+
             const resizedDetections = faceapi.resizeResults(detections, displaySize);
             canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
             faceapi.draw.drawDetections(canvas, resizedDetections);

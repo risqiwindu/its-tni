@@ -30,7 +30,7 @@ class AssignmentController extends Controller
         $paginator->setItemCountPerPage(30);
         return viewModel('admin',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
-            'pageTitle'=>__lang('Homework'),
+            'pageTitle'=>'Tugas',
             'submissionTable' => $submissionTable,
             'total' => $table->getTotalAdminAssignments($this->getAdminId())
         ));

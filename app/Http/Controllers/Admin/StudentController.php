@@ -157,15 +157,16 @@ class StudentController extends Controller
         $registrationFieldsTable = new RegistrationFieldTable();
         $studentFieldTable = new StudentFieldTable();
         $output['fields'] = $registrationFieldsTable->getAllFields();
+        
 
 
 
         if ($request->isMethod('post')) {
 
             $form->setInputFilter($filter);
-            $data = $request->all(); 
+            $data = $request->all();
             
-            
+            $file = $request->file('file');
 
             //	$form->setData($data);
             $form->setData(array_merge_recursive(
@@ -173,10 +174,16 @@ class StudentController extends Controller
                 $_FILES
             ));
             if ($form->isValid()  && !$studentsTable->emailExists($data['email']) ) {
-
                 $data = $form->getData();
 
-
+if ($file) {
+    $fileName = $file->getClientOriginalName(); // Get the original file name
+    $tujuan_upload = 'public/client/labels/';
+    $file->move(public_path($tujuan_upload), $fileName); // Use public_path() for correct path
+    return back()->with('success', 'File uploaded successfully');
+} else {
+    return back()->with('error', 'No file selected or file is not valid');
+}
 
                 $array = [
                     'first_name'=>$data['name'],
@@ -187,9 +194,6 @@ class StudentController extends Controller
                     'nim' => $data['nim'],
                     'department' => $data['department']
                 ];
-
-
-
 
                 $array[$studentsTable->getPrimary()]=0;
                 //	$array['password'] = md5('password');
@@ -1190,9 +1194,13 @@ class StudentController extends Controller
 
         $sessionId->setAttribute('data-ng-change',"loadBulkStudents()");
 
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
 
-
-        $rowset = $sessionTable->getPaginatedRecords(true);
+        $rowset = $sessionTable->getPaginatedRecords(true,null,false,null,null,null,null,false,null,$role_id,$admin_role);
         $rowset->setCurrentPageNumber(1);
         $rowset->setItemCountPerPage(500);
 
@@ -1345,10 +1353,14 @@ class StudentController extends Controller
         $select = new Select('course_id');
         $select->setAttribute('class','form-control select2');
         $select->setAttribute('required','required');
-
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
 
         $options = array();
-        $rowset = $sessionTable->getPaginatedRecords(true);
+        $rowset = $sessionTable->getPaginatedRecords(true,null,false,null,null,null,null,false,null,$role_id,$admin_role);
         $rowset->setCurrentPageNumber(1);
         $rowset->setItemCountPerPage(300);
 
@@ -1531,10 +1543,14 @@ class StudentController extends Controller
         $sessionId->setAttribute('required','required');
         $sessionId->setAttribute('data-ng-model','course_id');
 
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
 
 
-
-        $rowset = $sessionTable->getPaginatedRecords(true);
+        $rowset = $sessionTable->getPaginatedRecords(true,null,false,null,null,null,null,false,null,$role_id,$admin_role);
         $rowset->setCurrentPageNumber(1);
         $rowset->setItemCountPerPage(500);
 
@@ -2847,7 +2863,9 @@ class StudentController extends Controller
             'student_emotion.student_id',
             'courses.name as course_name',
             'lectures.title as lecture_title',
-            'users.name as name'
+            'users.name as name',
+            'users.last_name as last_name',
+            'student_emotion.lamaWaktu as lama', 
         )
         ->where('student_emotion.course_id', $course_id)
         ->get()
@@ -2856,29 +2874,71 @@ class StudentController extends Controller
     // Process data for display
     $emosi = $hasil->map(function ($items, $student_id) {
         $course_name = $items->first()->course_name ?? '';
+        $lama = $items->first()->lama ?? '';
         $name = $items->first()->name ?? '';
+        $last_name = $items->first()->last_name ?? '';
+        $course_id = $items->first()->course_id ?? '';
         return [
             'student_id' => $student_id,
             'course_name' => $course_name,
-            'name' => $name,
-            'data' => $items->map(function ($item) {
-                $emotionData = json_decode($item->emotion, true);
-                $emotionString = '';
-                foreach ($emotionData as $emotion) {
-                    $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
-                }
-                return [
-                    'course_id' => $item->course_id,
-                    'lecture_id' => $item->lecture_id,
-                    'course_name' => $item->course_name,
-                    'lecture_title' => $item->lecture_title,
-                    'emotion' => rtrim($emotionString, '; ')
-                ];
-            })
+            'lama' => $lama.' Menit',
+            'name' => $name.' '.$last_name,
+            'course_id' => $course_id
         ];
     });
 
     return view('admin.hasil_emosi.emosi', ['emosi' => $emosi]);
+}
+
+public function detail_emosi($student_id, $course_id) {
+    // Retrieve the data without grouping by student_id
+    $hasil = DB::table('student_emotion')
+        ->join('students', 'student_emotion.student_id', '=', 'students.id')
+        ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
+        ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
+        ->join('users', 'users.id', '=', 'students.user_id')
+        ->select(
+            'student_emotion.emotion', 
+            'student_emotion.course_id',
+            'student_emotion.lecture_id',
+            'student_emotion.student_id',
+            'courses.name as course_name',
+            'lectures.title as lecture_title',
+            'users.name as name',
+            'student_emotion.lamaWaktu as lama'
+        )
+        ->where('student_emotion.student_id', $student_id)
+        ->where('student_emotion.course_id', $course_id)
+        ->get();
+
+    // Process each record individually
+    $emosi = $hasil->map(function ($item) {
+        $emotionData = json_decode($item->emotion, true);
+        $emotionString = '';
+
+        if (is_array($emotionData)) {
+            foreach ($emotionData as $emotion) {
+                if (is_array($emotion) && isset($emotion[0], $emotion[1])) {
+                    $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
+                }
+            }
+        } else {
+            $emotionString = 'Invalid emotion data';
+        }
+
+        return [
+            'student_id' => $item->student_id,
+            'lecture_id' => $item->lecture_id,
+            'course_name' => $item->course_name,
+            'lama' => $item->lama . ' Menit',
+            'name' => $item->name,
+            'lecture_title' => $item->lecture_title,
+            'emotion' => rtrim($emotionString, '; '),
+            'emotion_encode' => $emotionData
+        ];
+    });
+
+    return view('admin.hasil_emosi.detail', ['emosi' => $emosi]);
 }
 
 

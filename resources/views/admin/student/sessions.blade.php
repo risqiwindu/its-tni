@@ -165,7 +165,7 @@
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon" href="{{ route('admin.student.instructors',['id'=>$row->id]) }}"><i class="fa fa-user"></i> {{ __lang('manage-instructors') }}</a>
                                         @endif
-                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.mailsession',['id'=>$row->id]) }}"><i class="fa fa-envelope"></i> {{ __lang('send-message-enrolled') }}</a>
+                                        {{-- <a class="dropdown-item has-icon" href="{{ route('admin.student.mailsession',['id'=>$row->id]) }}"><i class="fa fa-envelope"></i> {{ __lang('send-message-enrolled') }}</a> --}}
                                         {{-- <a class="dropdown-item has-icon" href="{{ route('admin.student.duplicatesession',['id'=>$row->id]) }}"><i class="fa fa-copy"></i> {{ __lang('duplicate') }}</a> --}}
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon"  onclick="openModal('{{ __lang('change-type') }}: {{ addslashes($row->name) }}','{{ route('admin.session.sessiontype',['id'=>$row->id]) }}')" href="#" ><i class="fa fa-arrows-alt-v"></i> {{ __lang('change-session-type') }}</a>
@@ -203,7 +203,7 @@
                                     <a class="nav-link" id="profile-tab3-{{ $row->id }}" data-toggle="tab" href="#profile3-{{ $row->id }}" role="tab" aria-controls="profile" aria-selected="false">{{ __lang('totals') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab3-{{ $row->id }}" data-toggle="tab" href="#contact3-{{ $row->id }}" role="tab" aria-controls="contact" aria-selected="false">{{ __lang('classes') }}</a>
+                                    <a class="nav-link" id="contact-tab3-{{ $row->id }}" data-toggle="tab" href="#contact3-{{ $row->id }}" role="tab" aria-controls="contact" aria-selected="false">Materi</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="contact-tab4-{{ $row->id }}" data-toggle="tab" href="#contact4-{{ $row->id }}" role="tab" aria-controls="contact4" aria-selected="false">{{ __lang('instructors') }}</a>
@@ -264,13 +264,13 @@
                                                 {{ showDate('d/M/Y',$row->enrollment_closes) }}
                                             </blockquote>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="section-title mt-0 tab-list-title">{{ __lang('payment-required') }}</div>
                                             <blockquote class="plain">
                                                 {{ boolToString($row->payment_required) }}
                                             </blockquote>
-                                        </div>
-                                    @if(!empty($row->capacity))
+                                        </div> --}}
+                                    {{-- @if(!empty($row->capacity))
                                         <div class="col-md-6">
                                             <div class="section-title mt-0 tab-list-title">{{ __lang('capacity') }}</div>
                                             <blockquote class="plain">
@@ -283,13 +283,13 @@
                                                 {{ boolToString($row->enforce_capacity) }}
                                             </blockquote>
                                         </div>
-                                    @endif
-                                        <div class="col-md-6">
+                                    @endif --}}
+                                        {{-- <div class="col-md-6">
                                             <div class="section-title mt-0 tab-list-title">{{ __lang('course-fee') }}</div>
                                             <blockquote class="plain">
                                                 {{ price($row->fee) }}
                                             </blockquote>
-                                        </div>
+                                        </div> --}}
                                         @if(!empty($row->venue))
                                         <div class="col-md-6">
 
@@ -448,7 +448,7 @@
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">{{ __lang('close') }}</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
                         </div>
                     </div>
                 </div>

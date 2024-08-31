@@ -57,7 +57,7 @@ class CourseForm extends BaseForm {
 
         $this->createSelect('payment_required','Payment Required',['0'=>__lang('No'),'1'=>__lang('Yes')],true,false);
         $this->createText('amount','Course Fee',false,'form-control digit',null,__lang('digits-only-optional'));
-        $this->createSelect('session_status','Status',array('0'=>__lang('Disabled'),'1'=>__lang('Enabled')),true,false);
+        $this->createSelect('session_status','Status',array('0'=>'Tidak Aktif','1'=>'Aktif'),true,false);
 
 
 

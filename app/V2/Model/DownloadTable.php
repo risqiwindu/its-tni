@@ -20,12 +20,11 @@ class DownloadTable extends BaseTable {
     protected $accountId = true;
 
 
-    public function getValidRecords($paginated=false)
+    public function getValidRecords($paginated=false,$course_download=null)
     {
         $select = new Select($this->tableName);
         $select->order($this->primary.' desc')
             ->where(['status'=>1]);
-
         if(!GLOBAL_ACCESS){
             $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }

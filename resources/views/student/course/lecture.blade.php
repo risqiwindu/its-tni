@@ -137,6 +137,45 @@
     align-items: center;
     font-size: 24px;
   }
+
+  table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
     
     </style>
 
@@ -238,6 +277,7 @@
     height: 0%;
   }
 }
+
     </style>
 
     @php  if(defined('ENABLE_CHAT')): @endphp
@@ -264,12 +304,12 @@
                     <a href="#" class="navbar-brand desktop-header">{{ $lecture->title }}</a>
                 </form>
 
-            <ul class="navbar-nav navbar-right">
+            {{-- <ul class="navbar-nav navbar-right">
                 <li ><a href="{{ route('student.course-details',['id'=>$course->id,'slug'=>safeUrl($course->name)]) }}"  class="nav-link   nav-link-lg "  ><i class="fas fa-home"></i></a>
 
                 </li>
 
-            </ul>
+            </ul> --}}
 
         </nav>
         <div class="main-sidebar sidebar-style-2">
@@ -326,8 +366,28 @@
 
         <!-- Main Content -->
         <div class="main-content">
+
+            <div class="row" id="test" style="position: absolute; left: 70%; top: 5px; z-index: 999;">
+                <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
+            </div>
+
             <section class="section">
 
+                <div id="results-page" style="display: none;">
+                    <h1>Hasil Deteksi Emosi :</h1>
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Emosi</th>
+                                <th>Persentase Emosi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <button class="btn-primary" id="lanjut">Lanjut Materi Berikutnya</button>
+                </div>
+
+               
 
                 <div class="section-body" id="layout_content">
 
@@ -386,42 +446,31 @@
                     <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem; z-index: 999;">
                         <span class="loader"><span class="loader-inner"></span></span>
                     </div>
-                    <div class="row" id="test" style="position: absolute; left: 50%; top: 0; margin: 0; z-index: 999;">
+                    {{-- <div class="row" id="test" style="position: absolute; left: 0; top: 0; z-index: 999;">
                         <video id="video-frame" width="400" height="250" autoplay style="position: absolute;"></video>
-                    </div>
-                      <ul class="nav nav-pills mt-5" id="myTab3" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link active top-nav" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-desktop"></i> Materi</a>
-                                            </li>
-                                            <li class="nav-item">
+                    </div> --}}
+                        <ul class="nav nav-pills mt-5" id="myTab3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active top-nav" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-desktop"></i> Materi</a>
+                            </li>
+                                            {{-- <li class="nav-item">
                                               <a class="nav-link top-nav" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-download"></i> Download</a>
                                             </li>
                                             @if($course->enable_discussion==1)
                                             <li class="nav-item">
                                               <a class="nav-link top-nav" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-comments"></i> Diskusi</a>
                                             </li>
-                                            @endif
-
-                                          <li class="nav-item">
-                                            
-                                          </li>
-                                          </ul>
-                                          <div class="tab-content" id="myTabContent2">
-                                            <div class="tab-pane fade show active  mt-3" id="home3" role="tabpanel" aria-labelledby="home-tab3">
+                                            @endif --}}
+                        </ul>
+                        <div class="tab-content" id="myTabContent2">
+                            <div class="tab-pane fade show active  mt-3" id="home3" role="tabpanel" aria-labelledby="home-tab3">
 
 
-
-
-
-
-
-
-
-                                                <!-- Nav tabs -->
-                                                <ul class="nav nav-tabs scroll-tab button-tab2" role="tablist">
-                                                    @php  $count = 1;  @endphp
-                                                    @foreach($pages as $page)
-                                                    <li class="nav-item"><a  class="nav-link @if($count==1) active @endif"  id="tablink{{  $page->id  }}" href="#pagetab{{  $page->id  }}" role="tab" data-toggle="tab"><i class="fa fa-@php  switch($page->type){
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs scroll-tab button-tab2" role="tablist">
+                                    @php  $count = 1;  @endphp
+                                    @foreach($pages as $page)
+                                        <li class="nav-item"><a  class="nav-link @if($count==1) active @endif"  id="tablink{{  $page->id  }}" href="#pagetab{{  $page->id  }}" role="tab" data-toggle="tab"><i class="fa fa-@php  switch($page->type){
 
                                                                 case 'v':
                                                                     echo 'file-video';
@@ -767,46 +816,41 @@
 
 
                                             </div>
+                                          </div>
                                             <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile-tab3">
 <div class="card">
     @if($downloads->count() > 0)
- <div class="card-header">
-
-         <a href="{{  route(MODULE.'.course.alllecturefiles'.$append,array('id'=>$lecture->id,'course'=>$sessionId)) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{  __lang('download-all-files')  }}"><i class="fa fa-download"></i> {{  __lang('download-all')  }}</a>
-
-
-</div>
-    @endif
-<div class="card-body">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>{{  __lang('File')  }}</th>
-                <th ></th>
-            </tr>
-            </thead>
-            <tbody>
-            @php  foreach($downloads as $download):  @endphp
-            <td>{{  basename($download->path) }}</td>
-
-            <td class="text-right">
-                @php  if ($fileTable->getTotalForDownload($lecture->id)> 0):  @endphp
-                <a href="{{  route(MODULE.'.course.lecturefile'.$append,array('id'=>$download->id,'course'=>$sessionId)) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{  __lang('download-file')  }}"><i class="fa fa-download"></i> {{  __lang('download')  }}</a>
-
-                @php  else: @endphp
-                <strong>{{ __lang('no-files') }}</strong>
-                @php  endif;  @endphp
-            </td>
-            </tr>
-
-            @php  endforeach;  @endphp
-
-            </tbody>
-        </table>
+    <div class="card-header">
+        <a href="{{  route(MODULE.'.course.alllecturefiles'.$append,array('id'=>$lecture->id,'course'=>$sessionId)) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{  __lang('download-all-files')  }}"><i class="fa fa-download"></i> {{  __lang('download-all')  }}</a>
     </div>
+    @endif
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{{  __lang('File')  }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @php  foreach($downloads as $download):  @endphp
+                <tr>
+                <td>{{  basename($download->path) }}</td>
+                <td class="text-right">
+                    @php  if ($fileTable->getTotalForDownload($lecture->id)> 0):  @endphp
+                    <a href="{{  route(MODULE.'.course.lecturefile'.$append,array('id'=>$download->id,'course'=>$sessionId)) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{  __lang('download-file')  }}"><i class="fa fa-download"></i> {{  __lang('download')  }}</a>
+                    @php  else: @endphp
+                    <strong>{{ __lang('no-files') }}</strong>
+                    @php  endif;  @endphp
+                </td>
+                </tr>
+                @php  endforeach;  @endphp
+                </tbody>
+            </table>
+        </div>
 
-</div>
+    </div>
 </div>
 
 

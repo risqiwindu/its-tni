@@ -147,16 +147,16 @@
                     </li> --}}
                     @endcan
                     <li ><a class="nav-link" href="@route('admin.student.kelas_emosi')"><i class="fas fa-users"></i><span>Emosi</span></a></li>
-                    @can('access-group','classes')
+                    {{-- @can('access-group','classes')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher "></i><span>Materi</span></a>
                         <ul class="dropdown-menu">
-                            {{-- @can('access','add_class')<li ><a class="nav-link" href="@route('admin.lesson.add')">{{ __lang('add-class') }}</a></li>@endcan --}}
+                            @can('access','add_class')<li ><a class="nav-link" href="@route('admin.lesson.add')">{{ __lang('add-class') }}</a></li>@endcan
                             @can('access','view_classes')<li ><a class="nav-link" href="@route('admin.lesson.index')">Semua Materi</a></li>@endcan
                             @can('access','view_class_groups')<li ><a class="nav-link" href="@route('admin.lesson.groups')">Grup Materi</a></li>@endcan
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
 
                     @can('access','view_videos')<li ><a class="nav-link" href="@route('admin.video.index')"><i class="fas fa-video"></i><span>Video</span></a></li>@endcan
 
@@ -178,7 +178,7 @@
                             @can('access','set_attendance')<li ><a class="nav-link" href="@route('admin.student.attendance')">{{ __lang('attendance') }}</a></li>@endcan
                             @can('access','set_bulk_attendance')<li ><a class="nav-link" href="@route('admin.student.attendancebulk')">{{ __lang('attendance') }} ({{ __lang('bulk') }})</a></li>@endcan
                             @can('access','set_import_attendance')<li ><a class="nav-link" href="@route('admin.student.attendanceimport')">{{ __lang('attendance') }} ({{ __lang('import') }})</a></li>@endcan
-                            @can('access','create_certificate_list')<li ><a class="nav-link" href="@route('admin.student.certificatelist')">{{ __lang('certificate-list') }}</a></li>@endcan
+                            {{-- @can('access','create_certificate_list')<li ><a class="nav-link" href="@route('admin.student.certificatelist')">{{ __lang('certificate-list') }}</a></li>@endcan --}}
                             @can('access','set_attendance_dates')<li ><a class="nav-link" href="@route('admin.student.attendancedate')">{{ __lang('attendance-dates') }}</a></li>@endcan
                         </ul>
                     </li>

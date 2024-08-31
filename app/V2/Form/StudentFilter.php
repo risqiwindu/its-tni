@@ -64,6 +64,14 @@ class StudentFilter extends InputFilter {
 
         $this->add($input);
 
+		$input2 = new Input('image');
+        $input2->setRequired(false);
+        $input2->getValidatorChain()
+            ->attach(new Size(5000000))
+            ->attach(new Extension('jpg,png,gif,jpeg'));
+
+        $this->add($input2);
+
         $table= new RegistrationFieldTable($serviceLocator);
 
         if($activeOnly)

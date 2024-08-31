@@ -32,6 +32,7 @@ use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
 use Laminas\InputFilter\InputFilter;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -198,7 +199,7 @@ class SessionController extends Controller
     public function editcourse(Request $request,$id){
       //  $table = new SessionTable();
         $output = array();
-        $output['pageTitle'] = __lang('Edit Online Course');
+        $output['pageTitle'] ='Edit Kelas';
         $output['lessonGroupTable'] = new LessonToLessonGroupTable();
         $course = Course::find($id);
         $type = $course->type;
@@ -940,6 +941,54 @@ class SessionController extends Controller
             '#'=>__lang('Student Progress')
         ];
 
+        // Retrieve the data without grouping by student_id
+        $hasil = DB::table('student_emotion')
+        ->join('students', 'student_emotion.student_id', '=', 'students.id')
+        ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
+        ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
+        ->join('users', 'users.id', '=', 'students.user_id')
+        ->select(
+            'student_emotion.emotion', 
+            'student_emotion.course_id',
+            'student_emotion.lecture_id',
+            'student_emotion.student_id',
+            'courses.name as course_name',
+            'lectures.title as lecture_title',
+            'users.name as name',
+            'student_emotion.lamaWaktu as lama'
+        )
+        ->where('student_emotion.student_id', $row->student_id)
+        ->where('student_emotion.course_id', $row->course_id)
+        ->get();
+
+        // Process each record individually
+        $emosi = $hasil->map(function ($item) {
+        $emotionData = json_decode($item->emotion, true);
+        $emotionString = '';
+
+        if (is_array($emotionData)) {
+            foreach ($emotionData as $emotion) {
+                if (is_array($emotion) && isset($emotion[0], $emotion[1])) {
+                    $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
+                }
+            }
+        } else {
+            $emotionString = 'Invalid emotion data';
+        }
+
+        return [
+            'student_id' => $item->student_id,
+            'lecture_id' => $item->lecture_id,
+            'course_name' => $item->course_name,
+            'lama' => $item->lama . ' Menit',
+            'name' => $item->name,
+            'lecture_title' => $item->lecture_title,
+            'emotion' => rtrim($emotionString, '; '),
+            'emotion_encode' => $emotionData
+        ];
+        });
+
+        $output['emosi'] = $emosi;
 
         return view('admin.session.stats',$output);
     }

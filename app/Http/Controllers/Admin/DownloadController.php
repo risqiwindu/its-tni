@@ -12,6 +12,7 @@ use App\V2\Model\DownloadSessionTable;
 use App\V2\Model\DownloadTable;
 use App\V2\Model\SessionInstructorTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DownloadController extends Controller
 {
@@ -19,8 +20,13 @@ class DownloadController extends Controller
     public function index(Request $request){
         $table = new DownloadTable();
         $downloadFileTable = new DownloadFileTable();
-
-        $paginator = $table->getPaginatedRecords(true);
+        $admin_id = $this->getAdministratorID();
+        $course_download = DB::table('courses')
+                            ->join('course_download', 'courses.id', '=', 'course_download.course_id')
+                            ->where('courses.admin_id', 2)
+                            ->pluck('course_download.download_id')
+                            ->toArray();
+        $paginator = $table->getPaginatedRecords(true,$course_download);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
