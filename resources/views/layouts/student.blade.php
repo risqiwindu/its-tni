@@ -97,18 +97,18 @@
                     </li> --}}
                     @endif
 
-                    @if(setting('menu_show_discussions')==1)
+                    {{-- @if(setting('menu_show_discussions')==1)
                     <li class="nav-item">
                         <a href="{{ route('student.student.discussion') }}" class="nav-link"><span>Diskusi</span></a>
                     </li>
-                    {{-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Diskusi</span></a>
                         <ul class="dropdown-menu dropdown-border">
                             <li class="nav-item"><a href="{{ route('student.student.discussion') }}" class="nav-link">{{ __lang('instructor-chat') }}</a></li>
                             <li class="nav-item"><a href="{{ route('student.forum.index') }}" class="nav-link">{{ __lang('student-forum') }}</a></li>
                         </ul>
-                    </li> --}}
-                    @endif
+                    </li>
+                    @endif --}}
 
                     {{-- @if(setting('menu_show_sessions')==1)
                     <li class="nav-item"><a href="{{ route('sessions') }}" class="nav-link">{{ __lang('upcoming-sessions') }}</a></li>

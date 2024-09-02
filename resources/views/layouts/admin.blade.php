@@ -192,7 +192,7 @@
                         @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')"><i class="fas fa-download"></i><span>Download</span></a></li>@endcan
                     @endcan
 
-                    @can('access-group','discussions')
+                    {{-- @can('access-group','discussions')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>{{ __lang('discussions') }}</span></a>
                         <ul class="dropdown-menu">
@@ -200,7 +200,7 @@
                             @can('access','view_forum_topics')<li ><a class="nav-link" href="@route('admin.forum.index')">{{ __lang('student-forum') }}</a></li>@endcan
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
 
                     @can('access-group','tests')
                         @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Tes</span></a></li>@endcan
@@ -211,8 +211,8 @@
                         <a href="@route('admin.report.index')" class="nav-link"><i class="fas fa-chart-bar"></i><span>{{ __lang('reports') }}</span></a>
 
                     </li>
-                            @endcan
-                    @can('access-group','blog')
+                    @endcan
+                    {{-- @can('access-group','blog')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i><span>{{ __lang('blog') }}</span></a>
                         <ul class="dropdown-menu">
@@ -237,10 +237,13 @@
 
                         </ul>
                     </li>
-                    @endcan
+                    @endcan --}}
 
                     @can('access-group','settings')
-                        <li class="dropdown">
+                    <li class="dropdown">
+                        @can('access','view_admins')<li ><a class="nav-link" href="@route('admin.admins.index')"><i class="fas fa-users"></i><span>Admin / Dosen</span></a></li>@endcan
+                    </li>
+                        {{-- <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i><span>{{ __lang('settings') }}</span></a>
                             <ul class="dropdown-menu">
                                 @can('access','edit_site_settings')<li ><a class="nav-link" href="@route('admin.setting.index')">{{ __lang('site-settings') }}</a></li>@endcan
@@ -293,7 +296,7 @@
                                     @endif
 
                             </ul>
-                        </li>
+                        </li> --}}
                     @endcan
 
 

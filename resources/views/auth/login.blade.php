@@ -88,7 +88,13 @@
                         </div>
                     @endif
                 </div>
-                @if($enableRegistration)
+                <div class="col-md-6 text-center pt-3 pr-5 pl-5">
+                    <h4>Selamat Datang</h4>
+                    <br>
+                    <h1><i class="fa fa-user"></i></h1>
+                    
+                </div>
+                {{-- @if($enableRegistration)
                 <div class="col-md-6 text-center pt-3 pr-5 pl-5">
                     <h4>{{ __lang('new-user') }}</h4>
                     <br>
@@ -96,7 +102,7 @@
                     <br>
                     <a href="{{ route('register') }}" class="btn btn-primary btn-block btn-lg" style="background-color: #097969;">Sign Up</a>
                 </div>
-                @endif
+                @endif --}}
 
 
             </div>

@@ -44,7 +44,7 @@
 
 
 
-                @if(setting('menu_show_discussions')==1)
+                {{-- @if(setting('menu_show_discussions')==1)
                 <div class="card card-success">
                     <div class="card-header">
                         <h4 class="d-inline"><i class="fa fa-comments"></i> {{ __lang('discussions') }}</h4>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
 
-                @endif
+                @endif --}}
 
 
 
@@ -150,10 +150,10 @@
             <ul class="list-group">
                 <li class="list-group-item active">{{ __lang('my-account') }}</li>
                 <li class="list-group-item"><a href="{{ route('student.student.mysessions') }}"><i class="fas fa-chalkboard-teacher"></i> {{ setting('label_my_sessions','Kelas Saya') }}</a></li>
-                @if(setting('menu_show_discussions')==1)
+                {{-- @if(setting('menu_show_discussions')==1)
                 <li class="list-group-item"><a href="{{ route('student.forum.index') }}"><i class="fas fa-comments"></i> {{ __lang('student-forum') }}</a> </li>
                 <li class="list-group-item"><a href="{{ route('student.student.discussion') }}"><i class="fas fa-comment"></i> {{ __lang('instructor-chat') }}</a> </li>
-                @endif
+                @endif --}}
                 <li class="list-group-item"><a href="{{ route('student.student.camera') }}"><i class="fas fa-camera"></i> Camera</a> </li>
             </ul>
 

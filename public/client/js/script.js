@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", function() {
   var videoId = 'video' + coba;
   var player = videojs(videoId);
   var isVideoPlaying = false; // Variabel untuk melacak status pemutaran
+  let sleepyDetectionTimes = [];
+  let lastSleepyTime = null;
+  const detectionInterval = 6000; // 10 seconds in milliseconds
+  const requiredDetections = 10; // Number of detections needed for notification
+  const oneMinute = 60000;
 
   // ... kode Anda yang lain ...
   
@@ -153,17 +158,28 @@ document.addEventListener("DOMContentLoaded", function() {
             }
   
             if (sleepy) {
-              if (eyeClosureStart === null) {
-                eyeClosureStart = Date.now();
-                console.log(eyeClosureStart);
+              if (lastSleepyTime === null) {
+                lastSleepyTime = Date.now();
               } else {
-                const elapsedTime = (Date.now() - eyeClosureStart) / 1000;
-                if (elapsedTime >= 10) {
-                  if (!isCurrentlySleepy) {
-                    emotionData.sleepy++;
-                    isCurrentlySleepy = true;
-                    showNotificationAndPlayVideo();
-                    console.log(eyeClosureStart);
+                const elapsedTime = Date.now() - lastSleepyTime;
+                if (elapsedTime >= detectionInterval) {
+                  // Add detection time to array
+                  sleepyDetectionTimes.push(Date.now());
+                  lastSleepyTime = Date.now(); // Reset detection start time
+          
+                  // Check if we have 10 or more detections within the last minute
+                  const oneMinuteAgo = Date.now() - oneMinute;
+                  sleepyDetectionTimes = sleepyDetectionTimes.filter(time => time > oneMinuteAgo);
+
+                  console.log('Detections in the last minute:', sleepyDetectionTimes.length);
+                  
+                  if (sleepyDetectionTimes.length >= requiredDetections) {
+                    if (!isCurrentlySleepy) {
+                      emotionData.sleepy++;
+                      isCurrentlySleepy = true;
+                      showNotificationAndPlayVideo();
+                      console.log('Sleepy detected continuously for 10 seconds, and notification criteria met');
+                    }
                   }
                 }
               }
@@ -171,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
               eyeClosureStart = null;
               clearTimeout(eyeClosureTimeout);
               eyeClosureTimeout = null;
+              lastSleepyTime = null;
               isCurrentlySleepy = false;
             }
   
