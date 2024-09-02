@@ -82,10 +82,10 @@ class StudentForm extends BaseForm {
     	    'options'=>array('label'=>__lang('Email')),
     	));
 
-        $file = new File('image');
-        $file->setLabel('image train')
+        $file1 = new File('image');
+        $file1->setLabel('image train')
             ->setAttribute('id','image');
-        $this->add($file);
+        $this->add($file1);
 
         $this->createSelect('status','Status',['1'=>__lang('Active'),'0'=>__lang('Inactive')],true,false);
 

@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let eyeClosureTimeout = null;
     let isCurrentlySleepy = false;
     let canvas = null;
+    let faceDetected = true; // Track face detection status
+    let notificationShown = false; // Track if notification has been shown
+    let isVideoNotificationActive = false;
     console.log("Loading models...");
   
     function loadModels() {
@@ -80,99 +83,120 @@ document.addEventListener("DOMContentLoaded", function() {
     function initializeDetection(labeledDescriptors) {
       const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
       if (canvas) {
-            canvas.remove();
-        }
+          canvas.remove();
+      }
       canvas = faceapi.createCanvasFromMedia(video);
       document.getElementById("test").appendChild(canvas);
       const displaySize = { width: video.width, height: video.height };
       faceapi.matchDimensions(canvas, displaySize);
-    
+
       function processVideoFrame() {
-        faceapi.detectAllFaces(video)
-          .withFaceLandmarks()
-          .withFaceExpressions()
-          .withAgeAndGender()
-          .withFaceDescriptors()
-          .then((detections) => {
+          faceapi.detectAllFaces(video)
+              .withFaceLandmarks()
+              .withFaceExpressions()
+              .withAgeAndGender()
+              .withFaceDescriptors()
+              .then((detections) => {
+                  const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+                  faceapi.draw.drawDetections(canvas, resizedDetections);
 
-            if (detections.length === 0) {
-              // Jika tidak ada wajah terdeteksi, tampilkan pesan peringatan dan lanjutkan proses deteksi
-              Swal.fire({
-                title: 'Wajah Tidak Terdeteksi',
-                text: 'Harap posisikan wajah Anda di depan kamera',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-              }).then(() => {
-                requestAnimationFrame(processVideoFrame); // Melanjutkan deteksi setelah peringatan ditampilkan
-              });
-              return; // Hentikan eksekusi lebih lanjut sampai Swal selesai
-            }
+                  if (resizedDetections.length === 0) {
+                      if (faceDetected) {
+                          faceDetected = false;
+                          if (!notificationShown) { // Check if notification has been shown
+                              showObjectLostNotification();
+                          }
+                      }
+                  } else {
+                      faceDetected = true; // Face detected, reset the flag
+                      notificationShown = false; // Reset notification flag
+                      resizedDetections.forEach((detection) => {
+                          const { expressions, landmarks } = detection;
+                          const yawning = isYawning(landmarks.getMouth());
+                          const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
 
-            const resizedDetections = faceapi.resizeResults(detections, displaySize);
-            canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-            faceapi.draw.drawDetections(canvas, resizedDetections);
-            
-            resizedDetections.forEach((detection) => {
-              const { expressions, landmarks } = detection;
-              const yawning = isYawning(landmarks.getMouth());
-              const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
-    
-              if (yawning) {
-                emotionData.yawning++;
-                showNotificationAndPlayVideo();
-              }
-    
-              if (sleepy) {
-                if (eyeClosureStart === null) {
-                  eyeClosureStart = Date.now();
-                  console.log(eyeClosureStart);
-                } else {
-                  const elapsedTime = (Date.now() - eyeClosureStart) / 1000;
-                  if (elapsedTime >= 5) {
-                    if (!isCurrentlySleepy) {
-                      emotionData.sleepy++;
-                      isCurrentlySleepy = true;
-                      showNotificationAndPlayVideo();
-                      console.log(eyeClosureStart);
-                    }
+                          if (yawning) {
+                              emotionData.yawning++;
+                              showNotificationAndPlayVideo();
+                          }
+
+                          if (sleepy) {
+                              if (eyeClosureStart === null) {
+                                  eyeClosureStart = Date.now();
+                                  console.log(eyeClosureStart);
+                              } else {
+                                  const elapsedTime = (Date.now() - eyeClosureStart) / 1000;
+                                  if (elapsedTime >= 5) {
+                                      if (!isCurrentlySleepy) {
+                                          emotionData.sleepy++;
+                                          isCurrentlySleepy = true;
+                                          showNotificationAndPlayVideo();
+                                          console.log(eyeClosureStart);
+                                      }
+                                  }
+                              }
+                          } else {
+                              eyeClosureStart = null;
+                              clearTimeout(eyeClosureTimeout);
+                              eyeClosureTimeout = null;
+                              isCurrentlySleepy = false;
+                          }
+
+                          updateEmotionData(expressions);
+
+                          const age = detection.age;
+                          const maxEmotion = Object.keys(expressions).reduce((a, b) =>
+                              expressions[a] > expressions[b] ? a : b
+                          );
+                          const result = faceMatcher.findBestMatch(detection.descriptor);
+                          const displayName = result.toString();
+                          const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
+                              sleepy ? "Sleepy" : ""
+                          }`;
+
+                          const box = detection.detection.box;
+                          const anchor = { x: box.x, y: box.bottomRight.y };
+                          new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
+                      });
                   }
-                }
-              } else {
-                eyeClosureStart = null;
-                clearTimeout(eyeClosureTimeout);
-                eyeClosureTimeout = null;
-                isCurrentlySleepy = false;
-              }
-    
-              updateEmotionData(expressions);
-    
-              const age = detection.age;
-              const maxEmotion = Object.keys(expressions).reduce((a, b) =>
-                expressions[a] > expressions[b] ? a : b
-              );
-              const result = faceMatcher.findBestMatch(detection.descriptor);
-              const displayName = result.toString();
-              const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
-                sleepy ? "Sleepy" : ""
-              }`;
-    
-              const box = detection.detection.box;
-              const anchor = { x: box.x, y: box.bottomRight.y };
-              new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
-            });
-    
-            if (detections.length > 0) {
-              loader.style.display = "none";
-            }
-            requestAnimationFrame(processVideoFrame);
-          })
-          .catch((error) => {
-            console.error("Error processing video frame:", error);
-            requestAnimationFrame(processVideoFrame);
-          });
+
+                  loader.style.display = "none";
+                  requestAnimationFrame(processVideoFrame);
+              })
+              .catch((error) => {
+                  console.error("Error processing video frame:", error);
+                  requestAnimationFrame(processVideoFrame);
+              });
+      }
+
+      requestAnimationFrame(processVideoFrame);
+  }
+
+    function showObjectLostNotification() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        video.style.display = "none";
       }
     
-      requestAnimationFrame(processVideoFrame);
+      Swal.fire({
+        title: 'Object Lost',
+        text: 'No face detected, restarting detection...',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        resetDetection();
+        loader.style.display = "flex";
+        video.style.display = "block";
+        loadModels()
+          .then(getLabeledFaceDescriptions)
+          .then(startWebcam)
+          .catch((e) => {
+            console.error("Failed to reload models:", e);
+            loader.innerText = "Failed to reload models";
+          });
+      });
+      notificationShown = true;
     }
     
     function isYawning(mouth) {
@@ -214,42 +238,6 @@ document.addEventListener("DOMContentLoaded", function() {
       emotionData.count++;
     }
   
-    // stopButton.addEventListener("click", () => {
-    //   video.pause();
-    //   video.srcObject.getTracks().forEach((track) => track.stop());
-    //   analyzeEmotions();
-    // });
-  
-//     function analyzeEmotions() {
-//       if (emotionData.count > 0) {
-//         const percentages = Object.keys(emotionData).reduce((acc, cur) => {
-//           if (cur !== "count") {
-//             acc[cur] =
-//               ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
-//           }
-//               return acc;
-//           }, {});
-  
-//           const emotionEntries = Object.entries(percentages);
-//           // Hitung waktu yang telah berlalu
-//           const endTime = Date.now();
-//           const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
-//           const lamaWaktu = document.getElementById("lamaWaktu");
-//           // Set combined data to hidden input in form
-//           const emotionInput = document.getElementById("emotionData");
-//           if (emotionInput && lamaWaktu) {
-//               emotionInput.value = JSON.stringify(emotionEntries);
-//               lamaWaktu.value = elapsedTimeInMinutes;
-//               // Submit the form
-//               document.getElementById("emotionForm").submit();
-//           } else {
-//               console.error("Element with ID 'emotionData' not found.");
-//           }
-//       } else {
-//           console.log("No emotions detected.");
-//       }
-//   }
-  
     function resetDetection() {
       eyeClosureStart = null;
       clearTimeout(eyeClosureTimeout);
@@ -259,6 +247,11 @@ document.addEventListener("DOMContentLoaded", function() {
   
   
     function showNotificationAndPlayVideo() {
+      if (isVideoNotificationActive) {
+        return;
+      }
+      isVideoNotificationActive = true;
+
       if (stream) {
         stream.getTracks().forEach(track => track.stop());
         video.style.display =  "none";
@@ -270,6 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
         icon: 'info',
         confirmButtonText: 'OK'
       }).then(() => {
+        isVideoNotificationActive = false;
         resetDetection();
         const videoContainer = document.createElement('div');
         videoContainer.style.position = 'fixed';

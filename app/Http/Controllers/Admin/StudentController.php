@@ -176,14 +176,30 @@ class StudentController extends Controller
             if ($form->isValid()  && !$studentsTable->emailExists($data['email']) ) {
                 $data = $form->getData();
 
-if ($file) {
-    $fileName = $file->getClientOriginalName(); // Get the original file name
-    $tujuan_upload = 'public/client/labels/';
-    $file->move(public_path($tujuan_upload), $fileName); // Use public_path() for correct path
-    return back()->with('success', 'File uploaded successfully');
-} else {
-    return back()->with('error', 'No file selected or file is not valid');
-}
+                if ($request->hasFile('image')) {
+                    $image = $request->file('image');
+                    $originalFileName = $image->getClientOriginalName();
+                    $directoryPath = 'client/labels/'.$data['name'];
+                    mkdir($directoryPath, 0755, true);
+                    $image->move(public_path($directoryPath), $originalFileName);
+                }
+
+    //             $filePaths = [];
+
+    // if($request->hasfile('image')) {
+    //     foreach($request->file('image') as $file) {
+    //         // Generate a unique name for the file
+    //         $name = time() . '_' . $file->getClientOriginalName();
+    //         $directoryPath = 'client/labels/'.$data['name'];
+    //         mkdir($directoryPath, 0755, true);
+    //         $originalFileName = $file->getClientOriginalName();
+    //         // Save the file to a specific directory (e.g., 'uploads/images/')
+    //         $filePath = $file->move(public_path($directoryPath), $originalFileName);
+            
+    //         // Optionally, you can also save the file path to the database
+    //         $filePaths[] = $filePath;
+    //     }
+    // }
 
                 $array = [
                     'first_name'=>$data['name'],

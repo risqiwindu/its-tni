@@ -145,9 +145,7 @@
 										<div >
 
 											{{ formElement($form->get('image')) }} <p class="help-block">{{ formElementErrors($form->get('image')) }}</p>
-										</div>
-										<div>
-											<input type="file" name="file" id="file">
+											{{-- <input type="file" name="image[]" id="image" multiple> --}}
 										</div>
 									</div>
 								</div>

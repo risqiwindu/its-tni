@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(eyeClosureStart);
               } else {
                 const elapsedTime = (Date.now() - eyeClosureStart) / 1000;
-                if (elapsedTime >= 5) {
+                if (elapsedTime >= 10) {
                   if (!isCurrentlySleepy) {
                     emotionData.sleepy++;
                     isCurrentlySleepy = true;
