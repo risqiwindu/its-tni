@@ -190,7 +190,7 @@
                     <div class="toolbar-login">
                         <div class="button">
                             @guest
-                                <a href="{{ route('register') }}">Sign Up</a>
+                            <!-- <a href="{{ route('register') }}">Sign Up</a> -->
                                 <a href="{{ route('login') }}" class="btn">Login</a>
                             @else
                                 <a  onclick="event.preventDefault();
