@@ -133,33 +133,48 @@ document.addEventListener("DOMContentLoaded", function() {
                   showNotificationAndPlayVideo();
                 }
       
-                if (sleepy) {
-                  if (lastSleepyTime === null) {
-                    lastSleepyTime = Date.now();
-                  } else {
-                    const elapsedTime = Date.now() - lastSleepyTime;
-                    if (elapsedTime >= detectionInterval) {
-                      // Add detection time to array
-                      sleepyDetectionTimes.push(Date.now());
-                      lastSleepyTime = Date.now(); // Reset detection start time
+                // if (sleepy) {
+                //   if (lastSleepyTime === null) {
+                //     lastSleepyTime = Date.now();
+                //   } else {
+                //     const elapsedTime = Date.now() - lastSleepyTime;
+                //     if (elapsedTime >= detectionInterval) {
+                //       // Add detection time to array
+                //       sleepyDetectionTimes.push(Date.now());
+                //       lastSleepyTime = Date.now(); // Reset detection start time
               
-                      // Check if we have 10 or more detections within the last minute
-                      const oneMinuteAgo = Date.now() - oneMinute;
-                      sleepyDetectionTimes = sleepyDetectionTimes.filter(time => time > oneMinuteAgo);
+                //       // Check if we have 10 or more detections within the last minute
+                //       const oneMinuteAgo = Date.now() - oneMinute;
+                //       sleepyDetectionTimes = sleepyDetectionTimes.filter(time => time > oneMinuteAgo);
 
-                      console.log('Detections in the last minute:', sleepyDetectionTimes.length);
+                //       console.log('Detections in the last minute:', sleepyDetectionTimes.length);
                       
-                      if (sleepyDetectionTimes.length >= requiredDetections) {
-                        if (!isCurrentlySleepy) {
-                          emotionData.sleepy++;
-                          isCurrentlySleepy = true;
-                          showNotificationAndPlayVideo();
-                          console.log('Sleepy detected continuously for 10 seconds, and notification criteria met');
-                        }
+                //       if (sleepyDetectionTimes.length >= requiredDetections) {
+                //         if (!isCurrentlySleepy) {
+                //           emotionData.sleepy++;
+                //           isCurrentlySleepy = true;
+                //           showNotificationAndPlayVideo();
+                //           console.log('Sleepy detected continuously for 10 seconds, and notification criteria met');
+                //         }
+                //       }
+                //     }
+                //   }
+                // } 
+                if (sleepy) {
+                  if (eyeClosureStart === null) {
+                    eyeClosureStart = Date.now(); // Start tracking when eyes are closed
+                  } else {
+                    const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
+                    if (elapsedTime >= 5) { // 5 seconds threshold
+                      if (!isCurrentlySleepy) {
+                        emotionData.sleepy++;
+                        isCurrentlySleepy = true;
+                        showNotificationAndPlayVideo();
                       }
                     }
                   }
-                } else {
+                }
+                else {
                   eyeClosureStart = null;
                   clearTimeout(eyeClosureTimeout);
                   eyeClosureTimeout = null;
