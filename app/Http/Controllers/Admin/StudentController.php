@@ -190,7 +190,9 @@ class StudentController extends Controller
                     $image = $request->file('image');
                     $originalFileName = 1 .'.'. $image->getClientOriginalExtension();
                     $directoryPath = 'client/labels/'.$data['name'];
-                    mkdir($directoryPath, 0755, true);
+                    if (!file_exists($directoryPath)) {
+                        mkdir($directoryPath, 0755, true);
+                    }
                     $image->move(public_path($directoryPath), $originalFileName);
                 }
 
@@ -583,6 +585,8 @@ class StudentController extends Controller
                 @unlink($student->user->picture);
             }
 
+            $directoryPath = 'client/labels/' . $student->user->name;
+            Storage::deleteDirectory($directoryPath);
             $student->user->delete();
         //    $table->deleteRecord($id);
             flashMessage(__lang('Record deleted'));
