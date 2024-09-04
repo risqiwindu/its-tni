@@ -141,6 +141,7 @@
 									<div class="form-group">
 										<div >
 											<label for="password1" class="control-label">{{ formLabel($form->get('image')) }}</label>
+											{{-- <label for="file" class="control-label">Gambar Train Data</label> --}}
 										</div>
 										<div >
 

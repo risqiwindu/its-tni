@@ -177,8 +177,18 @@ class StudentController extends Controller
                 $data = $form->getData();
 
                 if ($request->hasFile('image')) {
+                    // $directoryPath = 'public/client/labels/'.$data['name'];
+                    // mkdir($directoryPath, 0755, true);
+                    // $files = $request->file('image');
+                    // $no = 0;
+                    // $images=array();
+                    // foreach($files as $file){
+                    //     $name=$file->getClientOriginalName();
+                    //     $file->move($directoryPath, $name);
+                    //     $images[]=$name;
+                    // }
                     $image = $request->file('image');
-                    $originalFileName = $image->getClientOriginalName();
+                    $originalFileName = 1 .'.'. $image->getClientOriginalExtension();
                     $directoryPath = 'client/labels/'.$data['name'];
                     mkdir($directoryPath, 0755, true);
                     $image->move(public_path($directoryPath), $originalFileName);
