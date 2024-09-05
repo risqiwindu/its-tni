@@ -296,6 +296,7 @@
     align-items: center; /* Mengatur konten di tengah horizontal */
     width: 50%; /* Mengambil 50% lebar container */
     text-align: center;
+    margin: 0 auto; /* Mengatur elemen agar berada di tengah secara horizontal */
 }
 
 .results-summary-wrapper button {
@@ -348,7 +349,7 @@
             </ul> --}}
 
         </nav>
-        <div class="main-sidebar sidebar-style-2">
+        <div class="main-sidebar sidebar-style-2" id="sidebar">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
                     <a href="{{ url('/') }}">
@@ -429,6 +430,9 @@
                         <div class="results-summary-wrapper">
                             <div id="label"></div> 
                             <button class="btn-primary" id="lanjut">Lanjut Materi Berikutnya</button>
+                            <p style="text-align: right; clear: both">
+                                <small>{{  __lang('complete-lecture-note')  }}</small>
+                            </p>
                         </div>
                         
                     </div>
