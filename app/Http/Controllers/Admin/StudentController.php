@@ -3003,6 +3003,8 @@ public function detail_emosi($student_id, $course_id) {
         $yawnPercentage = 0;
         $sleepyPercentage = 0;
         $combinedSleepyYawnPercentage = 0;
+        $validTotalPercentage = 0;
+        $validEmotionCount = 0;
 
         if (is_array($emotionData)) {
             foreach ($emotionData as $emotion) {
@@ -3025,6 +3027,9 @@ public function detail_emosi($student_id, $course_id) {
 
                     if ($emotion[0] === 'yawning' || $emotion[0] === 'sleepy') {
                         $combinedSleepyYawnPercentage += $percentage;
+                    }else{
+                        $validTotalPercentage += $percentage;
+                        $validEmotionCount++;
                     }
 
                     // Gabungkan emosi dan persentasenya menjadi satu string
@@ -3036,7 +3041,7 @@ public function detail_emosi($student_id, $course_id) {
         }
 
         // Hitung rata-rata emosi
-        $averagePercentage = $totalPercentage / count($emotionData);
+        $averagePercentage = $validEmotionCount > 0 ? $validTotalPercentage / $validEmotionCount : 0;
 
         return [
             'student_id' => $item->student_id,

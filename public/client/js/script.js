@@ -441,6 +441,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let combinedSleepyYawnPercentage = 0;
     let totalPercentage = 0;
     let emotionCount = 0;
+    let validEmotionCount = 0; // Count of emotions excluding yawning and sleepy
+    let validTotalPercentage = 0; // Total percentage for valid emotions
 
     // Populate the results table with emotion data
     Object.entries(percentages).forEach(([emotion, percentage]) => {
@@ -461,13 +463,16 @@ document.addEventListener("DOMContentLoaded", function() {
         // Calculate combined percentage for 'yawning' and 'sleepy'
         if (emotion === 'yawning' || emotion === 'sleepy') {
             combinedSleepyYawnPercentage += percValue;
+        }else{
+          validTotalPercentage += percValue;
+          validEmotionCount++;
         }
 
         // Add to total percentage
         totalPercentage += percValue;
         emotionCount++;
     });
-    let averageEmotionPercentage = totalPercentage / emotionCount;
+    let averageEmotionPercentage = validEmotionCount > 0 ? validTotalPercentage / validEmotionCount : 0;
 
     document.getElementById("label").innerText = `
       Kesimpulan :
