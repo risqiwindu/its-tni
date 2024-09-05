@@ -60,11 +60,17 @@
                     <table id="emotionTable" class="table table-hover">
                         <thead>
                             <tr>
-                                <th>ID Mahasiswa</th>
-                                <th>Nama Mahasiswa</th>
-                                <th>Materi</th>
-                                <th>Lama Siswa Mengakses Materi</th>
-                                <th colspan="2" class="text-center">Aksi</th>
+                                <th rowspan="2">ID Mahasiswa</th>
+                                <th rowspan="2">Nama Mahasiswa</th>
+                                <th rowspan="2">Materi</th>
+                                <th rowspan="2">Lama Siswa Mengakses Materi</th>
+                                <th colspan="3" class="text-center">Kesimpulan</th>
+                                <th colspan="2" rowspan="2" class="text-center">Detail</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Rata Rata Emosi</th>
+                                <th class="text-center">Dominasi Emosi (Persentase)</th>
+                                <th class="text-center">Persentase Mengantuk</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +80,9 @@
                                 <td>{{ $studentData['name'] }}</td>
                                 <td>{{ $studentData['lecture_title'] }}</td>
                                 <td>{{ $studentData['lama'] }}</td>
+                                <td>{{ $studentData['average'] }}</td>
+                                <td>{{ $studentData['highestEmotion'] }}</td>
+                                <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
                                 <td>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
                                 </td>

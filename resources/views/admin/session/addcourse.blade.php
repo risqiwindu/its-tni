@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <div >
                                     <label for="enable_discussion" class="control-label">{{ __lang('enable-discussions') }}</label>
@@ -267,11 +267,11 @@
                                     <p class="help-block">{{ formElementErrors($form->get('enable_discussion')) }}</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
 
 
                         <div class="col-md-6">
@@ -341,7 +341,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div id="step-3">

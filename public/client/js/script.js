@@ -430,13 +430,18 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function displayResults(percentages) {
-    // Display the results page and hide the layout content
     document.getElementById('results-page').style.display = 'block';
     document.getElementById('layout_content').style.display = 'none';
-    
     const tbody = document.getElementById("results-table").getElementsByTagName("tbody")[0];
     tbody.innerHTML = "";
     
+
+    let highestEmotion = '';
+    let highestPercentage = 0;
+    let combinedSleepyYawnPercentage = 0;
+    let totalPercentage = 0;
+    let emotionCount = 0;
+
     // Populate the results table with emotion data
     Object.entries(percentages).forEach(([emotion, percentage]) => {
         const row = tbody.insertRow();
@@ -444,7 +449,33 @@ document.addEventListener("DOMContentLoaded", function() {
         const cellPercentage = row.insertCell(1);
         cellEmotion.textContent = emotion;
         cellPercentage.textContent = percentage;
+
+        let percValue = parseFloat(percentage);
+        
+        // Update highest emotion
+        if (percValue > highestPercentage) {
+            highestPercentage = percValue;
+            highestEmotion = emotion;
+        }
+
+        // Calculate combined percentage for 'yawning' and 'sleepy'
+        if (emotion === 'yawning' || emotion === 'sleepy') {
+            combinedSleepyYawnPercentage += percValue;
+        }
+
+        // Add to total percentage
+        totalPercentage += percValue;
+        emotionCount++;
     });
+    let averageEmotionPercentage = totalPercentage / emotionCount;
+
+    document.getElementById("label").innerText = `
+      Kesimpulan :
+      Emosi Tertinggi (Persentase)          : ${highestEmotion} (${highestPercentage.toFixed(2)}%)
+      Persentase Mengantuk                  : ${combinedSleepyYawnPercentage.toFixed(2)}%
+      Rata-rata Persentase Emosi Terdeteksi : ${averageEmotionPercentage.toFixed(2)}%
+    `;
+
 }
 
 lanjut.addEventListener("click", () => {

@@ -278,6 +278,42 @@
   }
 }
 
+.results-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Jarak antara tabel dan kesimpulan */
+}
+
+.results-table-wrapper {
+    flex: 1; /* Tabel akan menempati 50% dari container */
+}
+
+.results-summary-wrapper {
+    display: flex;
+    flex-direction: column; /* Menampilkan elemen secara vertikal */
+    justify-content: center; /* Mengatur konten di tengah vertikal */
+    align-items: center; /* Mengatur konten di tengah horizontal */
+    width: 50%; /* Mengambil 50% lebar container */
+    text-align: center;
+}
+
+.results-summary-wrapper button {
+    margin-top: 20px; /* Berikan jarak antara label dan tombol */
+}
+
+#label {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: left; /* Memastikan teks kesimpulan ditampilkan di tengah */
+    width: 80%;         /* Memberi lebar untuk kesimpulan agar tidak terlalu sempit */
+}
+
+
+
+
     </style>
 
     @php  if(defined('ENABLE_CHAT')): @endphp
@@ -374,18 +410,30 @@
             <section class="section">
 
                 <div id="results-page" style="display: none;">
+                    <br>
                     <h1>Hasil Deteksi Emosi :</h1>
-                    <table id="results-table">
-                        <thead>
-                            <tr>
-                                <th>Emosi</th>
-                                <th>Persentase Emosi</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <button class="btn-primary" id="lanjut">Lanjut Materi Berikutnya</button>
+                    <div class="results-container">
+                        <!-- Tabel Emosi -->
+                        <div class="results-table-wrapper">
+                            <table id="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Emosi</th>
+                                        <th>Persentase Emosi</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <!-- Kesimpulan -->
+                        <div class="results-summary-wrapper">
+                            <div id="label"></div> 
+                            <button class="btn-primary" id="lanjut">Lanjut Materi Berikutnya</button>
+                        </div>
+                        
+                    </div>
                 </div>
+                
 
                
 

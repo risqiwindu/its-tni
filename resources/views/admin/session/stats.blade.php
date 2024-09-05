@@ -75,22 +75,31 @@
                     </table>
                 </div>
 
-                <div role="tabpanel" class="tab-pane  " id="tab_content3" aria-labelledby="profile-tab">
+                <div role="tabpanel" class="tab-pane table-responsive" id="tab_content3" aria-labelledby="profile-tab">
                     <table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>ID Mahasiswa</th>
-                            <th>Materi</th>
-                            <th>Lama Siswa Mengakses Materi</th>
-                            <th colspan="2" class="text-center">Aksi</th>
-                        </tr>
+                            <tr>
+                                <th rowspan="2">ID Mahasiswa</th>
+                                <th rowspan="2">Nama Mahasiswa</th>
+                                <th rowspan="2">Materi</th>
+                                <th rowspan="2">Lama Siswa Mengakses Materi</th>
+                                <th colspan="2" class="text-center">Kesimpulan</th>
+                                <th colspan="2" rowspan="2" class="text-center">Detail</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Dominasi Emosi (Persentase)</th>
+                                <th class="text-center">Persentase Mengantuk</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach ($emosi as $studentData)
                             <tr>
                                 <td>{{ $studentData['student_id'] }}</td>
+                                <td>{{ $studentData['name'] }}</td>
                                 <td>{{ $studentData['lecture_title'] }}</td>
                                 <td>{{ $studentData['lama'] }}</td>
+                                <td>{{ $studentData['highestEmotion'] }}</td>
+                                <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
                                 <td>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
                                 </td>
