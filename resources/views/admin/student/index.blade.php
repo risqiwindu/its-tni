@@ -65,6 +65,7 @@
 
                                         <button   data-id="{{ $row->id }}" data-toggle="modal" data-target="#simpleModal" title="@lang('default.view')" type="button" class="btn btn-xs btn-primary btn-equal viewbutton"  ><i class="fa fa-eye"></i></button>
 										<a onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ adminUrl(array('controller'=>'student','action'=>'delete','id'=>$row->id)) }}"  class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('delete')}}"><i class="fa fa-trash"></i></a>
+                                        <a onclick="return confirm('Konfirmasi Reset')" href="{{ adminUrl(array('controller'=>'student','action'=>'reset','id'=>$row->id)) }}"  class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Reset"><i class="fa fa-key"></i></a>
 									</td>
                                     @else
                                     <td>

@@ -600,6 +600,28 @@ class StudentController extends Controller
         return adminRedirect(array('controller'=>'student','action'=>'index'));
     }
 
+    public function reset(Request $request,$id)
+    {
+        $student = Student::findOrFail($id);
+        $user_id = $student->user->id;
+        try{
+            DB::table('student_tests')->where('student_id', $id)->delete();
+            DB::table('student_lectures')->where('student_id', $id)->delete();
+            DB::table('student_emotion')->where('student_id', $id)->delete();
+            DB::table('student_course_logs')->where('student_id', $id)->delete();
+            DB::table('student_courses')->where('student_id', $id)->delete();
+            DB::table('kuesioner_status')->where('user_id', $user_id)->delete();
+            flashMessage('Berhasil Melakukan Reset');
+        }
+        catch(\Exception $ex){
+            session()->flash('error', 'Terjadi kesalahan saat reset: ' . $ex->getMessage());
+        }
+
+
+
+        return adminRedirect(array('controller'=>'student','action'=>'index'));
+    }
+
     public function sessions(Request $request){
         $table = new SessionTable();
         $attendanceTable = new AttendanceTable();
