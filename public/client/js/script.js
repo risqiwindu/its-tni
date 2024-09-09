@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
       canvas.remove();
       resetDetection();
       analyzeEmotions();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
     }
   }
 
@@ -151,7 +154,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const { expressions, landmarks } = detection;
             const faceWidth = calculateFaceWidth(landmarks);
             const yawning = isYawning(landmarks.getMouth());
-            const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye(), faceWidth);
+            // const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye(), faceWidth);
+            const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
   
             if (yawning) {
               emotionData.yawning++;
@@ -251,25 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return verticalDistance / horizontalDistance > 0.5;
   }
 
-  // function isSleepy(leftEye, rightEye) {
-  //   const avgVerticalDistance = (faceapi.euclideanDistance(
-  //     [leftEye[1].x, leftEye[1].y],
-  //     [leftEye[5].x, leftEye[5].y]
-  //   ) + faceapi.euclideanDistance(
-  //     [rightEye[1].x, rightEye[1].y],
-  //     [rightEye[5].x, rightEye[5].y]
-  //   )) / 2;
-  //   const avgHorizontalDistance = (faceapi.euclideanDistance(
-  //     [leftEye[0].x, leftEye[0].y],
-  //     [leftEye[3].x, leftEye[3].y]
-  //   ) + faceapi.euclideanDistance(
-  //     [rightEye[0].x, rightEye[0].y],
-  //     [rightEye[3].x, rightEye[3].y]
-  //   )) / 2;
-  //   return avgVerticalDistance / avgHorizontalDistance < 0.25;
-  // }
-
-  function isSleepy(leftEye, rightEye, faceWidth) {
+  function isSleepy(leftEye, rightEye) {
     const avgVerticalDistance = (faceapi.euclideanDistance(
       [leftEye[1].x, leftEye[1].y],
       [leftEye[5].x, leftEye[5].y]
@@ -277,7 +263,6 @@ document.addEventListener("DOMContentLoaded", function() {
       [rightEye[1].x, rightEye[1].y],
       [rightEye[5].x, rightEye[5].y]
     )) / 2;
-    
     const avgHorizontalDistance = (faceapi.euclideanDistance(
       [leftEye[0].x, leftEye[0].y],
       [leftEye[3].x, leftEye[3].y]
@@ -285,13 +270,32 @@ document.addEventListener("DOMContentLoaded", function() {
       [rightEye[0].x, rightEye[0].y],
       [rightEye[3].x, rightEye[3].y]
     )) / 2;
+    return avgVerticalDistance / avgHorizontalDistance < 0.25;
+  }
 
-    // Normalize the distances based on face width
-    const normalizedVerticalDistance = avgVerticalDistance / faceWidth;
-    const normalizedHorizontalDistance = avgHorizontalDistance / faceWidth;
+//   function isSleepy(leftEye, rightEye, faceWidth) {
+//     const avgVerticalDistance = (faceapi.euclideanDistance(
+//       [leftEye[1].x, leftEye[1].y],
+//       [leftEye[5].x, leftEye[5].y]
+//     ) + faceapi.euclideanDistance(
+//       [rightEye[1].x, rightEye[1].y],
+//       [rightEye[5].x, rightEye[5].y]
+//     )) / 2;
+    
+//     const avgHorizontalDistance = (faceapi.euclideanDistance(
+//       [leftEye[0].x, leftEye[0].y],
+//       [leftEye[3].x, leftEye[3].y]
+//     ) + faceapi.euclideanDistance(
+//       [rightEye[0].x, rightEye[0].y],
+//       [rightEye[3].x, rightEye[3].y]
+//     )) / 2;
 
-    return normalizedVerticalDistance / normalizedHorizontalDistance < 0.25;
-}
+//     // Normalize the distances based on face width
+//     const normalizedVerticalDistance = avgVerticalDistance / faceWidth;
+//     const normalizedHorizontalDistance = avgHorizontalDistance / faceWidth;
+
+//     return normalizedVerticalDistance / normalizedHorizontalDistance < 0.3;
+// }
 
 function calculateFaceWidth(landmarks) {
   // Misalnya, kita gunakan jarak antara sudut mata sebagai faceWidth
