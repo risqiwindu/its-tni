@@ -58,11 +58,11 @@
                     </li>
                     @if(setting('menu_show_courses')==1)
                     {{-- <li class="nav-item"><a href="{{ route('courses') }}" class="nav-link">Kelas</a></li> --}}
-                    <li class="nav-item"><a href="{{ route('groupcourse') }}" class="nav-link">Kelas</a></li>
+                    <li class="nav-item"><a href="{{ route('groupcourse') }}" class="nav-link">Materi</a></li>
                     @endif
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('student.student.mysessions') }}" class="nav-link"><span>Kelas Saya</span></a>
-                    </li>
+                    </li> --}}
                     @if(setting('menu_show_certificates')==1 || setting('menu_show_downloads')==1)
                     <li class="nav-item">
                         <a href="{{ route('student.download.index') }}" class="nav-link"><span>Download</span></a>

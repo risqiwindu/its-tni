@@ -54,48 +54,96 @@
 <div>
     <div>
         <div class="card">
+            <div class="card-header">
+                <h2>Siswa : {{ $nama }}</h2>
+            </div>
             <div class="card-body">
-                <!-- Tabel Data Emosi -->
-                <div class="table-responsive">
-                    <table id="emotionTable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th rowspan="2">ID Mahasiswa</th>
-                                <th rowspan="2">Nama Mahasiswa</th>
-                                <th rowspan="2">Materi</th>
-                                <th rowspan="2">Lama Siswa Mengakses Materi</th>
-                                <th colspan="3" class="text-center">Kesimpulan</th>
-                                <th colspan="2" rowspan="2" class="text-center">Detail</th>
-                            </tr>
-                            <tr>
-                                <th class="text-center">Rata Rata Emosi</th>
-                                <th class="text-center">Dominasi Emosi (Persentase)</th>
-                                <th class="text-center">Persentase Mengantuk</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($emosi as $studentData)
-                            <tr>
-                                <td>{{ $studentData['student_id'] }}</td>
-                                <td>{{ $studentData['name'] }}</td>
-                                <td>{{ $studentData['lecture_title'] }}</td>
-                                <td>{{ $studentData['lama'] }}</td>
-                                <td>{{ $studentData['average'] }}</td>
-                                <td>{{ $studentData['highestEmotion'] }}</td>
-                                <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Emosi</button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        
+        
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-pills" role="tablist">
+                        <li class="nav-item"><a  class="nav-link active" href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Emosi Per-materi</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link"  href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Emosi</a>
+                        </li>
+        
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane table-responsive active in" id="tab_content1" aria-labelledby="home-tab">
+                            <table id="emotionTable" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">ID Mahasiswa</th>
+                                        <th rowspan="2">Nama Mahasiswa</th>
+                                        <th rowspan="2">Materi</th>
+                                        <th rowspan="2">Lama Siswa Mengakses Materi</th>
+                                        <th colspan="3" class="text-center">Kesimpulan</th>
+                                        <th colspan="2" rowspan="2" class="text-center">Detail</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Rata Rata Emosi</th>
+                                        <th class="text-center">Dominasi Emosi (Persentase)</th>
+                                        <th class="text-center">Persentase Mengantuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($emosi as $studentData)
+                                    <tr>
+                                        <td>{{ $studentData['student_id'] }}</td>
+                                        <td>{{ $studentData['name'] }}</td>
+                                        <td>{{ $studentData['lecture_title'] }}</td>
+                                        <td>{{ $studentData['lama'] }}</td>
+                                        <td>{{ $studentData['average'] }}</td>
+                                        <td>{{ $studentData['highestEmotion'] }}</td>
+                                        <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
+                                        <td>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Emosi</button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+        
+                        <div role="tabpanel" class="tab-pane table-responsive" id="tab_content2" aria-labelledby="profile-tab">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-center">Kesimpulan</th>
+                                        <th rowspan="2" class="text-center">Detail</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Rata Rata Emosi</th>
+                                        <th class="text-center">Dominasi Emosi (Persentase)</th>
+                                        <th class="text-center">Persentase Mengantuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @foreach ($akhir_emosi['emotion_averages'] as $emotion => $average)
+                                            <li>{{ ucfirst($emotion) }}: {{ number_format($average, 2) }}%</li>
+                                            @endforeach
+                                    </td>
+                                        <td>{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
+                                        <td>{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
+                                        <td>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#akhir_emosi">Lihat Grafik</button>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+        
+                    </div>
                 </div>
-            </div><!--end .card-body -->
-        </div><!--end .card -->
+        
+            </div>
+        </div>
     </div><!--end .col-lg-12 -->
 </div>
 @endsection
@@ -195,6 +243,80 @@
             });
         </script>
     @endforeach
+
+    <div class="modal fade" id="akhir_emosi" tabindex="-1" role="dialog" aria-labelledby="akhir_emosi" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="akhir_emosi">Grafik Akhir Deteksi Emosi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="emosiChart" width="800" height="400"></canvas>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil data dari variabel akhir_emosi
+            const emotionAverages = @json($akhir_emosi['emotion_averages']);
+            const highestEmotion = @json($akhir_emosi['highest_emotion']);
+            const highestPercentage = @json($akhir_emosi['highest_percentage']);
+            const sleepyPercentage = @json($akhir_emosi['sleepy_percentage']);
+    
+            // Ambil label emosi dan persentase dari data akhir
+            const labels = Object.keys(emotionAverages); // Nama emosi (neutral, happy, sad, etc.)
+            const percentages = Object.values(emotionAverages); // Persentase rata-rata dari setiap emosi
+    
+            // Dapatkan konteks untuk canvas Chart.js
+            const ctx = document.getElementById('emosiChart').getContext('2d');
+    
+            // Buat grafik menggunakan Chart.js
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels, // Labels adalah nama emosi
+                    datasets: [{
+                        label: 'Emotion Average Percentage',
+                        data: percentages, // Persentase rata-rata emosi
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna latar belakang
+                        borderColor: 'rgba(75, 192, 192, 1)', // Warna border
+                        borderWidth: 2, // Ketebalan border
+                        fill: false // Tidak mengisi area di bawah garis
+                    }]
+                },
+                options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Mulai dari 0
+                        ticks: {
+                            callback: function(value) {
+                                return value.toFixed(2) + '%'; // Tampilkan 2 angka di belakang koma dan simbol persen
+                            }
+                        }
+                    }
+                },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Average Emotion and Sleepy Detection'
+                        }
+                    }
+                }
+            });
+    
+            // Menampilkan detail emosi tertinggi dan persentase mengantuk
+            document.getElementById('highestEmotion').innerText = 'Highest Emotion: ' + highestEmotion + ' (' + highestPercentage.toFixed(2) + '%)';
+            document.getElementById('sleepyPercentage').innerText = 'Sleepy Percentage: ' + sleepyPercentage.toFixed(2) + '%';
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

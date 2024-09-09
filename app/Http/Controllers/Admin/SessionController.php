@@ -1025,6 +1025,64 @@ class SessionController extends Controller
 
         $output['emosi'] = $emosi;
 
+        // Ambil data dari database
+        $emotionData = DB::table('student_emotion')
+                        ->where('student_id', $row->student_id)
+                        ->where('course_id', $row->course_id)
+                        ->pluck('emotion');
+
+        // Array untuk menyimpan total emosi
+        $emotionTotals = [
+        'neutral' => 0,
+        'happy' => 0,
+        'sad' => 0,
+        'angry' => 0,
+        'fearful' => 0,
+        'disgusted' => 0,
+        'surprised' => 0,
+        'yawning' => 0,
+        'sleepy' => 0
+        ];
+
+        // Hitung jumlah data
+        $dataCount = count($emotionData);
+
+        // Loop melalui setiap data dan tambahkan ke total
+        foreach ($emotionData as $data) {
+            $emotions = json_decode($data, true);
+        
+            foreach ($emotions as $emotion) {
+                $emotionName = $emotion[0];
+                $emotionPercentage = floatval(rtrim($emotion[1], '%'));
+                $emotionTotals[$emotionName] += $emotionPercentage;
+            }
+        }
+
+        // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
+        $emotionAverages = [];
+        $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
+        $validDataCount = $dataCount;
+
+        foreach ($validEmotions as $emotion => $total) {
+            $emotionAverages[$emotion] = $total / $validDataCount;
+        }
+
+        // Cari emosi tertinggi
+        $highestEmotion = array_keys($emotionAverages, max($emotionAverages))[0];
+        $highestPercentage = max($emotionAverages);
+
+        // Persentase mengantuk (gabungan dari yawning dan sleepy)
+        $sleepyPercentage = ($emotionTotals['yawning'] + $emotionTotals['sleepy']) / $dataCount;
+
+        // Return hasil
+        $akhir_emosi = [
+            'emotion_averages' => $emotionAverages,
+            'highest_emotion' => $highestEmotion,
+            'highest_percentage' => $highestPercentage,
+            'sleepy_percentage' => $sleepyPercentage
+        ];
+
+        $output['akhir_emosi'] = $akhir_emosi;
         return view('admin.session.stats',$output);
     }
 

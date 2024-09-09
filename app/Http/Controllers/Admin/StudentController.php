@@ -2920,57 +2920,6 @@ class StudentController extends Controller
     return view('admin.hasil_emosi.emosi', ['emosi' => $emosi]);
 }
 
-// public function detail_emosi($student_id, $course_id) {
-//     // Retrieve the data without grouping by student_id
-//     $hasil = DB::table('student_emotion')
-//         ->join('students', 'student_emotion.student_id', '=', 'students.id')
-//         ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
-//         ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
-//         ->join('users', 'users.id', '=', 'students.user_id')
-//         ->select(
-//             'student_emotion.emotion', 
-//             'student_emotion.course_id',
-//             'student_emotion.lecture_id',
-//             'student_emotion.student_id',
-//             'courses.name as course_name',
-//             'lectures.title as lecture_title',
-//             'users.name as name',
-//             'student_emotion.lamaWaktu as lama'
-//         )
-//         ->where('student_emotion.student_id', $student_id)
-//         ->where('student_emotion.course_id', $course_id)
-//         ->get();
-
-//     // Process each record individually
-//     $emosi = $hasil->map(function ($item) {
-//         $emotionData = json_decode($item->emotion, true);
-//         $emotionString = '';
-
-//         if (is_array($emotionData)) {
-//             foreach ($emotionData as $emotion) {
-//                 if (is_array($emotion) && isset($emotion[0], $emotion[1])) {
-//                     $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
-//                 }
-//             }
-//         } else {
-//             $emotionString = 'Invalid emotion data';
-//         }
-
-//         return [
-//             'student_id' => $item->student_id,
-//             'lecture_id' => $item->lecture_id,
-//             'course_name' => $item->course_name,
-//             'lama' => $item->lama . ' Menit',
-//             'name' => $item->name,
-//             'lecture_title' => $item->lecture_title,
-//             'emotion' => rtrim($emotionString, '; '),
-//             'emotion_encode' => $emotionData
-//         ];
-//     });
-
-//     return view('admin.hasil_emosi.detail', ['emosi' => $emosi]);
-// }
-
 
 public function detail_emosi($student_id, $course_id) {
     // Retrieve the data without grouping by student_id
@@ -3060,8 +3009,77 @@ public function detail_emosi($student_id, $course_id) {
         ];
     });
 
-    return view('admin.hasil_emosi.detail', ['emosi' => $emosi]);
-}
+    // Ambil data dari database
+    $emotionData = DB::table('student_emotion')
+    ->where('student_id', $student_id)
+    ->where('course_id', $course_id)
+    ->pluck('emotion');
+
+    // Array untuk menyimpan total emosi
+    $emotionTotals = [
+        'neutral' => 0,
+        'happy' => 0,
+        'sad' => 0,
+        'angry' => 0,
+        'fearful' => 0,
+        'disgusted' => 0,
+        'surprised' => 0,
+        'yawning' => 0,
+        'sleepy' => 0
+    ];
+
+    // Hitung jumlah data
+    $dataCount = count($emotionData);
+
+    // Loop melalui setiap data dan tambahkan ke total
+    foreach ($emotionData as $data) {
+        $emotions = json_decode($data, true);
+
+        foreach ($emotions as $emotion) {
+            $emotionName = $emotion[0];
+            $emotionPercentage = floatval(rtrim($emotion[1], '%'));
+            $emotionTotals[$emotionName] += $emotionPercentage;
+        }
+    }
+
+    // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
+    $emotionAverages = [];
+    $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
+    $validDataCount = $dataCount;
+
+    foreach ($validEmotions as $emotion => $total) {
+        $emotionAverages[$emotion] = $total / $validDataCount;
+    }
+
+    // Cari emosi tertinggi
+    $highestEmotion = array_keys($emotionAverages, max($emotionAverages))[0];
+    $highestPercentage = max($emotionAverages);
+
+    // Persentase mengantuk (gabungan dari yawning dan sleepy)
+    $sleepyPercentage = ($emotionTotals['yawning'] + $emotionTotals['sleepy']) / $dataCount;
+
+    // Return hasil
+    $akhir_emosi = [
+        'emotion_averages' => $emotionAverages,
+        'highest_emotion' => $highestEmotion,
+        'highest_percentage' => $highestPercentage,
+        'sleepy_percentage' => $sleepyPercentage
+    ];
+
+    $nama = DB::table('users')
+            ->join('students', 'users.id', '=', 'students.user_id')
+            ->select(
+                'students.id',
+                'users.name',
+                'users.last_name',
+            )
+            ->where('students.id', $student_id)
+            ->first();
+
+    $nama_lengkap = $nama->name.' '. $nama->last_name;
+
+    return view('admin.hasil_emosi.detail', ['emosi' => $emosi, 'akhir_emosi' => $akhir_emosi, 'nama' => $nama_lengkap]);
+    }
 
 
 }
