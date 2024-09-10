@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('pageTitle',__('default.create-new').' '.__('default.administrator'))
-@section('innerTitle',__('default.create-new').' '.__('default.administrator'))
+@section('pageTitle','Tambah Admin / Dosen')
+@section('innerTitle','Tambah Admin / Dosen')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[

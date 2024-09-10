@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('pageTitle',__('default.edit').' '.__('default.administrator').': '.$admin->name)
-@section('innerTitle',__('default.edit').' '.__('default.administrator').': '.$admin->name)
+@section('pageTitle','Edit '.' : '.$admin->name)
+@section('innerTitle','Edit'.': '.$admin->name)
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[

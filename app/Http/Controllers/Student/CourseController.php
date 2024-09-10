@@ -315,6 +315,13 @@ class CourseController extends Controller {
                 $options[$row->admin_id]= $row->name.' '.$row->last_name;
          }
 
+         $label = [];
+         $data = DB::table('users')
+                ->select('name')
+                ->get();
+                foreach ($data as $user) {
+                    $label[] = $user->name; // Masukkan setiap 'name' ke dalam array $label
+                }
 
         $form->createSelect('admin_id[]',__lang('Recipients (Admins/Instructors)'),$options,true);
         $form->get('admin_id[]')->setAttribute('multiple','multiple');
@@ -357,6 +364,7 @@ class CourseController extends Controller {
             'course'=>$course,
             'kategori_id'=>$kategori_id,
             'name' => $name,
+            'label' => $label,
         ];
 
         $output['customCrumbs'] = [
