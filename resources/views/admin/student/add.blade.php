@@ -113,17 +113,16 @@
 
 
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <div >
-                                                <label for="password1" class="control-label">{{ formLabel($form->get('picture')) }}</label>
-                                            </div>
-                                            <div >
-
-                                                {{ formElement($form->get('picture')) }} <p class="help-block">{{ formElementErrors($form->get('picture')) }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="password1" class="control-label">Jabatan</label>
+										</div>
+										<div >
+										 {{ formElement($form->get('jabatan')) }}   <p class="help-block">{{ formElementErrors($form->get('jabatan')) }}</p>
+										</div>
+									</div>
+								</div>
 
 
 
@@ -147,6 +146,18 @@
 
 											{{ formElement($form->get('image')) }} <p class="help-block">{{ formElementErrors($form->get('image')) }}</p>
 											{{-- <input type="file" name="image[]" id="image" multiple> --}}
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="password1" class="control-label">{{ formLabel($form->get('picture')) }}</label>
+										</div>
+										<div >
+
+											{{ formElement($form->get('picture')) }} <p class="help-block">{{ formElementErrors($form->get('picture')) }}</p>
 										</div>
 									</div>
 								</div>

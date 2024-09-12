@@ -73,9 +73,13 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   function getLabeledFaceDescriptions() {
-    const nama = document.getElementById('name').value;
-    const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
+    // const nama   = document.getElementById('name').value;
+    // const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
     // const labels = [nama];
+
+    var container = document.getElementById('data-container');
+    var labels = JSON.parse(container.getAttribute('data-label'));
+
     console.log("Getting labeled face descriptions...");
     return Promise.all(labels.map(async (label) => {
       const descriptions = [];
@@ -332,14 +336,26 @@ function calculateFaceWidth(landmarks) {
 
         const emotionEntries = Object.entries(percentages);
         // Hitung waktu yang telah berlalu
+        const akses = new Date();
         const endTime = Date.now();
         const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
         const lamaWaktu = document.getElementById("lamaWaktu");
+        //waktu akses
+        const day = String(akses.getDate()).padStart(2, '0');
+        const month = String(akses.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+        const year = akses.getFullYear();
+        const hours = String(akses.getHours()).padStart(2, '0');
+        const minutes = String(akses.getMinutes()).padStart(2, '0');
+        const seconds = String(akses.getSeconds()).padStart(2, '0');
+
+        const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        const waktuAkses = document.getElementById("waktuAkses");
         // Set combined data to hidden input in form
         const emotionInput = document.getElementById("emotionData");
         if (emotionInput && lamaWaktu) {
             emotionInput.value = JSON.stringify(emotionEntries);
             lamaWaktu.value = elapsedTimeInMinutes;
+            waktuAkses.value = formattedDate;
             // Submit the form
             // document.getElementById("emotionForm").submit();
             // hideElement("layout_content");

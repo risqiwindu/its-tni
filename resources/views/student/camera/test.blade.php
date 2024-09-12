@@ -80,6 +80,7 @@
     <script>
       var coba;
     </script>
+    <div id="data-container" data-label='@json($label)' hidden></div>
     <div id="loader"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
         <span class="loader"><span class="loader-inner"></span></span></div>

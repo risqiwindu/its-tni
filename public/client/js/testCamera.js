@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const requiredDetections = 10; // Number of detections needed for notification
     const oneMinute = 60000; 
     let faceDetected = false;
+    
+    
 
     console.log("Loading models...");
   
@@ -34,8 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function getLabeledFaceDescriptions() {
     //   const nama = document.getElementById('name').value;
-      const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
+      // const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
       // const labels = [nama];
+      var container = document.getElementById('data-container');
+      var labels = JSON.parse(container.getAttribute('data-label'));
+
       console.log("Getting labeled face descriptions...");
       return Promise.all(labels.map(async (label) => {
         const descriptions = [];
@@ -160,27 +165,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 //     }
                 //   }
                 // } 
-                if (sleepy) {
-                  if (eyeClosureStart === null) {
-                    eyeClosureStart = Date.now(); // Start tracking when eyes are closed
-                  } else {
-                    const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
-                    if (elapsedTime >= 5) { // 5 seconds threshold
-                      if (!isCurrentlySleepy) {
-                        emotionData.sleepy++;
-                        isCurrentlySleepy = true;
-                        showNotificationAndPlayVideo();
-                      }
-                    }
-                  }
-                }
-                else {
-                  eyeClosureStart = null;
-                  clearTimeout(eyeClosureTimeout);
-                  eyeClosureTimeout = null;
-                  lastSleepyTime = null;
-                  isCurrentlySleepy = false;
-                }
+                // if (sleepy) {
+                //   if (eyeClosureStart === null) {
+                //     eyeClosureStart = Date.now(); // Start tracking when eyes are closed
+                //   } else {
+                //     const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
+                //     if (elapsedTime >= 5) { // 5 seconds threshold
+                //       if (!isCurrentlySleepy) {
+                //         emotionData.sleepy++;
+                //         isCurrentlySleepy = true;
+                //         showNotificationAndPlayVideo();
+                //       }
+                //     }
+                //   }
+                // }
+                // else {
+                //   eyeClosureStart = null;
+                //   clearTimeout(eyeClosureTimeout);
+                //   eyeClosureTimeout = null;
+                //   lastSleepyTime = null;
+                //   isCurrentlySleepy = false;
+                // }
       
                 updateEmotionData(expressions);
       

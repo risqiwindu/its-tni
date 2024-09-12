@@ -73,10 +73,10 @@
                             <table id="emotionTable" class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th rowspan="2">ID Mahasiswa</th>
-                                        <th rowspan="2">Nama Mahasiswa</th>
+                                        <th rowspan="2">No</th>
                                         <th rowspan="2">Materi</th>
                                         <th rowspan="2">Lama Siswa Mengakses Materi</th>
+                                        <th rowspan="2">Waktu Akses</th>
                                         <th colspan="3" class="text-center">Kesimpulan</th>
                                         <th colspan="2" rowspan="2" class="text-center">Detail</th>
                                     </tr>
@@ -87,12 +87,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $no = 0;
+                                    @endphp
                                     @foreach ($emosi as $studentData)
                                     <tr>
-                                        <td>{{ $studentData['student_id'] }}</td>
-                                        <td>{{ $studentData['name'] }}</td>
+                                        <td>{{ $no = $no + 1; }}</td>
                                         <td>{{ $studentData['lecture_title'] }}</td>
                                         <td>{{ $studentData['lama'] }}</td>
+                                        <td>{{ $studentData['tanggal'] }}</td>
                                         <td>{{ $studentData['average'] }}</td>
                                         <td>{{ $studentData['highestEmotion'] }}</td>
                                         <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
@@ -125,12 +128,14 @@
                                     <tr>
                                         <td>
                                             @foreach ($akhir_emosi['emotion_averages'] as $emotion => $average)
-                                            <li>{{ ucfirst($emotion) }}: {{ number_format($average, 2) }}%</li>
+                                                @if($average > 0)
+                                                <li>{{ ucfirst($emotion) }}: {{ number_format($average, 2) }}%</li>
+                                                @endif
                                             @endforeach
                                     </td>
                                         <td>{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
                                         <td>{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
-                                        <td>
+                                        <td class="text-center">
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#akhir_emosi">Lihat Grafik</button>
                                         </td>
                                     </tr>
@@ -263,7 +268,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Ambil data dari variabel akhir_emosi
             const emotionAverages = @json($akhir_emosi['emotion_averages']);
@@ -316,6 +321,85 @@
             document.getElementById('highestEmotion').innerText = 'Highest Emotion: ' + highestEmotion + ' (' + highestPercentage.toFixed(2) + '%)';
             document.getElementById('sleepyPercentage').innerText = 'Sleepy Percentage: ' + sleepyPercentage.toFixed(2) + '%';
         });
+    </script> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('emosiChart').getContext('2d');
+            // Ambil data dari Blade
+        const emotionsData = @json($coba);
+        const labels = [];
+        const datasets = [];
+
+        // Siapkan dataset untuk setiap emosi
+        for (const [emotion, values] of Object.entries(emotionsData)) {
+            const data = [];
+            const combinedLabels = [];
+            values.forEach(entry => {
+                const combinedLabel = `${entry.date} - ${entry.materi}`; // Gabungkan tanggal dan materi
+                combinedLabels.push(combinedLabel);
+                data.push(entry.value);
+            });
+
+            // Tambahkan label hanya sekali
+            if (labels.length === 0) {
+                labels.push(...combinedLabels);
+            }
+
+            datasets.push({
+                label: emotion.charAt(0).toUpperCase() + emotion.slice(1),
+                data: data,
+                borderColor: getRandomColor(),
+                backgroundColor: getRandomColor(0.2),
+                fill: false,
+                tension: 0.1 // Untuk garis yang lurus
+            });
+        }
+
+        function getRandomColor(alpha = 1) {
+            const r = Math.floor(Math.random() * 255);
+            const g = Math.floor(Math.random() * 255);
+            const b = Math.floor(Math.random() * 255);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels, // Label untuk sumbu X
+                datasets: datasets
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: labels,
+                        title: {
+                            display: true,
+                            text: 'Tanggal Materi'
+                        },
+                        ticks: {
+                        autoSkip: false, // Menampilkan semua label
+                        maxRotation: 45, // Rotasi label jika terlalu panjang
+                        minRotation: 45, // Rotasi minimum
+                    }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Persentase (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 
 class StudentController extends Controller
@@ -177,41 +178,22 @@ class StudentController extends Controller
                 $data = $form->getData();
 
                 if ($request->hasFile('image')) {
-                    // $directoryPath = 'public/client/labels/'.$data['name'];
-                    // mkdir($directoryPath, 0755, true);
-                    // $files = $request->file('image');
-                    // $no = 0;
-                    // $images=array();
-                    // foreach($files as $file){
-                    //     $name=$file->getClientOriginalName();
-                    //     $file->move($directoryPath, $name);
-                    //     $images[]=$name;
-                    // }
                     $image = $request->file('image');
-                    $originalFileName = 1 .'.'. $image->getClientOriginalExtension();
+                    $originalFileName1 = 1 .'.'. $image->getClientOriginalExtension();
+                    $originalFileName2 = 2 .'.'. $image->getClientOriginalExtension();
                     $directoryPath = 'client/labels/'.$data['name'];
                     if (!file_exists($directoryPath)) {
                         mkdir($directoryPath, 0755, true);
                     }
-                    $image->move(public_path($directoryPath), $originalFileName);
-                }
-
-    //             $filePaths = [];
-
-    // if($request->hasfile('image')) {
-    //     foreach($request->file('image') as $file) {
-    //         // Generate a unique name for the file
-    //         $name = time() . '_' . $file->getClientOriginalName();
-    //         $directoryPath = 'client/labels/'.$data['name'];
-    //         mkdir($directoryPath, 0755, true);
-    //         $originalFileName = $file->getClientOriginalName();
-    //         // Save the file to a specific directory (e.g., 'uploads/images/')
-    //         $filePath = $file->move(public_path($directoryPath), $originalFileName);
+                    $image->move(public_path($directoryPath), $originalFileName1);
+                    $sourcePath = public_path($directoryPath . '/' . $originalFileName1);
+                    $destinationPath = public_path($directoryPath . '/' . $originalFileName2);
             
-    //         // Optionally, you can also save the file path to the database
-    //         $filePaths[] = $filePath;
-    //     }
-    // }
+                    // Ensure the file exists before copying
+                    if (file_exists($sourcePath)) {
+                        copy($sourcePath, $destinationPath);
+                    }
+                }
 
                 $array = [
                     'first_name'=>$data['name'],
@@ -220,7 +202,8 @@ class StudentController extends Controller
                     'email'=>$data['email'],
                     'status'=>$data['status'],
                     'nim' => $data['nim'],
-                    'department' => $data['department']
+                    'department' => $data['department'],
+                    'jabatan' => $data['jabatan']
                 ];
 
                 $array[$studentsTable->getPrimary()]=0;
@@ -241,7 +224,8 @@ class StudentController extends Controller
                 $user->student()->create([
                     'mobile_number'=>$data['mobile_number'],
                     'nim'=>$data['nim'],
-                    'department'=>$data['department']
+                    'department'=>$data['department'],
+                    'jabatan' => $data['jabatan']
                 ]);
 
                 $studentId = $user->student->id;
@@ -309,8 +293,6 @@ class StudentController extends Controller
             }
             else{
                 $output['flash_message'] = $this->getFormErrors($form);
-
-
             }
 
         }
@@ -395,6 +377,9 @@ class StudentController extends Controller
                     'mobile_number'=>$data['mobile_number'],
                     'email'=>$data['email'],
                     'enabled'=>$data['status'],
+                    'nim' => $data['nim'],
+                    'department' => $data['department'],
+                    'jabatan' => $data['jabatan']
                 ];
 
 
@@ -585,8 +570,19 @@ class StudentController extends Controller
                 @unlink($student->user->picture);
             }
 
-            $directoryPath = 'client/labels/' . $student->user->name;
-            Storage::deleteDirectory($directoryPath);
+            // $directoryPath = 'client/labels/' . $student->user->name;
+            // Storage::deleteDirectory($directoryPath);
+
+            $name    = $student->user->name;
+            $directory = public_path('client/labels/'.$name); // Tentukan path direktori
+            if (File::isDirectory($directory)) {
+                $images = File::files($directory);
+                foreach ($images as $image) {
+                    File::delete($image->getPathname()); // Menampilkan nama file gambar
+            }
+            rmdir($directory);
+            }
+
             $student->user->delete();
         //    $table->deleteRecord($id);
             flashMessage(__lang('Record deleted'));
@@ -2918,6 +2914,7 @@ class StudentController extends Controller
             'users.name as name',
             'users.last_name as last_name',
             'student_emotion.lamaWaktu as lama', 
+            'students.nim as nim',
         )
         ->where('student_emotion.course_id', $course_id)
         ->get()
@@ -2928,6 +2925,7 @@ class StudentController extends Controller
         $course_name = $items->first()->course_name ?? '';
         $lama = $items->first()->lama ?? '';
         $name = $items->first()->name ?? '';
+        $nim = $items->first()->nim ?? '';
         $last_name = $items->first()->last_name ?? '';
         $course_id = $items->first()->course_id ?? '';
         return [
@@ -2935,7 +2933,8 @@ class StudentController extends Controller
             'course_name' => $course_name,
             'lama' => $lama.' Menit',
             'name' => $name.' '.$last_name,
-            'course_id' => $course_id
+            'course_id' => $course_id,
+            'nim' => $nim
         ];
     });
 
@@ -2958,7 +2957,8 @@ public function detail_emosi($student_id, $course_id) {
             'courses.name as course_name',
             'lectures.title as lecture_title',
             'users.name as name',
-            'student_emotion.lamaWaktu as lama'
+            'student_emotion.lamaWaktu as lama',
+            'student_emotion.updated_at as tanggal'
         )
         ->where('student_emotion.student_id', $student_id)
         ->where('student_emotion.course_id', $course_id)
@@ -3019,6 +3019,7 @@ public function detail_emosi($student_id, $course_id) {
             'lecture_id' => $item->lecture_id,
             'course_name' => $item->course_name,
             'lama' => $item->lama . ' Menit',
+            'tanggal' => $item->tanggal,
             'name' => $item->name,
             'lecture_title' => $item->lecture_title,
             'emotion' => rtrim($emotionString, '; '),
@@ -3088,6 +3089,24 @@ public function detail_emosi($student_id, $course_id) {
         'sleepy_percentage' => $sleepyPercentage
     ];
 
+    $emotionsData = [];
+
+    foreach ($hasil as $result) {
+        $emotions = json_decode($result->emotion);
+        $date = $result->tanggal;
+        $materi = $result->lecture_title;
+
+        foreach ($emotions as [$emotion, $percentage]) {
+            $value = floatval(rtrim($percentage, '%'));
+
+            if (!isset($emotionsData[$emotion])) {
+                $emotionsData[$emotion] = [];
+            }
+
+            $emotionsData[$emotion][] = ['date' => $date, 'value' => $value, 'materi' => $materi];
+        }
+    }
+
     $nama = DB::table('users')
             ->join('students', 'users.id', '=', 'students.user_id')
             ->select(
@@ -3097,11 +3116,39 @@ public function detail_emosi($student_id, $course_id) {
             )
             ->where('students.id', $student_id)
             ->first();
-
+    
     $nama_lengkap = $nama->name.' '. $nama->last_name;
-
-    return view('admin.hasil_emosi.detail', ['emosi' => $emosi, 'akhir_emosi' => $akhir_emosi, 'nama' => $nama_lengkap]);
+    $combinedData = $this->processEmotionData($hasil);
+    return view('admin.hasil_emosi.detail', ['emosi' => $emosi, 'akhir_emosi' => $akhir_emosi, 'nama' => $nama_lengkap, 'combinedData' => $combinedData, 'coba' => $emotionsData]);
     }
 
+    private function processEmotionData($results)
+    {
+        // Inisialisasi array untuk menyimpan data emosi
+        $emotionData = [];
+
+        // Mengisi data emosi
+        foreach ($results as $result) {
+            $emotion = $result->emotion;
+            $percentage = floatval(str_replace('%', '', $result->lama)); // Mengonversi persentase ke angka
+
+            if (!isset($emotionData[$emotion])) {
+                $emotionData[$emotion] = [0, 0]; // Inisialisasi dengan dua nilai
+            }
+            
+            // Update nilai berdasarkan tanggal atau kondisi lain jika perlu
+            // Misalnya, menggunakan lamaWaktu atau field lain untuk membedakan data
+            $emotionData[$emotion][0] = $percentage; // Data pertama
+            $emotionData[$emotion][1] = $percentage; // Data kedua (misalnya, bisa disesuaikan)
+        }
+
+        // Mengubah array emosi menjadi format yang diinginkan untuk Chart.js
+        $combinedArray = [];
+        foreach ($emotionData as $emotion => $values) {
+            $combinedArray[] = [$emotion, $values];
+        }
+
+        return $combinedArray;
+    }
 
 }

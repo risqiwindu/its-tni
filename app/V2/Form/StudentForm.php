@@ -71,6 +71,15 @@ class StudentForm extends BaseForm {
         'options'=>array('label'=>'department'),
 ));
 
+$this->add(array(
+    'name'=>'jabatan',
+    'attributes' => array(
+            'type'=>'text',
+            'class'=>'form-control ',
+    ),
+    'options'=>array('label'=>'jabatan'),
+));
+
 
     	$this->add(array(
     		'name'=>'email',
@@ -83,7 +92,7 @@ class StudentForm extends BaseForm {
     	));
 
         $file1 = new File('image');
-        $file1->setLabel('image train')
+        $file1->setLabel('Image Train')
             ->setAttribute('id','image');
         $this->add($file1);
 

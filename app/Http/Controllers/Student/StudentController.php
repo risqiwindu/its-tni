@@ -706,7 +706,7 @@ class StudentController extends Controller {
         ];
 
 
-            return viewModel('student',__CLASS__,__FUNCTION__,$output);
+            return viewModel('student',__CLASS__,__FUNCTION__,$output, compact('labels'));
 
 
 
@@ -1516,7 +1516,14 @@ if ($jawabanA > $jawabanB && $jawabanA > $jawabanC && $jawabanB > $jawabanC || $
 
     public function camera()
     {
-        return view('student.camera.test');
+        $data = DB::table('users')
+        ->select('name')
+        ->where('role_id', 2)
+        ->get()
+        ->pluck('name'); // Mengambil hanya kolom name sebagai array
+        $label = $data->toArray(); // Mengubah array menjadi JSON
+
+        return view('student.camera.test', ['label' => $label]);
     }
 
 }

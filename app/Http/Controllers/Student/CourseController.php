@@ -315,13 +315,12 @@ class CourseController extends Controller {
                 $options[$row->admin_id]= $row->name.' '.$row->last_name;
          }
 
-         $label = [];
          $data = DB::table('users')
-                ->select('name')
-                ->get();
-                foreach ($data as $user) {
-                    $label[] = $user->name; // Masukkan setiap 'name' ke dalam array $label
-                }
+         ->select('name')
+         ->where('role_id', 2)
+         ->get()
+         ->pluck('name'); // Mengambil hanya kolom name sebagai array
+         $label = $data->toArray();
 
         $form->createSelect('admin_id[]',__lang('Recipients (Admins/Instructors)'),$options,true);
         $form->get('admin_id[]')->setAttribute('multiple','multiple');
@@ -774,7 +773,8 @@ class CourseController extends Controller {
             $session = $request->post('course_id');
 
             $emotionData = $request->input('emotionData');
-            $lamaWaktu   = $request->input('lamaWaktu');    
+            $lamaWaktu   = $request->input('lamaWaktu');
+            $waktuAkses   = $request->input('waktuAkses');     
 
             if ($emotionData) {
                 $combinedData = json_decode($emotionData, true);
@@ -789,7 +789,8 @@ class CourseController extends Controller {
                 [
                     'emotion' => json_encode($combinedData),
                     'lamaWaktu' => $lamaWaktu, // Convert the array to JSON string
-                    'updated_at' => now()
+                    'updated_at' => now(),
+                    'waktu_akses' => $waktuAkses
                 ]);
             } else {
                 return redirect()->back()->withErrors('No emotion data received.');

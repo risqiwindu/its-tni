@@ -67,7 +67,7 @@
                         <tbody>
                             @foreach ($emosi as $studentData)
                             <tr>
-                                <td>{{ $studentData['student_id'] }}</td>
+                                <td>{{ $studentData['nim'] }}</td>
                                 <td>{{ $studentData['name'] }}</td>
                                 <td><a href="{{ route('admin.student.detail_emosi', ['student_id' => $studentData['student_id'], 'course_id' => $studentData['course_id']]) }}" class="btn btn-primary btn-block">
                                     Lihat</td>
