@@ -84,11 +84,11 @@ $this->add(array(
     	$this->add(array(
     		'name'=>'email',
     	    'attributes' => array(
-    	    'type'=>'email',
+    	    'type'=>'text',
     	    'class'=>'form-control ',
     	    		'required'=>'required',
     	        ),
-    	    'options'=>array('label'=>__lang('Email')),
+    	    'options'=>array('label'=>'NRP / NIP'),
     	));
 
         $file1 = new File('image');

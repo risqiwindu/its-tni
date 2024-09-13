@@ -545,7 +545,7 @@ Route::group(['namespace'=>'Site','middleware'=>'site'],function(){
         Route::get('/blog/{blogPost}/{slug?}','BlogController@post')->name('blog.post');
     });
 
-    Route::get('/courses','CatalogController@courses')->name('courses');
+    Route::get('/courses','CatalogController@course2')->name('courses');
     Route::get('/courses/{course}/{slug?}','CatalogController@course')->name('course');
     Route::get('/groupcourse','CatalogController@groupcourse')->name('groupcourse');
     Route::get('/sessions','CatalogController@sessions')->name('sessions');

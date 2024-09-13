@@ -223,7 +223,7 @@ class StudentController extends Controller
                 ]);
                 $user->student()->create([
                     'mobile_number'=>$data['mobile_number'],
-                    'nim'=>$data['nim'],
+                    'nim'=>$data['email'],
                     'department'=>$data['department'],
                     'jabatan' => $data['jabatan']
                 ]);
@@ -377,7 +377,7 @@ class StudentController extends Controller
                     'mobile_number'=>$data['mobile_number'],
                     'email'=>$data['email'],
                     'enabled'=>$data['status'],
-                    'nim' => $data['nim'],
+                    'nim' => $data['email'],
                     'department' => $data['department'],
                     'jabatan' => $data['jabatan']
                 ];

@@ -18,12 +18,10 @@
                     <form method="POST" action="{{ route('login') }}" class="needs-validation"   >
                         @csrf
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" class="form-control login-email @error('email') is-invalid @enderror"  name="email" tabindex="1"  value="{{ old('email') }}"   required autofocus autocomplete="email" >
+                            <label for="email">NRP / NIP</label>
+                            <input id="email" type="text" class="form-control login-email @error('email') is-invalid @enderror"  name="email" tabindex="1"  value="{{ old('email') }}"   required autofocus autocomplete="email" >
 
-                            <div class="invalid-feedback">
-                                {{ __lang('email-required') }}
-                            </div>
+                           
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

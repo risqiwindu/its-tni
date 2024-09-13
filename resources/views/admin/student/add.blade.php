@@ -47,7 +47,19 @@
 
 
 							<div class="row">
+
 								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="password1" class="control-label">NRP / NIP</label>
+										</div>
+										<div >
+										 {{ formElement($form->get('email')) }}   <p class="help-block">{{ formElementErrors($form->get('email')) }}</p>
+										</div>
+									</div>
+								</div>
+								
+								{{-- <div class="col-sm-6">
 									<div class="form-group">
 										<div >
 											<label for="nim" class="control-label">NIM</label>
@@ -56,7 +68,7 @@
 											{{ formElement($form->get('nim')) }}   <p class="help-block">{{ formElementErrors($form->get('nim')) }}</p>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 
 
@@ -92,27 +104,7 @@
 
 
                             <div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<div >
-											<label for="password1" class="control-label">Email</label>
-										</div>
-										<div >
-										 {{ formElement($form->get('email')) }}   <p class="help-block">{{ formElementErrors($form->get('email')) }}</p>
-										</div>
-									</div>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
+								
 								<div class="col-sm-6">
 									<div class="form-group">
 										<div >

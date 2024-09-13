@@ -165,6 +165,40 @@ class CatalogController extends Controller
 
     }
 
+    public function course2(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = DB::table('kuesioner_status')->where('user_id', $id)->first();
+        $kat = $user->course_category_id;
+        $group = json_decode($kat, true);
+        $filter = $request->query('filter');
+        $student = DB::table('students')->where('user_id', $id)->first();
+        $student_id = $student->id;
+        $student_course = StudentCourse::where('student_id', $student_id)->get();
+
+        $course = DB::table('courses')
+                ->join('course_course_category', 'courses.id', '=' ,'course_course_category.course_id')
+                ->join('course_categories', 'course_categories.id', '=' ,'course_course_category.course_category_id')
+                ->where('nama_materi', $filter)
+                ->whereIn('course_course_category.course_category_id', $group)
+                ->select(
+                    'courses.id',
+                    'courses.picture',
+                    'courses.name',
+                    'courses.nama_materi',
+                    'course_categories.name as nama_kategori'
+                )
+                ->get();
+
+                if(isStudent()){
+                    if (empty($user)) {
+                        return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dahulu untuk dapat melihat kelas!');
+                     } else{
+                        return view('site.catalog.courses',compact('course','student_course'));
+                     }
+                }
+    }
+
     public function sessions(Request $request){
         $table = new SessionTable();
         $studentSessionTable = new StudentSessionTable();

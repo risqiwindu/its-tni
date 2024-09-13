@@ -941,7 +941,6 @@ class SessionController extends Controller
             '#'=>__lang('Student Progress')
         ];
 
-        // Retrieve the data without grouping by student_id
         $hasil = DB::table('student_emotion')
         ->join('students', 'student_emotion.student_id', '=', 'students.id')
         ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
@@ -955,84 +954,89 @@ class SessionController extends Controller
             'courses.name as course_name',
             'lectures.title as lecture_title',
             'users.name as name',
-            'student_emotion.lamaWaktu as lama'
+            'student_emotion.lamaWaktu as lama',
+            'student_emotion.updated_at as tanggal'
         )
         ->where('student_emotion.student_id', $row->student_id)
         ->where('student_emotion.course_id', $row->course_id)
         ->get();
 
-        // Process each record individually
-        $emosi = $hasil->map(function ($item) {
-            $emotionData = json_decode($item->emotion, true);
-            $emotionString = '';
-            $totalPercentage = 0;
-            $highestEmotion = '';
-            $highestPercentage = 0;
-            $yawnPercentage = 0;
-            $sleepyPercentage = 0;
-            $combinedSleepyYawnPercentage = 0;
-    
-            if (is_array($emotionData)) {
-                foreach ($emotionData as $emotion) {
-                    if (is_array($emotion) && isset($emotion[0], $emotion[1])) {
-                        $percentage = floatval(rtrim($emotion[1], '%'));
-                        $totalPercentage += $percentage;
-                        
-                        // Cek apakah emosi ini adalah yang terbesar
-                        if ($percentage > $highestPercentage) {
-                            $highestPercentage = $percentage;
-                            $highestEmotion = $emotion[0];
-                        }
-    
-                        // Ambil persentase untuk yawning dan sleepy
-                        if ($emotion[0] === 'yawning') {
-                            $yawnPercentage = $percentage;
-                        } elseif ($emotion[0] === 'sleepy') {
-                            $sleepyPercentage = $percentage;
-                        }
-    
-                        if ($emotion[0] === 'yawning' || $emotion[0] === 'sleepy') {
-                            $combinedSleepyYawnPercentage += $percentage;
-                        }
-    
-                        // Gabungkan emosi dan persentasenya menjadi satu string
-                        $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
+    // Process each record individually
+    $emosi = $hasil->map(function ($item) {
+        $emotionData = json_decode($item->emotion, true);
+        $emotionString = '';
+        $totalPercentage = 0;
+        $highestEmotion = '';
+        $highestPercentage = 0;
+        $yawnPercentage = 0;
+        $sleepyPercentage = 0;
+        $combinedSleepyYawnPercentage = 0;
+        $validTotalPercentage = 0;
+        $validEmotionCount = 0;
+
+        if (is_array($emotionData)) {
+            foreach ($emotionData as $emotion) {
+                if (is_array($emotion) && isset($emotion[0], $emotion[1])) {
+                    $percentage = floatval(rtrim($emotion[1], '%'));
+                    $totalPercentage += $percentage;
+                    
+                    // Cek apakah emosi ini adalah yang terbesar
+                    if ($percentage > $highestPercentage) {
+                        $highestPercentage = $percentage;
+                        $highestEmotion = $emotion[0];
                     }
+
+                    // Ambil persentase untuk yawning dan sleepy
+                    if ($emotion[0] === 'yawning') {
+                        $yawnPercentage = $percentage;
+                    } elseif ($emotion[0] === 'sleepy') {
+                        $sleepyPercentage = $percentage;
+                    }
+
+                    if ($emotion[0] === 'yawning' || $emotion[0] === 'sleepy') {
+                        $combinedSleepyYawnPercentage += $percentage;
+                    }else{
+                        $validTotalPercentage += $percentage;
+                        $validEmotionCount++;
+                    }
+
+                    // Gabungkan emosi dan persentasenya menjadi satu string
+                    $emotionString .= $emotion[0] . ': ' . $emotion[1] . '; ';
                 }
-            } else {
-                $emotionString = 'Invalid emotion data';
             }
-    
-            // Hitung rata-rata emosi
-            $averagePercentage = $totalPercentage / count($emotionData);
-    
-            return [
-                'student_id' => $item->student_id,
-                'lecture_id' => $item->lecture_id,
-                'course_name' => $item->course_name,
-                'lama' => $item->lama . ' Menit',
-                'name' => $item->name,
-                'lecture_title' => $item->lecture_title,
-                'emotion' => rtrim($emotionString, '; '),
-                'emotion_encode' => $emotionData,
-                'average' => number_format($averagePercentage, 2) . '%',
-                'highestEmotion' => ucfirst($highestEmotion) . ' (' . number_format($highestPercentage, 2) . '%)',
-                'yawnPercentage' => number_format($yawnPercentage, 2) . '%',
-                'sleepyPercentage' => number_format($sleepyPercentage, 2) . '%',
-                'combinedSleepyYawnPercentage' => number_format($combinedSleepyYawnPercentage, 2) . '%',
-            ];
-        });
+        } else {
+            $emotionString = 'Invalid emotion data';
+        }
 
-        $output['emosi'] = $emosi;
+        // Hitung rata-rata emosi
+        $averagePercentage = $validEmotionCount > 0 ? $validTotalPercentage / $validEmotionCount : 0;
 
-        // Ambil data dari database
-        $emotionData = DB::table('student_emotion')
-                        ->where('student_id', $row->student_id)
-                        ->where('course_id', $row->course_id)
-                        ->pluck('emotion');
+        return [
+            'student_id' => $item->student_id,
+            'lecture_id' => $item->lecture_id,
+            'course_name' => $item->course_name,
+            'lama' => $item->lama . ' Menit',
+            'tanggal' => $item->tanggal,
+            'name' => $item->name,
+            'lecture_title' => $item->lecture_title,
+            'emotion' => rtrim($emotionString, '; '),
+            'emotion_encode' => $emotionData,
+            'average' => number_format($averagePercentage, 2) . '%',
+            'highestEmotion' => ucfirst($highestEmotion) . ' (' . number_format($highestPercentage, 2) . '%)',
+            'yawnPercentage' => number_format($yawnPercentage, 2) . '%',
+            'sleepyPercentage' => number_format($sleepyPercentage, 2) . '%',
+            'combinedSleepyYawnPercentage' => number_format($combinedSleepyYawnPercentage, 2) . '%',
+        ];
+    });
 
-        // Array untuk menyimpan total emosi
-        $emotionTotals = [
+    // Ambil data dari database
+    $emotionData = DB::table('student_emotion')
+    ->where('student_id', $row->student_id)
+    ->where('course_id', $row->course_id)
+    ->pluck('emotion');
+
+    // Array untuk menyimpan total emosi
+    $emotionTotals = [
         'neutral' => 0,
         'happy' => 0,
         'sad' => 0,
@@ -1042,48 +1046,95 @@ class SessionController extends Controller
         'surprised' => 0,
         'yawning' => 0,
         'sleepy' => 0
-        ];
+    ];
 
-        // Hitung jumlah data
-        $dataCount = count($emotionData);
+    // Hitung jumlah data
+    $dataCount = count($emotionData);
 
-        // Loop melalui setiap data dan tambahkan ke total
-        foreach ($emotionData as $data) {
-            $emotions = json_decode($data, true);
-        
-            foreach ($emotions as $emotion) {
-                $emotionName = $emotion[0];
-                $emotionPercentage = floatval(rtrim($emotion[1], '%'));
-                $emotionTotals[$emotionName] += $emotionPercentage;
+    // Loop melalui setiap data dan tambahkan ke total
+    foreach ($emotionData as $data) {
+        $emotions = json_decode($data, true);
+
+        foreach ($emotions as $emotion) {
+            $emotionName = $emotion[0];
+            $emotionPercentage = floatval(rtrim($emotion[1], '%'));
+            $emotionTotals[$emotionName] += $emotionPercentage;
+        }
+    }
+
+    // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
+    $emotionAverages = [];
+    $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
+    $validDataCount = $dataCount;
+
+    foreach ($validEmotions as $emotion => $total) {
+        $emotionAverages[$emotion] = $total / $validDataCount;
+    }
+
+    // Cari emosi tertinggi
+    $highestEmotion = array_keys($emotionAverages, max($emotionAverages))[0];
+    $highestPercentage = max($emotionAverages);
+
+    // Persentase mengantuk (gabungan dari yawning dan sleepy)
+    $sleepyPercentage = ($emotionTotals['yawning'] + $emotionTotals['sleepy']) / $dataCount;
+
+    // Return hasil
+    $akhir_emosi = [
+        'emotion_averages' => $emotionAverages,
+        'highest_emotion' => $highestEmotion,
+        'highest_percentage' => $highestPercentage,
+        'sleepy_percentage' => $sleepyPercentage
+    ];
+
+    $emotionsData = [];
+
+    foreach ($hasil as $result) {
+        $emotions = json_decode($result->emotion);
+        $date = $result->tanggal;
+        $materi = $result->lecture_title;
+
+        foreach ($emotions as [$emotion, $percentage]) {
+            $value = floatval(rtrim($percentage, '%'));
+
+            if (!isset($emotionsData[$emotion])) {
+                $emotionsData[$emotion] = [];
             }
+
+            $emotionsData[$emotion][] = ['date' => $date, 'value' => $value, 'materi' => $materi];
+        }
+    }
+
+        $combinedData = $this->processEmotionData($hasil);
+        return view('admin.session.stats',$output, ['emosi' => $emosi, 'akhir_emosi' => $akhir_emosi,'combinedData' => $combinedData, 'coba' => $emotionsData]);
+    }
+
+    private function processEmotionData($results)
+    {
+        // Inisialisasi array untuk menyimpan data emosi
+        $emotionData = [];
+
+        // Mengisi data emosi
+        foreach ($results as $result) {
+            $emotion = $result->emotion;
+            $percentage = floatval(str_replace('%', '', $result->lama)); // Mengonversi persentase ke angka
+
+            if (!isset($emotionData[$emotion])) {
+                $emotionData[$emotion] = [0, 0]; // Inisialisasi dengan dua nilai
+            }
+            
+            // Update nilai berdasarkan tanggal atau kondisi lain jika perlu
+            // Misalnya, menggunakan lamaWaktu atau field lain untuk membedakan data
+            $emotionData[$emotion][0] = $percentage; // Data pertama
+            $emotionData[$emotion][1] = $percentage; // Data kedua (misalnya, bisa disesuaikan)
         }
 
-        // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
-        $emotionAverages = [];
-        $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
-        $validDataCount = $dataCount;
-
-        foreach ($validEmotions as $emotion => $total) {
-            $emotionAverages[$emotion] = $total / $validDataCount;
+        // Mengubah array emosi menjadi format yang diinginkan untuk Chart.js
+        $combinedArray = [];
+        foreach ($emotionData as $emotion => $values) {
+            $combinedArray[] = [$emotion, $values];
         }
 
-        // Cari emosi tertinggi
-        $highestEmotion = array_keys($emotionAverages, max($emotionAverages))[0];
-        $highestPercentage = max($emotionAverages);
-
-        // Persentase mengantuk (gabungan dari yawning dan sleepy)
-        $sleepyPercentage = ($emotionTotals['yawning'] + $emotionTotals['sleepy']) / $dataCount;
-
-        // Return hasil
-        $akhir_emosi = [
-            'emotion_averages' => $emotionAverages,
-            'highest_emotion' => $highestEmotion,
-            'highest_percentage' => $highestPercentage,
-            'sleepy_percentage' => $sleepyPercentage
-        ];
-
-        $output['akhir_emosi'] = $akhir_emosi;
-        return view('admin.session.stats',$output);
+        return $combinedArray;
     }
 
     public function tests(Request $request,$id){

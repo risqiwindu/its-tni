@@ -50,7 +50,7 @@
 
                 <div class="controls">
                     {{  formElement($form->get('email'))  }}
-                    <p class="help-block">{{  __lang('provide-email')  }}</p>
+                    <p class="help-block">NRP/NIP akan digunakan untuk login.</p>
                 </div>
             </div>
 

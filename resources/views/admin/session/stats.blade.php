@@ -270,57 +270,81 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Ambil data dari variabel akhir_emosi
-            const emotionAverages = @json($akhir_emosi['emotion_averages']);
-            const highestEmotion = @json($akhir_emosi['highest_emotion']);
-            const highestPercentage = @json($akhir_emosi['highest_percentage']);
-            const sleepyPercentage = @json($akhir_emosi['sleepy_percentage']);
-    
-            // Ambil label emosi dan persentase dari data akhir
-            const labels = Object.keys(emotionAverages); // Nama emosi (neutral, happy, sad, etc.)
-            const percentages = Object.values(emotionAverages); // Persentase rata-rata dari setiap emosi
-    
-            // Dapatkan konteks untuk canvas Chart.js
             const ctx = document.getElementById('emosiChart').getContext('2d');
-    
-            // Buat grafik menggunakan Chart.js
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels, // Labels adalah nama emosi
-                    datasets: [{
-                        label: 'Emotion Average Percentage',
-                        data: percentages, // Persentase rata-rata emosi
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna latar belakang
-                        borderColor: 'rgba(75, 192, 192, 1)', // Warna border
-                        borderWidth: 2, // Ketebalan border
-                        fill: false // Tidak mengisi area di bawah garis
-                    }]
-                },
-                options: {
+            // Ambil data dari Blade
+        const emotionsData = @json($coba);
+        const labels = [];
+        const datasets = [];
+
+        // Siapkan dataset untuk setiap emosi
+        for (const [emotion, values] of Object.entries(emotionsData)) {
+            const data = [];
+            const combinedLabels = [];
+            values.forEach(entry => {
+                const combinedLabel = `${entry.date} - ${entry.materi}`; // Gabungkan tanggal dan materi
+                combinedLabels.push(combinedLabel);
+                data.push(entry.value);
+            });
+
+            // Tambahkan label hanya sekali
+            if (labels.length === 0) {
+                labels.push(...combinedLabels);
+            }
+
+            datasets.push({
+                label: emotion.charAt(0).toUpperCase() + emotion.slice(1),
+                data: data,
+                borderColor: getRandomColor(),
+                backgroundColor: getRandomColor(0.2),
+                fill: false,
+                tension: 0.1 // Untuk garis yang lurus
+            });
+        }
+
+        function getRandomColor(alpha = 1) {
+            const r = Math.floor(Math.random() * 255);
+            const g = Math.floor(Math.random() * 255);
+            const b = Math.floor(Math.random() * 255);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels, // Label untuk sumbu X
+                datasets: datasets
+            },
+            options: {
                 scales: {
-                    y: {
-                        beginAtZero: true, // Mulai dari 0
-                        ticks: {
-                            callback: function(value) {
-                                return value.toFixed(2) + '%'; // Tampilkan 2 angka di belakang koma dan simbol persen
-                            }
-                        }
-                    }
-                },
-                    plugins: {
+                    x: {
+                        type: 'category',
+                        labels: labels,
                         title: {
                             display: true,
-                            text: 'Average Emotion and Sleepy Detection'
+                            text: 'Tanggal Materi'
+                        },
+                        ticks: {
+                        autoSkip: false, // Menampilkan semua label
+                        maxRotation: 45, // Rotasi label jika terlalu panjang
+                        minRotation: 45, // Rotasi minimum
+                    }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Persentase (%)'
                         }
                     }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
                 }
-            });
-    
-            // Menampilkan detail emosi tertinggi dan persentase mengantuk
-            document.getElementById('highestEmotion').innerText = 'Highest Emotion: ' + highestEmotion + ' (' + highestPercentage.toFixed(2) + '%)';
-            document.getElementById('sleepyPercentage').innerText = 'Sleepy Percentage: ' + sleepyPercentage.toFixed(2) + '%';
+            }
         });
+    });
     </script>
     
 

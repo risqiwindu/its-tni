@@ -175,7 +175,7 @@
                 <div id="step-2" class="container">
 
 
-                    {{-- <div class="row">
+                    <div class="row" hidden>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
@@ -199,7 +199,7 @@
                             </div>
                         </div>
 
-                    </div> --}}
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <div class="form-group">
                                 <div >
                                     <label for="enable_discussion" class="control-label">{{ __lang('enable-discussions') }}</label>
@@ -267,11 +267,11 @@
                                     <p class="help-block">{{ formElementErrors($form->get('enable_discussion')) }}</p>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                     </div>
 
-                    {{-- <div class="row">
+                    <div class="row" hidden>
 
 
                         <div class="col-md-6">
@@ -300,7 +300,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row" hidden>
 
 
 
@@ -329,7 +329,7 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" hidden>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div >
@@ -341,7 +341,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div> 
 
                 </div>
                 <div id="step-3">

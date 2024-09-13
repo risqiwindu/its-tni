@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 eyeClosureStart = Date.now(); // Start tracking when eyes are closed
               } else {
                 const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
-                if (elapsedTime >= 5) { // 5 seconds threshold
+                if (elapsedTime >= 15) { // 5 seconds threshold
                   if (!isCurrentlySleepy) {
                     emotionData.sleepy++;
                     isCurrentlySleepy = true;

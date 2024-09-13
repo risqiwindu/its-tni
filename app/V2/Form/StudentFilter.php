@@ -33,18 +33,18 @@ class StudentFilter extends InputFilter {
 				)
 		));
 
-        $this->add(array(
-				'name'       => 'email',
-				'required'   => false,
-				'validators' => array(
-						array(
-								'name'    => 'EmailAddress',
-								'options' => array(
-										'domain' => true,
-								),
-						),
-				),
-		));
+        // $this->add(array(
+		// 		'name'       => 'email',
+		// 		'required'   => false,
+		// 		'validators' => array(
+		// 				array(
+		// 						'name'    => 'EmailAddress',
+		// 						'options' => array(
+		// 								'domain' => true,
+		// 						),
+		// 				),
+		// 		),
+		// ));
 
 		$this->add(array(
 				'name'=>'status',
