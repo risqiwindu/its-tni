@@ -5,6 +5,21 @@
     class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2"
 @endsection
 @endif
+<style>
+    .password-wrapper {
+        position: relative;
+    }
+    .password-wrapper input {
+        padding-right: 40px; /* Space for the icon */
+    }
+    .password-wrapper .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 70%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+</style>
 @section('content')
 
     <div class="card card-primary">
@@ -29,7 +44,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group password-wrapper">
                             <div class="d-block">
                                 <label for="password" class="control-label">Password</label>
                                 <div class="float-right">
@@ -39,6 +54,7 @@
                                 </div>
                             </div>
                             <input id="password" type="password" class="form-control login-password @error('password') is-invalid @enderror" name="password" tabindex="2" required  autocomplete="current-password" >
+                            <i class="fa fa-eye toggle-password" onclick="togglePassword()"></i>
                             <div class="invalid-feedback">
                                 {{ __lang('fill-password') }}
                             </div>
@@ -117,5 +133,21 @@
     </div>
     @endif
 
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById('password');
+            var eyeIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 
 @endsection
