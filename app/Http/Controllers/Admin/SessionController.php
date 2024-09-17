@@ -125,7 +125,8 @@ class SessionController extends Controller
                     'enable_forum'=>$data['enable_forum'],
                     'capacity'=>$data['capacity'],
                     'enforce_capacity'=>$data['enforce_capacity'],
-                    'admin_id'=>$this->getAdmin()->admin->id
+                    'admin_id'=>$this->getAdmin()->admin->id,
+                    'nama_materi' => $data['session_name']
                 );
 
 

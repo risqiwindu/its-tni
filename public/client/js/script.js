@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var videoId = 'video' + coba;
   var player = videojs(videoId);
   var isVideoPlaying = false; // Variabel untuk melacak status pemutaran
-  let sleepyDetectionTimes = [];
-  let lastSleepyTime = null;
-  const detectionInterval = 6000; // 10 seconds in milliseconds
-  const requiredDetections = 10; // Number of detections needed for notification
-  const oneMinute = 60000;
 
   // ... kode Anda yang lain ...
   
@@ -29,19 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
       stopButton.disabled = true;
   });
   
-  function stopWebcam() {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-      video.srcObject = null; 
-      video.style.display = "none"; // Hide the video element
-      canvas.remove();
-      resetDetection();
-      analyzeEmotions();
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      }
-    }
-  }
 
   player.on('ended', () => {
     isVideoPlaying = false;
@@ -73,9 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   function getLabeledFaceDescriptions() {
-    // const nama   = document.getElementById('name').value;
-    // const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
-    // const labels = [nama];
 
     var container = document.getElementById('data-container');
     var labels = JSON.parse(container.getAttribute('data-label'));
@@ -156,9 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
           
           resizedDetections.forEach((detection) => {
             const { expressions, landmarks } = detection;
-            const faceWidth = calculateFaceWidth(landmarks);
             const yawning = isYawning(landmarks.getMouth());
-            // const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye(), faceWidth);
             const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
   
             if (yawning) {
@@ -166,33 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
               showNotificationAndPlayVideo();
             }
   
-            // if (sleepy) {
-            //   if (lastSleepyTime === null) {
-            //     lastSleepyTime = Date.now();
-            //   } else {
-            //     const elapsedTime = Date.now() - lastSleepyTime;
-            //     if (elapsedTime >= detectionInterval) {
-            //       // Add detection time to array
-            //       sleepyDetectionTimes.push(Date.now());
-            //       lastSleepyTime = Date.now(); // Reset detection start time
-          
-            //       // Check if we have 10 or more detections within the last minute
-            //       const oneMinuteAgo = Date.now() - oneMinute;
-            //       sleepyDetectionTimes = sleepyDetectionTimes.filter(time => time > oneMinuteAgo);
-
-            //       console.log('Detections in the last minute:', sleepyDetectionTimes.length);
-                  
-            //       if (sleepyDetectionTimes.length >= requiredDetections) {
-            //         if (!isCurrentlySleepy) {
-            //           emotionData.sleepy++;
-            //           isCurrentlySleepy = true;
-            //           showNotificationAndPlayVideo();
-            //           console.log('Sleepy detected continuously for 10 seconds, and notification criteria met');
-            //         }
-            //       }
-            //     }
-            //   }
-            // }
 
             if (sleepy) {
               if (eyeClosureStart === null) {
@@ -276,38 +226,6 @@ document.addEventListener("DOMContentLoaded", function() {
     )) / 2;
     return avgVerticalDistance / avgHorizontalDistance < 0.25;
   }
-
-//   function isSleepy(leftEye, rightEye, faceWidth) {
-//     const avgVerticalDistance = (faceapi.euclideanDistance(
-//       [leftEye[1].x, leftEye[1].y],
-//       [leftEye[5].x, leftEye[5].y]
-//     ) + faceapi.euclideanDistance(
-//       [rightEye[1].x, rightEye[1].y],
-//       [rightEye[5].x, rightEye[5].y]
-//     )) / 2;
-    
-//     const avgHorizontalDistance = (faceapi.euclideanDistance(
-//       [leftEye[0].x, leftEye[0].y],
-//       [leftEye[3].x, leftEye[3].y]
-//     ) + faceapi.euclideanDistance(
-//       [rightEye[0].x, rightEye[0].y],
-//       [rightEye[3].x, rightEye[3].y]
-//     )) / 2;
-
-//     // Normalize the distances based on face width
-//     const normalizedVerticalDistance = avgVerticalDistance / faceWidth;
-//     const normalizedHorizontalDistance = avgHorizontalDistance / faceWidth;
-
-//     return normalizedVerticalDistance / normalizedHorizontalDistance < 0.3;
-// }
-
-function calculateFaceWidth(landmarks) {
-  // Misalnya, kita gunakan jarak antara sudut mata sebagai faceWidth
-  const leftEyeInner = landmarks.getLeftEye()[0];
-  const rightEyeInner = landmarks.getRightEye()[0];
-  
-  return faceapi.euclideanDistance([leftEyeInner.x, leftEyeInner.y], [rightEyeInner.x, rightEyeInner.y]);
-}
 
   function updateEmotionData(expressions) {
     Object.keys(expressions).forEach((key) => {
@@ -480,6 +398,20 @@ function calculateFaceWidth(landmarks) {
       }, 60000);
       });
     });
+  }
+
+  function stopWebcam() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      video.srcObject = null; 
+      video.style.display = "none"; // Hide the video element
+      canvas.remove();
+      resetDetection();
+      analyzeEmotions();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    }
   }
 
   function displayResults(percentages) {

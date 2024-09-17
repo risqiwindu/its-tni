@@ -30,7 +30,7 @@
                 <div class="article-title" style="font-weight: bold">
                    {{ $row->name }}
                 </div>
-                <div class="article-details">Ini adalah kumpulan materi untuk kelas <span style="font-weight: bold">{{ $row->nama_materi }}</span></div>
+                <div class="article-details">Ini adalah kumpulan materi untuk kelas <span style="font-weight: bold">{{ $row->name }}</span></div>
 
                 <div class="article-footer">
 

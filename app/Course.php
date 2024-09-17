@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable = ['name','admin_id','enabled','start_date','end_date','enrollment_closes','capacity','payment_required','fee','description','venue','type','picture','enable_discussion','enable_chat','enforce_order','effort','length','short_description','introduction','enable_forum','enforce_capacity'];
+    protected $fillable = ['name','admin_id','enabled','start_date','end_date','enrollment_closes','capacity','payment_required','fee','description','venue','type','picture','enable_discussion','enable_chat','enforce_order','effort','length','short_description','introduction','enable_forum','enforce_capacity, nama_materi'];
 
     public function admin(){
         return $this->belongsTo(Admin::class);
