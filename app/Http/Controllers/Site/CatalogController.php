@@ -372,6 +372,7 @@ class CatalogController extends Controller
     {
         $course = DB::table('courses')
                 ->groupBy('nama_materi')
+                ->where('enabled', 1)
                 ->get();
         $id = Auth::user()->id;
         $user = DB::table('kuesioner_status')->where('user_id', $id)->first();

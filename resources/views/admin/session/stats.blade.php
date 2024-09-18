@@ -27,9 +27,9 @@
                 </li>
                 <li class="nav-item"><a class="nav-link"  href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{ __lang('test-results') }}</a>
                 </li>
-                <li class="nav-item"><a class="nav-link"  href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Emosi Belajar</a>
+                <li class="nav-item"><a class="nav-link"  href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Ekspresi Belajar</a>
                 </li>
-                <li class="nav-item"><a class="nav-link"  href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Emosi Belajar</a>
+                <li class="nav-item"><a class="nav-link"  href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Ekspresi Belajar</a>
                 </li>
 
             </ul>
@@ -78,37 +78,40 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane table-responsive" id="tab_content3" aria-labelledby="profile-tab">
-                    <table class="table table-striped">
+                    @php
+                        $no = 0;
+                    @endphp
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
-                                <th rowspan="2">ID Mahasiswa</th>
-                                <th rowspan="2">Nama Mahasiswa</th>
+                                <th rowspan="2">No</th>
                                 <th rowspan="2">Materi</th>
-                                <th rowspan="2">Lama Siswa Mengakses Materi</th>
-                                <th colspan="3" class="text-center">Kesimpulan</th>
+                                <th rowspan="2">Waktu Akses</th>
+                                <th rowspan="2">Lama Akses</th>
+                                <th colspan="2" class="text-center">Kesimpulan</th>
                                 <th colspan="2" rowspan="2" class="text-center">Detail</th>
                             </tr>
                             <tr>
-                                <th class="text-center">Rata Rata Emosi</th>
-                                <th class="text-center">Dominasi Emosi (Persentase)</th>
-                                <th class="text-center">Persentase Mengantuk</th>
+                                {{-- <th class="text-center">Rata Rata Emosi</th> --}}
+                                <th class="text-center">Dominasi Emosi (Persen)</th>
+                                <th class="text-center">Mengantuk (Persen)</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($emosi as $studentData)
                             <tr>
-                                <td>{{ $studentData['student_id'] }}</td>
-                                <td>{{ $studentData['name'] }}</td>
+                                <td>{{ $no = $no + 1 }}</td>
                                 <td>{{ $studentData['lecture_title'] }}</td>
+                                <td>{{ $studentData['tanggal'] }}</td>
                                 <td>{{ $studentData['lama'] }}</td>
-                                <td>{{ $studentData['average'] }}</td>
+                                {{-- <td>{{ $studentData['average'] }}</td> --}}
                                 <td>{{ $studentData['highestEmotion'] }}</td>
                                 <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
-                                <td>
+                                {{-- <td>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
-                                </td>
+                                </td> --}}
                                 <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Emosi</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Ekspresi</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -136,9 +139,9 @@
                                     <li>{{ ucfirst($emotion) }}: {{ number_format($average, 2) }}%</li>
                                     @endforeach
                             </td>
-                                <td>{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
-                                <td>{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
-                                <td>
+                                <td class="text-center">{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
+                                <td class="text-center">{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
+                                <td class="text-center">
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#akhir_emosi">Lihat Grafik</button>
                                 </td>
                             </tr>

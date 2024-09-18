@@ -158,7 +158,7 @@
                                         @else
                                             <a class="dropdown-item has-icon" href="{{ route('admin.session.editcourse',['id'=>$row->id]) }}"><i class="fa fa-edit"></i> Edit</a>
                                             <a class="dropdown-item has-icon" href="{{ route('admin.session.courseclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> Kelola Materi</a>
-                                            <a class="dropdown-item has-icon"  target="_blank" href="{{ route('admin.course.intro',['id'=>$row->id]) }}"><i class="fa fa-play"></i> Coba Kelas</a>
+                                            {{-- <a class="dropdown-item has-icon"  target="_blank" href="{{ route('admin.course.intro',['id'=>$row->id]) }}"><i class="fa fa-play"></i> Coba Kelas</a> --}}
                                         @endif
                                         <a class="dropdown-item has-icon" href="{{ route('admin.student.sessionstudents',['id'=>$row->id]) }}"><i class="fa fa-users"></i> Lihat Siswa</a>
 

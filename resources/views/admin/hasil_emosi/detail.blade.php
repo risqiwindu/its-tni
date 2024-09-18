@@ -48,6 +48,29 @@
     button:hover {
         background-color: #0056b3;
     }
+
+    .modal-fullscreen .modal-dialog {
+    max-width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+.modal-fullscreen .modal-content {
+    height: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.modal-fullscreen .modal-body {
+    height: calc(100% - 56px - 58px); /* 56px for header and 58px for footer */
+    overflow-y: auto;
+}
+
+.modal-fullscreen .modal-header, 
+.modal-fullscreen .modal-footer {
+    border: none;
+}
+
 </style>
 
 @section('content')
@@ -62,28 +85,28 @@
         
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-pills" role="tablist">
-                        <li class="nav-item"><a  class="nav-link active" href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Emosi Per-materi</a>
+                        <li class="nav-item"><a  class="nav-link active" href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Ekspresi Per-materi</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link"  href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Emosi</a>
+                        <li class="nav-item"><a class="nav-link"  href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Ekspresi</a>
                         </li>
         
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane table-responsive active in" id="tab_content1" aria-labelledby="home-tab">
-                            <table id="emotionTable" class="table table-hover">
+                            <table id="emotionTable" class="table table-hover text-center">
                                 <thead>
                                     <tr>
                                         <th rowspan="2">No</th>
                                         <th rowspan="2">Materi</th>
-                                        <th rowspan="2">Lama Siswa Mengakses Materi</th>
-                                        <th rowspan="2">Waktu Akses</th>
-                                        <th colspan="3" class="text-center">Kesimpulan</th>
+                                        <th rowspan="2">Tanggal Akses</th>
+                                        <th rowspan="2">Lama Akses</th>
+                                        <th colspan="2" class="text-center">Kesimpulan</th>
                                         <th colspan="2" rowspan="2" class="text-center">Detail</th>
                                     </tr>
                                     <tr>
-                                        <th class="text-center">Rata Rata Emosi</th>
-                                        <th class="text-center">Dominasi Emosi (Persentase)</th>
-                                        <th class="text-center">Persentase Mengantuk</th>
+                                        {{-- <th class="text-center">Rata Rata Emosi</th> --}}
+                                        <th class="text-center">Dominasi Ekspresi (Persen)</th>
+                                        <th class="text-center">Mengantuk (Persen)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,18 +115,18 @@
                                     @endphp
                                     @foreach ($emosi as $studentData)
                                     <tr>
-                                        <td>{{ $no = $no + 1; }}</td>
-                                        <td>{{ $studentData['lecture_title'] }}</td>
-                                        <td>{{ $studentData['lama'] }}</td>
-                                        <td>{{ $studentData['tanggal'] }}</td>
-                                        <td>{{ $studentData['average'] }}</td>
-                                        <td>{{ $studentData['highestEmotion'] }}</td>
-                                        <td>{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $no = $no + 1; }}</td>
+                                        <td class="text-center">{{ $studentData['lecture_title'] }}</td>
+                                        <td class="text-center">{{ $studentData['tanggal'] }}</td>
+                                        <td class="text-center">{{ $studentData['lama'] }}</td>
+                                        {{-- <td>{{ $studentData['average'] }}</td> --}}
+                                        <td class="text-center">{{ $studentData['highestEmotion'] }}</td>
+                                        <td class="text-center">{{ $studentData['combinedSleepyYawnPercentage'] }}</td>
+                                        {{-- <td>
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#modalChart{{ $studentData['lecture_id'] }}">Lihat Grafik</button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Emosi</button>
+                                        </td> --}}
+                                        <td class="text-center">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalDetails{{ $studentData['lecture_id'] }}">Lihat Detail Ekspresi</button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -119,9 +142,9 @@
                                         <th rowspan="2" class="text-center">Detail</th>
                                     </tr>
                                     <tr>
-                                        <th class="text-center">Rata Rata Emosi</th>
-                                        <th class="text-center">Dominasi Emosi (Persentase)</th>
-                                        <th class="text-center">Persentase Mengantuk</th>
+                                        <th class="text-center">Rata Rata Ekpresi (Persen)</th>
+                                        <th class="text-center">Dominasi Ekspresi (Persen)</th>
+                                        <th class="text-center">Mengantuk (Persen)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,8 +156,8 @@
                                                 @endif
                                             @endforeach
                                     </td>
-                                        <td>{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
-                                        <td>{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
+                                        <td class="text-center">{{ ucfirst($akhir_emosi['highest_emotion']) }} ({{ number_format($akhir_emosi['highest_percentage'], 2) }}%)</td>
+                                        <td class="text-center">{{ number_format($akhir_emosi['sleepy_percentage'], 2) }}%</td>
                                         <td class="text-center">
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#akhir_emosi">Lihat Grafik</button>
                                         </td>
@@ -249,7 +272,7 @@
         </script>
     @endforeach
 
-    <div class="modal fade" id="akhir_emosi" tabindex="-1" role="dialog" aria-labelledby="akhir_emosi" aria-hidden="true">
+    <div class="modal fade modal-fullscreen" id="akhir_emosi" tabindex="-1" role="dialog" aria-labelledby="akhir_emosi" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -325,82 +348,108 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('emosiChart').getContext('2d');
-            // Ambil data dari Blade
-        const emotionsData = @json($coba);
-        const labels = [];
-        const datasets = [];
-
-        // Siapkan dataset untuk setiap emosi
-        for (const [emotion, values] of Object.entries(emotionsData)) {
-            const data = [];
-            const combinedLabels = [];
-            values.forEach(entry => {
-                const combinedLabel = `${entry.date} - ${entry.materi}`; // Gabungkan tanggal dan materi
-                combinedLabels.push(combinedLabel);
-                data.push(entry.value);
-            });
-
-            // Tambahkan label hanya sekali
-            if (labels.length === 0) {
-                labels.push(...combinedLabels);
-            }
-
-            datasets.push({
-                label: emotion.charAt(0).toUpperCase() + emotion.slice(1),
-                data: data,
-                borderColor: getRandomColor(),
-                backgroundColor: getRandomColor(0.2),
-                fill: false,
-                tension: 0.1 // Untuk garis yang lurus
-            });
-        }
-
-        function getRandomColor(alpha = 1) {
-            const r = Math.floor(Math.random() * 255);
-            const g = Math.floor(Math.random() * 255);
-            const b = Math.floor(Math.random() * 255);
-            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-        }
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels, // Label untuk sumbu X
-                datasets: datasets
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'category',
-                        labels: labels,
-                        title: {
-                            display: true,
-                            text: 'Tanggal Materi'
-                        },
-                        ticks: {
-                        autoSkip: false, // Menampilkan semua label
-                        maxRotation: 45, // Rotasi label jika terlalu panjang
-                        minRotation: 45, // Rotasi minimum
+            let emosiChart; // Definisikan variabel untuk chart di luar event listener modal
+        
+            // Fungsi untuk membuat grafik
+            function createChart() {
+                const ctx = document.getElementById('emosiChart').getContext('2d');
+                const emotionsData = @json($coba);
+                const labels = [];
+                const datasets = [];
+        
+                // Siapkan dataset untuk setiap emosi
+                for (const [emotion, values] of Object.entries(emotionsData)) {
+                    const data = [];
+                    const combinedLabels = [];
+                    values.forEach(entry => {
+                        const combinedLabel = `${entry.materi}`; // Gabungkan tanggal dan materi
+                        combinedLabels.push(combinedLabel);
+                        data.push(entry.value);
+                    });
+        
+                    // Tambahkan label hanya sekali
+                    if (labels.length === 0) {
+                        labels.push(...combinedLabels);
                     }
+        
+                    datasets.push({
+                        label: emotion.charAt(0).toUpperCase() + emotion.slice(1),
+                        data: data,
+                        borderColor: getRandomColor(),
+                        backgroundColor: getRandomColor(0.2),
+                        fill: false,
+                        tension: 0.1 // Untuk garis yang lurus
+                    });
+                }
+        
+                function getRandomColor(alpha = 1) {
+                    const r = Math.floor(Math.random() * 255);
+                    const g = Math.floor(Math.random() * 255);
+                    const b = Math.floor(Math.random() * 255);
+                    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                }
+    
+                if (emosiChart) {
+                    emosiChart.destroy(); // Hancurkan chart lama jika sudah ada
+                }
+        
+                emosiChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels, // Label untuk sumbu X
+                        datasets: datasets
                     },
-                    y: {
+                    options: {
+                        scales: {
+                            x: {
+                                type: 'category',
+                                labels: labels,
+                                title: {
+                                    display: true,
+                                    text: 'Tanggal dan Materi' // Label untuk sumbu X
+                                },
+                                ticks: {
+                                    autoSkip: false, // Menampilkan semua label
+                                    maxRotation: 45, // Rotasi label jika terlalu panjang
+                                    minRotation: 45 // Rotasi minimum
+                                }
+                            },
+                            y: {
                         beginAtZero: true,
                         title: {
-                            display: true,
-                            text: 'Persentase (%)'
+                            display: true,  // Pastikan title diaktifkan
+                            text: 'Tingkat Emosi dalam Persentase (%)',  // Label untuk sumbu Y
+                            font: {        // Atur font jika diperlukan
+                                size: 14,
+                                weight: 'bold',
+                                family: 'Arial'
+                            }
+                        },
+                        ticks: {
+                            stepSize: 10, // Mengatur skala y dalam kelipatan 10
+                            callback: function(value) {
+                                return value + '%';  // Menambahkan '%' di setiap nilai sumbu Y
+                            }
                         }
                     }
                 },
-                plugins: {
-                    legend: {
-                        display: true
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        }
                     }
-                }
+                });
             }
+    
+            // Tambahkan event listener saat modal ditampilkan
+            $('#akhir_emosi').on('shown.bs.modal', function () {
+                createChart(); // Buat grafik setelah modal dibuka
+            });
         });
-    });
     </script>
+    
+    
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

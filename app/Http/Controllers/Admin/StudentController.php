@@ -282,7 +282,7 @@ class StudentController extends Controller
                 $siteUrl = $this->getBaseUrl();
                 $message = __lang('new-account-mail',['firstName'=>$firstName,'studentPassword'=>$studentPassword,'senderName'=>$senderName,'siteUrl'=>$siteUrl,'recipientEmail'=>$recipientEmail]);
 
-                $this->sendEmail($recipientEmail,$title,$message);
+                // $this->sendEmail($recipientEmail,$title,$message);
 
                 return redirect()->route('admin.student.index');
 
