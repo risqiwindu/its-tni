@@ -92,7 +92,7 @@
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
                     <a href="{{ url('/') }}">
-                        {{ env('APP_NAME') }}
+                        ITS
                     </a>
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
@@ -146,7 +146,7 @@
                         </ul>
                     </li> --}}
                     @endcan
-                    <li ><a class="nav-link" href="@route('admin.student.kelas_emosi')"><i class="fas fa-users"></i><span>Emosi</span></a></li>
+                    <li ><a class="nav-link" href="@route('admin.student.kelas_emosi')"><i class="fas fa-users"></i><span>Ekspresi</span></a></li>
                     {{-- @can('access-group','classes')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher "></i><span>Materi</span></a>

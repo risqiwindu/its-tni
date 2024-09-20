@@ -8,9 +8,10 @@
                         <p class="lead">
                             Tes Gaya Belajar digunakan untuk mencari tipe belajar yang cocok untuk Anda apakah termasuk kedalam tipe Visual, Audio, atau Kinestetik.
                         </p>
+                        <a href="{{ route('student.student.test') }}" class="btn btn-primary btn-outline-light">Mulai Tes Sekarang</a>
                     </div>
                     <div class="col-12 col-lg-7 col-xl-8 py-xl-6" style="background-color: #097969">
-                        <div class="swiffy-slider h-80 slider-item-reveal slider-indicators-outside slider-indicators-round slider-nav-outside-expand slider-nav-visible slider-nav-animation slider-nav-animation-scale slider-item-first-visible slider-nav-autohide slider-nav-arrow slider-nav-dark" data-slider-nav-animation-threshold="0.4">
+                        <div class="swiffy-slider h-80 slider-item-reveal slider-indicators-outside slider-indicators-round slider-nav-outside-expand slider-nav-visible slider-nav-animation slider-nav-animation-scale slider-item-first-visible slider-nav-autohide slider-nav-arrow slider-nav-dark slider-nav-autoplay" data-slider-nav-animation-threshold="0.4" data-slider-nav-autoplay-interval="5000">
                             <ul class="slider-container text-dark py-4" tabindex="-1" style="outline: none;" id="swiffyBenefits">
                                 <li class="slide-visible">
                                     <div class="card border-0 h-100 shadow text-light"  style="background-color: #097969">
@@ -43,7 +44,7 @@
                                         <div class="card-body p-2 p-lg-3">
                                             <p class="card-text">Dalam pengisian tes ini tidak ada pilihan jawaban yang salah, maka jawablah sesuai dengan diri Anda saja</p>
                                         </div>
-                                        <a href="{{ route('student.student.test') }}" class="btn btn-outline-light">Mulai Sekarang</a>
+                                        
                                     </div>
                                 </li>
                             </ul>

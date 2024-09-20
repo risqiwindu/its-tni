@@ -1063,12 +1063,12 @@ class SessionController extends Controller
         }
     }
 
-    // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
+    // Hitung rata-rata setiap emosi 
     $emotionAverages = [];
-    $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
+    // $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
     $validDataCount = $dataCount;
 
-    foreach ($validEmotions as $emotion => $total) {
+    foreach ($emotionTotals as $emotion => $total) {
         $emotionAverages[$emotion] = $total / $validDataCount;
     }
 

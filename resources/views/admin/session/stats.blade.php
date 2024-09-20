@@ -27,9 +27,9 @@
                 </li>
                 <li class="nav-item"><a class="nav-link"  href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{ __lang('test-results') }}</a>
                 </li>
-                <li class="nav-item"><a class="nav-link"  href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Ekspresi Belajar</a>
+                <li class="nav-item"><a class="nav-link"  href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Evaluasi</a>
                 </li>
-                <li class="nav-item"><a class="nav-link"  href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Hasil Akhir Ekspresi Belajar</a>
+                <li class="nav-item"><a class="nav-link"  href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Kesimpulan</a>
                 </li>
 
             </ul>
@@ -86,14 +86,14 @@
                             <tr>
                                 <th rowspan="2">No</th>
                                 <th rowspan="2">Materi</th>
-                                <th rowspan="2">Waktu Akses</th>
+                                <th rowspan="2">Tanggal Akses</th>
                                 <th rowspan="2">Lama Akses</th>
                                 <th colspan="2" class="text-center">Kesimpulan</th>
                                 <th colspan="2" rowspan="2" class="text-center">Detail</th>
                             </tr>
                             <tr>
                                 {{-- <th class="text-center">Rata Rata Emosi</th> --}}
-                                <th class="text-center">Dominasi Emosi (Persen)</th>
+                                <th class="text-center">Dominasi Eskpresi (Persen)</th>
                                 <th class="text-center">Mengantuk (Persen)</th>
                             </tr>
                         </thead>
@@ -127,9 +127,9 @@
                                 <th rowspan="2" class="text-center">Detail</th>
                             </tr>
                             <tr>
-                                <th class="text-center">Rata Rata Emosi</th>
-                                <th class="text-center">Dominasi Emosi (Persentase)</th>
-                                <th class="text-center">Persentase Mengantuk</th>
+                                <th class="text-center">Rata Rata Ekspresi</th>
+                                <th class="text-center">Dominasi Ekpresi (Persen)</th>
+                                <th class="text-center">Mengantuk (Persen)</th>
                             </tr>
                         </thead>
                         <tbody>

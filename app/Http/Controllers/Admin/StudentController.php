@@ -3065,12 +3065,12 @@ public function detail_emosi($student_id, $course_id) {
         }
     }
 
-    // Hitung rata-rata setiap emosi kecuali yawning dan sleepy
+    // Hitung rata-rata setiap emosi 
     $emotionAverages = [];
-    $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy']));
+    // $validEmotions = array_diff_key($emotionTotals, array_flip(['yawning', 'sleepy'])); //kecuali yawning dan sleepy gunakan ini
     $validDataCount = $dataCount;
 
-    foreach ($validEmotions as $emotion => $total) {
+    foreach ($emotionTotals as $emotion => $total) {
         $emotionAverages[$emotion] = $total / $validDataCount;
     }
 

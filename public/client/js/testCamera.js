@@ -35,24 +35,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     function getLabeledFaceDescriptions() {
-    //   const nama = document.getElementById('name').value;
+      const nama = document.getElementById('name').value;
       // const labels = ["sandi", "bobi kurniawan", "armandino", "anisa", "fariz", "fuad", "zaidan", "airin", "anisa nur", "luiz", "zazeli", "ferdiansah", "sabila"];
-      // const labels = [nama];
-      var container = document.getElementById('data-container');
-      var labels = JSON.parse(container.getAttribute('data-label'));
+      const labels = [nama];
+      // var container = document.getElementById('data-container');
+      // var labels = JSON.parse(container.getAttribute('data-label'));
 
       console.log("Getting labeled face descriptions...");
       return Promise.all(labels.map(async (label) => {
         const descriptions = [];
         for (let i = 1; i <= 2; i++) {
           const img = await faceapi.fetchImage(`/its-tni/public/client/labels/${label}/${i}.jpg`);
-          const detections = await faceapi.detectSingleFace(img)
+          const detection = await faceapi.detectSingleFace(img)
             .withFaceLandmarks()
             .withFaceExpressions()
             .withAgeAndGender()
             .withFaceDescriptor();
-          if (detections) {
-            descriptions.push(detections.descriptor);
+          if (detection) {
+            descriptions.push(detection.descriptor);
           }
         }
         return new faceapi.LabeledFaceDescriptors(label, descriptions);
@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function initializeDetection(labeledDescriptors) {
       const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors);
       if (canvas) {
-            canvas.remove();
-        }
+        canvas.remove();
+      }
       canvas = faceapi.createCanvasFromMedia(video);
       document.getElementById("test").appendChild(canvas);
       const displaySize = { width: video.width, height: video.height };
@@ -111,104 +111,60 @@ document.addEventListener("DOMContentLoaded", function() {
             canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
             faceapi.draw.drawDetections(canvas, resizedDetections);
             
-            faceDetected = detections.length > 0; // Update faceDetected status
-
-            if (!faceDetected) {
-              // If no faces detected, check the time
-              if (!faceLostStartTime) {
-                faceLostStartTime = Date.now();
-              } else {
-                const elapsedTime = Date.now() - faceLostStartTime;
-                if (elapsedTime >= oneMinute) {
-                  showObjectLostNotification();
-                  faceLostStartTime = null; // Reset faceLostStartTime after notification
+            resizedDetections.forEach((detection) => {
+              const { expressions, landmarks } = detection;
+              const yawning = isYawning(landmarks.getMouth());
+              const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
+    
+              if (yawning) {
+                emotionData.yawning++;
+                showNotificationAndPlayVideo();
+              }
+    
+  
+              if (sleepy) {
+                if (eyeClosureStart === null) {
+                  eyeClosureStart = Date.now(); // Start tracking when eyes are closed
+                } else {
+                  const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
+                  if (elapsedTime >= 15) { // 5 seconds threshold
+                    if (!isCurrentlySleepy) {
+                      emotionData.sleepy++;
+                      isCurrentlySleepy = true;
+                      showNotificationAndPlayVideo();
+                    }
+                  }
                 }
               }
-            } else {
-              faceLostStartTime = null; // Reset faceLostStartTime if faces are detected
+              else {
+                eyeClosureStart = null;
+                clearTimeout(eyeClosureTimeout);
+                eyeClosureTimeout = null;
+                lastSleepyTime = null;
+                isCurrentlySleepy = false;
+              }
+    
+              updateEmotionData(expressions);
+    
+              const age = detection.age;
+              const maxEmotion = Object.keys(expressions).reduce((a, b) =>
+                expressions[a] > expressions[b] ? a : b
+              );
+              const result = faceMatcher.findBestMatch(detection.descriptor);
+              const displayName = result.toString();
+              const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
+                sleepy ? "Sleepy" : ""
+              }`;
+    
+              const box = detection.detection.box;
+              const anchor = { x: box.x, y: box.bottomRight.y };
+              new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
+            });
+    
+            if (detections.length > 0) {
+              loader.style.display = "none";
             }
-
-              resizedDetections.forEach((detection) => {
-                const { expressions, landmarks } = detection;
-                const yawning = isYawning(landmarks.getMouth());
-                const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
-      
-                if (yawning) {
-                  emotionData.yawning++;
-                  showNotificationAndPlayVideo();
-                }
-      
-                // if (sleepy) {
-                //   if (lastSleepyTime === null) {
-                //     lastSleepyTime = Date.now();
-                //   } else {
-                //     const elapsedTime = Date.now() - lastSleepyTime;
-                //     if (elapsedTime >= detectionInterval) {
-                //       // Add detection time to array
-                //       sleepyDetectionTimes.push(Date.now());
-                //       lastSleepyTime = Date.now(); // Reset detection start time
-              
-                //       // Check if we have 10 or more detections within the last minute
-                //       const oneMinuteAgo = Date.now() - oneMinute;
-                //       sleepyDetectionTimes = sleepyDetectionTimes.filter(time => time > oneMinuteAgo);
-
-                //       console.log('Detections in the last minute:', sleepyDetectionTimes.length);
-                      
-                //       if (sleepyDetectionTimes.length >= requiredDetections) {
-                //         if (!isCurrentlySleepy) {
-                //           emotionData.sleepy++;
-                //           isCurrentlySleepy = true;
-                //           showNotificationAndPlayVideo();
-                //           console.log('Sleepy detected continuously for 10 seconds, and notification criteria met');
-                //         }
-                //       }
-                //     }
-                //   }
-                // } 
-                // if (sleepy) {
-                //   if (eyeClosureStart === null) {
-                //     eyeClosureStart = Date.now(); // Start tracking when eyes are closed
-                //   } else {
-                //     const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
-                //     if (elapsedTime >= 5) { // 5 seconds threshold
-                //       if (!isCurrentlySleepy) {
-                //         emotionData.sleepy++;
-                //         isCurrentlySleepy = true;
-                //         showNotificationAndPlayVideo();
-                //       }
-                //     }
-                //   }
-                // }
-                // else {
-                //   eyeClosureStart = null;
-                //   clearTimeout(eyeClosureTimeout);
-                //   eyeClosureTimeout = null;
-                //   lastSleepyTime = null;
-                //   isCurrentlySleepy = false;
-                // }
-      
-                updateEmotionData(expressions);
-      
-                const age = detection.age;
-                const maxEmotion = Object.keys(expressions).reduce((a, b) =>
-                  expressions[a] > expressions[b] ? a : b
-                );
-                const result = faceMatcher.findBestMatch(detection.descriptor);
-                const displayName = result.toString();
-                const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
-                  sleepy ? "Sleepy" : ""
-                }`;
-      
-                const box = detection.detection.box;
-                const anchor = { x: box.x, y: box.bottomRight.y };
-                new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
-              });
-      
-              
-                loader.style.display = "none";
-              
-              requestAnimationFrame(processVideoFrame);
-            
+            requestAnimationFrame(processVideoFrame);
           })
           .catch((error) => {
             console.error("Error processing video frame:", error);

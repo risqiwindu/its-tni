@@ -1516,14 +1516,15 @@ if ($jawabanA > $jawabanB && $jawabanA > $jawabanC && $jawabanB > $jawabanC || $
 
     public function camera()
     {
-        $data = DB::table('users')
-        ->select('name')
-        ->where('role_id', 2)
-        ->get()
-        ->pluck('name'); // Mengambil hanya kolom name sebagai array
-        $label = $data->toArray(); // Mengubah array menjadi JSON
-
-        return view('student.camera.test', ['label' => $label]);
+        // $data = DB::table('users')
+        // ->select('name')
+        // ->where('role_id', 2)
+        // ->get()
+        // ->pluck('name'); // Mengambil hanya kolom name sebagai array
+        // $label = $data->toArray(); // Mengubah array menjadi JSON
+        
+        $name = Auth::user()->name;
+        return view('student.camera.test', ['name' => $name]);
     }
 
 }

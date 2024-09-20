@@ -126,12 +126,12 @@
 
         </div>
     </div>
-    @if($enableRegistration)
+    {{-- @if($enableRegistration)
 
     <div class="mt-5 text-muted text-center">
         {{ __lang('dont-have-account') }} <a href="{{ route('register') }}">Sign Up</a>
     </div>
-    @endif
+    @endif --}}
 
     <script>
         function togglePassword() {

@@ -25,11 +25,11 @@
             <thead>
             <tr>
 
-                <th>{{  __lang('Test')  }}</th>
-                <th>{{  __lang('Questions')  }}</th>
-                <th>{{  __lang('Minutes Allowed')  }}</th>
-                <th>{{  __lang('multiple-attempts-allowed')  }}</th>
-                <th>{{  __lang('passmark')  }}</th>
+                <th>Kuis/Ujian</th>
+                <th>Pertanyaan</th>
+                <th>Waktu Pengerjaan (Menit)</th>
+                <th>Beberapa Pecobaan</th>
+                <th>Kelulusan</th>
                 <th  >{{  __lang('Actions')  }}</th>
             </tr>
             </thead>

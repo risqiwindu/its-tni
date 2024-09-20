@@ -56,8 +56,11 @@ document.addEventListener("DOMContentLoaded", function() {
   
   function getLabeledFaceDescriptions() {
 
-    var container = document.getElementById('data-container');
-    var labels = JSON.parse(container.getAttribute('data-label'));
+    // var container = document.getElementById('data-container');
+    // var labels = JSON.parse(container.getAttribute('data-label'));
+
+    const nama = document.getElementById('name').value;
+    const labels = [nama];
 
     console.log("Getting labeled face descriptions...");
     return Promise.all(labels.map(async (label) => {

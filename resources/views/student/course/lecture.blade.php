@@ -560,7 +560,7 @@
                                                     
                                                 </script>
                                                 <input type="hidden" value="{{ $name }}" id="name">
-                                                <div id="data-container" data-label='@json($label)' hidden></div>
+                                                {{-- <div id="data-container" data-label='@json($label)' hidden></div> --}}
                                                 <div class="tab-content gallery">
                                                     @php  $count = 1;   @endphp
                                                     @php  foreach($pages as $page): @endphp
