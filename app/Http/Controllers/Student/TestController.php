@@ -67,7 +67,7 @@ class TestController extends Controller {
         $paginator->setItemCountPerPage(30);
         return viewModel('student',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
-            'pageTitle'=>__lang('Tests'),
+            'pageTitle'=>'Kuis / Ujian',
             'studentTest'=>$studentTestTable,
             'questionTable'=>$testQuestionTable,
             'id'=>$this->getId()

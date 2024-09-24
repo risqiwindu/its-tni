@@ -463,12 +463,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let averageEmotionPercentage = validEmotionCount > 0 ? validTotalPercentage / validEmotionCount : 0;
 
     document.getElementById("label").innerText = `
-      Hasil Deteksi Emosi :
-      Emosi Tertinggi (Persentase)          : ${highestEmotion} (${highestPercentage.toFixed(2)}%)
+      Hasil Deteksi Ekspresi :
+      Eskpresi Tertinggi (Persentase)          : ${highestEmotion} (${highestPercentage.toFixed(2)}%)
       Persentase Mengantuk                  : ${combinedSleepyYawnPercentage.toFixed(2)}%
-      Rata-rata Persentase Emosi Terdeteksi : ${averageEmotionPercentage.toFixed(2)}%
     `;
 
+    // Rata-rata Persentase Eskpresi Terdeteksi : ${averageEmotionPercentage.toFixed(2)}%
 }
 
 lanjut.addEventListener("click", () => {

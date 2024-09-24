@@ -47,7 +47,7 @@
         <div class="navbar-bg"></div>
         <nav class="navbar navbar-expand-lg main-navbar" style="margin-top: 15px">
             <a href="{{ url('/') }}" class="navbar-brand sidebar-gone-hide">{{ limitLength(setting('general_site_name'),17) }}</a>
-            <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
+            {{-- <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a> --}}
             <div class="nav-collapse">
                 <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
                     <i class="fas fa-ellipsis-v"></i>
@@ -86,7 +86,7 @@
 
                     @if(setting('menu_show_tests')==1)
                     <li class="nav-item">
-                        <a href="{{ route('student.test.index') }}" class="nav-link"><span>Tes</span></a>
+                        <a href="{{ route('student.test.index') }}" class="nav-link"><span>Kuis / Ujian</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tes</span></a>
