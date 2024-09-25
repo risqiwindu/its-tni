@@ -2960,7 +2960,7 @@ public function detail_emosi($student_id, $course_id) {
     ->join(
         DB::raw('(SELECT lecture_id, MAX(waktu_akses) AS latest_time 
                    FROM student_emotion 
-                   WHERE course_id = 11 AND student_id = 113 
+                   WHERE course_id = '.$course_id.' AND student_id = '.$student_id.' 
                    GROUP BY lecture_id) as latest'), 
         function($join) {
             $join->on('se.lecture_id', '=', 'latest.lecture_id')
@@ -2974,7 +2974,7 @@ public function detail_emosi($student_id, $course_id) {
     ->where('se.student_id', $student_id)
     ->orderBy('se.lecture_id')
     ->get();
-    
+
     // Process each record individually
     $emosi = $hasil->map(function ($item) {
         $emotionData = json_decode($item->emotion, true);

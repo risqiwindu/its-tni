@@ -958,7 +958,7 @@ class SessionController extends Controller
         ->join(
             DB::raw('(SELECT lecture_id, MAX(waktu_akses) AS latest_time 
                        FROM student_emotion 
-                       WHERE course_id = 11 AND student_id = 113 
+                       WHERE course_id = '.$row->course_id.' AND student_id = '.$row->student_id.' 
                        GROUP BY lecture_id) as latest'), 
             function($join) {
                 $join->on('se.lecture_id', '=', 'latest.lecture_id')
