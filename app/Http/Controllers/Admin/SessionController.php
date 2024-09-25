@@ -942,24 +942,35 @@ class SessionController extends Controller
             '#'=>__lang('Student Progress')
         ];
 
-        $hasil = DB::table('student_emotion')
-        ->join('students', 'student_emotion.student_id', '=', 'students.id')
-        ->join('courses', 'student_emotion.course_id', '=', 'courses.id')
-        ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
-        ->join('users', 'users.id', '=', 'students.user_id')
+        $hasil = DB::table('student_emotion as se')
         ->select(
-            'student_emotion.emotion', 
-            'student_emotion.course_id',
-            'student_emotion.lecture_id',
-            'student_emotion.student_id',
-            'courses.name as course_name',
-            'lectures.title as lecture_title',
-            'users.name as name',
-            'student_emotion.lamaWaktu as lama',
-            'student_emotion.updated_at as tanggal'
+            'se.waktu_akses', 
+            'se.lamaWaktu as lama', 
+            'se.lecture_id', 
+            'se.student_id', 
+            'se.emotion', 
+            'se.course_id', 
+            'courses.name as course_name', 
+            'lectures.title as lecture_title', 
+            'users.name as name', 
+            'se.updated_at as tanggal'
         )
-        ->where('student_emotion.student_id', $row->student_id)
-        ->where('student_emotion.course_id', $row->course_id)
+        ->join(
+            DB::raw('(SELECT lecture_id, MAX(waktu_akses) AS latest_time 
+                       FROM student_emotion 
+                       WHERE course_id = 11 AND student_id = 113 
+                       GROUP BY lecture_id) as latest'), 
+            function($join) {
+                $join->on('se.lecture_id', '=', 'latest.lecture_id')
+                     ->on('se.waktu_akses', '=', 'latest.latest_time');
+            }
+        )
+        ->join('courses', 'se.course_id', '=', 'courses.id')
+        ->join('lectures', 'se.lecture_id', '=', 'lectures.id')
+        ->join('users', 'se.student_id', '=', 'users.id')
+        ->where('se.course_id', $row->course_id)
+        ->where('se.student_id', $row->student_id)
+        ->orderBy('se.lecture_id')
         ->get();
 
     // Process each record individually

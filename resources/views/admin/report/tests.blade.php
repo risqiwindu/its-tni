@@ -15,8 +15,8 @@
     <div>
         <!-- Nav tabs -->
         <ul class="nav nav-pills" role="tablist">
-            <li   class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">{{__lang('overview')}}</a></li>
-            <li  class="nav-item"><a  class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">{{__lang('student-scores')}}</a></li>
+            <li   class="nav-item"><a class="nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">Kuis / Ujian</a></li>
+            <li  class="nav-item"><a  class="nav-link" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nilai</a></li>
             <li  class="nav-item"><a  class="nav-link" href="#cards" aria-controls="cards" role="tab" data-toggle="tab">{{__lang('report-cards')}}</a></li>
         </ul>
 
@@ -28,13 +28,13 @@
                     <tr>
                         <th>{{__lang('test')}}</th>
                         <th>{{__lang('questions')}}</th>
-                        <th>{{__lang('passmark')}}</th>
-                        <th>{{__lang('attempts')}}</th>
+                        {{-- <th>{{__lang('passmark')}}</th> --}}
+                        {{-- <th>{{__lang('attempts')}}</th> --}}
                         <th>{{__lang('created-by')}}</th>
                         <th>{{__lang('average-score')}}</th>
-                        <th>{{__lang('average-grade')}}</th>
-                        <th>{{__lang('total-passed')}}</th>
-                        <th>{{__lang('total-failed')}}</th>
+                        {{-- <th>{{__lang('average-grade')}}</th> --}}
+                        {{-- <th>{{__lang('total-passed')}}</th> --}}
+                        {{-- <th>{{__lang('total-failed')}}</th> --}}
                     </tr>
                     </thead>
                     <tbody>
@@ -44,13 +44,13 @@
                             <tr>
                                 <td>{{ $test->name }}</td>
                                 <td>{{ $test->testQuestions()->count() }}</td>
-                                <td>{{ $test->passmark }}%</td>
-                                <td>{{ $test->studentTests()->count() }}</td>
+                                {{-- <td>{{ $test->passmark }}%</td> --}}
+                                {{-- <td>{{ $test->studentTests()->count() }}</td> --}}
                                 <td>{{ $test->admin->user->name }} {{ $test->admin->user->last_name }}</td>
                                 <td>{{ round($test->studentTests()->avg('score'),1) }}</td>
-                                <td>{{ $testGradeTable->getGrade($test->studentTests()->avg('score')) }}</td>
-                                <td>{{ $test->studentTests()->where('score','>=',$test->passmark)->count() }}</td>
-                                <td>{{ $test->studentTests()->where('score','<',$test->passmark)->count() }}</td>
+                                {{-- <td>{{ $testGradeTable->getGrade($test->studentTests()->avg('score')) }}</td> --}}
+                                {{-- <td>{{ $test->studentTests()->where('score','>=',$test->passmark)->count() }}</td> --}}
+                                {{-- <td>{{ $test->studentTests()->where('score','<',$test->passmark)->count() }}</td> --}}
                             </tr>
                         @endif
                     @endforeach

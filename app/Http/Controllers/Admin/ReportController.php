@@ -158,8 +158,6 @@ class ReportController extends Controller
         }
         $this->data['totalSessionLessons'] = $totalLessons;
 
-
-
         $this->data['allTests'] = $this->getSessionTests($id);
         $this->data['controller'] = $this;
         $this->data['testGradeTable'] = new TestGradeTable();

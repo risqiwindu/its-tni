@@ -117,10 +117,10 @@
                                         <i class="fa fa-chart-bar"></i> {{ __lang('reports') }}
                                     </button>
                                     <ul class="dropdown-menu wide-btn float-right animation-slide" role="menu" style="text-align: left;">
-                                      <li><a class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'classes','id'=>$row->id])}}"><i class="fa fa-desktop"></i> {{ __lang('classes') }}</a></li>
-                                        <li><a  class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'students','id'=>$row->id])}}"><i class="fa fa-users"></i>  {{ __lang('students') }}</a></li>
-                                        <li><a class="dropdown-item"  href="{{adminUrl(['controller'=>'report','action'=>'tests','id'=>$row->id])}}"><i class="fa fa-check-circle"></i> {{ __lang('tests') }}</a></li>
-                                        <li><a  class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'homework','id'=>$row->id])}}"><i class="fa fa-edit"></i> {{ __lang('homework') }}</a></li>
+                                      <li><a class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'classes','id'=>$row->id])}}"><i class="fa fa-desktop"></i> Kelas</a></li>
+                                        <li><a  class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'students','id'=>$row->id])}}"><i class="fa fa-users"></i>  Siswa</a></li>
+                                        <li><a class="dropdown-item"  href="{{adminUrl(['controller'=>'report','action'=>'tests','id'=>$row->id])}}"><i class="fa fa-check-circle"></i> Kuis / Ujian</a></li>
+                                        <li><a  class="dropdown-item" href="{{adminUrl(['controller'=>'report','action'=>'homework','id'=>$row->id])}}"><i class="fa fa-edit"></i> Tugas</a></li>
 
                                     </ul>
                                 </div>

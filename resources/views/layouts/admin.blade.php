@@ -203,7 +203,7 @@
                     @endcan --}}
 
                     @can('access-group','tests')
-                        @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Tes</span></a></li>@endcan
+                        @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Kuis / Ujian</span></a></li>@endcan
                     @endcan
 
                     @can('access-group','reports')

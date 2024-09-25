@@ -15,11 +15,11 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item"><a class="nav-link active"  href="#home" aria-controls="home" role="tab" data-toggle="tab">{{__lang('Report')}}</a></li>
+            <li class="nav-item"><a class="nav-link active"  href="#home" aria-controls="home" role="tab" data-toggle="tab">Laporan</a></li>
             <li class="nav-item"><a class="nav-link"  href="#profile" aria-controls="profile" role="tab" data-toggle="tab">{{__lang('Totals')}}</a></li>
-            <li class="nav-item"><a class="nav-link"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab">{{__lang('Classes')}}</a></li>
-            <li class="nav-item"><a class="nav-link"  href="#settings" aria-controls="settings" role="tab" data-toggle="tab">{{__lang('Tests')}}</a></li>
-            <li class="nav-item"><a class="nav-link"  href="#homework" aria-controls="homework" role="tab" data-toggle="tab">{{__lang('Homework')}}</a></li>
+            <li class="nav-item"><a class="nav-link"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Materi</a></li>
+            <li class="nav-item"><a class="nav-link"  href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Kelas / Ujian</a></li>
+            <li class="nav-item"><a class="nav-link"  href="#homework" aria-controls="homework" role="tab" data-toggle="tab">Tugas</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -31,18 +31,18 @@
                     <tr>
                         <th>#</th>
                         <th>{{__lang('student-name')}}</th>
-                        <th>{{__lang('enrolled-on')}}</th>
-                        <th>{{__lang('classes-attended')}}</th>
-                        <th>{{__lang('progress')}}</th>
-                        <th>{{__lang('tests-taken')}}</th>
-                        <th>{{__lang('average-test-score')}}</th>
-                        <th>{{__lang('test-grade')}}</th>
-                        <th>{{__lang('homework-submitted')}}</th>
-                        <th>{{__lang('average-homework-score')}}</th>
-                        <th>{{__lang('homework-grade')}}</th>
-                        <th>{{__lang('instructor-chats')}}</th>
+                        <th>Enroll Kelas</th>
+                        <th>Kehadiran</th>
+                        <th>Total Akses Materi</th>
+                        <th>Kuis / Ujian Diikuti</th>
+                        <th>Skor Kuis / Ujian Rata-Rata</th>
+                        {{-- <th>{{__lang('test-grade')}}</th> --}}
+                        <th>Tugas</th>
+                        <th>Skor Tugas Rata-Rata</th>
+                        {{-- <th>{{__lang('homework-grade')}}</th> --}}
+                        {{-- <th>{{__lang('instructor-chats')}}</th>
                         <th>{{__lang('forum-topics')}}</th>
-                        <th>{{__lang('forum-posts')}}</th>
+                        <th>{{__lang('forum-posts')}}</th> --}}
                     </tr>
                     </thead>
                     <tbody>
@@ -68,13 +68,14 @@
                                 $attendance = $student->attendances()->where('course_id',$id)->count();
                                 @endphp
                                 <td>{{ $attendance }}</td>
+                                <td><button class="btn btn-primary">Lihat</button></td>
 
-                                <td>
+                                {{-- <td>
 
                                     @php
                                     echo round(($attendance/$totalSessionLessons)*100)
                                     @endphp%
-                                </td>
+                                </td> --}}
                                 @php
                                 $testStats = $controller->getStudentTestsStats($row->id);
                                 @endphp
@@ -84,9 +85,9 @@
                                 <td>
                                     {{ $testStats['average'] }}
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $testGradeTable->getGrade($testStats['average']) }}
-                                </td>
+                                </td> --}}
                                 @php
                                 $homeworkStats = $controller->getStudentAssignmentStats($row->id);
                                 @endphp
@@ -96,11 +97,11 @@
                                 <td>
                                     {{ $homeworkStats['average'] }}
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $testGradeTable->getGrade($homeworkStats['average']) }}
-                                </td>
+                                </td> --}}
 
-                                <td>
+                                {{-- <td>
                                     {{ $student->discussions()->where('course_id',$id)->count() }}
                                 </td>
                                 <td>
@@ -110,7 +111,7 @@
                                 </td>
                                 <td>
                                     {{ $controller->getStudentTotalPosts($row->id) }}
-                                </td>
+                                </td> --}}
 
 
                             </tr>
@@ -127,7 +128,7 @@
                         <td>{{ $session->studentCourses()->count() }}</td>
                     </tr>
                     <tr>
-                        <td>{{__lang('total-classes')}}:</td>
+                        <td>Total Materi:</td>
                         <td>{{ $session->lessons()->count() }}</td>
                     </tr>
                     <tr>
@@ -135,11 +136,11 @@
                         <td>{{ $attendanceTable->getTotalStudentsForSession($id) }}</td>
                     </tr>
                     <tr>
-                        <td>{{__lang('total-tests')}}:</td>
+                        <td>Kuis / Ujian Total:</td>
                         <td>{{ count($allTests) }}</td>
                     </tr>
                     <tr>
-                        <td>{{__lang('total-homework')}}:</td>
+                        <td>Tugas Total:</td>
                         <td>{{ $session->assignments()->count() }}</td>
                     </tr>
                 </table>

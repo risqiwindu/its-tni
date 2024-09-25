@@ -780,16 +780,12 @@ class CourseController extends Controller {
             if ($emotionData) {
                 $combinedData = json_decode($emotionData, true);
 
-                // Update if exists, or insert if not
-                DB::table('student_emotion')->updateOrInsert(
-                [
+                DB::table('student_emotion')->insert([
                     'course_id' => $session,
                     'lecture_id' => $lecture,
                     'student_id' => $this->getId(),
-                ],
-                [
                     'emotion' => json_encode($combinedData),
-                    'lamaWaktu' => $lamaWaktu, // Convert the array to JSON string
+                    'lamaWaktu' => $lamaWaktu, // Assuming this is an array, converting to JSON
                     'updated_at' => now(),
                     'waktu_akses' => $waktuAkses
                 ]);

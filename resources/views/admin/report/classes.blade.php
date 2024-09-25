@@ -29,12 +29,9 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>{{__lang('classes')}}</th>
-                        @if($session->type=='c')
-                            <th>{{__lang('lectures')}}</th>
-                        @endif
-                        <th>{{__lang('students-completed')}}</th>
-                        <th>{{__lang('completion-percentage')}}</th>
+                        <th>Materi</th>
+                        <th>Siswa Selesai</th>
+                        <th>Persentase Selesai</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,9 +39,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
-                            @if($session->type=='c')
-                                <td>{{ $row->lectures()->count() }}</td>
-                            @endif
                             @php
                             $totalAttended = $attendanceTable->getTotalStudentsForSessionAndLesson($session->session_id,$row->id);
                              @endphp
@@ -70,7 +64,7 @@
                         <td>{{ $session->studentCourses()->count() }}</td>
                     </tr>
                     <tr>
-                        <td>{{__lang('total-classes')}}:</td>
+                        <td>Total Materi:</td>
                         <td>{{ $session->lessons()->count() }}</td>
                     </tr>
                     <tr>
