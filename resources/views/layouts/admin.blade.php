@@ -246,6 +246,7 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i><span>{{ __lang('settings') }}</span></a>
                             <ul class="dropdown-menu">
+                                <li ><a class="nav-link" href="@route('admin.student.dataset')">Dataset</a></li>
                                 @can('access','edit_site_settings')<li ><a class="nav-link" href="@route('admin.setting.index')">{{ __lang('site-settings') }}</a></li>@endcan
                                @can('access','edit_registration_field')<li ><a class="nav-link" href="@route('admin.setting.fields')">{{ __lang('custom-student-fields') }}</a></li>@endcan
 

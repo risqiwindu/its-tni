@@ -3151,4 +3151,86 @@ public function detail_emosi($student_id, $course_id) {
         return $combinedArray;
     }
 
+    public function dataset()
+    {
+        $directories = File::directories(public_path('client/labels'));
+        $folders = array_map(function($dir) {
+            return basename($dir);
+        }, $directories);
+
+        return view('admin.dataset.index', compact('folders'));
+    }
+
+    public function show($folder)
+    {
+        $folderPath = public_path('client/labels/' . $folder);
+        $files = File::files($folderPath);
+        $images = array_map(function($file) {
+            return basename($file);
+        }, $files);
+
+        return view('admin.dataset.show', compact('folder', 'images'));
+    }
+
+    public function destroy($folder, $filename)
+    {
+        $filePath = public_path('client/labels/' . $folder . '/' . $filename);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+            return redirect()->route('admin.student.show', $folder)->with('success', 'File berhasil dihapus.');
+        }
+        return redirect()->route('admin.student.show', $folder)->with('error', 'File tidak ditemukan.');
+    }
+
+    public function upload(Request $request, $folder)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpeg,jpg,png,gif|max:2048', // Atur ukuran maksimal gambar
+        ]);
+    
+        // Path ke folder public/images/nama_folder
+        $folderPath = public_path('client/labels/' . $folder);
+    
+        // Jika folder tidak ada, buat folder tersebut
+        if (!File::exists($folderPath)) {
+            File::makeDirectory($folderPath, 0755, true); // Buat folder dengan permission yang sesuai
+        }
+    
+        // Ambil semua file yang ada di folder tersebut
+        $files = File::files($folderPath);
+    
+        // Ambil angka dari nama file yang ada
+        $existingNumbers = [];
+    
+        foreach ($files as $file) {
+            $fileName = pathinfo($file->getFilename(), PATHINFO_FILENAME); // Dapatkan nama file tanpa ekstensi
+            if (is_numeric($fileName)) {
+                $existingNumbers[] = (int)$fileName; // Simpan angka dari nama file
+            }
+        }
+    
+        // Cari angka pertama yang tidak digunakan mulai dari 1
+        $nextNumber = 1; // Mulai dari 1
+        sort($existingNumbers); // Urutkan angka secara ascending
+    
+        foreach ($existingNumbers as $number) {
+            if ($nextNumber == $number) {
+                $nextNumber++; // Jika nomor sudah ada, lanjutkan ke nomor berikutnya
+            } else {
+                break; // Jika nomor tidak ada, gunakan nomor ini
+            }
+        }
+    
+        // Tentukan ekstensi file
+        $extension = $request->file('image')->getClientOriginalExtension();
+    
+        // Buat nama file baru berdasarkan nomor yang tersedia
+        $newFileName = $nextNumber . '.' . $extension;
+    
+        // Simpan file ke folder public/images/nama_folder
+        $request->file('image')->move($folderPath, $newFileName);
+    
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Gambar berhasil diunggah dengan nama ' . $newFileName);
+    }
 }
