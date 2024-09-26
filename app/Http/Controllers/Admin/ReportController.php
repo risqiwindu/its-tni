@@ -162,7 +162,27 @@ class ReportController extends Controller
         $this->data['controller'] = $this;
         $this->data['testGradeTable'] = new TestGradeTable();
 
+
         return view('admin.report.students',$this->data);
+    }
+
+    public function countLecture(Request $request)
+    {
+        // Ambil parameter dari request
+        $course_id = $request->input('course_id');
+        $student_id = $request->input('student_id');
+
+        // Query untuk menghitung lecture_id berdasarkan course_id dan student_id
+        $results = DB::table('student_emotion')
+            ->join('lectures', 'student_emotion.lecture_id', '=', 'lectures.id')
+            ->select('student_emotion.lecture_id','lectures.title', DB::raw('COUNT(*) as total'))
+            ->where('student_emotion.course_id', $course_id)
+            ->where('student_emotion.student_id', $student_id)
+            ->groupBy('student_emotion.lecture_id')
+            ->get();
+        
+        // Mengembalikan hasil dalam format JSON
+        return response()->json($results);
     }
 
     public function tests(Request $request,$id){

@@ -1,0 +1,1220 @@
+[2024-09-26 02:53:31] local.ERROR: Undefined variable $studentData {"view":{"view":"C:\\xampp\\htdocs\\its-tni\\resources\\views\\admin\\report\\students.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1497909417 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2091</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1497909417\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","rowset":"<pre class=sf-dump id=sf-dump-688148561 data-indent-pad=\"  \"><span class=sf-dump-note>Laminas\\Db\\ResultSet\\ResultSet</span> {<a class=sf-dump-ref>#2137</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>113</span>
+    </samp>]
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-num>1</span>
+  #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Result
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Result</span> {<a class=sf-dump-ref>#2173</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">statementMode</span>: \"<span class=sf-dump-str title=\"7 characters\">forward</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">fetchMode</span>: <span class=sf-dump-num>2</span>
+    #<span class=sf-dump-protected title=\"Protected property\">resource</span>: <span class=sf-dump-note>PDOStatement</span> {<a class=sf-dump-ref>#2139</a><samp data-depth=3 class=sf-dump-compact>
+      +<span class=sf-dump-public title=\"Public property\">queryString</span>: \"<span class=sf-dump-str title=\"189 characters\">( SELECT DISTINCT(student_id) as id FROM `attendances` WHERE `course_id` = :where1 ) UNION ( SELECT DISTINCT(student_id) as id FROM `student_courses` WHERE `course_id` = :subselect1where1 )</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">options</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">currentComplete</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">currentData</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>113</span>
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+    #<span class=sf-dump-protected title=\"Protected property\">generatedValue</span>: \"<span class=sf-dump-str>0</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">rowCount</span>: <span class=sf-dump-num>1</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-num>1</span>
+  #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"5 characters\">array</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2132</a><samp data-depth=2 class=sf-dump-compact>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`ArrayObject`\">storage</span>: []
+    <span class=sf-dump-meta>flag::STD_PROP_LIST</span>: <span class=sf-dump-const>false</span>
+    <span class=sf-dump-meta>flag::ARRAY_AS_PROPS</span>: <span class=sf-dump-const>true</span>
+    <span class=sf-dump-meta>iteratorClass</span>: \"<span class=sf-dump-str title=\"13 characters\">ArrayIterator</span>\"
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-688148561\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","id":"<pre class=sf-dump id=sf-dump-1634903926 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"2 characters\">24</span>\"
+</pre><script>Sfdump(\"sf-dump-1634903926\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","pageTitle":"<pre class=sf-dump id=sf-dump-395462842 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"30 characters\">Laporan Siswa: Public Speaking</span>\"
+</pre><script>Sfdump(\"sf-dump-395462842\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","session":"<pre class=sf-dump id=sf-dump-731225491 data-indent-pad=\"  \"><span class=sf-dump-note>App\\Course</span> {<a class=sf-dump-ref>#2179</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"7 characters\">courses</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+  +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+  #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+  +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+  +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:26</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>24</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 01:40:18</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-20 06:30:36</span>\"
+    \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>admin_id</span>\" => <span class=sf-dump-num>2</span>
+    \"<span class=sf-dump-key>enabled</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>start_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>end_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>enrollment_closes</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 00:00:00</span>\"
+    \"<span class=sf-dump-key>capacity</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>payment_required</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>fee</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>description</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>venue</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>type</span>\" => \"<span class=sf-dump-str>c</span>\"
+    \"<span class=sf-dump-key>picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">usermedia/Cover_Kelas/speak.jpg</span>\"
+    \"<span class=sf-dump-key>enable_discussion</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enable_chat</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_order</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>effort</span>\" => \"<span class=sf-dump-str title=\"5 characters\">6 jam</span>\"
+    \"<span class=sf-dump-key>length</span>\" => \"<span class=sf-dump-str title=\"9 characters\">10 minggu</span>\"
+    \"<span class=sf-dump-key>short_description</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>introduction</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>enable_forum</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_capacity</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>nama_materi</span>\" => <span class=sf-dump-const>null</span>
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:26</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>24</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 01:40:18</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-20 06:30:36</span>\"
+    \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>admin_id</span>\" => <span class=sf-dump-num>2</span>
+    \"<span class=sf-dump-key>enabled</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>start_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>end_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>enrollment_closes</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 00:00:00</span>\"
+    \"<span class=sf-dump-key>capacity</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>payment_required</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>fee</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>description</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>venue</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>type</span>\" => \"<span class=sf-dump-str>c</span>\"
+    \"<span class=sf-dump-key>picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">usermedia/Cover_Kelas/speak.jpg</span>\"
+    \"<span class=sf-dump-key>enable_discussion</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enable_chat</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_order</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>effort</span>\" => \"<span class=sf-dump-str title=\"5 characters\">6 jam</span>\"
+    \"<span class=sf-dump-key>length</span>\" => \"<span class=sf-dump-str title=\"9 characters\">10 minggu</span>\"
+    \"<span class=sf-dump-key>short_description</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>introduction</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>enable_forum</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_capacity</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>nama_materi</span>\" => <span class=sf-dump-const>null</span>
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">casts</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">relations</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+  +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:22</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"4 characters\">name</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"8 characters\">admin_id</span>\"
+    <span class=sf-dump-index>2</span> => \"<span class=sf-dump-str title=\"7 characters\">enabled</span>\"
+    <span class=sf-dump-index>3</span> => \"<span class=sf-dump-str title=\"10 characters\">start_date</span>\"
+    <span class=sf-dump-index>4</span> => \"<span class=sf-dump-str title=\"8 characters\">end_date</span>\"
+    <span class=sf-dump-index>5</span> => \"<span class=sf-dump-str title=\"17 characters\">enrollment_closes</span>\"
+    <span class=sf-dump-index>6</span> => \"<span class=sf-dump-str title=\"8 characters\">capacity</span>\"
+    <span class=sf-dump-index>7</span> => \"<span class=sf-dump-str title=\"16 characters\">payment_required</span>\"
+    <span class=sf-dump-index>8</span> => \"<span class=sf-dump-str title=\"3 characters\">fee</span>\"
+    <span class=sf-dump-index>9</span> => \"<span class=sf-dump-str title=\"11 characters\">description</span>\"
+    <span class=sf-dump-index>10</span> => \"<span class=sf-dump-str title=\"5 characters\">venue</span>\"
+    <span class=sf-dump-index>11</span> => \"<span class=sf-dump-str title=\"4 characters\">type</span>\"
+    <span class=sf-dump-index>12</span> => \"<span class=sf-dump-str title=\"7 characters\">picture</span>\"
+    <span class=sf-dump-index>13</span> => \"<span class=sf-dump-str title=\"17 characters\">enable_discussion</span>\"
+    <span class=sf-dump-index>14</span> => \"<span class=sf-dump-str title=\"11 characters\">enable_chat</span>\"
+    <span class=sf-dump-index>15</span> => \"<span class=sf-dump-str title=\"13 characters\">enforce_order</span>\"
+    <span class=sf-dump-index>16</span> => \"<span class=sf-dump-str title=\"6 characters\">effort</span>\"
+    <span class=sf-dump-index>17</span> => \"<span class=sf-dump-str title=\"6 characters\">length</span>\"
+    <span class=sf-dump-index>18</span> => \"<span class=sf-dump-str title=\"17 characters\">short_description</span>\"
+    <span class=sf-dump-index>19</span> => \"<span class=sf-dump-str title=\"12 characters\">introduction</span>\"
+    <span class=sf-dump-index>20</span> => \"<span class=sf-dump-str title=\"12 characters\">enable_forum</span>\"
+    <span class=sf-dump-index>21</span> => \"<span class=sf-dump-str title=\"29 characters\">enforce_capacity, nama_materi</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str>*</span>\"
+  </samp>]
+</samp>}
+</pre><script>Sfdump(\"sf-dump-731225491\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attendanceTable":"<pre class=sf-dump id=sf-dump-1806794438 data-indent-pad=\"  \"><span class=sf-dump-note>App\\V2\\Model\\AttendanceTable</span> {<a class=sf-dump-ref>#2107</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+  +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22129 title=\"2 occurrences\">#2129</a><samp data-depth=2 id=sf-dump-1806794438-ref22129 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">isInitialized</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22112 title=\"4 occurrences\">#2112</a><samp data-depth=3 id=sf-dump-1806794438-ref22112 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">driver</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Pdo
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pdo</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22114 title=\"4 occurrences\">#2114</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">platform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Platform\\Mysql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Mysql</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22127 title=\"2 occurrences\">#2127</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">profiler</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">queryResultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2125</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">lastPreparedStatement</span>: <span class=sf-dump-const>null</span>
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">columns</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">featureSet</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\Feature\\FeatureSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway\\Feature</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>FeatureSet</span> {<a class=sf-dump-ref>#2130</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22129 title=\"2 occurrences\">#2129</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">features</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">magicSpecifications</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">resultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2131</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2132</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">sql</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Sql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Sql</span> {<a class=sf-dump-ref>#2133</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22112 title=\"4 occurrences\">#2112</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">sqlPlatform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Platform\\Platform
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Platform</span> {<a class=sf-dump-ref>#2134</a> &#8230;4}
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">lastInsertValue</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref21222 title=\"2 occurrences\">#1222</a><samp data-depth=2 id=sf-dump-1806794438-ref21222 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">abstractFactories</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">aliases</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">allowOverride</span>: <span class=sf-dump-const>false</span>
+    #<span class=sf-dump-protected title=\"Protected property\">creationContext</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref21222 title=\"2 occurrences\">#1222</a>}
+    #<span class=sf-dump-protected title=\"Protected property\">delegators</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">factories</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note>Closure($sm)</span> {<a class=sf-dump-ref>#1223</a> &#8230;3}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">initializers</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">lazyServices</span>: []
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">lazyServicesDelegator</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">services</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22112 title=\"4 occurrences\">#2112</a>}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">shared</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">sharedByDefault</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">configured</span>: <span class=sf-dump-const>true</span>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">cachedAbstractFactories</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1806794438-ref22112 title=\"4 occurrences\">#2112</a>}
+  #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1806794438\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","totalSessionLessons":"<pre class=sf-dump id=sf-dump-1511926494 data-indent-pad=\"  \"><span class=sf-dump-num>1</span>
+</pre><script>Sfdump(\"sf-dump-1511926494\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","allTests":"<pre class=sf-dump id=sf-dump-24364177 data-indent-pad=\"  \">[]
+</pre><script>Sfdump(\"sf-dump-24364177\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","controller":"<pre class=sf-dump id=sf-dump-288601194 data-indent-pad=\"  \"><span class=sf-dump-note>App\\Http\\Controllers\\Admin\\ReportController</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref21852 title=\"2 occurrences\">#1852</a><samp data-depth=1 id=sf-dump-288601194-ref21852 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">middleware</span>: []
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Http\\Controllers\\Admin\\ReportController`\">data</span>: <span class=sf-dump-note>array:9</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>rowset</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2137</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-num>1</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Result
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Result</span> {<a class=sf-dump-ref>#2173</a> &#8230;9}
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-num>1</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref22132 title=\"2 occurrences\">#2132</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"2 characters\">24</span>\"
+    \"<span class=sf-dump-key>pageTitle</span>\" => \"<span class=sf-dump-str title=\"30 characters\">Laporan Siswa: Public Speaking</span>\"
+    \"<span class=sf-dump-key>session</span>\" => <span class=sf-dump-note title=\"App\\Course
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Course</span> {<a class=sf-dump-ref>#2179</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"7 characters\">courses</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+      +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+      #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+      +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+      +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:26</span> [ &#8230;26]
+      #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:26</span> [ &#8230;26]
+      #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">casts</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">relations</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+      +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:22</span> [ &#8230;22]
+      #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+    </samp>}
+    \"<span class=sf-dump-key>attendanceTable</span>\" => <span class=sf-dump-note title=\"App\\V2\\Model\\AttendanceTable
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\V2\\Model</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>AttendanceTable</span> {<a class=sf-dump-ref>#2107</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+      +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref22129 title=\"2 occurrences\">#2129</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref21222 title=\"3 occurrences\">#1222</a> &#8230;14}
+      #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref22112 title=\"7 occurrences\">#2112</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+      #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+    </samp>}
+    \"<span class=sf-dump-key>totalSessionLessons</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>allTests</span>\" => []
+    \"<span class=sf-dump-key>controller</span>\" => <span class=sf-dump-note title=\"App\\Http\\Controllers\\Admin\\ReportController
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Http\\Controllers\\Admin</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ReportController</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref21852 title=\"2 occurrences\">#1852</a>}
+    \"<span class=sf-dump-key>testGradeTable</span>\" => <span class=sf-dump-note title=\"App\\V2\\Model\\TestGradeTable
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\V2\\Model</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TestGradeTable</span> {<a class=sf-dump-ref>#2180</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+      +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref22172 title=\"2 occurrences\">#2172</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref21222 title=\"3 occurrences\">#1222</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-288601194-ref22112 title=\"7 occurrences\">#2112</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+      #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+    </samp>}
+  </samp>]
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Http\\Controllers\\Admin\\ReportController`\">validationError</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-288601194\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","testGradeTable":"<pre class=sf-dump id=sf-dump-384591191 data-indent-pad=\"  \"><span class=sf-dump-note>App\\V2\\Model\\TestGradeTable</span> {<a class=sf-dump-ref>#2180</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+  +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22172 title=\"2 occurrences\">#2172</a><samp data-depth=2 id=sf-dump-384591191-ref22172 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">isInitialized</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22112 title=\"4 occurrences\">#2112</a><samp data-depth=3 id=sf-dump-384591191-ref22112 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">driver</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Pdo
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pdo</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22114 title=\"4 occurrences\">#2114</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">platform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Platform\\Mysql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Mysql</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22127 title=\"2 occurrences\">#2127</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">profiler</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">queryResultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2125</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">lastPreparedStatement</span>: <span class=sf-dump-const>null</span>
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">columns</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">featureSet</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\Feature\\FeatureSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway\\Feature</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>FeatureSet</span> {<a class=sf-dump-ref>#2171</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22172 title=\"2 occurrences\">#2172</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">features</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">magicSpecifications</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">resultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2176</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2183</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">sql</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Sql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Sql</span> {<a class=sf-dump-ref>#2177</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22112 title=\"4 occurrences\">#2112</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">sqlPlatform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Platform\\Platform
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Platform</span> {<a class=sf-dump-ref>#2175</a> &#8230;4}
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">lastInsertValue</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref21222 title=\"2 occurrences\">#1222</a><samp data-depth=2 id=sf-dump-384591191-ref21222 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">abstractFactories</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">aliases</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">allowOverride</span>: <span class=sf-dump-const>false</span>
+    #<span class=sf-dump-protected title=\"Protected property\">creationContext</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref21222 title=\"2 occurrences\">#1222</a>}
+    #<span class=sf-dump-protected title=\"Protected property\">delegators</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">factories</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note>Closure($sm)</span> {<a class=sf-dump-ref>#1223</a> &#8230;3}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">initializers</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">lazyServices</span>: []
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">lazyServicesDelegator</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">services</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22112 title=\"4 occurrences\">#2112</a>}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">shared</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">sharedByDefault</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">configured</span>: <span class=sf-dump-const>true</span>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">cachedAbstractFactories</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-384591191-ref22112 title=\"4 occurrences\">#2112</a>}
+  #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-384591191\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","userLayout":"<pre class=sf-dump id=sf-dump-2094994691 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"13 characters\">layouts.admin</span>\"
+</pre><script>Sfdump(\"sf-dump-2094994691\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Undefined variable $studentData at C:\\xampp\\htdocs\\its-tni\\resources\\views\\admin\\report\\students.blade.php:71)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(250): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 71)
+#1 C:\\xampp\\htdocs\\its-tni\\resources\\views\\admin\\report\\students.blade.php(71): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 71)
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('C:\\\\xampp\\\\htdocs...')
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#57 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#59 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Undefined variable $studentData at C:\\xampp\\htdocs\\its-tni\\storage\\framework\\views\\69a4c71ef0ed6ad6def5c45e29266d32.php:71)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(250): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 71)
+#1 C:\\xampp\\htdocs\\its-tni\\storage\\framework\\views\\69a4c71ef0ed6ad6def5c45e29266d32.php(71): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 71)
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('C:\\\\xampp\\\\htdocs...')
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#57 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#59 {main}
+"} 
+[2024-09-26 03:24:45] local.ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lms.nama_tabel' doesn't exist (Connection: mysql, SQL: select `lecture_id`, COUNT(*) as total from `nama_tabel` where `course_id` = {"id":24,"created_at":"2024-09-17T01:40:18.000000Z","updated_at":"2024-09-20T06:30:36.000000Z","name":"Public Speaking","admin_id":2,"enabled":1,"start_date":null,"end_date":null,"enrollment_closes":"2024-09-17 00:00:00","capacity":null,"payment_required":0,"fee":null,"description":"<p>Public Speaking<\/p>","venue":null,"type":"c","picture":"usermedia\/Cover_Kelas\/speak.jpg","enable_discussion":1,"enable_chat":1,"enforce_order":1,"effort":"6 jam","length":"10 minggu","short_description":"Public Speaking","introduction":"<p>Public Speaking<\/p>","enable_forum":1,"enforce_capacity":0,"nama_materi":null} and `student_id` = 24 group by `lecture_id`) {"userId":1,"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S02): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lms.nama_tabel' doesn't exist (Connection: mysql, SQL: select `lecture_id`, COUNT(*) as total from `nama_tabel` where `course_id` = {\"id\":24,\"created_at\":\"2024-09-17T01:40:18.000000Z\",\"updated_at\":\"2024-09-20T06:30:36.000000Z\",\"name\":\"Public Speaking\",\"admin_id\":2,\"enabled\":1,\"start_date\":null,\"end_date\":null,\"enrollment_closes\":\"2024-09-17 00:00:00\",\"capacity\":null,\"payment_required\":0,\"fee\":null,\"description\":\"<p>Public Speaking<\\/p>\",\"venue\":null,\"type\":\"c\",\"picture\":\"usermedia\\/Cover_Kelas\\/speak.jpg\",\"enable_discussion\":1,\"enable_chat\":1,\"enforce_order\":1,\"effort\":\"6 jam\",\"length\":\"10 minggu\",\"short_description\":\"Public Speaking\",\"introduction\":\"<p>Public Speaking<\\/p>\",\"enable_forum\":1,\"enforce_capacity\":0,\"nama_materi\":null} and `student_id` = 24 group by `lecture_id`) at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select `lecture...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(405): Illuminate\\Database\\Connection->run('select `lecture...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2718): Illuminate\\Database\\Connection->select('select `lecture...', Array, true)
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2707): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3247): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#6 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Controllers\\Admin\\ReportController.php(170): Illuminate\\Database\\Query\\Builder->get()
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\Admin\\ReportController->students(Object(Illuminate\\Http\\Request), '24')
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('students', Array)
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Admin\\ReportController), 'students')
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#57 {main}
+
+[previous exception] [object] (PDOException(code: 42S02): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lms.nama_tabel' doesn't exist at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:414)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): PDO->prepare('select `lecture...')
+#1 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select `lecture...', Array)
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select `lecture...', Array, Object(Closure))
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(405): Illuminate\\Database\\Connection->run('select `lecture...', Array, Object(Closure))
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2718): Illuminate\\Database\\Connection->select('select `lecture...', Array, true)
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2707): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3247): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Controllers\\Admin\\ReportController.php(170): Illuminate\\Database\\Query\\Builder->get()
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\Admin\\ReportController->students(Object(Illuminate\\Http\\Request), '24')
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('students', Array)
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Admin\\ReportController), 'students')
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#13 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#57 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#59 {main}
+"} 
+[2024-09-26 03:37:15] local.ERROR: Route [lecture.count] not defined. {"view":{"view":"C:\\xampp\\htdocs\\its-tni\\resources\\views\\admin\\report\\students.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1989111950 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#2092</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1989111950\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","rowset":"<pre class=sf-dump id=sf-dump-701268085 data-indent-pad=\"  \"><span class=sf-dump-note>Laminas\\Db\\ResultSet\\ResultSet</span> {<a class=sf-dump-ref>#2138</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>113</span>
+    </samp>]
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-num>1</span>
+  #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Result
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Result</span> {<a class=sf-dump-ref>#2174</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">statementMode</span>: \"<span class=sf-dump-str title=\"7 characters\">forward</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">fetchMode</span>: <span class=sf-dump-num>2</span>
+    #<span class=sf-dump-protected title=\"Protected property\">resource</span>: <span class=sf-dump-note>PDOStatement</span> {<a class=sf-dump-ref>#2140</a><samp data-depth=3 class=sf-dump-compact>
+      +<span class=sf-dump-public title=\"Public property\">queryString</span>: \"<span class=sf-dump-str title=\"189 characters\">( SELECT DISTINCT(student_id) as id FROM `attendances` WHERE `course_id` = :where1 ) UNION ( SELECT DISTINCT(student_id) as id FROM `student_courses` WHERE `course_id` = :subselect1where1 )</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">options</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">currentComplete</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">currentData</span>: <span class=sf-dump-const>false</span>
+    #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>1</span>
+    #<span class=sf-dump-protected title=\"Protected property\">generatedValue</span>: \"<span class=sf-dump-str>0</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">rowCount</span>: <span class=sf-dump-num>1</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-num>1</span>
+  #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>1</span>
+  #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"5 characters\">array</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2133</a><samp data-depth=2 class=sf-dump-compact>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`ArrayObject`\">storage</span>: []
+    <span class=sf-dump-meta>flag::STD_PROP_LIST</span>: <span class=sf-dump-const>false</span>
+    <span class=sf-dump-meta>flag::ARRAY_AS_PROPS</span>: <span class=sf-dump-const>true</span>
+    <span class=sf-dump-meta>iteratorClass</span>: \"<span class=sf-dump-str title=\"13 characters\">ArrayIterator</span>\"
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-701268085\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","id":"<pre class=sf-dump id=sf-dump-874309854 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"2 characters\">24</span>\"
+</pre><script>Sfdump(\"sf-dump-874309854\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","pageTitle":"<pre class=sf-dump id=sf-dump-1123170115 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"30 characters\">Laporan Siswa: Public Speaking</span>\"
+</pre><script>Sfdump(\"sf-dump-1123170115\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","session":"<pre class=sf-dump id=sf-dump-418061395 data-indent-pad=\"  \"><span class=sf-dump-note>App\\Course</span> {<a class=sf-dump-ref>#2180</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"7 characters\">courses</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+  +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+  #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+  +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+  +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:26</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>24</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 01:40:18</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-20 06:30:36</span>\"
+    \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>admin_id</span>\" => <span class=sf-dump-num>2</span>
+    \"<span class=sf-dump-key>enabled</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>start_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>end_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>enrollment_closes</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 00:00:00</span>\"
+    \"<span class=sf-dump-key>capacity</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>payment_required</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>fee</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>description</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>venue</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>type</span>\" => \"<span class=sf-dump-str>c</span>\"
+    \"<span class=sf-dump-key>picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">usermedia/Cover_Kelas/speak.jpg</span>\"
+    \"<span class=sf-dump-key>enable_discussion</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enable_chat</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_order</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>effort</span>\" => \"<span class=sf-dump-str title=\"5 characters\">6 jam</span>\"
+    \"<span class=sf-dump-key>length</span>\" => \"<span class=sf-dump-str title=\"9 characters\">10 minggu</span>\"
+    \"<span class=sf-dump-key>short_description</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>introduction</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>enable_forum</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_capacity</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>nama_materi</span>\" => <span class=sf-dump-const>null</span>
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:26</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>24</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 01:40:18</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-20 06:30:36</span>\"
+    \"<span class=sf-dump-key>name</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>admin_id</span>\" => <span class=sf-dump-num>2</span>
+    \"<span class=sf-dump-key>enabled</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>start_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>end_date</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>enrollment_closes</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-17 00:00:00</span>\"
+    \"<span class=sf-dump-key>capacity</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>payment_required</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>fee</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>description</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>venue</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>type</span>\" => \"<span class=sf-dump-str>c</span>\"
+    \"<span class=sf-dump-key>picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">usermedia/Cover_Kelas/speak.jpg</span>\"
+    \"<span class=sf-dump-key>enable_discussion</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enable_chat</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_order</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>effort</span>\" => \"<span class=sf-dump-str title=\"5 characters\">6 jam</span>\"
+    \"<span class=sf-dump-key>length</span>\" => \"<span class=sf-dump-str title=\"9 characters\">10 minggu</span>\"
+    \"<span class=sf-dump-key>short_description</span>\" => \"<span class=sf-dump-str title=\"15 characters\">Public Speaking</span>\"
+    \"<span class=sf-dump-key>introduction</span>\" => \"<span class=sf-dump-str title=\"22 characters\">&lt;p&gt;Public Speaking&lt;/p&gt;</span>\"
+    \"<span class=sf-dump-key>enable_forum</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>enforce_capacity</span>\" => <span class=sf-dump-num>0</span>
+    \"<span class=sf-dump-key>nama_materi</span>\" => <span class=sf-dump-const>null</span>
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">casts</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">relations</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>assignments</span>\" => <span class=sf-dump-note title=\"Illuminate\\Database\\Eloquent\\Collection
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Database\\Eloquent</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Collection</span> {<a class=sf-dump-ref>#2645</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">items</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+    </samp>}
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+  +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:22</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"4 characters\">name</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"8 characters\">admin_id</span>\"
+    <span class=sf-dump-index>2</span> => \"<span class=sf-dump-str title=\"7 characters\">enabled</span>\"
+    <span class=sf-dump-index>3</span> => \"<span class=sf-dump-str title=\"10 characters\">start_date</span>\"
+    <span class=sf-dump-index>4</span> => \"<span class=sf-dump-str title=\"8 characters\">end_date</span>\"
+    <span class=sf-dump-index>5</span> => \"<span class=sf-dump-str title=\"17 characters\">enrollment_closes</span>\"
+    <span class=sf-dump-index>6</span> => \"<span class=sf-dump-str title=\"8 characters\">capacity</span>\"
+    <span class=sf-dump-index>7</span> => \"<span class=sf-dump-str title=\"16 characters\">payment_required</span>\"
+    <span class=sf-dump-index>8</span> => \"<span class=sf-dump-str title=\"3 characters\">fee</span>\"
+    <span class=sf-dump-index>9</span> => \"<span class=sf-dump-str title=\"11 characters\">description</span>\"
+    <span class=sf-dump-index>10</span> => \"<span class=sf-dump-str title=\"5 characters\">venue</span>\"
+    <span class=sf-dump-index>11</span> => \"<span class=sf-dump-str title=\"4 characters\">type</span>\"
+    <span class=sf-dump-index>12</span> => \"<span class=sf-dump-str title=\"7 characters\">picture</span>\"
+    <span class=sf-dump-index>13</span> => \"<span class=sf-dump-str title=\"17 characters\">enable_discussion</span>\"
+    <span class=sf-dump-index>14</span> => \"<span class=sf-dump-str title=\"11 characters\">enable_chat</span>\"
+    <span class=sf-dump-index>15</span> => \"<span class=sf-dump-str title=\"13 characters\">enforce_order</span>\"
+    <span class=sf-dump-index>16</span> => \"<span class=sf-dump-str title=\"6 characters\">effort</span>\"
+    <span class=sf-dump-index>17</span> => \"<span class=sf-dump-str title=\"6 characters\">length</span>\"
+    <span class=sf-dump-index>18</span> => \"<span class=sf-dump-str title=\"17 characters\">short_description</span>\"
+    <span class=sf-dump-index>19</span> => \"<span class=sf-dump-str title=\"12 characters\">introduction</span>\"
+    <span class=sf-dump-index>20</span> => \"<span class=sf-dump-str title=\"12 characters\">enable_forum</span>\"
+    <span class=sf-dump-index>21</span> => \"<span class=sf-dump-str title=\"29 characters\">enforce_capacity, nama_materi</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str>*</span>\"
+  </samp>]
+</samp>}
+</pre><script>Sfdump(\"sf-dump-418061395\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attendanceTable":"<pre class=sf-dump id=sf-dump-1886749168 data-indent-pad=\"  \"><span class=sf-dump-note>App\\V2\\Model\\AttendanceTable</span> {<a class=sf-dump-ref>#2108</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+  +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22130 title=\"2 occurrences\">#2130</a><samp data-depth=2 id=sf-dump-1886749168-ref22130 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">isInitialized</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22113 title=\"4 occurrences\">#2113</a><samp data-depth=3 id=sf-dump-1886749168-ref22113 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">driver</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Pdo
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pdo</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22115 title=\"4 occurrences\">#2115</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">platform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Platform\\Mysql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Mysql</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22128 title=\"2 occurrences\">#2128</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">profiler</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">queryResultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2126</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">lastPreparedStatement</span>: <span class=sf-dump-const>null</span>
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">columns</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">featureSet</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\Feature\\FeatureSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway\\Feature</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>FeatureSet</span> {<a class=sf-dump-ref>#2131</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22130 title=\"2 occurrences\">#2130</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">features</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">magicSpecifications</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">resultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2132</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2133</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">sql</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Sql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Sql</span> {<a class=sf-dump-ref>#2134</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22113 title=\"4 occurrences\">#2113</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">sqlPlatform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Platform\\Platform
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Platform</span> {<a class=sf-dump-ref>#2135</a> &#8230;4}
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">lastInsertValue</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref21222 title=\"2 occurrences\">#1222</a><samp data-depth=2 id=sf-dump-1886749168-ref21222 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">abstractFactories</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">aliases</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">allowOverride</span>: <span class=sf-dump-const>false</span>
+    #<span class=sf-dump-protected title=\"Protected property\">creationContext</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref21222 title=\"2 occurrences\">#1222</a>}
+    #<span class=sf-dump-protected title=\"Protected property\">delegators</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">factories</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note>Closure($sm)</span> {<a class=sf-dump-ref>#1223</a> &#8230;3}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">initializers</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">lazyServices</span>: []
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">lazyServicesDelegator</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">services</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22113 title=\"4 occurrences\">#2113</a>}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">shared</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">sharedByDefault</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">configured</span>: <span class=sf-dump-const>true</span>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">cachedAbstractFactories</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-1886749168-ref22113 title=\"4 occurrences\">#2113</a>}
+  #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1886749168\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","totalSessionLessons":"<pre class=sf-dump id=sf-dump-1855438873 data-indent-pad=\"  \"><span class=sf-dump-num>1</span>
+</pre><script>Sfdump(\"sf-dump-1855438873\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","allTests":"<pre class=sf-dump id=sf-dump-1889193095 data-indent-pad=\"  \">[]
+</pre><script>Sfdump(\"sf-dump-1889193095\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","controller":"<pre class=sf-dump id=sf-dump-816261744 data-indent-pad=\"  \"><span class=sf-dump-note>App\\Http\\Controllers\\Admin\\ReportController</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref21853 title=\"2 occurrences\">#1853</a><samp data-depth=1 id=sf-dump-816261744-ref21853 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">middleware</span>: []
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Http\\Controllers\\Admin\\ReportController`\">data</span>: <span class=sf-dump-note>array:9</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>rowset</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2138</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-num>1</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Result
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Result</span> {<a class=sf-dump-ref>#2174</a> &#8230;9}
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-num>1</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>1</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref22133 title=\"2 occurrences\">#2133</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    \"<span class=sf-dump-key>id</span>\" => \"<span class=sf-dump-str title=\"2 characters\">24</span>\"
+    \"<span class=sf-dump-key>pageTitle</span>\" => \"<span class=sf-dump-str title=\"30 characters\">Laporan Siswa: Public Speaking</span>\"
+    \"<span class=sf-dump-key>session</span>\" => <span class=sf-dump-note title=\"App\\Course
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Course</span> {<a class=sf-dump-ref>#2180</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"7 characters\">courses</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+      +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+      #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+      +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+      +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:26</span> [ &#8230;26]
+      #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:26</span> [ &#8230;26]
+      #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">casts</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">relations</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+      #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+      +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:22</span> [ &#8230;22]
+      #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+    </samp>}
+    \"<span class=sf-dump-key>attendanceTable</span>\" => <span class=sf-dump-note title=\"App\\V2\\Model\\AttendanceTable
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\V2\\Model</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>AttendanceTable</span> {<a class=sf-dump-ref>#2108</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">attendances</span>\"
+      +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref22130 title=\"2 occurrences\">#2130</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref21222 title=\"3 occurrences\">#1222</a> &#8230;14}
+      #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref22113 title=\"7 occurrences\">#2113</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+      #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+    </samp>}
+    \"<span class=sf-dump-key>totalSessionLessons</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>allTests</span>\" => []
+    \"<span class=sf-dump-key>controller</span>\" => <span class=sf-dump-note title=\"App\\Http\\Controllers\\Admin\\ReportController
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Http\\Controllers\\Admin</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ReportController</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref21853 title=\"2 occurrences\">#1853</a>}
+    \"<span class=sf-dump-key>testGradeTable</span>\" => <span class=sf-dump-note title=\"App\\V2\\Model\\TestGradeTable
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\V2\\Model</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TestGradeTable</span> {<a class=sf-dump-ref>#2181</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+      +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref22173 title=\"2 occurrences\">#2173</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref21222 title=\"3 occurrences\">#1222</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-816261744-ref22113 title=\"7 occurrences\">#2113</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+      +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+      #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+    </samp>}
+  </samp>]
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Http\\Controllers\\Admin\\ReportController`\">validationError</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-816261744\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","testGradeTable":"<pre class=sf-dump id=sf-dump-2022619561 data-indent-pad=\"  \"><span class=sf-dump-note>App\\V2\\Model\\TestGradeTable</span> {<a class=sf-dump-ref>#2181</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">tableName</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+  +<span class=sf-dump-public title=\"Public property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22173 title=\"2 occurrences\">#2173</a><samp data-depth=2 id=sf-dump-2022619561-ref22173 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">isInitialized</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22113 title=\"4 occurrences\">#2113</a><samp data-depth=3 id=sf-dump-2022619561-ref22113 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">driver</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Driver\\Pdo\\Pdo
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Driver\\Pdo</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Pdo</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22115 title=\"4 occurrences\">#2115</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">platform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Platform\\Mysql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Mysql</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22128 title=\"2 occurrences\">#2128</a> &#8230;5}
+      #<span class=sf-dump-protected title=\"Protected property\">profiler</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">queryResultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2126</a> &#8230;8}
+      #<span class=sf-dump-protected title=\"Protected property\">lastPreparedStatement</span>: <span class=sf-dump-const>null</span>
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">columns</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">featureSet</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\Feature\\FeatureSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway\\Feature</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>FeatureSet</span> {<a class=sf-dump-ref>#2172</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">tableGateway</span>: <span class=sf-dump-note title=\"Laminas\\Db\\TableGateway\\TableGateway
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\TableGateway</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>TableGateway</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22173 title=\"2 occurrences\">#2173</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">features</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">magicSpecifications</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">resultSetPrototype</span>: <span class=sf-dump-note title=\"Laminas\\Db\\ResultSet\\ResultSet
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\ResultSet</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ResultSet</span> {<a class=sf-dump-ref>#2177</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">buffer</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">count</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">dataSource</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">fieldCount</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">position</span>: <span class=sf-dump-num>0</span>
+      #<span class=sf-dump-protected title=\"Protected property\">allowedReturnTypes</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">arrayObjectPrototype</span>: <span class=sf-dump-note>ArrayObject</span> {<a class=sf-dump-ref>#2184</a> &#8230;4}
+      #<span class=sf-dump-protected title=\"Protected property\">returnType</span>: \"<span class=sf-dump-str title=\"11 characters\">arrayobject</span>\"
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">sql</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Sql
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Sql</span> {<a class=sf-dump-ref>#2178</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22113 title=\"4 occurrences\">#2113</a>}
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">test_grades</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">sqlPlatform</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Sql\\Platform\\Platform
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Sql\\Platform</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Platform</span> {<a class=sf-dump-ref>#2176</a> &#8230;4}
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">lastInsertValue</span>: <span class=sf-dump-const>null</span>
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">serviceLocator</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref21222 title=\"2 occurrences\">#1222</a><samp data-depth=2 id=sf-dump-2022619561-ref21222 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">abstractFactories</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">aliases</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">allowOverride</span>: <span class=sf-dump-const>false</span>
+    #<span class=sf-dump-protected title=\"Protected property\">creationContext</span>: <span class=sf-dump-note title=\"Laminas\\ServiceManager\\ServiceManager
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\ServiceManager</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ServiceManager</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref21222 title=\"2 occurrences\">#1222</a>}
+    #<span class=sf-dump-protected title=\"Protected property\">delegators</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">factories</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note>Closure($sm)</span> {<a class=sf-dump-ref>#1223</a> &#8230;3}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">initializers</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">lazyServices</span>: []
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">lazyServicesDelegator</span>: <span class=sf-dump-const>null</span>
+    #<span class=sf-dump-protected title=\"Protected property\">services</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>Laminas\\Db\\Adapter\\Adapter</span>\" => <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22113 title=\"4 occurrences\">#2113</a>}
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">shared</span>: []
+    #<span class=sf-dump-protected title=\"Protected property\">sharedByDefault</span>: <span class=sf-dump-const>true</span>
+    #<span class=sf-dump-protected title=\"Protected property\">configured</span>: <span class=sf-dump-const>true</span>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Laminas\\ServiceManager\\ServiceManager`\">cachedAbstractFactories</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">primary</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">adapter</span>: <span class=sf-dump-note title=\"Laminas\\Db\\Adapter\\Adapter
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Laminas\\Db\\Adapter</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Adapter</span> {<a class=sf-dump-ref href=#sf-dump-2022619561-ref22113 title=\"4 occurrences\">#2113</a>}
+  #<span class=sf-dump-protected title=\"Protected property\">inputFilter</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">db</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">config</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">cache</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">accountId</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">prefix</span>: \"\"
+  #<span class=sf-dump-protected title=\"Protected property\">timeStamp</span>: <span class=sf-dump-const>true</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2022619561\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","userLayout":"<pre class=sf-dump id=sf-dump-1909215778 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"13 characters\">layouts.admin</span>\"
+</pre><script>Sfdump(\"sf-dump-1909215778\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Route [lecture.count] not defined. at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:467)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(810): Illuminate\\Routing\\UrlGenerator->route('lecture.count', Array, true)
+#1 C:\\xampp\\htdocs\\its-tni\\resources\\views\\admin\\report\\students.blade.php(285): route('lecture.count')
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('C:\\\\xampp\\\\htdocs...')
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#57 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#59 {main}
+
+[previous exception] [object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [lecture.count] not defined. at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:467)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(810): Illuminate\\Routing\\UrlGenerator->route('lecture.count', Array, true)
+#1 C:\\xampp\\htdocs\\its-tni\\storage\\framework\\views\\69a4c71ef0ed6ad6def5c45e29266d32.php(270): route('lecture.count')
+#2 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('C:\\\\xampp\\\\htdocs...')
+#3 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\UserLimit.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\UserLimit->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Middleware\\Admin.php(48): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\Admin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(45): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#57 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#58 C:\\xampp\\htdocs\\its-tni\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#59 {main}
+"} 

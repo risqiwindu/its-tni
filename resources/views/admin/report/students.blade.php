@@ -68,7 +68,10 @@
                                 $attendance = $student->attendances()->where('course_id',$id)->count();
                                 @endphp
                                 <td>{{ $attendance }}</td>
-                                <td><button class="btn btn-primary">Lihat</button></td>
+                                <td class="text-center">
+                                    
+                                    <button type="button" id="triggerModal" class="btn btn-primary" data-course-id="{{ $id }}" data-student-id="{{ $student }}" data-toggle="modal" data-target="#lectureModal">Lihat</button>
+                                </td>
 
                                 {{-- <td>
 
@@ -243,5 +246,76 @@
 
     </div>
 
+    
 @endsection
 
+@section('footer')
+<div class="modal fade" id="lectureModal" tabindex="-1" role="dialog" aria-labelledby="lectureModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lectureModalLabel">Total Akses Materi :</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Lecture ID</th>
+                        <th>Materi</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="lectureCountList">
+                    <!-- Hasil query akan ditampilkan di sini -->
+                </tbody>
+            </table>
+
+          {{-- <!-- List yang akan diisi dengan hasil query -->
+          <ul id="lectureCountList">
+            <!-- Hasil query akan ditampilkan di sini -->
+          </ul> --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Ketika tombol untuk membuka modal di-click
+    $(document).ready(function(){
+        $('#triggerModal').click(function(){
+            // Ambil parameter dari tombol (data-course-id dan data-student-id)
+            var course_id = $(this).data('course-id');
+            var student_id = $(this).data('student-id');
+    
+            // Panggil Ajax untuk mendapatkan data lecture_id dari route
+            $.ajax({
+                url: "{{ route('admin.report.students_count') }}",  // Route yang akan di-trigger
+                type: 'GET',
+                data: {
+                    course_id: course_id,
+                    student_id: student_id
+                },
+                success: function(data) {
+                    // Buat list dari hasil query
+                    let list = '';
+                    $.each(data, function(index, value) {
+                        list += '<tr><td>' + value.lecture_id + '</td><td>' + value.title + '</td><td>' + value.total + '</td></tr>';
+                    });
+                    // Tampilkan hasil ke dalam elemen ul di modal
+                    $('#lectureCountList').html(list);
+                },
+                error: function() {
+                    $('#lectureCountList').html('<tr><td colspan="2">Terjadi kesalahan saat mengambil data.</td></tr>');
+                }
+            });
+        });
+    });
+    </script>
+
+@endsection

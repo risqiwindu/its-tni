@@ -26,8 +26,8 @@
             <thead>
             <tr>
                 <th>{{  __lang('id')  }}</th>
-                <th>{{  __lang('name')  }}</th>
-                <th>{{ __lang('course') }}</th>
+                <th>Deskripsi</th>
+                <th>Kelas</th>
                 <th>{{  __lang('files')  }}</th>
                  <th ></th>
             </tr>

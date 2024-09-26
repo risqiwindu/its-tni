@@ -335,6 +335,8 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('student/destroy/{folder}/{filename}','StudentController@destroy')->name('student.destroy');
     Route::any('student/{folder}/upload','StudentController@upload')->name('student.upload');
 
+    Route::any('report/students_count','ReportController@countLecture')->name('report.students_count');
+
 
 
     if(env('APP_MODE')=='saas'){

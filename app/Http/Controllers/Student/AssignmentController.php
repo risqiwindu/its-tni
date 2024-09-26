@@ -69,7 +69,7 @@ class AssignmentController extends Controller {
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
         return view('student.assignment.index',[
-            'pageTitle'=>__lang('Homework'),
+            'pageTitle'=>'Tugas',
             'paginator'=>$paginator,
             'submissionTable' => $submissionTable,
             'total'=> $studentSessionTable->getTotalAssignments($studentId)

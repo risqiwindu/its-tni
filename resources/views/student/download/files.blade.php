@@ -5,7 +5,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>__lang('dashboard'),
-            route('student.download.index')=>__lang('downloads'),
+            route('student.download.index')=>'Download',
             '#'=>__lang('files')
         ]])
 @endsection
