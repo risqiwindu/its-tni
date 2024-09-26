@@ -170,7 +170,7 @@
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon"  onclick="openModal('{{ __lang('change-type') }}: {{ addslashes($row->name) }}','{{ route('admin.session.sessiontype',['id'=>$row->id]) }}')" href="#" ><i class="fa fa-arrows-alt-v"></i> {{ __lang('change-session-type') }}</a>
                                         @endif
-                                        <a class="dropdown-item has-icon" href="{{ route('admin.session.tests',['id'=>$row->id]) }}"><i class="fa fa-check"></i> {{ __lang('manage-tests') }}</a>
+                                        <a class="dropdown-item has-icon" href="{{ route('admin.session.tests',['id'=>$row->id]) }}"><i class="fa fa-check"></i> Kelola Kuis / Ujian</a>
                                         <a class="dropdown-item has-icon" onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ route('admin.student.deletesession',['id'=>$row->id]) }}"   ><i class="fa fa-trash-alt"></i> {{ __lang('delete') }}</a>
                                     </div>
                                 </div>

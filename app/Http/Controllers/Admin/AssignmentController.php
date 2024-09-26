@@ -150,7 +150,7 @@ class AssignmentController extends Controller
 
         $output['form'] = $form;
         $output['id'] = $id;
-        $output['pageTitle']= __lang('Edit Homework');
+        $output['pageTitle']= 'Edit Tugas';
         $output['row']= $row;
         $output['action']='edit';
 

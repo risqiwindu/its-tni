@@ -14,7 +14,7 @@
 				<div class="card">
 					<div class="card-header">
 						<header></header>
-                          <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'assignment','action'=>'add')) }}"><i class="fa fa-plus"></i> Add Homework</a>
+                          <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'assignment','action'=>'add')) }}"><i class="fa fa-plus"></i> Tambahkan Tugas</a>
 
 
 
@@ -24,8 +24,8 @@
 							<thead>
 								<tr>
                                     <th>{{ __lang('title') }}</th>
-									<th>{{ __lang('session-course') }}</th>
-                                    <th>{{ __lang('type') }}</th>
+									<th>Kelas</th>
+                                    {{-- <th>{{ __lang('type') }}</th> --}}
 									<th>{{ __lang('created-on') }}</th>
                                     <th>{{ __lang('opening-date') }}</th>
                                     <th>{{ __lang('due-date') }}</th>
@@ -41,7 +41,7 @@
 								<tr>
 									<td>{{ $row->title }}</td>
                                     <td><span >{{ $row->course_name }}</span></td>
-                                    <td>{{($row->schedule_type=='s')? __lang('scheduled'):__lang('post-class') }}</td>
+                                    {{-- <td>{{($row->schedule_type=='s')? __lang('scheduled'):__lang('post-class') }}</td> --}}
 									<td>{{ showDate('d/m/Y',$row->created_at) }}</td>
                                     <td>{{ showDate('d/m/Y',$row->opening_date) }}</td>
                                     <td>{{ showDate('d/m/Y',$row->due_date) }}</td>

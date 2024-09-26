@@ -81,8 +81,8 @@
                     <thead>
                     <tr>
                         <th>{{ __lang('id') }}</th>
-                        <th>{{ __lang('session-course') }}</th>
-                        <th>{{ __lang('type') }}</th>
+                        <th>Kelas</th>
+                        
                         <th>{{ __lang('enrolled-students') }}</th>
                         <th>{{ __lang('reports') }}</th>
                     </tr>
@@ -92,19 +92,7 @@
                         <tr>
                             <td><span class="label label-success">{{ $row->id }}</span></td>
                             <td>{{ $row->name }}</td>
-                            <td>@php
-                                switch($row->type){
-                                    case 'b':
-                                        echo __lang('training-online');
-                                        break;
-                                    case 's':
-                                        echo __lang('training-session');
-                                        break;
-                                    case 'c':
-                                        echo __lang('online-course');
-                                        break;
-                                }
-                                @endphp</td>
+                            
 
 <td>
     @php $session = \App\Course::find($row->id); echo $session->studentCourses()->count()  @endphp

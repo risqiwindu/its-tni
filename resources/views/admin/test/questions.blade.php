@@ -4,8 +4,8 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.test.index')=>__lang('tests'),
-            '#'=>__lang('test-questions')
+            route('admin.test.index')=>'Kuis / Ujian',
+            '#'=>'Pertanyaan'
         ]])
 @endsection
 
@@ -14,9 +14,9 @@
     <div>
         <div class="card">
             <div class="card-header">
-                <button data-toggle="modal" data-target="#myModal" class="btn btn-success float-right"><i class="fa fa-plus"></i>  Add Question</button>
+                <button data-toggle="modal" data-target="#myModal" class="btn btn-success float-right"><i class="fa fa-plus"></i>  Tambah Pertanyaan</button>
                 &nbsp; &nbsp;
-                <button data-toggle="modal" data-target="#importModal" class="btn btn-primary float-right"><i class="fa  fa-download"></i>  Import Questions</button>
+                <button data-toggle="modal" data-target="#importModal" class="btn btn-primary float-right"><i class="fa  fa-download"></i>  Import</button>
 
 
 

@@ -71,7 +71,7 @@
                                         <li><a class="dropdown-item" href="{{ adminUrl(array('controller'=>'test','action'=>'questions','id'=>$row->id)) }}"  ><i class="fa fa-question-circle"></i> {{ __lang('manage-questions') }} </a></li>
                                         <li><a  class="dropdown-item" href="{{ adminUrl(array('controller'=>'test','action'=>'exportquestions','id'=>$row->id)) }}"  ><i class="fa fa-download"></i> {{ __lang('export-questions') }}</a> </li>
                                          <li><a class="dropdown-item"  href="{{ adminUrl(array('controller'=>'test','action'=>'edit','id'=>$row->id)) }}"  ><i class="fa fa-edit"></i> {{ __lang('edit') }}</a></li>
-                                        <li><a class="dropdown-item"  href="{{ adminUrl(['controller'=>'test','action'=>'sessions','id'=>$row->id]) }}"><i class="fa fa-calendar"></i> {{ __lang('manage-sessions-courses') }}</a></li>
+                                        <li><a class="dropdown-item"  href="{{ adminUrl(['controller'=>'test','action'=>'sessions','id'=>$row->id]) }}"><i class="fa fa-calendar"></i> Kelola Kelas</a></li>
                                         <li><a  class="dropdown-item" onclick="return confirm('{{__lang('test-duplicate-confirm')}}')"  href="{{ adminUrl(array('controller'=>'test','action'=>'duplicate','id'=>$row->id)) }}" ><i class="fa fa-copy"></i> {{ __lang('duplicate') }}</a></li>
                                         <li><a  class="dropdown-item" onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ adminUrl(array('controller'=>'test','action'=>'delete','id'=>$row->id)) }}"   ><i class="fa fa-trash"></i> {{ __lang('delete') }}</a>
                                         </li>

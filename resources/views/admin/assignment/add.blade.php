@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.assignment.index')=>__lang('homework'),
+            route('admin.assignment.index')=>'Tugas',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -110,8 +110,8 @@
                         <div class="form-group">
                             {{ formElement($form->get('allow_late')) }} {{ formLabel($form->get('allow_late')) }}
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" value="1" name="notify_students" checked/>
+                        <div class="form-group" hidden>
+                            <input type="checkbox" value="1" name="notify_students"/>
                             <label for="">{{ __lang('notify-enrolled') }}</label>
 
                         </div>

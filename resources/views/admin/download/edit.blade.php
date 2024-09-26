@@ -22,7 +22,7 @@
                                <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false">{{ __lang('manage-files') }}</a>
                              </li>
                              <li class="nav-item">
-                               <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false">{{ __lang('manage-sessions') }}</a>
+                               <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false">Kelola Kelas</a>
                              </li>
                            </ul>
                            <div class="tab-content" id="myTabContent2">
@@ -78,7 +78,7 @@
                              </div>
                              <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
                                  <div>
-                                     <button onclick="openLargeModal('Select Sessions','{{ adminUrl(['controller'=>'download','action'=>'browsesessions','id'=>$id]) }}')" id="addSessionBtn" class="btn btn-primary">{{ __lang('add-session') }}</button>
+                                     <button onclick="openLargeModal('Select Sessions','{{ adminUrl(['controller'=>'download','action'=>'browsesessions','id'=>$id]) }}')" id="addSessionBtn" class="btn btn-primary">Tambahkan Kelas</button>
                                  </div>
                                  <br>
                                  <div id="sessionlist">

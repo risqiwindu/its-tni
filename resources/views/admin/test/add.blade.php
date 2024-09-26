@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.test.index')=>__lang('tests'),
+            route('admin.test.index')=>'Kuis / Ujian',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection

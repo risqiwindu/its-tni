@@ -32,7 +32,7 @@ class DownloadController extends Controller
         $paginator->setItemCountPerPage(30);
         return viewModel('admin',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
-            'pageTitle'=>__lang('Downloads'),
+            'pageTitle'=>'Download',
             'downloadTable'=>$table,
             'fileTable'=>$downloadFileTable
         ));

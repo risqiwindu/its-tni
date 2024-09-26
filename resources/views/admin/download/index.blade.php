@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <header></header>
-                <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'download','action'=>'add')) }}"><i class="fa fa-plus"></i> {{ __lang('create-download') }}</a>
+                <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'download','action'=>'add')) }}"><i class="fa fa-plus"></i> Tambahkan Download</a>
 
 
 

@@ -10,8 +10,8 @@
 
 @section('content')
 <div class="row">
-
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        @if ($AdminRole == 1)
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
             @can('access','view_students')
             <a href="{{ route('admin.student.index') }}">
                 @endcan
@@ -33,7 +33,7 @@
             @endcan
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
             @can('access-group','course')
             <a href="{{ route('admin.student.sessions') }}?type=c">
                 @endcan
@@ -55,7 +55,7 @@
             @endcan
         </div>
     
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             @can('access','view_classes')
             <a href="{{ route('admin.lesson.index') }}">
                 @endcan
@@ -75,7 +75,8 @@
                 @can('access','view_classes')
             </a>
             @endcan
-        </div>
+        </div> --}}
+        @endif
     </div>
     <div class="row">
 
