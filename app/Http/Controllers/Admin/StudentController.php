@@ -582,7 +582,8 @@ class StudentController extends Controller
             }
             rmdir($directory);
             }
-
+            DB::table('kuesioner_status')->where('user_id', $student->user->id)->delete();
+            DB::table('student_emotion')->where('student_id', $id)->delete();
             $student->user->delete();
         //    $table->deleteRecord($id);
             flashMessage(__lang('Record deleted'));
@@ -2946,12 +2947,12 @@ public function detail_emosi($student_id, $course_id) {
     // Retrieve the data without grouping by student_id
     $hasil = DB::table('student_emotion as se')
     ->select(
-        'se.waktu_akses', 
+        'se.waktu_akses as waktu_akses', 
         'se.lamaWaktu as lama', 
-        'se.lecture_id', 
-        'se.student_id', 
-        'se.emotion', 
-        'se.course_id', 
+        'se.lecture_id as lecture_id', 
+        'se.student_id as student_id', 
+        'se.emotion as emotion', 
+        'se.course_id as course_id', 
         'courses.name as course_name', 
         'lectures.title as lecture_title', 
         'users.name as name', 

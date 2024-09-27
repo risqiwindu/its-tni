@@ -113,9 +113,10 @@
                                     @php
                                         $no = 0;
                                     @endphp
+                                    
                                     @foreach ($emosi as $studentData)
                                     <tr>
-                                        <td class="text-center">{{ $no = $no + 1; }}</td>
+                                        <td class="text-center">{{ ++$no }}</td>
                                         <td class="text-center">{{ $studentData['lecture_title'] }}</td>
                                         <td class="text-center">{{ $studentData['tanggal'] }}</td>
                                         <td class="text-center">{{ $studentData['lama'] }}</td>
