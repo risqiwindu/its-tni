@@ -99,7 +99,13 @@ document.addEventListener("DOMContentLoaded", function() {
       startTime = Date.now(); // Catat waktu awal hanya jika belum ada
     }
 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        width: { ideal: 320 },  // Resolusi ideal untuk lebar (bisa diubah sesuai kebutuhan)
+        height: { ideal: 240 }, // Resolusi ideal untuk tinggi
+      },
+      audio: false
+    })
       .then((streamObj) => {
         stream = streamObj; // Save stream reference
         video.srcObject = stream;
@@ -125,76 +131,83 @@ document.addEventListener("DOMContentLoaded", function() {
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
   
+    let frameCounter = 0;
+    let frameSkip = 10; // Deteksi setiap 10 frame
+    
     function processVideoFrame() {
-      faceapi.detectAllFaces(video)
-        .withFaceLandmarks()
-        .withFaceExpressions()
-        .withAgeAndGender()
-        .withFaceDescriptors()
-        .then((detections) => {
-          const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-          faceapi.draw.drawDetections(canvas, resizedDetections);
-          
-          resizedDetections.forEach((detection) => {
-            const { expressions, landmarks } = detection;
-            const yawning = isYawning(landmarks.getMouth());
-            const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
-  
-            if (yawning) {
-              emotionData.yawning++;
-              showNotificationAndPlayVideo();
-            }
-  
-
-            if (sleepy) {
-              if (eyeClosureStart === null) {
-                eyeClosureStart = Date.now(); // Start tracking when eyes are closed
-              } else {
-                const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
-                if (elapsedTime >= 15) { // 5 seconds threshold
-                  if (!isCurrentlySleepy) {
-                    emotionData.sleepy++;
-                    isCurrentlySleepy = true;
-                    showNotificationAndPlayVideo();
+      frameCounter++;
+      
+      // Cek apakah ini frame yang perlu dideteksi
+      if (frameCounter % frameSkip === 0) {
+        faceapi.detectAllFaces(video)
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender()
+          .withFaceDescriptors()
+          .then((detections) => {
+            const resizedDetections = faceapi.resizeResults(detections, displaySize);
+            const ctx = canvas.getContext("2d");
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    faceapi.draw.drawDetections(canvas, resizedDetections);
+            
+            resizedDetections.forEach((detection) => {
+              const { expressions, landmarks } = detection;
+              const yawning = isYawning(landmarks.getMouth());
+              const sleepy = isSleepy(landmarks.getLeftEye(), landmarks.getRightEye());
+    
+              if (yawning) {
+                emotionData.yawning++;
+                showNotificationAndPlayVideo();
+              }
+    
+              if (sleepy) {
+                if (eyeClosureStart === null) {
+                  eyeClosureStart = Date.now(); // Start tracking when eyes are closed
+                } else {
+                  const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
+                  if (elapsedTime >= 15) { // 15 seconds threshold
+                    if (!isCurrentlySleepy) {
+                      emotionData.sleepy++;
+                      isCurrentlySleepy = true;
+                      showNotificationAndPlayVideo();
+                    }
                   }
                 }
+              } else {
+                eyeClosureStart = null;
+                clearTimeout(eyeClosureTimeout);
+                eyeClosureTimeout = null;
+                lastSleepyTime = null;
+                isCurrentlySleepy = false;
               }
+    
+              updateEmotionData(expressions);
+    
+              const age = detection.age;
+              const maxEmotion = Object.keys(expressions).reduce((a, b) =>
+                expressions[a] > expressions[b] ? a : b
+              );
+              const result = faceMatcher.findBestMatch(detection.descriptor);
+              const displayName = result.toString();
+              const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
+                sleepy ? "Sleepy" : ""
+              }`;
+    
+              const box = detection.detection.box;
+              const anchor = { x: box.x, y: box.bottomRight.y };
+              new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
+            });
+    
+            if (detections.length > 0) {
+              loader.style.display = "none";
             }
-            else {
-              eyeClosureStart = null;
-              clearTimeout(eyeClosureTimeout);
-              eyeClosureTimeout = null;
-              lastSleepyTime = null;
-              isCurrentlySleepy = false;
-            }
-  
-            updateEmotionData(expressions);
-  
-            const age = detection.age;
-            const maxEmotion = Object.keys(expressions).reduce((a, b) =>
-              expressions[a] > expressions[b] ? a : b
-            );
-            const result = faceMatcher.findBestMatch(detection.descriptor);
-            const displayName = result.toString();
-            const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
-              sleepy ? "Sleepy" : ""
-            }`;
-  
-            const box = detection.detection.box;
-            const anchor = { x: box.x, y: box.bottomRight.y };
-            new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
+          })
+          .catch((error) => {
+            console.error("Error processing video frame:", error);
           });
-  
-          if (detections.length > 0) {
-            loader.style.display = "none";
-          }
-          requestAnimationFrame(processVideoFrame);
-        })
-        .catch((error) => {
-          console.error("Error processing video frame:", error);
-          requestAnimationFrame(processVideoFrame);
-        });
+      }
+    
+      requestAnimationFrame(processVideoFrame);
     }
   
     requestAnimationFrame(processVideoFrame);
