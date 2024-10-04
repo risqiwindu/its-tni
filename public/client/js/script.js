@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var videoId = 'video' + coba;
   var player = videojs(videoId);
   var isVideoPlaying = false; // Variabel untuk melacak status pemutaran
+  let sleepCount = 0;
 
   // ... kode Anda yang lain ...
   
@@ -162,18 +163,31 @@ document.addEventListener("DOMContentLoaded", function() {
     
               if (sleepy) {
                 if (eyeClosureStart === null) {
-                  eyeClosureStart = Date.now(); // Start tracking when eyes are closed
+                    eyeClosureStart = Date.now(); // Start tracking when eyes are closed
                 } else {
-                  const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
-                  if (elapsedTime >= 15) { // 15 seconds threshold
-                    if (!isCurrentlySleepy) {
-                      emotionData.sleepy++;
-                      isCurrentlySleepy = true;
-                      showNotificationAndPlayVideo();
+                    const elapsedTime = (Date.now() - eyeClosureStart) / 1000; // Time in seconds
+                    
+                    // Check if 15 seconds have elapsed
+                    if (elapsedTime >= 15) { 
+                        sleepCount++; // Increment sleep count
+                        console.log(sleepCount); // Log the count
+                        
+                        // Reset the eye closure start time for the next 15 seconds
+                        eyeClosureStart = Date.now(); 
                     }
-                  }
+            
+                    // Check if sleepCount reaches the threshold of 3
+                    if (sleepCount >= 3) {
+                        if (!isCurrentlySleepy) {
+                            emotionData.sleepy++; // Increment the sleepy emotion data
+                            isCurrentlySleepy = true; // Mark as currently sleepy
+                            console.log('user mengantuk!'); // Log the sleepy state
+                            showNotificationAndPlayVideo(); // Uncomment to trigger notification
+                            sleepCount = 0;
+                        }
+                    }
                 }
-              } else {
+            } else {
                 eyeClosureStart = null;
                 clearTimeout(eyeClosureTimeout);
                 eyeClosureTimeout = null;
