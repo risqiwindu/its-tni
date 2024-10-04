@@ -374,4 +374,189 @@ class ReportController extends Controller
         }
         return $objects;
     }
+
+    public function laporan($course_id, $department)
+    {
+        $course = $course_id;
+        $kelas  = $department;
+        // Mengambil judul pelajaran berdasarkan course_id
+        $materi = DB::table('course_lesson')
+                    ->join('lectures', 'course_lesson.lesson_id', '=', 'lectures.lesson_id')
+                    ->select('lectures.title', 'lectures.id')
+                    ->where('course_lesson.course_id', $course)
+                    ->get(); // Mengambil data judul dan ID materi
+    
+        // Inisialisasi array untuk CASE expressions
+        $countStatements   = [];
+        $emotionStatements = [];
+        $avgStatements     = [];
+        $totalSleepy       = [];
+        $tanggalStatements = [];
+
+        // Membuat CASE expressions untuk setiap materi
+        foreach ($materi as $data) {
+            $judul = $data->title;
+            $lectureId = $data->id; // Menggunakan lecture_id dari data
+        
+
+            $countStatements[] = DB::raw("
+                COALESCE(
+                    (SELECT COUNT(*)
+                     FROM student_emotion
+                     WHERE student_emotion.student_id = students.id
+                     AND student_emotion.lecture_id = $lectureId),
+                    0
+                ) AS `count_$judul`
+            ");
+
+            $emotionStatements[] = DB::raw("
+            (
+                SELECT emotion
+                FROM student_emotion
+                WHERE student_emotion.student_id = students.id
+                AND student_emotion.lecture_id = $lectureId
+                ORDER BY waktu_akses DESC
+                LIMIT 1
+            ) AS `emotion_$judul`
+        ");
+
+        $tanggalStatements[] = DB::raw("
+            (
+                SELECT updated_at
+                FROM student_emotion
+                WHERE student_emotion.student_id = students.id
+                AND student_emotion.lecture_id = $lectureId
+                ORDER BY waktu_akses DESC
+                LIMIT 1
+            ) AS `tanggal_$judul`
+        ");
+
+        $lamaStatements[] = DB::raw("
+            (
+                SELECT lamaWaktu
+                FROM student_emotion
+                WHERE student_emotion.student_id = students.id
+                AND student_emotion.lecture_id = $lectureId
+                ORDER BY waktu_akses DESC
+                LIMIT 1
+            ) AS `lama_$judul`
+        ");
+
+        }
+
+
+    
+        $caseStatements = array_merge($countStatements, $emotionStatements, $tanggalStatements, $lamaStatements);
+
+        //Bangun query utama
+        $result = DB::table('students')
+            ->select(
+                'students.id AS id',
+                'users.name AS nama_siswa',
+                'users.email AS NIP',
+                'student_tests.score AS Ujian',
+                ...$caseStatements
+                
+            )
+            ->leftJoin('users', 'students.user_id', '=', 'users.id')
+            ->leftJoin('student_tests', 'students.id', '=', 'student_tests.student_id')
+            ->leftJoin('student_lectures', 'students.id', '=', 'student_lectures.student_id')
+            ->leftJoin('lectures', 'student_lectures.lecture_id', '=', 'lectures.id')
+            ->where('students.department', $department)
+            ->groupBy('users.name', 'users.email', 'student_tests.score')
+            ->get();
+
+        // Kembalikan hasil ke view
+        return view('admin.report.laporan', compact('result', 'course'));
+    }
+    
+    public function kesimpulan(Request $request)
+    {
+        $course_id = $request->input('course_id');
+        $student_id = $request->input('student_id');
+
+        $results = DB::table('student_emotion as se')
+                    ->join('lectures', 'se.lecture_id', '=', 'lectures.id')
+                    ->join(DB::raw('(SELECT lecture_id, MAX(waktu_akses) AS latest_time 
+                    FROM student_emotion 
+                    WHERE course_id = '.$course_id.' AND student_id = '.$student_id.' 
+                    GROUP BY lecture_id) as latest'), 
+         function($join) {
+             $join->on('se.lecture_id', '=', 'latest.lecture_id')
+                  ->on('se.waktu_akses', '=', 'latest.latest_time');
+         })
+                    ->select('se.course_id', 'lectures.title', 'se.lecture_id', 'se.waktu_akses AS latest_time', 'se.updated_at', 'se.emotion')
+                    ->where('se.course_id', $course_id)
+                    ->where('se.student_id', $student_id)
+                    ->groupBy('se.lecture_id')
+                    ->get();
+
+        return response()->json($results);
+        
+    }
+
+    private function processEmotionData($results)
+    {
+        // Inisialisasi array untuk menyimpan data emosi
+        $emotionData = [];
+
+        // Mengisi data emosi
+        foreach ($results as $result) {
+            $emotion = $result->emotion;
+            $percentage = floatval(str_replace('%', '', $result->lama)); // Mengonversi persentase ke angka
+
+            if (!isset($emotionData[$emotion])) {
+                $emotionData[$emotion] = [0, 0]; // Inisialisasi dengan dua nilai
+            }
+            
+            // Update nilai berdasarkan tanggal atau kondisi lain jika perlu
+            // Misalnya, menggunakan lamaWaktu atau field lain untuk membedakan data
+            $emotionData[$emotion][0] = $percentage; // Data pertama
+            $emotionData[$emotion][1] = $percentage; // Data kedua (misalnya, bisa disesuaikan)
+        }
+
+        // Mengubah array emosi menjadi format yang diinginkan untuk Chart.js
+        $combinedArray = [];
+        foreach ($emotionData as $emotion => $values) {
+            $combinedArray[] = [$emotion, $values];
+        }
+
+        return $combinedArray;
+    }
+
+    public function kelas()
+    {
+        $hasil = DB::table('students')
+                ->select('department')
+                ->groupBy('department')
+                ->get();
+        return view('admin.report.kelas', compact('hasil'));
+    }
+
+    public function detail_kelas($department)
+{
+    $kelas = $department;
+    $role = DB::table('admins')
+            ->where('id', $this->getAdministratorID())
+            ->first();
+    $role_id = $role->id;
+
+    // Define the base query
+    $courseQuery = DB::table('courses')
+        ->join('course_course_category', 'courses.id', '=', 'course_course_category.course_id')
+        ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+        ->select('courses.id as id', 'courses.name as name', 'course_categories.name as kategori');
+
+    // Add condition if the role is not admin (role_id != 1)
+    if ($role_id != 1) {
+        $courseQuery->where('courses.admin_id', $this->getAdministratorID());
+    }
+
+    // Execute the query
+    $course = $courseQuery->get();
+
+    return view('admin.report.detail_kelas', compact('kelas', 'course'));
+}
+
+
 }

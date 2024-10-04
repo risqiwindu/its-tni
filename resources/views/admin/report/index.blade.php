@@ -3,7 +3,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
+            route('admin.dashboard')=>'Dashboard',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -83,8 +83,9 @@
                         <th>{{ __lang('id') }}</th>
                         <th>Kelas</th>
                         
-                        <th>{{ __lang('enrolled-students') }}</th>
+                        {{-- <th>{{ __lang('enrolled-students') }}</th> --}}
                         <th>{{ __lang('reports') }}</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
@@ -94,11 +95,11 @@
                             <td>{{ $row->name }}</td>
                             
 
-<td>
+{{-- <td>
     @php $session = \App\Course::find($row->id); echo $session->studentCourses()->count()  @endphp
-</td>
+</td> --}}
 
-                            <td>
+                            {{-- <td>
 
                                 <div class="btn-group dropup">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -113,6 +114,9 @@
                                     </ul>
                                 </div>
 
+                            </td> --}}
+                            <td>
+                                <a href="{{ route('admin.report.laporan', ['course_id' => $row->id]) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @php endforeach;  @endphp

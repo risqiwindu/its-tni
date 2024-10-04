@@ -336,6 +336,10 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('student/{folder}/upload','StudentController@upload')->name('student.upload');
 
     Route::any('report/students_count','ReportController@countLecture')->name('report.students_count');
+    Route::any('report/laporan/{course_id}//{department}','ReportController@laporan')->name('report.laporan');
+    Route::any('report/kesimpulan','ReportController@kesimpulan')->name('report.kesimpulan');
+    Route::any('report/kelas','ReportController@kelas')->name('report.kelas');
+    Route::any('report/detail_kelas/{department}','ReportController@detail_kelas')->name('report.detail_kelas');
 
 
 

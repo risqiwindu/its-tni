@@ -50,7 +50,7 @@ class TestController extends Controller
         $paginator->setItemCountPerPage(30);
         return viewModel('admin',__CLASS__,__FUNCTION__,array(
             'paginator'=>$paginator,
-            'pageTitle'=>'Kuis / Ujian',
+            'pageTitle'=>'Ujian',
             'questionTable'=>$questionTable,
             'studentTestTable'=>$studentTestTable
         ));
@@ -89,7 +89,7 @@ class TestController extends Controller
         }
 
         $output['form'] = $form;
-        $output['pageTitle']='Tambah Kuis / Ujian';
+        $output['pageTitle']='Tambah Ujian';
         $output['action']='add';
         $output['id']=null;
         return viewModel('admin',__CLASS__,__FUNCTION__,$output);
@@ -136,7 +136,7 @@ class TestController extends Controller
 
         $output['form'] = $form;
         $output['id'] = $id;
-        $output['pageTitle']= 'Edit Kuis / Ujian';
+        $output['pageTitle']= 'Edit Ujian';
         $output['row']= $row;
         $output['action']='edit';
 

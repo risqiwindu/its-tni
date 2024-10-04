@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-header">
 
-                <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'test','action'=>'add')) }}"><i class="fa fa-plus"></i> {{ __lang('add-test') }}</a>
+                <a class="btn btn-primary float-right" href="{{ adminUrl(array('controller'=>'test','action'=>'add')) }}"><i class="fa fa-plus"></i> Tambah Ujian</a>
 
 
             </div>

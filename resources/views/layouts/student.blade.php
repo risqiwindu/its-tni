@@ -86,7 +86,7 @@
 
                     @if(setting('menu_show_tests')==1)
                     <li class="nav-item">
-                        <a href="{{ route('student.test.index') }}" class="nav-link"><span>Kuis / Ujian</span></a>
+                        <a href="{{ route('student.test.index') }}" class="nav-link"><span>Ujian</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><span>Tes</span></a>
