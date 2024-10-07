@@ -28,9 +28,9 @@ class AccountController extends Controller
             ]);
             $newEmail = $post['email'];
             $accountsTable->tableGateway->update(array('email'=>$newEmail),array('email'=>$email));
-            $output['flash_message']= __lang('email-changed-to',['email'=>$newEmail]);
+            $output['flash_message']= 'Berhasil Merubah Data';
         }
-        $output['pageTitle']=__lang('Change Your Email');
+        $output['pageTitle']='Ubah NIP/NRP atau Email';
         return view('admin.account.email',$output);
     }
 
@@ -96,7 +96,8 @@ class AccountController extends Controller
                 'name'=>$user->name,
                 'last_name'=>$user->last_name,
                 'notify'=>$user->admin->notify,
-                'about'=>$user->admin->about
+                'about'=>$user->admin->about,
+                'email'=>$user->admin->email
             ]);
         }
 

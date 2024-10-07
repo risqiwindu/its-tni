@@ -4,7 +4,8 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>'Dashboard',
-            '#'=>'Laporan'
+            route('admin.report.kelas')=>'Laporan', 
+            '#'=>'Kelas'
         ]])
 @endsection
 
@@ -22,7 +23,7 @@
 @endsection
 
 @section('content')
-<canvas id="Chart" width="400" height="100"></canvas>
+<canvas id="categoryChart" width="400" height="100"></canvas>
 <div class="table-responsive_">
     <table class="table table-hover">
         <thead>
@@ -46,35 +47,49 @@
 @endsection
 
 @section('footer')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('Chart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar', // Tipe grafik: bar
+    var categories = @json(array_keys($data)); // Kategori
+    var scores = @json(array_values($data));   // Rata-rata nilai
+
+    var ctx = document.getElementById('categoryChart').getContext('2d');
+    
+    // Mendefinisikan array warna
+    var colors = [
+        'rgba(255, 99, 132, 0.6)', // Warna untuk audio
+        'rgba(54, 162, 235, 0.6)', // Warna untuk visual
+        'rgba(255, 206, 86, 0.6)', // Warna untuk kinestetik
+        'rgba(75, 192, 192, 0.6)', // Warna tambahan
+        'rgba(153, 102, 255, 0.6)', // Warna tambahan
+        'rgba(255, 159, 64, 0.6)'  // Warna tambahan
+    ];
+
+    var categoryChart = new Chart(ctx, {
+        type: 'bar',
         data: {
-            labels: ['Audio', 'Visual', 'Kinestetik'], // Label sumbu X
+            labels: categories,
             datasets: [{
-                label: 'Nilai', // Label dataset
-                data: [75, 90, 60], // Data nilai untuk Audio, Visual, Kinestetik
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Warna untuk Audio
-                    'rgba(54, 162, 235, 0.2)', // Warna untuk Visual
-                    'rgba(75, 192, 192, 0.2)'  // Warna untuk Kinestetik
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)', // Warna batas untuk Audio
-                    'rgba(54, 162, 235, 1)', // Warna batas untuk Visual
-                    'rgba(75, 192, 192, 1)'  // Warna batas untuk Kinestetik
-                ],
-                borderWidth: 1 // Lebar batas
+                label: 'Rata-rata Nilai',
+                data: scores,
+                backgroundColor: colors.slice(0, categories.length), // Menggunakan warna untuk setiap kategori
+                borderColor: colors.slice(0, categories.length).map(color => color.replace('0.6', '1')), // Border lebih pekat
+                borderWidth: 1
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true // Memulai sumbu Y dari nol
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10
+                    }
                 }
             }
         }
     });
 </script>
+
+
+
 @endsection

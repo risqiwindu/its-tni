@@ -11,9 +11,9 @@
     <!--primary starts-->
 
     <div class="card-body">
-        <div class="mb-2">
+        {{-- <div class="mb-2">
             <a target="{{ @$target }}" class="btn btn-primary" href="{{ route('student.forum.addtopic',['id'=>$id])}}"><i class="fa fa-plus"></i> {{ __lang('Add Topic') }}</a>
-        </div>
+        </div> --}}
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>

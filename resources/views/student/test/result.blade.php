@@ -21,15 +21,28 @@
                         <div class="row">
                             <div class="col-md-4 col-md-offset-3">
                                 <h4>{{  __lang('your-score')  }}</h4>
-                                <h1>{{  $row->score  }}%</h1>
+                                <h1>{{  $row->score  }}</h1>
                             </div>
                             <div class="col-md-4">
-                                <h4>{{  __lang('passmark')  }}</h4>
-                                <h1>{{  $testRow->passmark  }}%</h1>
+                                <h4>Index Nilai</h4>
+                                @php
+                                    if ($row->score >= 80 && $row->score <= 100) {
+                                        $index = 'A';
+                                    }elseif($row->score >= 68 && $row->score <= 79) {
+                                        $index = 'B';
+                                    }elseif ($row->score >= 56 && $row->score <= 67) {
+                                        $index = 'C';
+                                    }elseif ($row->score >= 45 && $row->score <= 55) {
+                                        $index = 'D';
+                                    }else {
+                                        $index = 'E';
+                                    }
+                                @endphp
+                                <h1>{{  $index  }}</h1>
                             </div>
                         </div>
 
-                        <div id="testresult" class="row" style="text-align: center; margin-top: 30px">
+                        {{-- <div id="testresult" class="row" style="text-align: center; margin-top: 30px">
 
                             @php  if($row->score >= $testRow->passmark ):  @endphp
                             <h1 style="color:green">{{  __lang('you-passed-test')  }}</h1>
@@ -37,7 +50,7 @@
                             <h1 style="color:red">{{  __lang('you-failed-test')  }}</h1>
                             @php  endif;  @endphp
 
-                        </div>
+                        </div> --}}
                         @php  else:  @endphp
                         <div class="row">
                             <h4>{{  __lang('you-completed-test')  }}</h4>

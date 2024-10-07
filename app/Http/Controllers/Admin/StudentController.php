@@ -378,7 +378,7 @@ class StudentController extends Controller
                     'email'=>$data['email'],
                     'enabled'=>$data['status'],
                     'nim' => $data['email'],
-                    'department' => $data['department'],
+                    'department' => $request->department,
                     'jabatan' => $data['jabatan']
                 ];
 

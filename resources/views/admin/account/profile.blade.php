@@ -3,7 +3,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
+            route('admin.dashboard')=>'Dashboard',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -33,7 +33,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <div class="col-lg-4 col-md-4 col-sm-6">
-                            <label for="password1" class="control-label">{{ formLabel($form->get('last_name')) }}</label>
+                            <label for="password1" class="control-label">Nama Belakang</label>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6">
                             {{ formElement($form->get('last_name')) }}   <p class="help-block">{{ formElementErrors($form->get('last_name')) }}</p>
@@ -53,7 +53,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" hidden>
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <label for="password1" class="control-label">NIP / NRP atau Email Digunakan</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6">
+                            {{ formElement($form->get('email')) }}   <p class="help-block">{{ formElementErrors($form->get('email')) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" hidden>
                     <div class="form-group">
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <label for="password1" class="control-label">{{ formLabel($form->get('notify')) }}</label>

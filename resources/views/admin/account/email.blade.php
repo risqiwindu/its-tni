@@ -3,7 +3,7 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
+            route('admin.dashboard')=>'Dashboard',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -17,7 +17,7 @@
 <form method="post" action="{{ adminUrl(array('controller'=>'account','action'=>'email')) }}">
 @csrf
 <div class="form-group">
-<label for="email">{{ __lang('new-email') }}</label>
+<label for="email">NIP/NRP atau email</label>
 <input class="form-control" type="text" name="email" required="required"/>
 
 </div>

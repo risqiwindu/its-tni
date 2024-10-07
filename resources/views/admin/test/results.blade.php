@@ -148,8 +148,8 @@
                     <tr>
                         <th>{{ __lang('student') }}</th>
                         <th>{{ __lang('date-taken') }}</th>
-                        <th>{{ __lang('score') }}</th>
-                        <th>{{ __lang('grade') }}</th>
+                        <th>Nilai</th>
+                        <th>Index</th>
                         <th class="text-right">{{__lang('actions')}}</th>
                     </tr>
                     </thead>
@@ -158,14 +158,21 @@
                         <tr>
                             <td>{{ $row->first_name }} {{ $row->last_name }}</td>
                             <td>{{ showDate('d/M/Y',$row->created_at) }}</td>
-                            <td>{{ $row->score }}%</td>
-                            <td>@php if($row->score >= $row->passmark):  @endphp
-                                <span style="color:green">{{ __lang('passed') }}</span>
-                                @php else:  @endphp
-                                    <span style="color:red">{{ __lang('failed') }}</span>
-                                @php endif;  @endphp
-                            </td>
-
+                            <td>{{ $row->score }}</td>
+                        @php
+                            if ($row->score >= 80 && $row->score <= 100) {
+                                $index = 'A';
+                            }elseif($row->score >= 68 && $row->score <= 79) {
+                                $index = 'B';
+                            }elseif ($row->score >= 56 && $row->score <= 67) {
+                                $index = 'C';
+                            }elseif ($row->score >= 45 && $row->score <= 55) {
+                                $index = 'D';
+                            }else {
+                                $index = 'E';
+                            }
+                        @endphp
+                            <td>{{ $index }}</td>
                             <td class="text-right">
                                  <a onclick="openModal('{{ $row->first_name }} {{ $row->last_name }}','{{ adminUrl(array('controller'=>'test','action'=>'testresult','id'=>$row->id)) }}')"  href="javascript:;" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('view-result') }}"><i class="fa fa-eye"></i></a>
                                 <a onclick="return confirm('{{__lang('delete-confirm')}}')" href="{{ adminUrl(array('controller'=>'test','action'=>'deleteresult','id'=>$row->id)) }}"  class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{__lang('delete')}}"><i class="fa fa-trash"></i></a>

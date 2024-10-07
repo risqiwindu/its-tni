@@ -72,7 +72,7 @@
                             <i class="far fa-user"></i> @lang('default.profile')
                         </a>
                         <a href="@route('admin.account.email')" class="dropdown-item has-icon">
-                            <i class="fas fa-envelope"></i> @lang('default.change-email')
+                            <i class="fas fa-envelope"></i> Ganti NIP/NRP atau Email 
                         </a>
                         <a href="@route('admin.account.password')" class="dropdown-item has-icon">
                             <i class="fas fa-unlock"></i> @lang('default.change-password')
@@ -192,7 +192,7 @@
                         @can('access','view_downloads')<li ><a class="nav-link" href="@route('admin.download.index')"><i class="fas fa-download"></i><span>Download</span></a></li>@endcan
                     @endcan
 
-                    {{-- @can('access-group','discussions')
+                    @can('access-group','discussions')
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-comments"></i><span>{{ __lang('discussions') }}</span></a>
                         <ul class="dropdown-menu">
@@ -200,7 +200,7 @@
                             @can('access','view_forum_topics')<li ><a class="nav-link" href="@route('admin.forum.index')">{{ __lang('student-forum') }}</a></li>@endcan
                         </ul>
                     </li>
-                    @endcan --}}
+                    @endcan
 
                     @can('access-group','tests')
                         @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Ujian</span></a></li>@endcan

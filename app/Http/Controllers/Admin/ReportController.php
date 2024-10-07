@@ -24,6 +24,7 @@ use Laminas\Form\Element\Select;
 use Laminas\Form\Element\Text;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Laminas\Db\Sql\Where;
 
 class ReportController extends Controller
 {
@@ -385,6 +386,11 @@ class ReportController extends Controller
                     ->select('lectures.title', 'lectures.id')
                     ->where('course_lesson.course_id', $course)
                     ->get(); // Mengambil data judul dan ID materi
+
+        if ($materi->isEmpty()) {
+            // Menangani jika materi kosong, misal log atau kembalikan pesan ke view
+            return redirect()->back()->with('error', 'Data materi tidak ditemukan.');
+        }
     
         // Inisialisasi array untuk CASE expressions
         $countStatements   = [];
@@ -445,7 +451,11 @@ class ReportController extends Controller
         }
 
 
-    
+         // Jika tidak ada data CASE yang terbentuk, bisa kembalikan error
+        if (empty($countStatements) && empty($emotionStatements) && empty($tanggalStatements) && empty($lamaStatements)) {
+            return redirect()->back()->with('error', 'Tidak ada data untuk diproses.');
+        }
+
         $caseStatements = array_merge($countStatements, $emotionStatements, $tanggalStatements, $lamaStatements);
 
         //Bangun query utama
@@ -462,9 +472,16 @@ class ReportController extends Controller
             ->leftJoin('student_tests', 'students.id', '=', 'student_tests.student_id')
             ->leftJoin('student_lectures', 'students.id', '=', 'student_lectures.student_id')
             ->leftJoin('lectures', 'student_lectures.lecture_id', '=', 'lectures.id')
+            ->leftJoin('student_courses','students.id','=','student_courses.student_id')
             ->where('students.department', $department)
+            ->where('student_courses.course_id', $course_id)
             ->groupBy('users.name', 'users.email', 'student_tests.score')
             ->get();
+
+            if ($result->isEmpty()) {
+                // Jika hasil query kosong, bisa lakukan redirect atau kembalikan pesan ke view
+                return redirect()->back()->with('alert', 'Data siswa tidak ditemukan untuk kursus dan departemen yang dipilih.');
+            }
 
         // Kembalikan hasil ke view
         return view('admin.report.laporan', compact('result', 'course'));
@@ -552,10 +569,37 @@ class ReportController extends Controller
         $courseQuery->where('courses.admin_id', $this->getAdministratorID());
     }
 
+    $nilai = DB::table('student_courses')
+    ->join('student_tests', 'student_courses.student_id', '=', 'student_tests.student_id')
+    ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+    ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+    ->join('students', 'student_tests.student_id', '=', 'students.id')
+    ->select(
+        'student_courses.course_id as course_id',
+        'course_categories.name as kategori',
+        DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata')
+    )
+    ->where('students.department', $department)
+    ->groupBy('course_categories.name', 'student_courses.course_id')
+    ->get();
+
+    $categories = ['audio', 'visual', 'kinestetik'];
+    $data = [];
+
+    // Initialize the data with default values
+    // foreach ($categories as $category) {
+    //     $data[$category] = 0; // Default to 0
+    // }
+
+    // Fill in the actual averages from the query
+    foreach ($nilai as $item) {
+        $data[$item->kategori] = $item->rata_rata; // Assign average scores
+    }
+
     // Execute the query
     $course = $courseQuery->get();
 
-    return view('admin.report.detail_kelas', compact('kelas', 'course'));
+    return view('admin.report.detail_kelas', compact('kelas', 'course', 'data'));
 }
 
 

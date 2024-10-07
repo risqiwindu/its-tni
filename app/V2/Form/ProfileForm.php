@@ -38,6 +38,17 @@ class ProfileForm extends BaseForm {
             'options'=>array('label'=>__lang('Lastname')),
         ));
 
+        $this->add(array(
+            'name'=>'email',
+            'attributes' => array(
+                'type'=>'text',
+                'class'=>'form-control ',
+                'readonly'=>'readonly',
+                'required'=>'required',
+            ),
+            'options'=>array('label'=>'NIP / NRP atau Email yang Digunakan'),
+        ));
+
         $this->createSelect('notify','Receive Notifications',['1'=>__lang('Yes'),'0'=>__lang('No')],true,false);
 
         $this->createTextArea('about','About');

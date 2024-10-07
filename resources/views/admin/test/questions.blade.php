@@ -16,7 +16,7 @@
             <div class="card-header">
                 <button data-toggle="modal" data-target="#myModal" class="btn btn-success float-right"><i class="fa fa-plus"></i>  Tambah Pertanyaan</button>
                 &nbsp; &nbsp;
-                <button data-toggle="modal" data-target="#importModal" class="btn btn-primary float-right"><i class="fa  fa-download"></i>  Import</button>
+                {{-- <button data-toggle="modal" data-target="#importModal" class="btn btn-primary float-right"><i class="fa  fa-download"></i>  Import</button> --}}
 
 
 

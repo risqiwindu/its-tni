@@ -72,6 +72,7 @@
             @foreach ($result as $row)
             @php
                 $ngantuk = 0;
+                $hitung = 0;
             @endphp
                 <tr>
                     <td>{{ $no++ }}</td>
@@ -150,9 +151,12 @@
                             $ngantuk = $ngantuk + $total;
                             @endphp
                         @endif
+                        @php
+                            $hitung++;
+                        @endphp
                     @endforeach
                     @if ($ngantuk > 0)
-                    <td>Mengantuk :{{ number_format($ngantuk, 2) }}%</td> <!-- Format to 2 decimal places -->
+                    <td>Mengantuk :{{ number_format($ngantuk/$hitung, 2) }}%</td> <!-- Format to 2 decimal places -->
                     @else
                     <td>Tidak Mengantuk</td> <!-- Format to 2 decimal places -->
                     @endif

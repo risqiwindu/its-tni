@@ -64,7 +64,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <div >
-                                                            <label for="password1" class="control-label">Email</label>
+                                                            <label for="password1" class="control-label">NIP / NRP</label>
                                                         </div>
                                                         <div >
                                                             {{ formElement($form->get('email')) }}   <p class="help-block">{{ formElementErrors($form->get('email')) }}</p>
@@ -72,7 +72,18 @@
                                                     </div>
                                                 </div>
 
-
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div >
+                                                            <label for="department" class="control-label">Department</label>
+                                                        </div>
+                                                        <div >
+                                                            <div >
+                                                                <input type="text" class="form-control" id="department" name="department" value="{{ $row->department }}" required>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
                                             </div>
@@ -233,8 +244,8 @@
                                                 <label for="">{{ __lang('confirm-password') }}</label>
                                                 <input required class="form-control" type="password" name="confirm_password"/>
                                             </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" name="notify" value="1" checked/>
+                                            <div class="form-group" hidden>
+                                                <input type="checkbox" name="notify" value="1"/>
                                                 <label for="">{{ __lang('send-new-password') }}</label>
                                             </div>
                                             <button class="btn btn-primary btn-block" type="submit">{{__lang('save')}}</button>

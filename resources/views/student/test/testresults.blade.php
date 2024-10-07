@@ -16,9 +16,10 @@
         <tr>
             <th>#</th>
             <th>{{ __lang('taken-on') }}</th>
-            <th>{{ __lang('Score') }}</th>
-            <th>{{ __lang('Grade') }}</th>
-            <th>{{ __lang('Status') }}</th>
+            <th>Nilai</th>
+            <th>Index</th>
+            {{-- <th>{{ __lang('Grade') }}</th>
+            <th>{{ __lang('Status') }}</th> --}}
         </tr>
     </thead>
     <tbody>
@@ -27,13 +28,27 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ showDate('d/M/Y',$row->created_at) }}</td>
                 <td>{{ round($row->score) }}</td>
-                <td>{{ $gradeTable->getGrade($row->score) }}</td>
+                {{-- <td>{{ $gradeTable->getGrade($row->score) }}</td>
                 <td>@if($row->score >= $test->passmark)
                 <span style="color: green">{{ __lang('Passed') }}</span>
                 @else
                         <span style="color: red">{{ __lang('Failed') }}</span>
                     @endif
-                </td>
+                </td> --}}
+                                @php
+                                    if ($row->score >= 80 && $row->score <= 100) {
+                                        $index = 'A';
+                                    }elseif($row->score >= 68 && $row->score <= 79) {
+                                        $index = 'B';
+                                    }elseif ($row->score >= 56 && $row->score <= 67) {
+                                        $index = 'C';
+                                    }elseif ($row->score >= 45 && $row->score <= 55) {
+                                        $index = 'D';
+                                    }else {
+                                        $index = 'E';
+                                    }
+                                @endphp
+                <td>{{ $index }}</td>
 
             </tr>
 
