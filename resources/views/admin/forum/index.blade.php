@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="table-responsive_ pt-2">
+        <div class="table-responsive mt-2">
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>

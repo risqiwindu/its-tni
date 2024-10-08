@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('innerTitle',"$department")
 @section('page-title','')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
@@ -49,8 +50,9 @@
 @section('footer')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var categories = @json(array_keys($data)); // Kategori
-    var scores = @json(array_values($data));   // Rata-rata nilai
+    // Mendapatkan kategori dan nilai rata-rata dari PHP
+    var categories = @json(array_keys($data)); // Kategori (termasuk 'manual')
+    var scores = @json(array_values($data));   // Rata-rata nilai (termasuk nilai manual)
 
     var ctx = document.getElementById('categoryChart').getContext('2d');
     
@@ -59,7 +61,7 @@
         'rgba(255, 99, 132, 0.6)', // Warna untuk audio
         'rgba(54, 162, 235, 0.6)', // Warna untuk visual
         'rgba(255, 206, 86, 0.6)', // Warna untuk kinestetik
-        'rgba(75, 192, 192, 0.6)', // Warna tambahan
+        'rgba(75, 192, 192, 0.6)', // Warna untuk manual
         'rgba(153, 102, 255, 0.6)', // Warna tambahan
         'rgba(255, 159, 64, 0.6)'  // Warna tambahan
     ];
@@ -67,10 +69,10 @@
     var categoryChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: categories,
+            labels: categories, // Label untuk setiap kategori (termasuk manual)
             datasets: [{
                 label: 'Rata-rata Nilai',
-                data: scores,
+                data: scores, // Data nilai rata-rata (termasuk manual)
                 backgroundColor: colors.slice(0, categories.length), // Menggunakan warna untuk setiap kategori
                 borderColor: colors.slice(0, categories.length).map(color => color.replace('0.6', '1')), // Border lebih pekat
                 borderWidth: 1
@@ -89,6 +91,7 @@
         }
     });
 </script>
+
 
 
 

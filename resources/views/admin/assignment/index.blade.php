@@ -20,6 +20,7 @@
 
 					</div>
 					<div class="card-body">
+                        <div class="table-responsive">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -73,7 +74,7 @@
 
 							</tbody>
 						</table>
-
+                        </div>
                         @php
  // add at the end of the file after the table
  echo paginationControl(

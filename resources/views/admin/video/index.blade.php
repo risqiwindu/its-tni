@@ -60,6 +60,7 @@
             <div class="box">
 
                 <div class="box-body">
+                    <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead>
                         <tr>
@@ -146,7 +147,7 @@
 
                         </tbody>
                     </table>
-
+                    </div>
                     @php
                     // add at the end of the file after the table
                     echo paginationControl(

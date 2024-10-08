@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('innerTitle','Laporan Kelas')
 @section('page-title','')
 @section('breadcrumb')
     @include('admin.partials.crumb',[

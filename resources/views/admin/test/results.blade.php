@@ -26,36 +26,7 @@
 
     <div >
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-success">
-                        <i class="far fa-thumbs-up"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>{{ __lang('passed') }}</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $passed }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-danger">
-                        <i class="far fa-thumbs-down"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>{{ __lang('failed') }}</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $failed }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
@@ -63,26 +34,22 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>{{ __lang('average-score') }}</h4>
+                            <h4>Nilai Rata-Rata :</h4>
                         </div>
                         <div class="card-body">
-                            {{ $average }}%
+                            {{ $average }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
 
-
-
-            </div>
         </div>
 
 
     <div >
 
 
-        <div class="dropdown d-inline mr-2">
+        {{-- <div class="dropdown d-inline mr-2">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-download"></i>   {{ __lang('export') }}
             </button>
@@ -91,7 +58,7 @@
                 <a class="dropdown-item"  href="{{ adminUrl(['controller'=>'test','action'=>'exportresult','id'=>$row->id]) }}?type=fail&start={{ $start }}&end={{ $end }}"><i class="fa fa-thumbs-down"></i> {{ __lang('export-failed') }}</a>
 
             </div>
-        </div>
+        </div> --}}
 
         <button class="btn btn-success"  data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="fa fa-filter"></i> {{ __lang('filter') }}</button>
         <br> <br>
@@ -139,10 +106,7 @@
             </div>
         </div>
 
-
-        <div class="card">
-
-            <div class="card-body">
+        <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -190,7 +154,7 @@
 
                     </tbody>
                 </table>
-
+        </div>
                 @php
                 // add at the end of the file after the table
                 echo paginationControl(
@@ -209,10 +173,8 @@
                     )
                 );
                 @endphp
-            </div><!--end .box-body -->
-        </div><!--end .box -->
-    </div><!--end .col-lg-12 -->
-</div>
+            
+    
 
 
 <!-- START SIMPLE MODAL MARKUP --><!-- /.modal -->

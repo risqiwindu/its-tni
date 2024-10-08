@@ -583,6 +583,12 @@ class ReportController extends Controller
     ->groupBy('course_categories.name', 'student_courses.course_id')
     ->get();
 
+    // $manual = DB::table('student_tests')
+    //             ->select(DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata'))
+    //             ->where('student_id');
+
+    $manual = 65;
+
     $categories = ['audio', 'visual', 'kinestetik'];
     $data = [];
 
@@ -596,10 +602,12 @@ class ReportController extends Controller
         $data[$item->kategori] = $item->rata_rata; // Assign average scores
     }
 
+    $data['manual'] = $manual;
+
     // Execute the query
     $course = $courseQuery->get();
 
-    return view('admin.report.detail_kelas', compact('kelas', 'course', 'data'));
+    return view('admin.report.detail_kelas', compact('kelas', 'course', 'data', 'department'));
 }
 
 
