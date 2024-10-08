@@ -74,7 +74,7 @@
 
 </div>
 
-<div class="form-check mb-3">
+<div class="form-check mb-3" hidden>
     <input class="form-check-input" type="checkbox" id="notify" name="notify" value="1" @if((old('notify',isset($admin->admin->notify) ? $admin->admin->notify : 0))==1) checked @endif>
 
     <label class="form-check-label" for="notify">
@@ -82,7 +82,7 @@
     </label>
 </div>
 
-<div class="form-check mb-3">
+<div class="form-check mb-3" hidden>
     <input class="form-check-input" type="checkbox" id="public" name="public" value="1" @if((old('public',isset($admin->admin->public) ? $admin->admin->public : 0))==1) checked @endif>
 
     <label class="form-check-label" for="public">
@@ -90,7 +90,7 @@
     </label>
 </div>
 
-<div class="card">
+<div class="card" hidden>
  <div class="card-header">
    <h4>{{__lang('social')}}</h4>
 </div>

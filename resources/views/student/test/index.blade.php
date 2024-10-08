@@ -28,8 +28,7 @@
                 <th>Kuis/Ujian</th>
                 <th>Pertanyaan</th>
                 <th>Waktu Pengerjaan (Menit)</th>
-                <th>Beberapa Pecobaan</th>
-                <th>Kelulusan</th>
+                {{-- <th colspan="2">Grade</th> --}}
                 <th  >{{  __lang('Actions')  }}</th>
             </tr>
             </thead>
@@ -39,8 +38,11 @@
                     <td>{{  $row->name }}</td>
                     <td>{{  $questionTable->getTotalQuestions($row->test_id) }}</td>
                     <td>{{  empty($row->minutes)?__lang('Unlimited'):$row->minutes }}</td>
-                    <td>{{  boolToString($row->allow_multiple) }}</td>
-                    <td>{{  ($row->passmark > 0)? $row->passmark.'%':__lang('Ungraded') }}</td>
+                    {{-- <td>
+                        <li>
+                            90 <= Nilai <= 100 (A)
+                        </li>
+                    </td> --}}
                     <td >
                     @php  if(!$studentTest->hasTest($row->test_id,$id) || !empty($row->allow_multiple)):  @endphp
                         <a href="{{  route('student.test.taketest',array('id'=>$row->test_id)) }}" class="btn btn-primary " ><i class="fa fa-play"></i> {{  __lang('Take Test')  }}</a>
