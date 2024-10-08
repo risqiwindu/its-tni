@@ -376,10 +376,10 @@ class ReportController extends Controller
         return $objects;
     }
 
-    public function laporan($course_id, $department)
+    public function laporan($course_id)
     {
         $course = $course_id;
-        $kelas  = $department;
+        // $kelas  = $department;
         // Mengambil judul pelajaran berdasarkan course_id
         $materi = DB::table('course_lesson')
                     ->join('lectures', 'course_lesson.lesson_id', '=', 'lectures.lesson_id')
@@ -473,7 +473,7 @@ class ReportController extends Controller
             ->leftJoin('student_lectures', 'students.id', '=', 'student_lectures.student_id')
             ->leftJoin('lectures', 'student_lectures.lecture_id', '=', 'lectures.id')
             ->leftJoin('student_courses','students.id','=','student_courses.student_id')
-            ->where('students.department', $department)
+            // ->where('students.department', $department)
             ->where('student_courses.course_id', $course_id)
             ->groupBy('users.name', 'users.email', 'student_tests.score')
             ->get();
@@ -550,9 +550,9 @@ class ReportController extends Controller
         return view('admin.report.kelas', compact('hasil'));
     }
 
-    public function detail_kelas($department)
+    public function detail_kelas()
 {
-    $kelas = $department;
+    // $kelas = $department;
     $role = DB::table('admins')
             ->where('id', $this->getAdministratorID())
             ->first();
@@ -579,7 +579,7 @@ class ReportController extends Controller
         'course_categories.name as kategori',
         DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata')
     )
-    ->where('students.department', $department)
+    // ->where('students.department', $department)
     ->groupBy('course_categories.name', 'student_courses.course_id')
     ->get();
 
@@ -607,7 +607,7 @@ class ReportController extends Controller
     // Execute the query
     $course = $courseQuery->get();
 
-    return view('admin.report.detail_kelas', compact('kelas', 'course', 'data', 'department'));
+    return view('admin.report.detail_kelas', compact('course', 'data'));
 }
 
 

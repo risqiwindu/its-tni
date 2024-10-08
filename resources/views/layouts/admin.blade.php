@@ -206,8 +206,12 @@
                     @endcan
 
                     @can('access-group','reports')
-                    <li class="dropdown">
+                    {{-- <li class="dropdown">
                         <a href="@route('admin.report.kelas')" class="nav-link"><i class="fas fa-chart-bar"></i><span>{{ __lang('reports') }}</span></a>
+
+                    </li> --}}
+                    <li class="dropdown">
+                        <a href="@route('admin.report.detail_kelas')" class="nav-link"><i class="fas fa-chart-bar"></i><span>{{ __lang('reports') }}</span></a>
 
                     </li>
                     @endcan

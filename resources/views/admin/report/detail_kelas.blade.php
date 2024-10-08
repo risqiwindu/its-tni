@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('innerTitle',"$department")
+@section('innerTitle','Laporan')
 @section('page-title','')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
@@ -37,7 +37,7 @@
             @foreach ($course as $row)
                 <tr>
                     <td>{{ $row->name }} - {{ $row->kategori }}</td> <!-- Add space or hyphen -->
-                    <td><a href="{{ route('admin.report.laporan', ['course_id' => $row->id, 'department' => $kelas]) }}" class="btn btn-primary">Lihat</a></td> <!-- Add href link if needed -->
+                    <td><a href="{{ route('admin.report.laporan', ['course_id' => $row->id]) }}" class="btn btn-primary">Lihat</a></td> <!-- Add href link if needed -->
                 </tr>
             @endforeach
         </tbody>
