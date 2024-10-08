@@ -103,7 +103,7 @@
 
                 </div>
                 <div class="article-details">
-                    <div class="article-category"><a href="#">{{ courseType($row->type) }}
+                    <div class="article-category">
                         </a> <div class="bullet"></div> <a href="#" onclick="openModal('{{ __lang('students-for') }} {{ $row->name}}','{{ route('admin.student.sessionenrollees',['id'=>$row->id])  }}')">{{ $studentSessionTable->getTotalForSession($row->id) }} {{ __lang('students') }}</a></div>
                     <div class="article-title">
                         <h2><a href="{{ route('admin.student.editsession',['id'=>$row->id])  }}">{{ $row->name }}</a></h2>
