@@ -4,7 +4,8 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            '#'=>'Laporan'
+            route('admin.report.detail_kelas')=>'Laporan',
+            '#'=>'Detail Laporan'
         ]])
 @endsection
 

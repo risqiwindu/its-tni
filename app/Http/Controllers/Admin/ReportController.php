@@ -580,7 +580,7 @@ class ReportController extends Controller
         DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata')
     )
     // ->where('students.department', $department)
-    ->groupBy('course_categories.name', 'student_courses.course_id')
+    ->groupBy('course_categories.name')
     ->get();
 
     // $manual = DB::table('student_tests')
