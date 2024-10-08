@@ -149,11 +149,10 @@
                             // Sum yawning and sleepy percentages
                             $total = $sleepy + $yawning  ;
                             $ngantuk = $ngantuk + $total;
+                            $hitung++;
                             @endphp
                         @endif
-                        @php
-                            $hitung++;
-                        @endphp
+                        
                     @endforeach
                     @if ($ngantuk > 0)
                     <td>Mengantuk :{{ number_format($ngantuk/$hitung, 2) }}%</td> <!-- Format to 2 decimal places -->
