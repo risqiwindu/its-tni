@@ -26,18 +26,26 @@
                             <div class="col-md-4">
                                 <h4>Index Nilai</h4>
                                 @php
-                                    if ($row->score >= 80 && $row->score <= 100) {
-                                        $index = 'A';
-                                    }elseif($row->score >= 68 && $row->score <= 79) {
-                                        $index = 'B';
-                                    }elseif ($row->score >= 56 && $row->score <= 67) {
-                                        $index = 'C';
-                                    }elseif ($row->score >= 45 && $row->score <= 55) {
-                                        $index = 'D';
-                                    }else {
-                                        $index = 'E';
-                                    }
-                                @endphp
+                                if ($row->score >= 90 && $row->score <= 100) {
+                                    $index = 'A';
+                                }elseif($row->score >= 85 && $row->score < 90) {
+                                    $index = 'A-';
+                                }elseif ($row->score >= 80 && $row->score < 85) {
+                                    $index = 'B+';
+                                }elseif ($row->score >= 75 && $row->score < 80) {
+                                    $index = 'B';
+                                }elseif ($row->score >= 70 && $row->score < 75) {
+                                    $index = 'B-';
+                                }elseif ($row->score >= 65 && $row->score < 70) {
+                                    $index = 'C+';
+                                }elseif ($row->score >= 60 && $row->score < 65) {
+                                    $index = 'C';
+                                }elseif ($row->score >= 55 && $row->score < 60) {
+                                    $index = 'D';
+                                }else {
+                                    $index = 'E';
+                                }
+                            @endphp
                                 <h1>{{  $index  }}</h1>
                             </div>
                         </div>

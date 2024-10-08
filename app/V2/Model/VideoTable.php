@@ -23,7 +23,7 @@ class VideoTable extends BaseTable
 
 
 
-    public function getVideos($paginated=false,$filter=null,$order=null)
+    public function getVideos($paginated=false,$filter=null,$order=null, $role_id=null,$admin_role=null)
     {
 
             $select = new Select($this->tableName);
@@ -31,6 +31,10 @@ class VideoTable extends BaseTable
 
         if(!GLOBAL_ACCESS){
             $select->where(['admin_id'=>ADMIN_ID]);
+        }
+
+        if($role_id == 1 && $admin_role != 1){
+            $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         }
 
         switch($order){

@@ -159,7 +159,6 @@
                     @endcan --}}
 
                     @can('access','view_videos')<li ><a class="nav-link" href="@route('admin.video.index')"><i class="fas fa-video"></i><span>Video</span></a></li>@endcan
-
                     {{-- @can('access-group','video')
                     <li class="dropdown">
                         <a href="@route('admin.video.index')" class="nav-link has-dropdown"><i class="fas fa-video"></i><span>Video</span></a>

@@ -160,13 +160,21 @@
                             <td>{{ showDate('d/M/Y',$row->created_at) }}</td>
                             <td>{{ $row->score }}</td>
                         @php
-                            if ($row->score >= 80 && $row->score <= 100) {
+                            if ($row->score >= 90 && $row->score <= 100) {
                                 $index = 'A';
-                            }elseif($row->score >= 68 && $row->score <= 79) {
+                            }elseif($row->score >= 85 && $row->score < 90) {
+                                $index = 'A-';
+                            }elseif ($row->score >= 80 && $row->score < 85) {
+                                $index = 'B+';
+                            }elseif ($row->score >= 75 && $row->score < 80) {
                                 $index = 'B';
-                            }elseif ($row->score >= 56 && $row->score <= 67) {
+                            }elseif ($row->score >= 70 && $row->score < 75) {
+                                $index = 'B-';
+                            }elseif ($row->score >= 65 && $row->score < 70) {
+                                $index = 'C+';
+                            }elseif ($row->score >= 60 && $row->score < 65) {
                                 $index = 'C';
-                            }elseif ($row->score >= 45 && $row->score <= 55) {
+                            }elseif ($row->score >= 55 && $row->score < 60) {
                                 $index = 'D';
                             }else {
                                 $index = 'E';

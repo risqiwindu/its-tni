@@ -18,6 +18,8 @@ use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\Validator\File\Extension;
 use Laminas\Validator\File\Size;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class VideoController extends Controller
@@ -64,9 +66,13 @@ class VideoController extends Controller
         $sortSelect->setValue($sort);
 
 
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
 
-
-        $paginator = $table->getVideos(true,$filter,$sort);
+        $paginator = $table->getVideos(true,$filter,$sort, $role_id,$admin_role);
 
         $paginator->setCurrentPageNumber((int)request()->get('page', 1));
         $paginator->setItemCountPerPage(30);
