@@ -480,7 +480,7 @@ class ReportController extends Controller
 
             if ($result->isEmpty()) {
                 // Jika hasil query kosong, bisa lakukan redirect atau kembalikan pesan ke view
-                return redirect()->back()->with('alert', 'Data siswa tidak ditemukan untuk kursus dan departemen yang dipilih.');
+                return redirect()->back()->with('alert', 'Belum ada siswa yang melakukan enroll untuk materi dengan kategori gaya belajar ini');
             }
 
         // Kembalikan hasil ke view
@@ -587,8 +587,10 @@ class ReportController extends Controller
     //             ->select(DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata'))
     //             ->where('student_id');
 
-    $manual = 65;
-
+    $manual = DB::table('student_tests')
+                ->leftJoin('student_courses', 'student_tests.student_id','=','student_courses.student_id')
+                ->whereNull('student_courses.student_id')
+                ->avg('student_tests.score');
     $categories = ['audio', 'visual', 'kinestetik'];
     $data = [];
 

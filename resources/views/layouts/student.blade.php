@@ -390,6 +390,20 @@
 <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 
 <script src="{{ asset('client/app/lib.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Cek jika ada session 'alert' -->
+@if (session('alert'))
+<script>
+    Swal.fire({
+        title: 'Data Tidak Ditemukan!',
+        text: '{{ session('alert') }}',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+
 {!! setting('general_foot_scripts') !!}
 @yield('footer')
 </body>

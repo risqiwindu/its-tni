@@ -220,7 +220,17 @@ class StudentController extends Controller {
             'attendanceTable'=>$attendanceTable,
             'total'=>$total
         ];
-        return viewModel('student',__CLASS__,__FUNCTION__,$output);
+
+        $id = Auth::user()->id;
+        $course = DB::table('student_courses')
+        ->where('student_id', $id)
+        ->get();
+
+        if (empty($course)) {
+            return redirect()->back()->with('alert', 'Maaf, silakan melakukan test gaya belajar terlebih dan lakukan enroll kelas dahulu!');
+         } else{
+            return viewModel('student',__CLASS__,__FUNCTION__,$output);
+         }
     }
 
     /**
