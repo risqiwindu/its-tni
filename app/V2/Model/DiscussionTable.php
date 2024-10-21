@@ -10,9 +10,12 @@ namespace App\V2\Model;
 
 
 use App\Lib\BaseTable;
+use Illuminate\Support\Facades\DB;
 use Laminas\Db\Sql\Select;
+use Laminas\Db\Sql\Where;
 use Laminas\Paginator\Adapter\DbSelect;
 use Laminas\Paginator\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class DiscussionTable extends BaseTable {
 
@@ -61,6 +64,7 @@ class DiscussionTable extends BaseTable {
 
     public function getDiscussRecords($paginated=false,$replied=null)
     {
+        
         if(GLOBAL_ACCESS){
             $select = new Select($this->tableName);
         }
@@ -71,7 +75,7 @@ class DiscussionTable extends BaseTable {
         }
 
         $select->order($this->tableName.'.id desc');
-         $select->join($this->getPrefix().'students',$this->tableName.'.student_id='.$this->getPrefix().'students.id',['mobile_number']);
+        $select->join($this->getPrefix().'students',$this->tableName.'.student_id='.$this->getPrefix().'students.id',['mobile_number']);
         $select->join($this->getPrefix().'users',$this->getPrefix().'students.user_id='.$this->getPrefix().'users.id',['name','email','picture','last_name','enabled','last_seen']);
 
         if(isset($replied)){

@@ -3,14 +3,14 @@
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
-            route('admin.dashboard')=>__('default.dashboard'),
+            route('admin.dashboard')=>'Dashboard',
             route('admin.report.detail_kelas')=>'Laporan',
             '#'=>'Detail Laporan'
         ]])
 @endsection
 
 @section('search-form')
-    <form class="form-inline mr-auto" method="get" action="{{ adminUrl(array('controller'=>'report','action'=>'index')) }}">
+<form class="form-inline mr-auto" method="get" action="{{ route('admin.report.laporan', $course) }}">
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
@@ -42,8 +42,8 @@
                 @endphp
         
                 <th colspan="{{ $materiCount * 5 }}" class="text-center">Materi</th> <!-- Mengubah kolom menjadi *4 untuk menambahkan detail ekspresi -->
-                <th rowspan="3">Kesimpulan</th>
-                <th rowspan="3">Grafik</th>
+                {{-- <th rowspan="3">Kesimpulan</th>
+                <th rowspan="3">Grafik</th> --}}
             </tr>
             <tr>
                 @foreach ($result[0] as $key => $value)
@@ -155,7 +155,7 @@
                         @endif
                         
                     @endforeach
-                    @if ($ngantuk > 0)
+                    {{-- @if ($ngantuk > 0)
                     <td>Mengantuk :{{ number_format($ngantuk/$hitung, 2) }}%</td> <!-- Format to 2 decimal places -->
                     @else
                     <td>Tidak Mengantuk</td> <!-- Format to 2 decimal places -->
@@ -168,7 +168,7 @@
                                 data-target="#lectureModal">
                             Lihat Grafik
                         </button>
-                    </td>
+                    </td> --}}
                 </tr>
             @endforeach
         </tbody>

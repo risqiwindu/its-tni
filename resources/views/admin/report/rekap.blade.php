@@ -1,0 +1,122 @@
+@extends('layouts.admin')
+@section('innerTitle','Laporan Keseluruhan')
+@section('page-title','')
+@section('breadcrumb')
+    @include('admin.partials.crumb',[
+    'crumbs'=>[
+            route('admin.dashboard')=>'Dashboard',
+            route('admin.report.detail_kelas')=>'Laporan',
+            '#'=>'Laporan Keseluruhan'
+        ]])
+@endsection
+
+@section('search-form')
+<form class="form-inline mr-auto" method="get" action="{{ route('admin.report.rekap') }}">
+        <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+        </ul>
+        <div class="search-element">
+            <input value="{{ request()->get('filter') }}"   name="filter" class="form-control" type="search" placeholder="{{ __lang('search') }}" aria-label="{{ __lang('search') }}" data-width="250">
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+@endsection
+@section('content')
+
+<div class="row">
+    <div class="col-md-6">
+        <canvas id="emotionChart"></canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="scoreChart"></canvas>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nama Siswa</th>
+            <th>NIP / NRP</th>
+            <th>Kategori Materi</th>
+            <th>Ekspresi Tertinggi(%)</th>
+            <th>Nilai Ujian</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($hasil as $row)
+            @if ( $row->highest_percentage > 0)
+            <tr>
+                <td>{{ $row->student_name }}</td>
+                <td>{{ $row->nrp }}</td>
+                <td>{{ $row->category_name }}</td>
+                <td>{{ $row->highest_emotion }} ({{ $row->highest_percentage }}%)</td>
+                <td>{{ $row->score }}</td>
+            </tr>
+            @endif
+            @endforeach
+        </tbody>
+    </table>
+    {{ $hasil->links() }}
+    
+</div>
+@endsection
+
+@section('footer')
+<script>
+    // Chart for Emotions
+    var ctx1 = document.getElementById('emotionChart').getContext('2d');
+    var emotionChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode(array_keys($categoryEmotions)) !!},
+            datasets: [{
+                label: 'Ekspresi Tertinggi',
+                data: {!! json_encode(array_column($categoryEmotions, 'percentage')) !!},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart for Scores
+    var ctx2 = document.getElementById('scoreChart').getContext('2d');
+    var scoreChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode(array_keys($categoryScores)) !!},
+            datasets: [{
+                label: 'Nilai Tertinggi',
+                data: {!! json_encode(array_values($categoryScores)) !!},
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
+                    }
+                }
+            }
+        }
+    });
+</script>
+@endsection

@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.student.sessions')=>__lang('courses'),
+            route('admin.student.sessions')=>'Kelas',
             '#'=>__lang('students')
         ]])
 @endsection
@@ -18,7 +18,6 @@
                         <th>{{ __lang('name') }}</th>
                         <th>{{ __lang('classes-attended') }}</th>
                         <th>{{ __lang('progress') }}</th>
-                        <th>{{ __lang('enrollment-code') }}</th>
                         <th  >{{__lang('actions')}}</th>
                     </tr>
                     </thead>
@@ -51,10 +50,6 @@
 
                                 </div>
                             </td>
-                            <td>
-                                {{ $row->reg_code }}
-                            </td>
-
                             <td >
                                 <a href="{{ adminUrl(array('controller'=>'session','action'=>'stats','id'=>$row->id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('student-progress') }}"><i class="fa fa-chart-bar"></i></a>
 
@@ -62,7 +57,7 @@
                                 <a  data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('Un-enroll') }}"  onclick="return confirm('Are you sure you want to unenroll this student ?')" href="{{ adminUrl(array('controller'=>'student','action'=>'unenroll','id'=>$row->student_id)) }}?session={{ $id }}"  class="btn btn-xs btn-primary btn-equal" ><i class="fa fa-minus"></i></a>
 
                                 <button   data-id="{{ $row->student_id }}" data-toggle="modal" data-target="#simpleModal" title="Student Details" type="button" class="btn btn-xs btn-primary btn-equal viewbutton"  ><i class="fa fa-user"></i></button>
-                                <a href="{{ adminUrl(array('controller'=>'student','action'=>'edit','id'=>$row->student_id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('edit-student') }}"><i class="fa fa-edit"></i></a>
+                                {{-- <a href="{{ adminUrl(array('controller'=>'student','action'=>'edit','id'=>$row->student_id)) }}" class="btn btn-xs btn-primary btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="{{ __lang('edit-student') }}"><i class="fa fa-edit"></i></a> --}}
 
                               </td>
                         </tr>

@@ -1414,7 +1414,7 @@ class StudentController extends Controller
         $rowset->setItemCountPerPage(300);
 
         foreach($rowset as $row){
-            $options[$row->id]=$row->name.' ('.courseType($row->type).')';
+            $options[$row->id]=$row->name.' - '.$row->id;
         }
         $select->setValueOptions($options);
         $select->setEmptyOption('--'.__lang('Select a Session/Course').'--');

@@ -1,4 +1,4 @@
-[2024-09-18 06:37:57] local.ERROR: count(): Argument #1 ($value) must be of type Countable|array, null given {"userId":1,"exception":"[object] (TypeError(code: 0): count(): Argument #1 ($value) must be of type Countable|array, null given at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:1086)
+[2024-10-21 01:24:29] local.ERROR: count(): Argument #1 ($value) must be of type Countable|array, null given {"userId":1,"exception":"[object] (TypeError(code: 0): count(): Argument #1 ($value) must be of type Countable|array, null given at C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:1086)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(1086): count(NULL)
 #1 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php(23): Illuminate\\Database\\Query\\Builder->whereIn('id', NULL)
@@ -8,7 +8,7 @@
 #5 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(2347): Illuminate\\Database\\Eloquent\\Model->__call('whereIn', Array)
 #6 C:\\xampp\\htdocs\\its-tni\\app\\V2\\Model\\LessonTable.php(92): Illuminate\\Database\\Eloquent\\Model::__callStatic('whereIn', Array)
 #7 C:\\xampp\\htdocs\\its-tni\\app\\Http\\Controllers\\Admin\\SessionController.php(451): App\\V2\\Model\\LessonTable->getLessons(true, NULL, NULL, 'online')
-#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\Admin\\SessionController->browseclasses(Object(Illuminate\\Http\\Request), '24')
+#8 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\Admin\\SessionController->browseclasses(Object(Illuminate\\Http\\Request), '30')
 #9 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('browseclasses', Array)
 #10 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Admin\\SessionController), 'browseclasses')
 #11 C:\\xampp\\htdocs\\its-tni\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()

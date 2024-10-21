@@ -393,7 +393,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Cek jika ada session 'alert' -->
-@if (session('alert'))
+{{-- @if (session('alert'))
 <script>
     Swal.fire({
         title: 'Data Tidak Ditemukan!',
@@ -402,7 +402,7 @@
         confirmButtonText: 'OK'
     });
 </script>
-@endif
+@endif --}}
 
 {!! setting('general_foot_scripts') !!}
 @yield('footer')

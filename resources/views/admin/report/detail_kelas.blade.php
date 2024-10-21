@@ -9,21 +9,11 @@
         ]])
 @endsection
 
-@section('search-form')
-    <form class="form-inline mr-auto" method="get" action="{{ adminUrl(array('controller'=>'report','action'=>'index')) }}">
-        <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-        </ul>
-        <div class="search-element">
-            <input value="{{ request()->get('filter') }}"   name="filter" class="form-control" type="search" placeholder="{{ __lang('search') }}" aria-label="{{ __lang('search') }}" data-width="250">
-            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
-@endsection
-
 @section('content')
 <canvas id="categoryChart" width="400" height="100"></canvas>
+<div class="mb-3">
+<a href="{{ route('admin.report.rekap') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
+</div>
 <div class="table-responsive_">
     <table class="table table-hover">
         <thead>

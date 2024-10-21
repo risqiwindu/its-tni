@@ -378,6 +378,7 @@ class ReportController extends Controller
 
     public function laporan($course_id)
     {
+        $filter = request()->get('filter');
         $course = $course_id;
         // $kelas  = $department;
         // Mengambil judul pelajaran berdasarkan course_id
@@ -474,10 +475,19 @@ class ReportController extends Controller
             ->leftJoin('lectures', 'student_lectures.lecture_id', '=', 'lectures.id')
             ->leftJoin('student_courses','students.id','=','student_courses.student_id')
             // ->where('students.department', $department)
-            ->where('student_courses.course_id', $course_id)
-            ->groupBy('users.name', 'users.email', 'student_tests.score')
-            ->get();
+            ->where('student_courses.course_id', $course_id);
+            // Tambahkan filter pencarian jika ada input
+    if (!empty($filter)) {
+        $result = $result->where(function($query) use ($filter) {
+            $query->where('users.name', 'LIKE', "%$filter%")
+                  ->orWhere('users.email', 'LIKE', "%$filter%");
+        });
+    }
 
+    $result = $result->groupBy('users.name', 'users.email', 'student_tests.score')->get();
+            
+
+           
             if ($result->isEmpty()) {
                 // Jika hasil query kosong, bisa lakukan redirect atau kembalikan pesan ke view
                 return redirect()->back()->with('alert', 'Belum ada siswa yang melakukan enroll untuk materi dengan kategori gaya belajar ini');
@@ -612,5 +622,122 @@ class ReportController extends Controller
     return view('admin.report.detail_kelas', compact('course', 'data'));
 }
 
+public function rekap()
+{
+    $filter = request()->get('filter');
+
+    // Ambil data dari berbagai tabel
+    $query = DB::table('student_courses')
+        ->join('students', 'student_courses.student_id', '=', 'students.id')
+        ->join('student_tests', 'student_courses.student_id', '=', 'student_tests.student_id')
+        ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+        ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+        ->join('users', 'students.user_id', '=', 'users.id')
+        ->join('courses','student_courses.course_id','=','courses.id')
+        ->leftJoin('student_emotion', function($join) {
+            $join->on('student_courses.student_id', '=', 'student_emotion.student_id')
+                ->on('student_courses.course_id', '=', 'student_emotion.course_id');
+        })
+        ->select(
+            'users.name as student_name',
+            'users.email as nrp', 
+            'course_categories.name as category_name', 
+            'student_tests.score', 
+            'student_courses.student_id', 
+            'student_courses.course_id',
+            'student_emotion.emotion as emotion_data' // Ambil data emosi dari tabel student_emotion
+        );
+
+    // Filter berdasarkan nama atau email
+    if (!empty($filter)) {
+        $query->where(function($tes) use ($filter) {
+            $tes->where('users.name', 'LIKE', "%$filter%")
+                ->orWhere('users.email', 'LIKE', "%$filter%");
+        });
+    }
+
+    // Cek peran admin
+    $role = DB::table('admins')
+                ->where('id', $this->getAdministratorID())
+                ->first();
+    $role_id = $role->id;
+
+    // Tambahkan kondisi jika role bukan admin (role_id != 1)
+    if ($role_id != 1) {
+        $query->where('courses.admin_id', $this->getAdministratorID());
+    }
+
+    // Group by dan order sebelum paginasi
+    $query->groupBy('student_courses.student_id', 'course_categories.name')
+        ->orderBy('student_tests.score', 'desc');
+
+    // Ambil hasil dengan paginasi
+    $hasil = $query->paginate(10);
+
+    // Inisialisasi array untuk menyimpan emosi dan skor tertinggi per kategori
+    $categoryEmotions = [];
+    $categoryScores = [];
+
+    // Proses data hasil untuk menghitung emosi tertinggi berdasarkan kategori
+    foreach ($hasil as $data) {
+        if (!empty($data->emotion_data)) {
+            // Ubah JSON string menjadi array
+            $emotions = json_decode($data->emotion_data, true);
+
+            // Inisialisasi variabel untuk menyimpan emosi tertinggi
+            $highestEmotion = null;
+            $highestPercentage = 0;
+
+            // Loop untuk mencari emosi tertinggi
+            foreach ($emotions as $emotion) {
+                // Ambil nilai persentase dan konversi ke float, hilangkan simbol "%"
+                $percentage = floatval(rtrim($emotion[1], '%'));
+
+                // Jika persentasenya lebih tinggi, perbarui emosi tertinggi
+                if ($percentage > $highestPercentage) {
+                    $highestPercentage = $percentage;
+                    $highestEmotion = $emotion[0]; // Nama emosi dengan persentase tertinggi
+                }
+            }
+
+            // Simpan emosi tertinggi ke dalam data hasil
+            $data->highest_emotion = $highestEmotion;
+            $data->highest_percentage = $highestPercentage;
+
+            // Periksa apakah kategori sudah ada di array emosi
+            if (!isset($categoryEmotions[$data->category_name])) {
+                // Jika belum ada, inisialisasi kategori dengan data pertama
+                $categoryEmotions[$data->category_name] = [
+                    'emotion' => $highestEmotion,
+                    'percentage' => $highestPercentage,
+                ];
+            } else {
+                // Jika sudah ada, periksa apakah persentase baru lebih tinggi
+                if ($highestPercentage > $categoryEmotions[$data->category_name]['percentage']) {
+                    $categoryEmotions[$data->category_name] = [
+                        'emotion' => $highestEmotion,
+                        'percentage' => $highestPercentage,
+                    ];
+                }
+            }
+
+            // Simpan nilai tertinggi berdasarkan kategori
+            if (!isset($categoryScores[$data->category_name])) {
+                $categoryScores[$data->category_name] = $data->score;
+            } else {
+                if ($data->score > $categoryScores[$data->category_name]) {
+                    $categoryScores[$data->category_name] = $data->score;
+                }
+            }
+        } else {
+            // Jika tidak ada data emosi, set default
+            $data->highest_emotion = 'N/A';
+            $data->highest_percentage = 0;
+        }
+    }
+
+    // Return view dengan data hasil yang sudah diproses dan data emosi per kategori serta nilai tertinggi per kategori
+    return view('admin.report.rekap', compact('hasil', 'categoryEmotions', 'categoryScores'));
+}
 
 }

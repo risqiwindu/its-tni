@@ -23,9 +23,6 @@ class AccountController extends Controller
 
         if (request()->isMethod('post')) {
             $post = request()->all();
-            $this->validate($request,[
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            ]);
             $newEmail = $post['email'];
             $accountsTable->tableGateway->update(array('email'=>$newEmail),array('email'=>$email));
             $output['flash_message']= 'Berhasil Merubah Data';
