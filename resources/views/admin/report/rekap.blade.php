@@ -64,33 +64,60 @@
 @endsection
 
 @section('footer')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Chart for Emotions
     var ctx1 = document.getElementById('emotionChart').getContext('2d');
-    var emotionChart = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: {!! json_encode(array_keys($categoryEmotions)) !!},
-            datasets: [{
-                label: 'Ekspresi Tertinggi',
-                data: {!! json_encode(array_column($categoryEmotions, 'percentage')) !!},
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+var emotionChart = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: {!! json_encode(array_keys($categoryEmotions)) !!},
+        datasets: [{
+            label: 'Ekspresi Tertinggi',
+            data: {!! json_encode(array_column($categoryEmotions, 'percentage')) !!},
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+                ticks: {
+                    stepSize: 25,
+                    callback: function(value) {
+                        return value + '%'; // Menambahkan simbol % pada sumbu y
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Persentase'
+                }
+            },
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Gaya Belajar'
+                }
+            }
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        stepSize: 20
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        var emotionLabel = {!! json_encode(array_column($categoryEmotions, 'emotion')) !!}[tooltipItem.dataIndex];
+                        return emotionLabel + ': ' + tooltipItem.raw + '%';
                     }
                 }
             }
         }
-    });
+    }
+});
+
 
     // Chart for Scores
     var ctx2 = document.getElementById('scoreChart').getContext('2d');
@@ -111,8 +138,21 @@
                 y: {
                     beginAtZero: true,
                     max: 100,
+                    min: 0,
                     ticks: {
+                        beginAtZero: true,
                         stepSize: 20
+                    },
+                    title: {
+                        display: true,
+                        text: 'Nilai'
+                    }
+                },
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Gaya Belajar'
                     }
                 }
             }
