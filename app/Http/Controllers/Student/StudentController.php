@@ -1459,31 +1459,41 @@ class StudentController extends Controller {
     $visual = round(($jawabanB / $totalQuestions) * 100, 2);
     $kinestetik = round(($jawabanC / $totalQuestions) * 100, 2);
 
-if ($jawabanA > $jawabanB && $jawabanA > $jawabanC && $jawabanB > $jawabanC || $jawabanA == $jawabanB && $jawabanA > $jawabanC) {
-    $tampil = 'Audio Visual';
-    $id = [2, 1];
-} elseif ($jawabanA > $jawabanB && $jawabanA > $jawabanC && $jawabanC > $jawabanB || $jawabanA == $jawabanC && $jawabanA > $jawabanB) {
-    $tampil = 'Audio Kinestetik';
-    $id = [2, 3];
-} elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && $jawabanA > $jawabanC || $jawabanB == $jawabanA && $jawabanB > $jawabanC || $jawabanA == $jawabanC && $jawabanB > $jawabanA) {
-    $tampil = 'Visual Audio';
-    $id = [1, 2];
-} elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && $jawabanC > $jawabanA || $jawabanB == $jawabanC && $jawabanB > $jawabanA || $jawabanA == $jawabanB && $jawabanC > $jawabanA) {
-    $tampil = 'Visual Kinestetik';
-    $id = [1, 3];
-} elseif ($jawabanC > $jawabanA && $jawabanC > $jawabanB && $jawabanA > $jawabanB || $jawabanC == $jawabanA && $jawabanC > $jawabanB || $jawabanB == $jawabanC && $jawabanA > $jawabanB) {
-    $tampil = 'Kinestetik Audio';
-    $id = [3, 2];
-} elseif ($jawabanC > $jawabanB && $jawabanC > $jawabanA && $jawabanB > $jawabanA || $jawabanC == $jawabanB && $jawabanC > $jawabanA) {
-    $tampil = 'Kinestetik Visual';
-    $id = [3, 1];
-} elseif ($jawabanA == $jawabanB && $jawabanA == $jawabanC && $jawabanB == $jawabanC) {
-    $tampil = 'Audio, Visual, dan Kinestetik';
-    $id = [1, 2, 3];
-} else {
-    $tampil = 'Tidak Terdefinisi';
-    $id = [];
-}
+    if ($jawabanA > $jawabanB && $jawabanA > $jawabanC && $jawabanB == $jawabanC) {
+        $tampil = 'Audio, Visual, dan Kinestetik';
+        $id = [1, 2, 3];
+    } elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && $jawabanA == $jawabanC) {
+        $tampil = 'Visual, Audio, dan Kinestetik';
+        $id = [2, 1, 3];
+    } elseif ($jawabanC > $jawabanA && $jawabanC > $jawabanB && $jawabanA == $jawabanB) {
+        $tampil = 'Kinestetik, Audio, dan Visual';
+        $id = [3, 1, 2];
+    } elseif ($jawabanA > $jawabanB && $jawabanA > $jawabanC && ($jawabanB > $jawabanC || $jawabanA == $jawabanB)) {
+        $tampil = 'Audio Visual';
+        $id = [2, 1];
+    } elseif ($jawabanA > $jawabanB && $jawabanA > $jawabanC && ($jawabanC > $jawabanB || $jawabanA == $jawabanC)) {
+        $tampil = 'Audio Kinestetik';
+        $id = [2, 3];
+    } elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && ($jawabanA > $jawabanC || $jawabanB == $jawabanA || $jawabanA == $jawabanC)) {
+        $tampil = 'Visual Audio';
+        $id = [1, 2];
+    } elseif ($jawabanB > $jawabanA && $jawabanB > $jawabanC && ($jawabanC > $jawabanA || $jawabanB == $jawabanC || $jawabanA == $jawabanB)) {
+        $tampil = 'Visual Kinestetik';
+        $id = [1, 3];
+    } elseif ($jawabanC > $jawabanA && $jawabanC > $jawabanB && ($jawabanA > $jawabanB || $jawabanC == $jawabanA || $jawabanB == $jawabanC)) {
+        $tampil = 'Kinestetik Audio';
+        $id = [3, 2];
+    } elseif ($jawabanC > $jawabanB && $jawabanC > $jawabanA && ($jawabanB > $jawabanA || $jawabanC == $jawabanB)) {
+        $tampil = 'Kinestetik Visual';
+        $id = [3, 1];
+    } elseif ($jawabanA == $jawabanB && $jawabanA == $jawabanC) {
+        $tampil = 'Audio, Visual, dan Kinestetik';
+        $id = [1, 2, 3];
+    } else {
+        $tampil = 'Tidak Terdefinisi';
+        $id = [];
+    }
+    
 
 
     StudentKuesionerStatus::create([

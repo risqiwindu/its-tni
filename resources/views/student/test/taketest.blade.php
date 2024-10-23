@@ -53,12 +53,12 @@
 @php  $count++;  @endphp
                 <div class="card card-default question" id="question{{  $count  }}">
                     <div class="card-header">
-                        <div class="card-title"><h3>{{  $count }}.</h3> {!! $question['question']->question !!} </div>
+                        <div class="card-title" style="font-size: 16px"><h3>{{  $count }}.</h3> {!! $question['question']->question !!} </div>
 
                     </div>
                     <div class="card-body">
                         <p >
-
+                            
                             @php  foreach($question['options'] as $option): @endphp
 
 

@@ -101,12 +101,18 @@
                 </div>
                 <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile-tab3">
     
-                    @php  $sessionVenue= $row->venue;  @endphp
+                    @php  
+                    $sessionVenue = $row->venue;  
+                    $no = 0;
+                    @endphp
     
                     @foreach($rowset as $row2)
     
                     <div class="card">
-                        <div class="card-header"><h4>{{  $row2->name }}</h4>
+                        @php
+                            $no = $no + 1;
+                        @endphp
+                        <div class="card-header"><h4>{{  $no.'. '.$row2->name }}</h4>
                             @if(!empty($row2->lesson_date))
                                 <div class="card-header-action">
                                     {{  __lang('starts')  }} {{  showDate('d/M/Y',$row2->lesson_date) }}
