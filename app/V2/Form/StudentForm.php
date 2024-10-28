@@ -97,6 +97,7 @@ $this->add(array(
         $this->add($file1);
 
         $this->createSelect('status','Status',['1'=>__lang('Active'),'0'=>__lang('Inactive')],true,false);
+        $this->createSelect('metode','Metode',['1'=>'Sistem','0'=>'Manual'],true,false);
 
         //create new form
         $registrationFieldsTable = new \App\V2\Model\RegistrationFieldTable($serviceLocator);

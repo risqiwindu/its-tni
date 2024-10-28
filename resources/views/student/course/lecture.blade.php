@@ -404,7 +404,7 @@
         <!-- Main Content -->
         <div class="main-content">
 
-            <div class="row" id="test" style="position: fixed; left: 68%; top: 10px; z-index: 999;">
+            <div class="row" id="test" style="position: fixed; left: 78%; top: 35px; z-index: 999;">
                 <video id="video-frame" width="260" height="176" autoplay style="position: absolute;"></video>
             </div>
 

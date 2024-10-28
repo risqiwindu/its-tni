@@ -116,7 +116,16 @@
 									</div>
 								</div>
 
-
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div >
+											<label for="password1" class="control-label">{{ formLabel($form->get('metode')) }}</label>
+										</div>
+										<div >
+										 {{ formElement($form->get('metode')) }}   <p class="help-block">{{ formElementErrors($form->get('metode')) }}</p>
+										</div>
+									</div>
+								</div>
 
 
 

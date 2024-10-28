@@ -1,19 +1,12 @@
-@extends($layout)
+@extends('layouts.student_manual')
 @section('pageTitle',$pageTitle)
 @section('innerTitle',$pageTitle)
 @section('breadcrumb')
-@if ($layout == 'layouts.student_manual')
-@include('admin.partials.crumb',[
-    'crumbs'=>[
-            '#'=>$pageTitle
-        ]])
-@else
-@include('admin.partials.crumb',[
+    @include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>'Dashboard',
             '#'=>$pageTitle
         ]])
-@endif
 @endsection
 
 @section('content')
@@ -52,11 +45,11 @@
                     </td> --}}
                     <td >
                     @php  if(!$studentTest->hasTest($row->test_id,$id) || !empty($row->allow_multiple)):  @endphp
-                        <a href="{{  route('student.test.taketest',array('id'=>$row->test_id, 'test' => $test)) }}" class="btn btn-primary " ><i class="fa fa-play"></i> {{  __lang('Take Test')  }}</a>
+                        <a href="{{  route('student.test.taketest',array('id'=>$row->test_id)) }}" class="btn btn-primary " ><i class="fa fa-play"></i> {{  __lang('Take Test')  }}</a>
                     @php  endif;  @endphp
 
                         @php  if($studentTest->hasTest($row->test_id,$id) && $row->show_result==1):  @endphp
-                            <a href="{{  route('student.test.testresults',array( 'id'=>$row->test_id, 'test' => $test)) }}" class="btn btn-success " ><i class="fa fa-list-ul"></i> {{  __lang('Your Results')  }}</a>
+                            <a href="{{  route('student.test.testresults',array( 'id'=>$row->test_id)) }}" class="btn btn-success " ><i class="fa fa-list-ul"></i> {{  __lang('Your Results')  }}</a>
                         @php  endif;  @endphp
 
                     </td>

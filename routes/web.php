@@ -331,6 +331,9 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('student/kelas_emosi','StudentController@kelas_emosi')->name('student.kelas_emosi');
     Route::any('student/reset/{id}','StudentController@reset')->name('student.reset');
     Route::any('student/dataset','StudentController@dataset')->name('student.dataset');
+    Route::any('student/tambah_dataset','StudentController@tambah_dataset')->name('student.tambah_dataset');
+    Route::any('student/simpan_dataset','StudentController@simpan_dataset')->name('student.simpan_dataset');
+    Route::any('student/hapus_dataset/{folder}','StudentController@hapus_dataset')->name('student.hapus_dataset');
     Route::any('student/show/{folder}','StudentController@show')->name('student.show');
     Route::any('student/destroy/{folder}/{filename}','StudentController@destroy')->name('student.destroy');
     Route::any('student/{folder}/upload','StudentController@upload')->name('student.upload');

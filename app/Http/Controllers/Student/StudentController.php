@@ -383,7 +383,14 @@ class StudentController extends Controller {
             $form->setData($newData);
 
         }
-
+        $value1 = request('test');
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
+        $output['test'] = $param;
+        $output['layout'] = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
         $output['form'] = $form;
         $output['id'] = $id;
         $output['pageTitle']= __lang('Your Profile');
@@ -576,6 +583,14 @@ class StudentController extends Controller {
 
 		}
 		$output['pageTitle']=__lang('Change Your Password');
+        $value1 = request('test');
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
+        $output['test'] = $param;
+        $output['layout'] = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
 		return view('student.student.password',$output);
 	}
 

@@ -1,4 +1,4 @@
-@extends($layout)
+@extends('layouts.student_manual')
 @section('pageTitle',$pageTitle)
 @section('innerTitle',$pageTitle)
 @section('breadcrumb')

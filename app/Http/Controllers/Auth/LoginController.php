@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use App\StudentKuesionerStatus;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -61,12 +62,18 @@ class LoginController extends Controller
             return route('admin.dashboard');
         }
         elseif($user->role_id==2){
-            if(StudentKuesionerStatus::where('user_id', '=', $user->id)->count() > 0){
+            $cek = DB::table('students')->where('user_id', $user->id)->where('nim', 0)->exists();
+            if($cek) {
+                $test = 'manual';
+                return route('student.test.index', ['test' => $test]);
+            } else {
+                if(StudentKuesionerStatus::where('user_id', '=', $user->id)->count() > 0){
                 return route('student.dashboard');
             }
             else{
                 return route('student.student.kuesioner');
             }
+            } 
         }
     }
 

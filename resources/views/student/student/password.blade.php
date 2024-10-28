@@ -1,12 +1,19 @@
-@extends('layouts.student')
+@extends($layout)
 @section('pageTitle',$pageTitle)
 @section('innerTitle',$pageTitle)
 @section('breadcrumb')
-    @include('admin.partials.crumb',[
+@if ($layout == 'layouts.student_manual')
+@include('admin.partials.crumb',[
+    'crumbs'=>[
+            '#'=>$pageTitle
+        ]])
+@else
+@include('admin.partials.crumb',[
     'crumbs'=>[
             route('student.dashboard')=>__lang('dashboard'),
             '#'=>$pageTitle
         ]])
+@endif
 @endsection
 
 @section('content')

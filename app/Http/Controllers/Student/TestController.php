@@ -46,7 +46,14 @@ class TestController extends Controller {
 
     public function index(Request $request)
     {
+        $value1 = request('test');
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
 
+        $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
         $table = new TestTable();
         $testQuestionTable = new TestQuestionTable();
         $studentTestTable = new StudentTestTable();
@@ -70,7 +77,9 @@ class TestController extends Controller {
             'pageTitle'=>'Kuis / Ujian',
             'studentTest'=>$studentTestTable,
             'questionTable'=>$testQuestionTable,
-            'id'=>$this->getId()
+            'id'=>$this->getId(),
+            'layout' => $layout,
+            'test' => $param
         ));
 
     }
@@ -78,7 +87,6 @@ class TestController extends Controller {
     public function taketest(Request $request,$id)
     {
         $courseTest = session('testInfo');
-
         if ($courseTest){
             $courseTest = unserialize($courseTest);
         }
@@ -156,6 +164,14 @@ class TestController extends Controller {
         $output['totalQuestions'] = $totalQuestions;
         $output['questions'] = $questions;
         $output['optionTable']= $optionTable;
+        $value1 = request('test');
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
+        $output['test'] = $param;
+        $output['layout'] = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
 
             if(session()->has('testInfo') && isset($courseTest[$id])){
 
@@ -212,11 +228,18 @@ class TestController extends Controller {
                 }
             }
 
+            $value1 = request()->test;
+            if(empty($value1)){
+                $param = 'kosong';
+            }else{
+                $param = $value1;
+            }
+            $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
             //calculate score
             $score = ($correct/$totalQuestions)  * 100;
             //update
             $studentTestTable->update(['score'=>$score],$studentTestId);
-            return redirect()->route('student.test.result',['id'=>$studentTestId]);
+            return redirect()->route('student.test.result',['id'=>$studentTestId, 'test'=>$param, 'layout'=>$layout]);
 
         }
         else{
@@ -309,6 +332,13 @@ class TestController extends Controller {
             return back();
         }
         //get test
+        $value1 = request()->test;
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
+        $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
         $studentId = $this->getId();
         $student = Student::find($studentId);
         $rowset = $student->studentTests()->orderBy('created_at','desc')->where('test_id',$id)->paginate(30);
@@ -317,7 +347,9 @@ class TestController extends Controller {
         return view('student.test.testresults',['pageTitle'=>__lang('Test Results').': '.$test->name,
             'rowset'=>$rowset,
             'test'=>$test,
-            'gradeTable'=>new TestGradeTable()
+            'gradeTable'=>new TestGradeTable(),
+            'layout' => $layout,
+            'test' => $param
         ]);
 
     }

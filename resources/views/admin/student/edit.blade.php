@@ -153,7 +153,19 @@
 
 
 
-
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div >
+                                                            <label for="password1" class="control-label">{{ formLabel($form->get('metode')) }}</label>
+                                                        </div>
+                                                        <div >
+                                                            <select id="metode" name="metode" class="form-control">
+                                                                <option value="1" {{ $row->nim == 1 ? 'selected' : '' }}>Sistem</option>
+                                                                <option value="0" {{ $row->nim == 0 ? 'selected' : '' }}>Manual</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
 

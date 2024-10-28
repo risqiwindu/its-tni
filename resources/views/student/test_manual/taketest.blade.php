@@ -1,4 +1,4 @@
-@extends($layout)
+@extends('layouts.student_manual')
 @section('pageTitle',$pageTitle)
 @section('innerTitle',$pageTitle)
 @section('breadcrumb')
@@ -82,7 +82,6 @@
                         @php  if($count < $totalQuestions): @endphp
                         <button  type="button"  onclick="showPanel('{{  $count + 1 }}')"  class="next btn btn-primary btn-lg float-right">{{  __lang('Next')  }}</button>
                         @php  else:  @endphp
-                        <input type="text" name="test" id="test" value="{{ $test }}" hidden>
                          <a onclick="if(confirm('{{ __lang('submit-test-msg') }}')){$('#testform').submit()};" class="btn btn-success btn-lg float-right" href="#testform">{{  __lang('finish')  }}</a>
                         @php  endif;  @endphp
                     </div>

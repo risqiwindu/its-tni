@@ -223,7 +223,7 @@ class StudentController extends Controller
                 ]);
                 $user->student()->create([
                     'mobile_number'=>$data['mobile_number'],
-                    'nim'=>$data['email'],
+                    'nim'=>$data['metode'],
                     'department'=>$data['department'],
                     'jabatan' => $data['jabatan']
                 ]);
@@ -377,7 +377,7 @@ class StudentController extends Controller
                     'mobile_number'=>$data['mobile_number'],
                     'email'=>$data['email'],
                     'enabled'=>$data['status'],
-                    'nim' => $data['email'],
+                    'nim' => $request->metode,
                     'department' => $request->department,
                     'jabatan' => $data['jabatan']
                 ];
@@ -3165,13 +3165,52 @@ public function detail_emosi($student_id, $course_id) {
 
     public function dataset()
     {
+        
+        $filter = request()->get('filter');
         $directories = File::directories(public_path('client/labels'));
         $folders = array_map(function($dir) {
             return basename($dir);
         }, $directories);
-
+        
+        if (!empty($filter)) {
+            // Filter folders by name
+            $folders = array_filter($folders, function($folder) use ($filter) {
+                return stripos($folder, $filter) !== false;
+            });
+        }
+        
         return view('admin.dataset.index', compact('folders'));
+        
     }
+
+    public function tambah_dataset()
+    {
+        return view('admin.dataset.tambah');
+        
+    }
+
+    public function simpan_dataset(Request $request){
+        $directoryPath = 'client/labels/'.$request->nama;
+        if (!file_exists($directoryPath)) {
+            mkdir($directoryPath, 0755, true);
+        }
+
+        return redirect()->route('admin.student.dataset');
+    }
+
+    public function hapus_dataset($folder)
+{
+    $folderPath = public_path('client/labels/' . $folder);
+
+    // Cek apakah folder ada
+    if (File::exists($folderPath) && File::isDirectory($folderPath)) {
+        // Hapus folder
+        File::deleteDirectory($folderPath);
+        return redirect()->route('admin.student.dataset')->with('success', 'Folder berhasil dihapus.');
+    }
+
+    return redirect()->route('admin.student.dataset')->with('error', 'Folder tidak ditemukan atau sudah dihapus.');
+}
 
     public function show($folder)
     {
