@@ -208,11 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
               const box = detection.detection.box;
               const anchor = { x: box.x, y: box.bottomRight.y };
-              // new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
-              // Customizing the font size and drawing the text manually
-            ctx.font = "10px Arial";  // Set the font size to 12px
-            ctx.fillStyle = "#fffff";  // Set the text color to white
-            ctx.fillText(text, anchor.x/2 - 10, anchor.y);  // Draw the text on the canvas
+              new faceapi.draw.DrawTextField([text], anchor).draw(canvas);
             });
     
             if (detections.length > 0) {
