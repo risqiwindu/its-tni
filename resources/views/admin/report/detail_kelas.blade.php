@@ -11,8 +11,12 @@
 
 @section('content')
 <canvas id="categoryChart" width="400" height="100"></canvas>
+<div style="margin-top: 20px; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+    <strong>Keterangan :</strong>
+    <p>Berikut adalah rincian jumlah siswa yang mengambil kelas berdasarkan gaya belajar yang tersedia meliputi {{ $summaryText }}</p>
+</div>
 <div class="mb-3">
-<a href="{{ route('admin.report.rekap') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
+<a href="{{ route('admin.report.pilih_laporan') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
 </div>
 <div class="table-responsive_">
     <table class="table table-hover">
@@ -39,41 +43,38 @@
 @section('footer')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Mendapatkan kategori dan nilai rata-rata dari PHP
-    var categories = @json(array_keys($data)); // Kategori (termasuk 'manual')
-    var scores = @json(array_values($data));   // Rata-rata nilai (termasuk nilai manual)
-
-    var ctx = document.getElementById('categoryChart').getContext('2d');
-    
-    // Mendefinisikan array warna
-    var colors = [
-        'rgba(255, 99, 132, 0.6)', // Warna untuk audio
-        'rgba(54, 162, 235, 0.6)', // Warna untuk visual
-        'rgba(255, 206, 86, 0.6)', // Warna untuk kinestetik
-        'rgba(75, 192, 192, 0.6)', // Warna untuk manual
-        'rgba(153, 102, 255, 0.6)', // Warna tambahan
-        'rgba(255, 159, 64, 0.6)'  // Warna tambahan
-    ];
-
-    var categoryChart = new Chart(ctx, {
-        type: 'bar',
+    const ctx = document.getElementById('categoryChart').getContext('2d');
+    const categoryChart = new Chart(ctx, {
+        type: 'line',
         data: {
-            labels: categories, // Label untuk setiap kategori (termasuk manual)
+            labels: @json($labels), // Using the sorted labels
             datasets: [{
-                label: 'Rata-rata Nilai',
-                data: scores, // Data nilai rata-rata (termasuk manual)
-                backgroundColor: colors.slice(0, categories.length), // Menggunakan warna untuk setiap kategori
-                borderColor: colors.slice(0, categories.length).map(color => color.replace('0.6', '1')), // Border lebih pekat
-                borderWidth: 1
+                label: 'Jumlah Siswa',
+                data: @json($values), // Using the sorted values
+                fill: false,
+                borderColor: '#36A2EB',
+                backgroundColor: '#36A2EB',
+                borderWidth: 2,
+                pointRadius: 5,
+                tension: 0.1 // Smoothing for line chart
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 100,
                     ticks: {
-                        stepSize: 10
+                        font: {
+                            weight: 'bold' // Bold y-axis labels
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            weight: 'bold' // Bold x-axis labels
+                        }
                     }
                 }
             }

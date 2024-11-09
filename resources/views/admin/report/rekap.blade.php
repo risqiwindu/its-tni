@@ -1,12 +1,13 @@
 @extends('layouts.admin')
-@section('innerTitle','Laporan Keseluruhan')
+@section('innerTitle','Laporan Keseluruhan Sistem')
 @section('page-title','')
 @section('breadcrumb')
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>'Dashboard',
             route('admin.report.detail_kelas')=>'Laporan',
-            '#'=>'Laporan Keseluruhan'
+            route('admin.report.pilih_laporan')=>'Pilih Laporan',
+            '#'=>'Laporan Keseluruhan Sistem'
         ]])
 @endsection
 
@@ -58,7 +59,6 @@
             @endforeach
         </tbody>
     </table>
-    {{ $hasil->links() }}
     
 </div>
 @endsection
@@ -94,14 +94,20 @@ var emotionChart = new Chart(ctx1, {
                 },
                 title: {
                     display: true,
-                    text: 'Persentase'
+                    text: 'PERSENTASE',
+                    font: {
+                        weight: 'bold'  // Menebalkan teks pada sumbu Y
+                    }
                 }
             },
             x: {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Gaya Belajar'
+                    text: 'GAYA BELAJAR',
+                    font: {
+                            weight: 'bold'  // Menebalkan teks pada sumbu Y
+                        }
                 }
             }
         },
@@ -145,14 +151,20 @@ var emotionChart = new Chart(ctx1, {
                     },
                     title: {
                         display: true,
-                        text: 'Nilai'
+                        text: 'NILAI',
+                        font: {
+                            weight: 'bold'  // Menebalkan teks pada sumbu Y
+                        }
                     }
                 },
                 x: {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Gaya Belajar'
+                        text: 'GAYA BELAJAR',
+                        font: {
+                            weight: 'bold'  // Menebalkan teks pada sumbu Y
+                        }
                     }
                 }
             }

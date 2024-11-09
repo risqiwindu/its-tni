@@ -579,30 +579,63 @@ class ReportController extends Controller
         $courseQuery->where('courses.admin_id', $this->getAdministratorID());
     }
 
-    $nilai = DB::table('student_courses')
-    ->join('student_tests', 'student_courses.student_id', '=', 'student_tests.student_id')
-    ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
-    ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
-    ->join('students', 'student_tests.student_id', '=', 'students.id')
-    ->select(
-        'student_courses.course_id as course_id',
-        'course_categories.name as kategori',
-        DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata')
-    )
-    // ->where('students.department', $department)
-    ->groupBy('course_categories.name')
-    ->get();
+    // $nilai = DB::table('student_courses')
+    // ->join('student_tests', 'student_courses.student_id', '=', 'student_tests.student_id')
+    // ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+    // ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+    // ->join('students', 'student_tests.student_id', '=', 'students.id')
+    // ->select(
+    //     'student_courses.course_id as course_id',
+    //     'course_categories.name as kategori',
+    //     DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata')
+    // )
+    // // ->where('students.department', $department)
+    // ->groupBy('course_categories.name')
+    // ->get();
 
+    $data = [
+        'Audio' => DB::table('student_courses')
+            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+            ->where('course_categories.name', 'Audio')
+            ->count('student_courses.id'),
+
+        'Visual' => DB::table('student_courses')
+            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+            ->where('course_categories.name', 'Visual')
+            ->count('student_courses.id'),
+
+        'Kinestetik' => DB::table('student_courses')
+            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+            ->where('course_categories.name', 'Kinestetik')
+            ->count('student_courses.id')
+    ];
+
+    // Sort data by value from lowest to highest
+    asort($data);
+
+    // Separate the labels and values for the chart
+    $labels = array_keys($data);
+    $values = array_values($data);
+
+    // Prepare summary text
+    $summary = [];
+    foreach ($data as $style => $count) {
+        $summary[] = "{$style}: {$count} Siswa";
+    }
+    $summaryText = implode(', ', $summary);
     // $manual = DB::table('student_tests')
     //             ->select(DB::raw('ROUND(AVG(student_tests.score), 1) as rata_rata'))
     //             ->where('student_id');
 
-    $manual = DB::table('student_tests')
-                ->leftJoin('student_courses', 'student_tests.student_id','=','student_courses.student_id')
-                ->whereNull('student_courses.student_id')
-                ->avg('student_tests.score');
-    $categories = ['audio', 'visual', 'kinestetik'];
-    $data = [];
+    // $manual = DB::table('student_tests')
+    //             ->leftJoin('student_courses', 'student_tests.student_id','=','student_courses.student_id')
+    //             ->whereNull('student_courses.student_id')
+    //             ->avg('student_tests.score');
+    // $categories = ['audio', 'visual', 'kinestetik'];
+    // $data = [];
 
     // Initialize the data with default values
     // foreach ($categories as $category) {
@@ -610,17 +643,22 @@ class ReportController extends Controller
     // }
 
     // Fill in the actual averages from the query
-    foreach ($nilai as $item) {
-        $data[$item->kategori] = $item->rata_rata; // Assign average scores
-    }
+    // foreach ($nilai as $item) {
+    //     $data[$item->kategori] = $item->rata_rata; // Assign average scores
+    // }
 
-    $data['manual'] = $manual;
+    // $data['manual'] = $manual;
 
     // Execute the query
     $course = $courseQuery->get();
 
-    return view('admin.report.detail_kelas', compact('course', 'data'));
+    return view('admin.report.detail_kelas', compact('course', 'labels', 'values','summaryText'));
 }
+
+public function pilih_laporan()
+    {
+        return view('admin.report.auto_manual');
+    }
 
 public function rekap()
 {
@@ -672,7 +710,7 @@ public function rekap()
         ->orderBy('student_tests.score', 'desc');
 
     // Ambil hasil dengan paginasi
-    $hasil = $query->paginate(10);
+    $hasil = $query->get();
 
     // Inisialisasi array untuk menyimpan emosi dan skor tertinggi per kategori
     $categoryEmotions = [];
@@ -739,5 +777,38 @@ public function rekap()
     // Return view dengan data hasil yang sudah diproses dan data emosi per kategori serta nilai tertinggi per kategori
     return view('admin.report.rekap', compact('hasil', 'categoryEmotions', 'categoryScores'));
 }
+
+public function rekap_manual()
+    {
+        $filter = request()->get('filter');
+        $manual = DB::table('student_tests')
+                ->leftJoin('student_courses', 'student_tests.student_id', '=', 'student_courses.student_id')
+                ->join('students','student_tests.student_id','=','students.id')
+                ->join('users','students.user_id','=','users.id')
+                ->select('users.name','users.email','student_tests.*')
+                ->whereNull('student_courses.student_id')
+                ->orderBy('student_tests.score', 'DESC');
+
+                if (!empty($filter)) {
+                    $manual->where(function($tes) use ($filter) {
+                        $tes->where('users.name', 'LIKE', "%$filter%")
+                            ->orWhere('users.email', 'LIKE', "%$filter%");
+                    });
+                }
+            
+                $manual = $manual->get();
+
+                $averageScore = DB::table('student_tests')
+                        ->leftJoin('student_courses', 'student_tests.student_id', '=', 'student_courses.student_id')
+                        ->whereNull('student_courses.student_id')
+                        ->avg('student_tests.score');
+
+                $maxScore = DB::table('student_tests')
+                        ->leftJoin('student_courses', 'student_tests.student_id', '=', 'student_courses.student_id')
+                        ->whereNull('student_courses.student_id')
+                        ->max('student_tests.score');
+
+        return view('admin.report.rekap_manual', compact('manual', 'averageScore','maxScore'));
+    }
 
 }

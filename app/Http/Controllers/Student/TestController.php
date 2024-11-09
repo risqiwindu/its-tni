@@ -273,7 +273,14 @@ class TestController extends Controller {
         $row = $studentTestTable->getRecord($id);
         $this->validateOwner($row);
         $testRow = $testTable->getRecord($row->test_id);
-
+        $value1 = request('test');
+        if(empty($value1)){
+            $param = 'kosong';
+        }else{
+            $param = $value1;
+        }
+        $test = $param;
+        $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
         $courseTest = session('testInfo');
         if(isset($courseTest)){
             $testInfo = unserialize($courseTest);
@@ -299,25 +306,25 @@ class TestController extends Controller {
                 $nextClass = $sessionLessonTable->getNextLessonInSession($sessionId,$lessonId,'c');
                 if($nextClass){
                     //forward to the next class
-                    return redirect()->route('student.course.class',['course'=>$sessionId,'lesson'=>$nextClass->lesson_id]);
+                    return redirect()->route('student.course.class',['course'=>$sessionId,'lesson'=>$nextClass->lesson_id, 'layout'=>$layout]);
                 }
                 else{
                     //classes are over
                     flashMessage(__lang('course-complete-msg'));
                     $studentSessionTable = new StudentSessionTable();
                     $studentSessionTable->markCompleted($this->getId(),$sessionId);
-                    return redirect()->route('student.catalog.course',['id'=>$sessionId]);
+                    return redirect()->route('student.catalog.course',['id'=>$sessionId, 'layout'=>$layout]);
                 }
             }
             else{
                 flashMessage(__lang('low-test-score',['score'=>$row->score]));
-                return redirect()->route('student.course.class',['course'=>$sessionId,'lesson'=>$lessonId]);
+                return redirect()->route('student.course.class',['course'=>$sessionId,'lesson'=>$lessonId, 'layout'=>$layout]);
 
             }
 
         }
 
-        return view('student.test.result',['row'=>$row,'pageTitle'=>__lang('Test Result').': '.$testRow->name,'testRow'=>$testRow]);
+        return view('student.test.result',['row'=>$row,'pageTitle'=>__lang('Test Result').': '.$testRow->name,'testRow'=>$testRow, 'layout' => $layout]);
     }
 
 

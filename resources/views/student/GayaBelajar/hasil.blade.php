@@ -612,7 +612,7 @@ details[open] > summary {
           <div class="column" style="background-image: url('{{ asset('img/Auditory.png') }}');">
             <div class="overlay">
                 <div class="content">
-                  <h1>2. Audio {{ $audio }}%</h1>
+                  <h1>1. Audio {{ $audio }}%</h1>
                   <p>{{ $deskripsiAudio }}</p>
                 </div>
             </div>
@@ -633,6 +633,56 @@ details[open] > summary {
                 </div>
             </div>
         </div>
+        @elseif ($tampil == 'Visual, Audio, dan Kinestetik')
+        <div class="column" style="background-image: url('{{ asset('img/Visual.png') }}');">
+          <div class="overlay">
+              <div class="content">
+                <h1>1. Visual {{ $visual }}%</h1>
+                <p>{{ $deskripsiVisual }}</p>
+              </div>
+          </div>
+      </div>
+          <div class="column" style="background-image: url('{{ asset('img/Auditory.png') }}');">
+            <div class="overlay">
+                <div class="content">
+                  <h1>2. Audio {{ $audio }}%</h1>
+                  <p>{{ $deskripsiAudio }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="column" style="background-image: url('{{ asset('img/Kinestethic.png') }}');">
+            <div class="overlay">
+                <div class="content">
+                  <h1>3. Kinestetik {{ $kinestetik }}%</h1>
+                  <p>{{ $deskripsiKinestetik }}</p>
+                </div>
+            </div>
+        </div>
+        @elseif ($tampil == 'Kinestetik, Audio, dan Visual')
+        <div class="column" style="background-image: url('{{ asset('img/Kinestethic.png') }}');">
+          <div class="overlay">
+              <div class="content">
+                <h1>1. Kinestetik {{ $kinestetik }}%</h1>
+                <p>{{ $deskripsiKinestetik }}</p>
+              </div>
+          </div>
+      </div>
+      <div class="column" style="background-image: url('{{ asset('img/Auditory.png') }}');">
+        <div class="overlay">
+            <div class="content">
+              <h1>2. Audio {{ $audio }}%</h1>
+              <p>{{ $deskripsiAudio }}</p>
+            </div>
+        </div>
+    </div>
+        <div class="column" style="background-image: url('{{ asset('img/Visual.png') }}');">
+          <div class="overlay">
+              <div class="content">
+                <h1>3. Visual {{ $visual }}%</h1>
+                <p>{{ $deskripsiVisual }}</p>
+              </div>
+          </div>
+      </div>
         </div>
         @endif
         <a href="{{ route('groupcourse') }}" class="middle-button">
