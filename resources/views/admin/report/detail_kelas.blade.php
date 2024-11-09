@@ -64,18 +64,22 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        font: {
-                            weight: 'bold' // Bold y-axis labels
-                        }
-                    }
+                    title: {
+                    display: true,
+                    text: 'Jumlah Siswa',
+                    font: {
+                            weight: 'bold'  // Menebalkan teks pada sumbu Y
+                        }  // Judul sumbu Y
+                }
                 },
                 x: {
-                    ticks: {
-                        font: {
-                            weight: 'bold' // Bold x-axis labels
-                        }
-                    }
+                    title: {
+                    display: true,
+                    text: 'Gaya Belajar',
+                    font: {
+                            weight: 'bold'  // Menebalkan teks pada sumbu Y
+                        }  // Judul sumbu Y
+                }
                 }
             }
         }
