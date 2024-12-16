@@ -45,44 +45,54 @@ class TestController extends Controller {
 
 
     public function index(Request $request)
-    {
-        $value1 = request('test');
-        if(empty($value1)){
-            $param = 'kosong';
-        }else{
-            $param = $value1;
-        }
+{
+    $param = $request->get('test', 'kosong');
+    $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
 
-        $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
-        $table = new TestTable();
-        $testQuestionTable = new TestQuestionTable();
-        $studentTestTable = new StudentTestTable();
+    $table = new TestTable();
+    $testQuestionTable = new TestQuestionTable();
+    $studentTestTable = new StudentTestTable();
 
-        $courses = DB::table('student_courses')
+    // Ambil course_id berdasarkan student_id
+    $course_ids = DB::table('student_courses')
         ->where('student_id', $this->getId())
-        ->get();
-    
-        // Ambil semua course_id dari koleksi
-        $course_ids = $courses->pluck('course_id')->toArray();
-    
-        // Menyimpan course_id dalam array
-        $course_id = empty($course_ids) ? [] : [$course_ids];
+        ->pluck('course_id')
+        ->toArray();
 
-        $paginator = $table->getStudentRecords($this->getId(), $course_id);
+    // Ambil status siswa
+    $status_sistem = DB::table('students')
+        ->select('nim')
+        ->where('id', $this->getId())
+        ->first();
 
-        $paginator->setCurrentPageNumber((int)request()->get('page', 1));
-        $paginator->setItemCountPerPage(30);
-        return viewModel('student',__CLASS__,__FUNCTION__,array(
-            'paginator'=>$paginator,
-            'pageTitle'=>'Kuis / Ujian',
-            'studentTest'=>$studentTestTable,
-            'questionTable'=>$testQuestionTable,
-            'id'=>$this->getId(),
-            'layout' => $layout,
-            'test' => $param
-        ));
+    // Periksa status siswa
+    if ($status_sistem && $status_sistem->nim === '1') {
+        $paginator = $table->getStudentRecords($this->getId(), $course_ids);
 
+        if (!$paginator) {
+            
+            return redirect()->back()->with('alert', 'Silakan masuk kelas terlebih dahulu dan selesaikan materi!');
+        }
+    } else {
+        $paginator = $table->getStudentRecordsManual();
     }
+
+    // Konfigurasi Paginator
+    $paginator->setCurrentPageNumber((int)$request->get('page', 1));
+    $paginator->setItemCountPerPage(30);
+
+    // Kembalikan ke tampilan
+    return viewModel('student', __CLASS__, __FUNCTION__, [
+        'paginator' => $paginator,
+        'pageTitle' => 'Kuis / Ujian',
+        'studentTest' => $studentTestTable,
+        'questionTable' => $testQuestionTable,
+        'id' => $this->getId(),
+        'layout' => $layout,
+        'test' => $param,
+    ]);
+}
+
 
     public function taketest(Request $request,$id)
     {
@@ -107,8 +117,12 @@ class TestController extends Controller {
             return redirect()->route('student.test.index');
         }
 
+        $status_sistem = DB::table('students')
+        ->select('nim')
+        ->where('id', $this->getId())
+        ->first();
 
-        if(!empty($testRow->private) && !isset($courseTest[$id])){
+        if(!empty($testRow->private) && !isset($courseTest[$id]) && $status_sistem->nim === '1'){
 
             //get records for the student
             $rowset = $testTable->getStudentTestRecords($this->getId(),$id);

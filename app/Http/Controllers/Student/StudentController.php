@@ -173,8 +173,10 @@ class StudentController extends Controller {
         $forumTopics->setItemCountPerPage(10);
         $output['forumTopics'] = $forumTopics;
 
-
+        $studentId = $this->getId();
+        
         $this->layout('layout/student');
+        
         $output['pageTitle'] = __lang('Dashboard');
         return new ViewModel ($output);
 	}

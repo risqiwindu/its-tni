@@ -101,37 +101,92 @@ class TestTable extends BaseTable{
         return $rowset;
     }
 
-    public function getStudentRecords($studentId, $course_id){
+    public function getStudentRecords($studentId, $course_id)
+{
+    // Validasi awal untuk memeriksa apakah data student_courses ada
+    $checkSelect = new Select('student_courses');
+    $checkSelect->where([
+        $this->getPrefix().'student_courses.student_id' => $studentId,
+        $this->getPrefix().'student_courses.course_id' => $course_id,
+    ]);
 
-        $today = "'".Carbon::now()->toDateTimeString()."'";
-        $select1 = new Select('student_courses');
-        $select1->join($this->getPrefix().'course_test',$this->getPrefix().'student_courses.course_id='.$this->getPrefix().'course_test.course_id',array())
-                ->join($this->getPrefix().'tests',$this->getPrefix().'course_test.test_id='.$this->getPrefix().'tests.id',['test_id'=>'id','name','enabled','minutes','allow_multiple','passmark','private','show_result'])
-                ->where([$this->getPrefix().'student_courses.student_id'=>$studentId,
-                $this->getPrefix().'student_courses.course_id'=>$course_id
-                       ])
-                ->where([$this->getPrefix().'tests.enabled'=>'1'])
-                ->where($this->getPrefix()."course_test.opening_date < $today OR ".$this->getPrefix()."course_test.opening_date=0 OR ".$this->getPrefix()."course_test.opening_date  IS NULL")
-                ->where($this->getPrefix()."course_test.closing_date > $today OR ".$this->getPrefix()."course_test.closing_date=0 OR ".$this->getPrefix()."course_test.closing_date IS NULL")
-                ->columns([])
-                ->group($this->getPrefix().'course_test.test_id')
+    $resultSet = $this->tableGateway->selectWith($checkSelect);
+
+    // Jika data tidak ditemukan
+    if ($resultSet->count() === 0) {
+        echo "<script>alert('Silakan masuk kelas terlebih dahulu!');</script>";
+        return null;
+    }
+
+    // Dapatkan waktu saat ini
+    $today = Carbon::now()->toDateTimeString();
+
+    // Query utama untuk student_courses
+    $select1 = new Select('student_courses');
+    $select1->join(
+                $this->getPrefix().'course_test',
+                $this->getPrefix().'student_courses.course_id='.$this->getPrefix().'course_test.course_id',
+                []
+            )
+            ->join(
+                $this->getPrefix().'tests',
+                $this->getPrefix().'course_test.test_id='.$this->getPrefix().'tests.id',
+                ['test_id' => 'id', 'name', 'enabled', 'minutes', 'allow_multiple', 'passmark', 'private', 'show_result']
+            )
+            ->join(
+                $this->getPrefix().'students',
+                $this->getPrefix().'student_courses.student_id='.$this->getPrefix().'students.id',
+                []
+            )
+            ->where([
+                $this->getPrefix().'student_courses.student_id' => $studentId,
+                $this->getPrefix().'student_courses.course_id' => $course_id,
+                $this->getPrefix().'student_courses.completed' => '1',
+                $this->getPrefix().'tests.enabled' => '1',
+            ])
+            ->where([
+                "{$this->getPrefix()}course_test.opening_date < ?" => $today,
+                "{$this->getPrefix()}course_test.closing_date > ?" => $today,
+            ])
+            ->columns([])
+            ->group($this->getPrefix().'course_test.test_id')
             ->order($this->getPrefix().'tests.created_at desc');
 
-        $select2 = new Select($this->tableName);
-        $select2->where(['private'=>0])
-               ->where([$this->getPrefix().'tests.enabled'=>'1'])
+    // Query kedua untuk tests yang bersifat public
+    $select2 = new Select($this->tableName);
+    $select2->where(['private' => 0])
+            ->where([$this->getPrefix().'tests.enabled' => '1'])
+            ->columns([
+                'test_id' => 'id', 
+                'name', 
+                'enabled', 
+                'minutes', 
+                'allow_multiple', 
+                'passmark', 
+                'private', 
+                'show_result',
+            ]);
+
+    // Gabungkan kedua query
+    $select1->combine($select2);
+
+    // Kembalikan data menggunakan paginator
+    $paginatorAdapter = new DbSelect($select1, $this->tableGateway->getAdapter());
+    $paginator = new Paginator($paginatorAdapter);
+
+    return $paginator;
+}
+
+
+    public function getStudentRecordsManual()
+    {
+        $select1 = new Select($this->tableName);
+        $select1->where([$this->getPrefix().'tests.enabled'=>'1'])
                 ->columns(['test_id'=>'id','name','enabled','minutes','allow_multiple','passmark','private','show_result']);
 
-        $select1->combine($select2);
-
-       // $sql = $select1->getSqlString($this->tableGateway->getAdapter()->getPlatform());
-       // exit($sql);
         $paginatorAdapter = new DbSelect($select1,$this->tableGateway->getAdapter());
         $paginator = new Paginator($paginatorAdapter);
         return $paginator;
-
-
-
     }
 
     public function getStudentTotalRecords($studentId){
