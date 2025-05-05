@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
             
                     // Check if sleepCount reaches the threshold of 3
-                    if (sleepCount >= 3) {
+                    if (sleepCount >= 1) {
                         if (!isCurrentlySleepy) {
                             emotionData.sleepy++; // Increment the sleepy emotion data
                             isCurrentlySleepy = true; // Mark as currently sleepy
@@ -202,9 +202,21 @@ document.addEventListener("DOMContentLoaded", function() {
               );
               const result = faceMatcher.findBestMatch(detection.descriptor);
               const displayName = result.toString();
-              const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
-                sleepy ? "Sleepy" : ""
-              }`;
+              let status = "";
+
+              if (sleepy) {
+                status = "Sleepy";
+              } else if (yawning) {
+                status = "Yawning";
+                } else {
+              status = maxEmotion;
+              }
+
+              const text = `${displayName}, ${age.toFixed(0)} years old, ${status}`;
+
+              // const text = `${displayName}, ${age.toFixed(0)} years old, ${maxEmotion}, ${yawning ? "Yawning" : ""}, ${
+              //   sleepy ? "Sleepy" : ""
+              // }`;
     
               const box = detection.detection.box;
               const anchor = { x: box.x, y: box.bottomRight.y };
@@ -271,50 +283,121 @@ document.addEventListener("DOMContentLoaded", function() {
     analyzeEmotions();
   });
 
-  function analyzeEmotions() {
-    if (emotionData.count > 0) {
-      const percentages = Object.keys(emotionData).reduce((acc, cur) => {
-        if (cur !== "count") {
-          acc[cur] =
-            ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
-        }
-            return acc;
-        }, {});
+//   function analyzeEmotions() {
+//     if (emotionData.count > 0) {
+//       const percentages = Object.keys(emotionData).reduce((acc, cur) => {
+//         if (cur !== "count") {
+//           acc[cur] =
+//             ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
+//         }
+//             return acc;
+//         }, {});
 
-        const emotionEntries = Object.entries(percentages);
-        // Hitung waktu yang telah berlalu
-        const akses = new Date();
-        const endTime = Date.now();
-        const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
-        const lamaWaktu = document.getElementById("lamaWaktu");
-        //waktu akses
-        const day = String(akses.getDate()).padStart(2, '0');
-        const month = String(akses.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-        const year = akses.getFullYear();
-        const hours = String(akses.getHours()).padStart(2, '0');
-        const minutes = String(akses.getMinutes()).padStart(2, '0');
-        const seconds = String(akses.getSeconds()).padStart(2, '0');
+//         const emotionEntries = Object.entries(percentages);
+//         // Hitung waktu yang telah berlalu
+//         const akses = new Date();
+//         const endTime = Date.now();
+//         const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
+//         const lamaWaktu = document.getElementById("lamaWaktu");
+//         //waktu akses
+//         const day = String(akses.getDate()).padStart(2, '0');
+//         const month = String(akses.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+//         const year = akses.getFullYear();
+//         const hours = String(akses.getHours()).padStart(2, '0');
+//         const minutes = String(akses.getMinutes()).padStart(2, '0');
+//         const seconds = String(akses.getSeconds()).padStart(2, '0');
 
-        const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-        const waktuAkses = document.getElementById("waktuAkses");
-        // Set combined data to hidden input in form
-        const emotionInput = document.getElementById("emotionData");
-        if (emotionInput && lamaWaktu) {
-            emotionInput.value = JSON.stringify(emotionEntries);
-            lamaWaktu.value = elapsedTimeInMinutes;
-            waktuAkses.value = formattedDate;
-            // Submit the form
-            // document.getElementById("emotionForm").submit();
-            // hideElement("layout_content");
-            // showElement(results-page);
-            displayResults(percentages);
-        } else {
-            console.error("Element with ID 'emotionData' not found.");
-        }
-    } else {
-        console.log("No emotions detected.");
-    }
+//         const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+//         const waktuAkses = document.getElementById("waktuAkses");
+//         // Set combined data to hidden input in form
+//         const emotionInput = document.getElementById("emotionData");
+//         if (emotionInput && lamaWaktu) {
+//             emotionInput.value = JSON.stringify(emotionEntries);
+//             lamaWaktu.value = elapsedTimeInMinutes;
+//             waktuAkses.value = formattedDate;
+//             // Submit the form
+//             // document.getElementById("emotionForm").submit();
+//             // hideElement("layout_content");
+//             // showElement(results-page);
+//             displayResults(percentages);
+//         } else {
+//             console.error("Element with ID 'emotionData' not found.");
+//         }
+//     } else {
+//         console.log("No emotions detected.");
+//     }
+// }
+
+function analyzeEmotions() {
+  if (emotionData.count > 0) {
+      // Ambil semua emosi kecuali "count"
+      const emotionKeys = Object.keys(emotionData).filter(key => key !== "count");
+
+      // Hitung total nilai asli emosi
+      const totalRaw = emotionKeys.reduce((sum, key) => sum + emotionData[key], 0);
+
+      // Hitung persentase ter-normalisasi agar total 100%
+      let rawPercentages = emotionKeys.map(key => ({
+          emotion: key,
+          value: (emotionData[key] / totalRaw) * 100
+      }));
+
+      // Bulatkan ke 2 desimal (sementara)
+      let rounded = rawPercentages.map(e => ({
+          emotion: e.emotion,
+          value: parseFloat(e.value.toFixed(2))
+      }));
+
+      // Koreksi selisih agar total = 100%
+      let totalRounded = rounded.reduce((sum, e) => sum + e.value, 0);
+      let difference = parseFloat((100 - totalRounded).toFixed(2));
+
+      // Tambahkan selisih ke nilai tertinggi (untuk menghindari angka negatif)
+      if (difference !== 0) {
+          let maxEmotion = rounded.reduce((max, e) => e.value > max.value ? e : max, rounded[0]);
+          maxEmotion.value = parseFloat((maxEmotion.value + difference).toFixed(2));
+      }
+
+      // Format ke bentuk object untuk display
+      const percentages = {};
+      rounded.forEach(e => {
+          percentages[e.emotion] = e.value.toFixed(2) + "%";
+      });
+
+      const emotionEntries = Object.entries(percentages);
+
+      // Hitung waktu akses
+      const akses = new Date();
+      const endTime = Date.now();
+      const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
+
+      const day = String(akses.getDate()).padStart(2, '0');
+      const month = String(akses.getMonth() + 1).padStart(2, '0');
+      const year = akses.getFullYear();
+      const hours = String(akses.getHours()).padStart(2, '0');
+      const minutes = String(akses.getMinutes()).padStart(2, '0');
+      const seconds = String(akses.getSeconds()).padStart(2, '0');
+      const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+      // Simpan ke input tersembunyi
+      const emotionInput = document.getElementById("emotionData");
+      const lamaWaktu = document.getElementById("lamaWaktu");
+      const waktuAkses = document.getElementById("waktuAkses");
+
+      if (emotionInput && lamaWaktu && waktuAkses) {
+          emotionInput.value = JSON.stringify(emotionEntries);
+          lamaWaktu.value = elapsedTimeInMinutes;
+          waktuAkses.value = formattedDate;
+
+          displayResults(percentages);
+      } else {
+          console.error("Elemen input tersembunyi tidak ditemukan.");
+      }
+  } else {
+      console.log("Tidak ada emosi terdeteksi.");
+  }
 }
+
 
   function resetDetection() {
     eyeClosureStart = null;

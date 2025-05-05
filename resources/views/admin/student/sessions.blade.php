@@ -107,7 +107,7 @@
                         </a> <div class="bullet"></div> <a href="#" onclick="openModal('{{ __lang('students-for') }} {{ $row->name}}','{{ route('admin.student.sessionenrollees',['id'=>$row->id])  }}')">{{ $studentSessionTable->getTotalForSession($row->id) }} {{ __lang('students') }}</a></div>
                     <div class="article-title">
                         <h2><a href="{{ route('admin.student.editsession',['id'=>$row->id])  }}">{{ $row->name }}</a></h2>
-                        <p>{{ $row->short_description }}</p>
+                        <p><strong>{{ $row->short_description }}</strong></p>
                     </div>
                     @if(\App\Admin::find($row->admin_id))
                     <div class="article-user">
