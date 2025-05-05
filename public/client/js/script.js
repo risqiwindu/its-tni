@@ -134,6 +134,10 @@ document.addEventListener("DOMContentLoaded", function() {
   
     let frameCounter = 0;
     let frameSkip = 10; // Deteksi setiap 10 frame
+
+     // Tambahan untuk deteksi user tidak ada
+     let lastDetectionTime = Date.now();
+     let userAbsentNotified = false;
     
     function processVideoFrame() {
       frameCounter++;
@@ -150,6 +154,19 @@ document.addEventListener("DOMContentLoaded", function() {
             const ctx = canvas.getContext("2d");
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     faceapi.draw.drawDetections(canvas, resizedDetections);
+
+                    if (detections.length > 0) {
+                      lastDetectionTime = Date.now(); // Reset waktu saat wajah terdeteksi
+                      userAbsentNotified = false; // Reset notifikasi
+                      loader.style.display = "none";
+                  } else {
+                      const elapsed = (Date.now() - lastDetectionTime) / 1000;
+                      if (elapsed >= 10 && !userAbsentNotified) {
+                          userAbsentNotified = true;
+                          notificationUser();
+                      }
+                  }
+
             resizedDetections.forEach((detection) => {
               const { expressions, landmarks } = detection;
               const yawning = isYawning(landmarks.getMouth());
@@ -510,6 +527,44 @@ function analyzeEmotions() {
       }, 60000);
       });
     });
+  }
+
+  function notificationUser()
+  {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      video.style.display =  "none";
+    }
+
+    // Check if the video is in full-screen mode
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+    if (player) {
+        player.pause(); // Pause the video
+    }
+
+    Swal.fire({
+      title: 'User Tidak Ada',
+      text: 'Pastikan anda berada didalam frame kamera',
+      icon: 'info',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      resetDetection();
+      loader.style.display = "flex";
+      video.style.display = "block";
+      loadModels()
+          .then(getLabeledFaceDescriptions)
+          .then(startWebcam)
+          .then(function() {
+            return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+          })
+          .catch((e) => {
+            console.error("Failed to reload models:", e);
+            loader.innerText = "Failed to reload models";
+          });
+    });
+
   }
 
   function stopWebcam() {

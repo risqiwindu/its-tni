@@ -136,7 +136,7 @@
                         <a href="@route('student.student.profile')" class="dropdown-item has-icon">
                             <i class="far fa-user"></i> @lang('default.profile')
                         </a>
-                        <a href="@route('student.student.password')" class="dropdown-item has-icon" hidden>
+                        <a href="@route('student.student.password')" class="dropdown-item has-icon">
                             <i class="fas fa-unlock"></i> @lang('default.change-password')
                         </a>
                         {{-- <a href="@route('student.student.billing')" class="dropdown-item has-icon">

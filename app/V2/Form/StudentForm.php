@@ -32,7 +32,7 @@ class StudentForm extends BaseForm {
 
     	$this->add(array(
     			'name'=>'last_name',
-    	    'attributes' => array(
+    	        'attributes' => array(
     			'type'=>'text',
     	    		'class'=>'form-control ',
     	    		'required'=>'required',
@@ -53,32 +53,32 @@ class StudentForm extends BaseForm {
     			'options'=>array('label'=>__lang('Mobile Number')),
     	));
 
-        $this->add(array(
-            'name'=>'nim',
-            'attributes' => array(
-                    'type'=>'text',
-                    'class'=>'form-control ',
-            ),
-            'options'=>array('label'=> 'nim'),
-    ));
+    //     $this->add(array(
+    //         'name'=>'nim',
+    //         'attributes' => array(
+    //                 'type'=>'text',
+    //                 'class'=>'form-control ',
+    //         ),
+    //         'options'=>array('label'=> 'nim'),
+    // ));
 
-    $this->add(array(
-        'name'=>'department',
-        'attributes' => array(
-                'type'=>'text',
-                'class'=>'form-control ',
-        ),
-        'options'=>array('label'=>'department'),
-));
+//     $this->add(array(
+//         'name'=>'department',
+//         'attributes' => array(
+//                 'type'=>'text',
+//                 'class'=>'form-control ',
+//         ),
+//         'options'=>array('label'=>'department'),
+// ));
 
-$this->add(array(
-    'name'=>'jabatan',
-    'attributes' => array(
-            'type'=>'text',
-            'class'=>'form-control ',
-    ),
-    'options'=>array('label'=>'jabatan'),
-));
+// $this->add(array(
+//     'name'=>'jabatan',
+//     'attributes' => array(
+//             'type'=>'text',
+//             'class'=>'form-control ',
+//     ),
+//     'options'=>array('label'=>'jabatan'),
+// ));
 
 
     	$this->add(array(
