@@ -138,6 +138,161 @@ document.addEventListener("DOMContentLoaded", function() {
      // Tambahan untuk deteksi user tidak ada
      let lastDetectionTime = Date.now();
      let userAbsentNotified = false;
+     let notificationActive = false;
+
+     function showNotificationAndPlayVideo() {
+      notificationActive = true;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        video.style.display =  "none";
+      }
+  
+      // Check if the video is in full-screen mode
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+      if (player) {
+          player.pause(); // Pause the video
+      }
+  
+      Swal.fire({
+        title: 'User Mengantuk',
+        text: 'Video akan ditampilkan',
+        icon: 'info',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        resetDetection();
+        const videoContainer = document.createElement('div');
+        videoContainer.style.position = 'fixed';
+        videoContainer.style.top = '0';
+        videoContainer.style.left = '0';
+        videoContainer.style.width = '100%';
+        videoContainer.style.height = '100%';
+        videoContainer.style.display = 'flex';
+        videoContainer.style.justifyContent = 'center';
+        videoContainer.style.alignItems = 'center';
+        videoContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        videoContainer.style.zIndex = '1000';
+        videoContainer.id = 'video-container';
+  
+        if(kategori == 1){
+          tampil = tampilanVisual;
+        }else if(kategori == 2){
+          tampil = tampilanAudio;
+        }else if(kategori == 3){
+          tampil = tampilanKinestetik;
+        }
+  
+        const iframe = document.createElement('iframe');
+        iframe.src = tampil;
+        iframe.width = '560';
+        iframe.height = '315';
+        iframe.style.border = 'none';
+        iframe.id = 'video-iframe';
+  
+        const closeButton = document.createElement('button');
+        closeButton.innerText = 'Close';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.style.padding = '10px';
+        closeButton.style.backgroundColor = '#f44336';
+        closeButton.style.color = '#fff';
+        closeButton.style.border = 'none';
+        closeButton.style.borderRadius = '5px';
+        closeButton.style.cursor = 'pointer';
+  
+        closeButton.addEventListener('click', function() {
+          videoContainer.remove();
+          loader.style.display = "flex";
+          video.style.display =  "block";
+          notificationActive = false; // ➕ Reset saat ditutup
+          lastDetectionTime = Date.now(); // ➕ Reset waktu deteksi agar outframe dihitung ulang setelah selesai
+          userAbsentNotified = false; // Reset status ketidakhadiran
+          loadModels()
+            .then(getLabeledFaceDescriptions)
+            .then(startWebcam)
+            .then(function() {
+              return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+            })
+            .catch((e) => {
+              console.error("Failed to reload models:", e);
+              loader.innerText = "Failed to reload models";
+            });
+        });
+  
+        videoContainer.appendChild(iframe);
+        videoContainer.appendChild(closeButton);
+        document.body.appendChild(videoContainer);
+  
+        const iframeElement = document.getElementById('video-iframe');
+        iframeElement.addEventListener('load', function() {
+          setTimeout(function() {
+            if (videoContainer.parentNode) { // Check if the container is still visible
+              videoContainer.remove();
+              loader.style.display = "flex";
+              video.style.display = "block";
+              notificationActive = false; // ➕ Reset saat ditutup
+              lastDetectionTime = Date.now(); // ➕ Reset waktu deteksi agar outframe dihitung ulang setelah selesai
+              userAbsentNotified = false; // Reset status ketidakhadiran
+              loadModels()
+                  .then(getLabeledFaceDescriptions)
+                  .then(startWebcam)
+                  .then(function() {
+                    player.muted(false);
+                    return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+                  })
+                  .catch((e) => {
+                      console.error("Failed to reload models:", e);
+                      loader.innerText = "Failed to reload models";
+                  });
+          }
+        }, 60000);
+        });
+      });
+    }
+  
+    function notificationUser()
+    {
+      notificationActive = true;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        video.style.display =  "none";
+      }
+  
+      // Check if the video is in full-screen mode
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+      if (player) {
+          player.pause(); // Pause the video
+      }
+  
+      Swal.fire({
+        title: 'User Tidak Ada',
+        text: 'Pastikan anda berada didalam frame kamera',
+        icon: 'info',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        resetDetection();
+        loader.style.display = "flex";
+        video.style.display = "block";
+        notificationActive = false;
+        lastDetectionTime = Date.now(); // Reset waktu deteksi
+        userAbsentNotified = false;
+        loadModels()
+            .then(getLabeledFaceDescriptions)
+            .then(startWebcam)
+            .then(function() {
+              return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
+            })
+            .catch((e) => {
+              console.error("Failed to reload models:", e);
+              loader.innerText = "Failed to reload models";
+            });
+      });
+  
+    }
     
     function processVideoFrame() {
       frameCounter++;
@@ -161,9 +316,14 @@ document.addEventListener("DOMContentLoaded", function() {
                   //     loader.style.display = "none";
                   //   } else {
                   //     const elapsed = (Date.now() - lastDetectionTime) / 1000;
-                  //     if (elapsed >= 10 && !userAbsentNotified) {
-                  //         userAbsentNotified = true;
-                  //         notificationUser();
+                  //     if (
+                  //       video.srcObject !== null &&
+                  //       !notificationActive &&
+                  //       elapsed >= 10 &&
+                  //       !userAbsentNotified
+                  //     ) {
+                  //       userAbsentNotified = true;
+                  //       notificationUser();
                   //     }
                   // }
 
@@ -302,51 +462,6 @@ document.addEventListener("DOMContentLoaded", function() {
     analyzeEmotions();
   });
 
-//   function analyzeEmotions() {
-//     if (emotionData.count > 0) {
-//       const percentages = Object.keys(emotionData).reduce((acc, cur) => {
-//         if (cur !== "count") {
-//           acc[cur] =
-//             ((emotionData[cur] / emotionData.count) * 100).toFixed(2) + "%";
-//         }
-//             return acc;
-//         }, {});
-
-//         const emotionEntries = Object.entries(percentages);
-//         // Hitung waktu yang telah berlalu
-//         const akses = new Date();
-//         const endTime = Date.now();
-//         const elapsedTimeInMinutes = Math.floor((endTime - startTime) / 60000);
-//         const lamaWaktu = document.getElementById("lamaWaktu");
-//         //waktu akses
-//         const day = String(akses.getDate()).padStart(2, '0');
-//         const month = String(akses.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-//         const year = akses.getFullYear();
-//         const hours = String(akses.getHours()).padStart(2, '0');
-//         const minutes = String(akses.getMinutes()).padStart(2, '0');
-//         const seconds = String(akses.getSeconds()).padStart(2, '0');
-
-//         const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-//         const waktuAkses = document.getElementById("waktuAkses");
-//         // Set combined data to hidden input in form
-//         const emotionInput = document.getElementById("emotionData");
-//         if (emotionInput && lamaWaktu) {
-//             emotionInput.value = JSON.stringify(emotionEntries);
-//             lamaWaktu.value = elapsedTimeInMinutes;
-//             waktuAkses.value = formattedDate;
-//             // Submit the form
-//             // document.getElementById("emotionForm").submit();
-//             // hideElement("layout_content");
-//             // showElement(results-page);
-//             displayResults(percentages);
-//         } else {
-//             console.error("Element with ID 'emotionData' not found.");
-//         }
-//     } else {
-//         console.log("No emotions detected.");
-//     }
-// }
-
 function analyzeEmotions() {
   if (emotionData.count > 0) {
       // Ambil semua emosi kecuali "count"
@@ -423,150 +538,6 @@ function analyzeEmotions() {
     clearTimeout(eyeClosureTimeout);
     eyeClosureTimeout = null;
     isCurrentlySleepy = false;
-  }
-
-
-  function showNotificationAndPlayVideo() {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-      video.style.display =  "none";
-    }
-
-    // Check if the video is in full-screen mode
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-    if (player) {
-        player.pause(); // Pause the video
-    }
-
-    Swal.fire({
-      title: 'User Mengantuk',
-      text: 'Video akan ditampilkan',
-      icon: 'info',
-      confirmButtonText: 'OK'
-    }).then(() => {
-      resetDetection();
-      const videoContainer = document.createElement('div');
-      videoContainer.style.position = 'fixed';
-      videoContainer.style.top = '0';
-      videoContainer.style.left = '0';
-      videoContainer.style.width = '100%';
-      videoContainer.style.height = '100%';
-      videoContainer.style.display = 'flex';
-      videoContainer.style.justifyContent = 'center';
-      videoContainer.style.alignItems = 'center';
-      videoContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-      videoContainer.style.zIndex = '1000';
-      videoContainer.id = 'video-container';
-
-      if(kategori == 1){
-        tampil = tampilanVisual;
-      }else if(kategori == 2){
-        tampil = tampilanAudio;
-      }else if(kategori == 3){
-        tampil = tampilanKinestetik;
-      }
-
-      const iframe = document.createElement('iframe');
-      iframe.src = tampil;
-      iframe.width = '560';
-      iframe.height = '315';
-      iframe.style.border = 'none';
-      iframe.id = 'video-iframe';
-
-      const closeButton = document.createElement('button');
-      closeButton.innerText = 'Close';
-      closeButton.style.position = 'absolute';
-      closeButton.style.top = '10px';
-      closeButton.style.right = '10px';
-      closeButton.style.padding = '10px';
-      closeButton.style.backgroundColor = '#f44336';
-      closeButton.style.color = '#fff';
-      closeButton.style.border = 'none';
-      closeButton.style.borderRadius = '5px';
-      closeButton.style.cursor = 'pointer';
-
-      closeButton.addEventListener('click', function() {
-        videoContainer.remove();
-        loader.style.display = "flex";
-        video.style.display =  "block";
-        loadModels()
-          .then(getLabeledFaceDescriptions)
-          .then(startWebcam)
-          .then(function() {
-            return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
-          })
-          .catch((e) => {
-            console.error("Failed to reload models:", e);
-            loader.innerText = "Failed to reload models";
-          });
-      });
-
-      videoContainer.appendChild(iframe);
-      videoContainer.appendChild(closeButton);
-      document.body.appendChild(videoContainer);
-
-      const iframeElement = document.getElementById('video-iframe');
-      iframeElement.addEventListener('load', function() {
-        setTimeout(function() {
-          if (videoContainer.parentNode) { // Check if the container is still visible
-            videoContainer.remove();
-            loader.style.display = "flex";
-            video.style.display = "block";
-            loadModels()
-                .then(getLabeledFaceDescriptions)
-                .then(startWebcam)
-                .then(function() {
-                  player.muted(false);
-                  return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
-                })
-                .catch((e) => {
-                    console.error("Failed to reload models:", e);
-                    loader.innerText = "Failed to reload models";
-                });
-        }
-      }, 60000);
-      });
-    });
-  }
-
-  function notificationUser()
-  {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-      video.style.display =  "none";
-    }
-
-    // Check if the video is in full-screen mode
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-    if (player) {
-        player.pause(); // Pause the video
-    }
-
-    Swal.fire({
-      title: 'User Tidak Ada',
-      text: 'Pastikan anda berada didalam frame kamera',
-      icon: 'info',
-      confirmButtonText: 'OK'
-    }).then(() => {
-      resetDetection();
-      loader.style.display = "flex";
-      video.style.display = "block";
-      loadModels()
-          .then(getLabeledFaceDescriptions)
-          .then(startWebcam)
-          .then(function() {
-            return player.play();  // Menggunakan return agar bisa menangani potential promise dari play()
-          })
-          .catch((e) => {
-            console.error("Failed to reload models:", e);
-            loader.innerText = "Failed to reload models";
-          });
-    });
-
   }
 
   function stopWebcam() {
