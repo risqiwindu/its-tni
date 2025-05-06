@@ -155,17 +155,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     faceapi.draw.drawDetections(canvas, resizedDetections);
 
-                    if (detections.length > 0) {
-                      lastDetectionTime = Date.now(); // Reset waktu saat wajah terdeteksi
-                      userAbsentNotified = false; // Reset notifikasi
-                      loader.style.display = "none";
-                  } else {
-                      const elapsed = (Date.now() - lastDetectionTime) / 1000;
-                      if (elapsed >= 10 && !userAbsentNotified) {
-                          userAbsentNotified = true;
-                          notificationUser();
-                      }
-                  }
+                  //   if (detections.length > 0) {
+                  //     lastDetectionTime = Date.now(); // Reset waktu saat wajah terdeteksi
+                  //     userAbsentNotified = false; // Reset notifikasi
+                  //     loader.style.display = "none";
+                  //   } else {
+                  //     const elapsed = (Date.now() - lastDetectionTime) / 1000;
+                  //     if (elapsed >= 10 && !userAbsentNotified) {
+                  //         userAbsentNotified = true;
+                  //         notificationUser();
+                  //     }
+                  // }
 
             resizedDetections.forEach((detection) => {
               const { expressions, landmarks } = detection;
@@ -199,6 +199,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             isCurrentlySleepy = true; // Mark as currently sleepy
                             console.log('user mengantuk!'); // Log the sleepy state
                             showNotificationAndPlayVideo(); // Uncomment to trigger notification
+                            lastDetectionTime = Date.now(); 
+                            userAbsentNotified = false;     
                             sleepCount = 0;
                         }
                     }
