@@ -44,6 +44,8 @@ class SessionTable extends BaseTable {
 
         if(empty($group)){
             $select = new Select($this->tableName);
+            $select->join($this->getPrefix().'course_course_category','courses.id='.$this->getPrefix().'course_course_category.course_id');
+            $select->join($this->getPrefix().'course_categories',$this->getPrefix().'course_course_category.course_category_id='.$this->getPrefix().'course_categories.id',['category_name'=>'name']);
         }
         else{
             $select = new Select('course_course_category');
