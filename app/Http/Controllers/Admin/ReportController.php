@@ -623,7 +623,7 @@ class ReportController extends Controller
     // Prepare summary text
     $summary = [];
     foreach ($data as $style => $count) {
-        $summary[] = "{$style}: {$count} Siswa";
+        $summary[] = "<strong>{$style}</strong>: {$count} Siswa";
     }
     $summaryText = implode(', ', $summary);
     // $manual = DB::table('student_tests')

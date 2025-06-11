@@ -13,7 +13,7 @@
 <canvas id="categoryChart" width="400" height="100"></canvas>
 <div style="margin-top: 20px; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
     <strong>Keterangan :</strong>
-    <p>Berikut adalah rincian jumlah siswa yang mengambil kelas berdasarkan gaya belajar yang tersedia meliputi {{ $summaryText }}</p>
+    <p>Jumlah siswa yang mengambil kelas berdasarkan gaya belajar yang tersedia meliputi {!! $summaryText !!}</p>
 </div>
 <div class="mb-3">
 <a href="{{ route('admin.report.pilih_laporan') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
@@ -29,7 +29,7 @@
         <tbody>
             @foreach ($course as $row)
                 <tr>
-                    <td>{{ $row->name }} - {{ $row->kategori }}</td> <!-- Add space or hyphen -->
+                    <td>{{ $row->name }} - <strong>{{ $row->kategori }}</strong></td> <!-- Add space or hyphen -->
                     <td><a href="{{ route('admin.report.laporan', ['course_id' => $row->id]) }}" class="btn btn-primary">Lihat</a></td> <!-- Add href link if needed -->
                 </tr>
             @endforeach
