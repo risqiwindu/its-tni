@@ -262,7 +262,6 @@ class StudentController extends Controller {
 
         $row = $studentsTable->getRecord($id);
         if (request()->isMethod('post')) {
-
             $form->setInputFilter($filter);
             $data = request()->all();
             $data['status']= ($row->enabled=='') ? 1:$row->enabled;
@@ -356,7 +355,7 @@ class StudentController extends Controller {
             }
             else{
                 $errors = $form->getMessages();
-
+                dd($errors);
                 $fields= '';
                 foreach($errors as $key=>$value){
                     $key= $form->get($key)->getLabel();

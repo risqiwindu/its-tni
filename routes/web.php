@@ -503,6 +503,7 @@ Route::group(['middleware'=>['auth','student'],'prefix' => 'student', 'as' => 's
     Route::any('student/mysessions','StudentController@mysessions')->name('student.mysessions');
     Route::any('student/welcome','StudentController@welcome')->name('student.welcome');
     Route::any('student/profile','StudentController@profile')->name('student.profile');
+    Route::any('student/edit_profile','StudentController@edit_profile')->name('student.edit_profile');
     Route::get('student/billing','StudentController@billing')->name('student.billing');
     Route::post('student/billing','StudentController@saveBilling')->name('student.save-billing');
     Route::any('student/removeimage','StudentController@removeimage')->name('student.removeimage');

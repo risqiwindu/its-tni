@@ -56,7 +56,7 @@ class ProfileForm extends BaseForm {
         $this->add(array(
             'name'=>'picture',
             'attributes' => array(
-                'type'=>'hidden',
+                'type'=>'file',
                 'class'=>'form-control ',
                 'required'=>'required',
                 'id'=>'image'

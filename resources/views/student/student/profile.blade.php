@@ -25,7 +25,7 @@
             <div class="control-group col-md-6">
                 {{  formLabel($form->get('name')) }}
 
-                <div class="controls" style="pointer-events: none;">
+                <div class="controls">
                     {{  formElement($form->get('name'))  }}
                     <p class="help-block">&nbsp;</p>
                 </div>
@@ -34,15 +34,14 @@
             <div class="control-group col-md-6">
                 {{  formLabel($form->get('last_name')) }}
 
-                <div class="controls" style="pointer-events: none;">
+                <div class="controls">
                     {{  formElement($form->get('last_name'))  }}
                     <p class="help-block">&nbsp;</p>
                 </div>
             </div>
 
 
-
-            <div class="control-group col-md-6" style="pointer-events: none;">
+            <div class="control-group col-md-6">
                 {{  formLabel($form->get('mobile_number')) }}
 
                 <div class="controls">
@@ -51,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="control-group col-md-6" style="pointer-events: none;">
+            <div class="control-group col-md-6">
                 {{  formLabel($form->get('email')) }}
 
                 <div class="controls">
@@ -60,6 +59,13 @@
                 </div>
             </div>
 
+            <div class="control-group col-md-6" hidden>
+                {{  formLabel($form->get('metode')) }}
+                <div class="controls">
+                    {{  formElement($form->get('metode'))  }}
+                    <p class="help-block">&nbsp;</p>
+                </div>
+            </div>
 
             <div class="control-group col-md-6">
                 {{  formLabel($form->get('picture')) }}
@@ -75,9 +81,9 @@
                     @php  endif;  @endphp
 
                     @php  if(!empty($row->picture)):  @endphp
-                    <a class="btn btn-danger"  onclick="return confirm('{{ __lang('confirm-remove-picture') }}')" href="{{ route('student.student.removeimage') }}" hidden><i class="fa fa-trash"></i> {{  __lang('Remove image')  }}</a>
+                    <a class="btn btn-danger"  onclick="return confirm('{{ __lang('confirm-remove-picture') }}')" href="{{ route('student.student.removeimage') }}"><i class="fa fa-trash"></i> {{  __lang('Remove image')  }}</a>
                     <br> <br> @php  endif;  @endphp
-                    {{-- {{  formElement($form->get('picture')) }} <p class="help-block">{{  formElementErrors($form->get('picture')) }}</p> --}}
+                    {{  formElement($form->get('picture')) }} <p class="help-block">{{  formElementErrors($form->get('picture')) }}</p>
                 </div>
             </div>
             @php  foreach($fields as $row): @endphp
@@ -118,7 +124,7 @@
 
 
         <div class="form-footer"  >
-            <button type="submit" class="btn btn-primary float-right" hidden>{{  __lang('Save Changes')  }}</button>
+            <button type="submit" class="btn btn-primary float-right">{{  __lang('Save Changes')  }}</button>
         </div>
     </form>
 
