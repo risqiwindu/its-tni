@@ -139,7 +139,6 @@ class SessionController extends Controller
 
                 }
 
-
                 if(isset($formData['session_instructor_id'])){
 
                     $courseRow->admins()->attach($formData['session_instructor_id']);

@@ -132,7 +132,7 @@
                     @endcan
 
                     @can('access-group','student')
-                    @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')"><i class="fas fa-users"></i><span>Siswa</span></a></li>@endcan
+                    @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')"><i class="fas fa-users"></i><span>Prawira Siswa</span></a></li>@endcan
                     {{-- <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span><?= __lang('students') ?></span></a>
                         <ul class="dropdown-menu">
@@ -204,6 +204,12 @@
                     @can('access-group','tests')
                         @can('access','view_tests')<li ><a class="nav-link" href="@route('admin.test.index')"><i class="fas fa-check-circle"></i><span>Ujian</span></a></li>@endcan
                     @endcan
+
+                   
+                        <li class="dropdown">
+                            <a href="@route('admin.sikap.index')" class="nav-link"><i class="fas fa-pencil-alt"></i><span>Sikap</span></a>
+                        </li>
+                    
 
                     @can('access-group','reports')
                     {{-- <li class="dropdown">

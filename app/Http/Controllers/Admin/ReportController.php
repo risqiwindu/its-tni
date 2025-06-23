@@ -572,11 +572,57 @@ class ReportController extends Controller
     $courseQuery = DB::table('courses')
         ->join('course_course_category', 'courses.id', '=', 'course_course_category.course_id')
         ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+        ->join('admin_course','courses.id','=','admin_course.course_id')
         ->select('courses.id as id', 'courses.name as name', 'course_categories.name as kategori');
 
     // Add condition if the role is not admin (role_id != 1)
     if ($role_id != 1) {
-        $courseQuery->where('courses.admin_id', $this->getAdministratorID());
+        $courseQuery->where('admin_course.admin_id', $this->getAdministratorID());
+        $data = [
+            'Audio' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->join('admin_course','student_courses.course_id','=','admin_course.course_id')
+                ->where('course_categories.name', 'Audio')
+                ->where('admin_course.admin_id', $this->getAdministratorID())
+                ->count('student_courses.id'),
+    
+            'Visual' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->join('admin_course','student_courses.course_id','=','admin_course.course_id')
+                ->where('course_categories.name', 'Visual')
+                ->where('admin_course.admin_id', $this->getAdministratorID())
+                ->count('student_courses.id'),
+    
+            'Kinestetik' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->join('admin_course','student_courses.course_id','=','admin_course.course_id')
+                ->where('course_categories.name', 'Kinestetik')
+                ->where('admin_course.admin_id', $this->getAdministratorID())
+                ->count('student_courses.id')
+        ];
+    }else{
+        $data = [
+            'Audio' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->where('course_categories.name', 'Audio')
+                ->count('student_courses.id'),
+    
+            'Visual' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->where('course_categories.name', 'Visual')
+                ->count('student_courses.id'),
+    
+            'Kinestetik' => DB::table('student_courses')
+                ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+                ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+                ->where('course_categories.name', 'Kinestetik')
+                ->count('student_courses.id')
+        ];
     }
 
     // $nilai = DB::table('student_courses')
@@ -592,26 +638,6 @@ class ReportController extends Controller
     // // ->where('students.department', $department)
     // ->groupBy('course_categories.name')
     // ->get();
-
-    $data = [
-        'Audio' => DB::table('student_courses')
-            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
-            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
-            ->where('course_categories.name', 'Audio')
-            ->count('student_courses.id'),
-
-        'Visual' => DB::table('student_courses')
-            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
-            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
-            ->where('course_categories.name', 'Visual')
-            ->count('student_courses.id'),
-
-        'Kinestetik' => DB::table('student_courses')
-            ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
-            ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
-            ->where('course_categories.name', 'Kinestetik')
-            ->count('student_courses.id')
-    ];
 
     // Sort data by value from lowest to highest
     asort($data);
@@ -672,17 +698,20 @@ public function rekap()
         ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
         ->join('users', 'students.user_id', '=', 'users.id')
         ->join('courses','student_courses.course_id','=','courses.id')
+        ->join('kuesioner_status','users.id','=','kuesioner_status.user_id')
         ->leftJoin('student_emotion', function($join) {
             $join->on('student_courses.student_id', '=', 'student_emotion.student_id')
                 ->on('student_courses.course_id', '=', 'student_emotion.course_id');
         })
         ->select(
+            'students.id as id',
             'users.name as student_name',
             'users.email as nrp', 
             'course_categories.name as category_name', 
             'student_tests.score', 
             'student_courses.student_id', 
             'student_courses.course_id',
+            'kuesioner_status.status_belajar as gaya_belajar',
             'student_emotion.emotion as emotion_data' // Ambil data emosi dari tabel student_emotion
         );
 
@@ -774,8 +803,27 @@ public function rekap()
         }
     }
 
+    // Ambil hanya satu data per student_id dengan highest_percentage tertinggi
+    $uniqueStudents = [];
+
+    foreach ($hasil as $data) {
+        $studentId = $data->student_id;
+
+        if (!isset($uniqueStudents[$studentId])) {
+            $uniqueStudents[$studentId] = $data;
+        } else {
+        if ($data->highest_percentage > $uniqueStudents[$studentId]->highest_percentage) {
+            $uniqueStudents[$studentId] = $data;
+            }
+        }
+    }
+
+    // Ambil array numerik
+    $filteredHasil = array_values($uniqueStudents);
+    $nilai_sikap = DB::table('student_sikap')
+                    ->get();
     // Return view dengan data hasil yang sudah diproses dan data emosi per kategori serta nilai tertinggi per kategori
-    return view('admin.report.rekap', compact('hasil', 'categoryEmotions', 'categoryScores'));
+    return view('admin.report.rekap', compact('filteredHasil', 'categoryEmotions', 'categoryScores','nilai_sikap'));
 }
 
 public function rekap_manual()

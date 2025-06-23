@@ -334,6 +334,7 @@
                                     <label for="password1" class="control-label">{{ __lang('session-instructors') }} ({{ __lang('optional') }})</label>
 
                                     {{ formElement($form->get('session_instructor_id[]')) }}
+                                    <input type="text">
 
                                 </div>
                             </div>

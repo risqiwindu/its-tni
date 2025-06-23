@@ -16,7 +16,8 @@
     <p>Jumlah siswa yang mengambil kelas berdasarkan gaya belajar yang tersedia meliputi {!! $summaryText !!}</p>
 </div>
 <div class="mb-3">
-<a href="{{ route('admin.report.pilih_laporan') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
+{{-- <a href="{{ route('admin.report.pilih_laporan') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a> --}}
+<a href="{{ route('admin.report.rekap') }}" data-toggle="tooltip" data-placement="top" data-original-title="laporan_keseluruhan" title="Laporan Keseluruhan" type="button" class="btn btn-primary btn-equal"  >Lihat Laporan Keseluruhan <i class="fa fa-eye"></i></a>
 </div>
 <div class="table-responsive_">
     <table class="table table-hover">

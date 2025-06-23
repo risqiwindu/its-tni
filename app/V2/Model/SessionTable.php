@@ -46,21 +46,32 @@ class SessionTable extends BaseTable {
             $select = new Select($this->tableName);
             $select->join($this->getPrefix().'course_course_category','courses.id='.$this->getPrefix().'course_course_category.course_id');
             $select->join($this->getPrefix().'course_categories',$this->getPrefix().'course_course_category.course_category_id='.$this->getPrefix().'course_categories.id',['category_name'=>'name']);
+
         }
         else{
             $select = new Select('course_course_category');
             $select->join($this->getPrefix().'courses','course_course_category.course_id='.$this->getPrefix().'courses.id',['id','name','description','venue','start_date','enabled','end_date','type']);
             $select->join($this->getPrefix().'course_categories',$this->getPrefix().'course_course_category.course_category_id='.$this->getPrefix().'course_categories.id',['category_name'=>'name']);
+            $select->join($this->getPrefix().'admin_course',$this->getPrefix().'course_course_category.course_id='.$this->getPrefix().'admin_course.course_id',['lecture_id'=>'admin_id']);
             $select->where([$this->getPrefix().'course_categories.id'=>$group]);
         }
 
         // if(!GLOBAL_ACCESS){
         //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         // }
-        if($role_id == 1 && $admin_role != 1){
-            $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
-        }
+        // if($role_id == 1 && $admin_role != 1){
+        //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+        // }
 
+        // if($role_id == 1 && $admin_role != 1){
+        //     $select->where([$this->getPrefix().'admin_course.admin_id'=>ADMIN_ID]);
+        // }
+
+        if($role_id == 1 && $admin_role != 1){
+            $select->join($this->getPrefix().'admin_course',$this->getPrefix().'course_course_category.course_id='.$this->getPrefix().'admin_course.course_id',['lecture_id'=>'admin_id']);
+            $select->where([$this->getPrefix().'admin_course.admin_id'=>ADMIN_ID]);
+        }
+       
         if(!empty($type)){
             if(is_array($type)){
                 $sql= '(';

@@ -347,6 +347,20 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('report/pilih_laporan','ReportController@pilih_laporan')->name('report.pilih_laporan');
     Route::any('report/rekap','ReportController@rekap')->name('report.rekap');
     Route::any('report/rekap_manual','ReportController@rekap_manual')->name('report.rekap_manual');
+    
+    Route::any('sikap/index','SikapController@index')->name('sikap.index');
+    Route::any('sikap/input_sikap/{id}','SikapController@input_sikap')->name('sikap.input_sikap');
+    Route::any('sikap/simpan_sikap','SikapController@simpan_sikap')->name('sikap.simpan_sikap');
+    Route::any('sikap/store_massal_sikap','SikapController@store_massal_sikap')->name('sikap.store_massal_sikap');
+    Route::any('sikap/mass_input','SikapController@mass_input')->name('sikap.mass_input_sikap');
+    Route::any('sikap/mass_store','SikapController@mass_store')->name('sikap.mass_store_sikap');
+    Route::any('sikap/reset_all','SikapController@resetAll')->name('sikap.reset_all');
+    Route::any('sikap/reset_one/{student}','SikapController@resetOne')->name('sikap.reset_one');
+    Route::any('sikap/print','SikapController@print')->name('sikap.print');
+    Route::any('sikap/print/{id}','SikapController@printPerSiswa')->name('sikap.print_one');
+
+
+
 
 
 

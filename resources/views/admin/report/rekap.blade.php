@@ -40,20 +40,36 @@
         <tr>
             <th>Nama Siswa</th>
             <th>NIP / NRP</th>
-            <th>Kategori Materi</th>
+            <th>Gaya Belajar</th>
             <th>Ekspresi Tertinggi(%)</th>
             <th>Nilai Ujian</th>
+            <th>Nilai Sikap</th>
+            <th colspan="2" class="text-center">Nilai Akhir</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($hasil as $row)
+            @foreach ($filteredHasil as $row)
             @if ( $row->highest_percentage > 0)
             <tr>
                 <td>{{ $row->student_name }}</td>
                 <td>{{ $row->nrp }}</td>
-                <td>{{ $row->category_name }}</td>
-                <td>{{ $row->highest_emotion }} ({{ $row->highest_percentage }}%)</td>
+                <td>{{ $row->gaya_belajar }}</td>
+                <td>{{ $row->highest_emotion }} ({{ $row->highest_percentage }}%) - {{ $row->category_name }}</td>
                 <td>{{ $row->score }}</td>
+                @php
+                    $nilai = $nilai_sikap->firstWhere('student_id', $row->id);
+                @endphp
+                @if ($nilai)
+                    <td class="text-center">{{ rtrim(rtrim(number_format($nilai->nilai_akhir, 2, ',', '.'), '0'), ',') }}</td>
+                @else
+                    <td>Nilai belum ada / belum diisi</td>
+                @endif
+                <td>Nilai Akhir</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#infoModal-{{ $row->id }}">
+                        Detail
+                    </button>
+                </td>
             </tr>
             @endif
             @endforeach

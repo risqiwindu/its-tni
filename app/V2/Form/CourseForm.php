@@ -7,6 +7,8 @@ use App\Lib\BaseForm;
 use App\User;
 use App\V2\Model\SessionCategoryTable;
 use Laminas\Form\Form;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CourseForm extends BaseForm {
     public function __construct($name = null,$type=null)
@@ -115,12 +117,23 @@ class CourseForm extends BaseForm {
         $this->createTextArea('introduction','introduction',false);
         $this->get('introduction')->setAttribute('id','introduction');
 
-
+        $role_id = Auth::user()->role_id;
+        $admin = DB::table('admins')
+                      ->where('user_id', Auth::user()->id)
+                      ->first();
+        $admin_role = $admin->admin_role_id;
         $rowset = User::has('admin')->where('role_id',1)->orderBy('name')->limit(3000)->get();
+        $dosen = User::find(Auth::user()->id);
         $options = [];
-        foreach($rowset as $row){
-            $options[$row->admin->id]= $row->name.' ('.$row->email.')';
+
+        if($role_id == 1 && $admin_role != 1){
+            $options[$dosen->id]= $dosen->name.' ('.$dosen->email.')';
+        }else{
+            foreach($rowset as $row){
+                $options[$row->admin->id]= $row->name.' ('.$row->email.')';
+            }
         }
+
 
         $this->createSelect('session_instructor_id[]','course-instructors-(optional)',$options,false);
         $this->get('session_instructor_id[]')->setAttribute('multiple','multiple');
