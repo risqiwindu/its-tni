@@ -81,12 +81,12 @@
                             {{ $nilai ? 'Edit' : '+ Tambah Nilai' }}
                         </a>
                     </td>
+                    @endif  
                     <td>
                         <a href="{{ route('admin.sikap.print_one', $row->id) }}" target="_blank" class="btn btn-sm btn-secondary">
                             <i class="fas fa-print"></i> Cetak PDF
                         </a>                        
-                    </td>
-                    @endif                    
+                    </td>                  
                 @else
                     <td colspan="5" class="text-center">Nilai belum ada / belum diisi</td>
                 @endif
@@ -124,11 +124,11 @@
                 <div class="alert alert-info">
                     <strong>Keterangan Skala Nilai:</strong>
                     <ul class="mb-0">
-                        <li><strong>1</strong> - Tidak Baik</li>
-                        <li><strong>2</strong> - Kurang Baik</li>
-                        <li><strong>3</strong> - Cukup</li>
-                        <li><strong>4</strong> - Baik</li>
-                        <li><strong>5</strong> - Baik Sekali</li>
+                        <li>Tidak Baik - <strong>Poin 1</strong></li>
+                        <li>Kurang Baik - <strong>Poin 2</strong></li>
+                        <li>Cukup - <strong>Poin 3</strong></li>
+                        <li>Baik - <strong>Poin 4</strong></li>
+                        <li>Baik Sekali - <strong>Poin 5</strong></li>
                     </ul>
                 </div>
                 <ul>

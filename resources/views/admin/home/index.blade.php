@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>{{__lang('students')}}</h4>
+                        <h4>Perwira Siswa</h4>
                     </div>
                     <div class="card-body">
                         {{$totalStudents}}

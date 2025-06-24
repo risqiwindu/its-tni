@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>'Dashboard',
-            '#'=>__lang('students')
+            '#'=>'Perwira Siswa'
         ]])
 @endsection
 

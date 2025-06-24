@@ -347,6 +347,7 @@ Route::group(['middleware'=>['auth','admin',\App\Http\Middleware\UserLimit::clas
     Route::any('report/pilih_laporan','ReportController@pilih_laporan')->name('report.pilih_laporan');
     Route::any('report/rekap','ReportController@rekap')->name('report.rekap');
     Route::any('report/rekap_manual','ReportController@rekap_manual')->name('report.rekap_manual');
+    Route::any('report/detail_nilai_akhir/{id}','ReportController@detail_nilai_akhir')->name('report.detail_nilai_akhir');
     
     Route::any('sikap/index','SikapController@index')->name('sikap.index');
     Route::any('sikap/input_sikap/{id}','SikapController@input_sikap')->name('sikap.input_sikap');

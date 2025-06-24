@@ -132,7 +132,7 @@
                     @endcan
 
                     @can('access-group','student')
-                    @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')"><i class="fas fa-users"></i><span>Prawira Siswa</span></a></li>@endcan
+                    @can('access','view_students')<li ><a class="nav-link" href="@route('admin.student.index')"><i class="fas fa-users"></i><span>Perwira Siswa</span></a></li>@endcan
                     {{-- <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span><?= __lang('students') ?></span></a>
                         <ul class="dropdown-menu">

@@ -65,6 +65,11 @@ class TestController extends Controller {
         ->where('id', $this->getId())
         ->first();
 
+    $sikap = DB::table('student_sikap')
+            ->select('nilai_akhir')
+            ->where('student_id',$this->getId())
+            ->first();
+
     // Periksa status siswa
     if ($status_sistem && $status_sistem->nim === '1') {
         $paginator = $table->getStudentRecords($this->getId(), $course_ids);
@@ -90,6 +95,7 @@ class TestController extends Controller {
         'id' => $this->getId(),
         'layout' => $layout,
         'test' => $param,
+        'sikap' => $sikap
     ]);
 }
 
@@ -359,6 +365,12 @@ class TestController extends Controller {
         }else{
             $param = $value1;
         }
+
+        $sikap = DB::table('student_sikap')
+        ->select('nilai_akhir')
+        ->where('student_id',$this->getId())
+        ->first();
+
         $layout = ($param === 'kosong') ? 'layouts.student' : 'layouts.student_manual';
         $studentId = $this->getId();
         $student = Student::find($studentId);
@@ -370,7 +382,8 @@ class TestController extends Controller {
             'test'=>$test,
             'gradeTable'=>new TestGradeTable(),
             'layout' => $layout,
-            'test' => $param
+            'test' => $param,
+            'sikap' => $sikap
         ]);
 
     }

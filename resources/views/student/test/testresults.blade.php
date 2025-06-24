@@ -16,8 +16,8 @@
         <tr>
             <th>#</th>
             <th>{{ __lang('taken-on') }}</th>
-            <th>Nilai</th>
-            <th>Index</th>
+            <th colspan="2" class="text-center">Nilai Ujian</th>
+            <th>Nilai Sikap</th>
             {{-- <th>{{ __lang('Grade') }}</th>
             <th>{{ __lang('Status') }}</th> --}}
         </tr>
@@ -27,7 +27,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ showDate('d/M/Y',$row->created_at) }}</td>
-                <td>{{ round($row->score) }}</td>
+                <td class="text-center">{{ round($row->score) }}</td>
                 {{-- <td>{{ $gradeTable->getGrade($row->score) }}</td>
                 <td>@if($row->score >= $test->passmark)
                 <span style="color: green">{{ __lang('Passed') }}</span>
@@ -56,8 +56,8 @@
                     $index = 'E';
                 }
             @endphp
-                <td>{{ $index }}</td>
-
+                <td class="text-center">{{ $index }}</td>
+                <td>{{ $sikap ?? 'Belum Diisi' }}</td>
             </tr>
 
             @endforeach

@@ -117,7 +117,10 @@
                         <div class="article-user-details">
                             <div class="user-detail-name">
                                 {{-- <a href="#">{{ adminName($row->admin_id) }}</a> --}}
-                                <a href="#">{{ \App\Admin::find($row->admin_id)->user->name }} {{ \App\Admin::find($row->admin_id)->user->last_name }}</a>
+                                {{-- <a href="#">{{ \App\Admin::find($row->admin_id)->user->name }} {{ \App\Admin::find($row->admin_id)->user->last_name }}</a> --}}
+                                @foreach($course->admins as $admin)
+                                    <strong>{{ $admin->user->name .' '. $admin->user->last_name }}</strong>
+                                @endforeach
                             </div>
                             {{-- <div class="text-job">{{ \App\Admin::find($row->admin_id)->user->role->name }}</div> --}}
                         </div>
@@ -163,7 +166,7 @@
                                             <a class="dropdown-item has-icon" href="{{ route('admin.session.courseclasses',['id'=>$row->id]) }}"><i class="fa fa-desktop"></i> Kelola Materi</a>
                                             {{-- <a class="dropdown-item has-icon"  target="_blank" href="{{ route('admin.course.intro',['id'=>$row->id]) }}"><i class="fa fa-play"></i> Coba Kelas</a> --}}
                                         @endif
-                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.sessionstudents',['id'=>$row->id]) }}"><i class="fa fa-users"></i> Lihat Siswa</a>
+                                        <a class="dropdown-item has-icon" href="{{ route('admin.student.sessionstudents',['id'=>$row->id]) }}"><i class="fa fa-users"></i> Lihat Perwira Siswa</a>
 
                                         @if($row->type != 'c')
                                             <a class="dropdown-item has-icon" href="{{ route('admin.student.instructors',['id'=>$row->id]) }}"><i class="fa fa-user"></i> {{ __lang('manage-instructors') }}</a>
@@ -354,7 +357,7 @@
                                 <div class="tab-pane fade" id="profile3-{{ $row->id }}" role="tabpanel" aria-labelledby="profile-tab3-{{ $row->id }}">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <td>{{ __lang('enrolled-students') }}</td>
+                                            <td>Perwira Siswa Terdaftar</td>
                                             <td>{{ $studentSessionTable->getTotalForSession($row->id) }}</td>
                                         </tr>
                                         <tr>

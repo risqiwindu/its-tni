@@ -173,7 +173,8 @@ class SessionTable extends BaseTable {
         //     $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
         // }
         if($role_id == 1 && $admin_role != 1){
-            $select->where([$this->tableName.'.admin_id'=>ADMIN_ID]);
+            $select->join($this->getPrefix().'admin_course',$this->getPrefix().'courses.id ='.$this->getPrefix().'admin_course.course_id',['lecture_id'=>'admin_id']);
+            $select->where([$this->getPrefix().'admin_course.admin_id'=>ADMIN_ID]);
         }
 
         if(!empty($type)){

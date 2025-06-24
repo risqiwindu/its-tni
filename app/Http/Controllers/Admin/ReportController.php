@@ -698,6 +698,7 @@ public function rekap()
         ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
         ->join('users', 'students.user_id', '=', 'users.id')
         ->join('courses','student_courses.course_id','=','courses.id')
+        ->join('admin_course','courses.id','=','admin_course.course_id')
         ->join('kuesioner_status','users.id','=','kuesioner_status.user_id')
         ->leftJoin('student_emotion', function($join) {
             $join->on('student_courses.student_id', '=', 'student_emotion.student_id')
@@ -711,6 +712,7 @@ public function rekap()
             'student_tests.score', 
             'student_courses.student_id', 
             'student_courses.course_id',
+            'admin_course.admin_id as lecture',
             'kuesioner_status.status_belajar as gaya_belajar',
             'student_emotion.emotion as emotion_data' // Ambil data emosi dari tabel student_emotion
         );
@@ -731,7 +733,7 @@ public function rekap()
 
     // Tambahkan kondisi jika role bukan admin (role_id != 1)
     if ($role_id != 1) {
-        $query->where('courses.admin_id', $this->getAdministratorID());
+        $query->where('admin_course.admin_id', $this->getAdministratorID());
     }
 
     // Group by dan order sebelum paginasi
@@ -822,8 +824,43 @@ public function rekap()
     $filteredHasil = array_values($uniqueStudents);
     $nilai_sikap = DB::table('student_sikap')
                     ->get();
+
+    $totalTugas = DB::table('assignments')->count();
+
+    $data = DB::table('assignment_submissions')
+    ->select(
+        'student_id',
+        DB::raw('SUM(grade) as total_nilai')
+    )
+    ->groupBy('student_id')
+    ->get()
+    ->map(function ($item) use ($totalTugas) {
+        $item->rata_rata = $totalTugas > 0
+            ? round($item->total_nilai / $totalTugas, 2)
+            : 0;
+        $item->bobot_15_persen = round($item->rata_rata * 0.15, 2);
+        return $item;
+    });
+
+    $total_ujian = DB::table('tests')->count();
+
+    $data_ujian = DB::table('student_tests')
+    ->select(
+        'student_id',
+        DB::raw('SUM(score) as total_nilai')
+    )
+    ->groupBy('student_id')
+    ->get()
+    ->map(function ($item) use ($total_ujian) {
+        $item->rata_rata = $total_ujian > 0
+            ? round($item->total_nilai / $total_ujian, 2)
+            : 0;
+        $item->bobot_80_persen = round($item->rata_rata * 0.80, 2);
+        return $item;
+    });
+
     // Return view dengan data hasil yang sudah diproses dan data emosi per kategori serta nilai tertinggi per kategori
-    return view('admin.report.rekap', compact('filteredHasil', 'categoryEmotions', 'categoryScores','nilai_sikap'));
+    return view('admin.report.rekap', compact('filteredHasil', 'categoryEmotions', 'categoryScores','nilai_sikap','data','data_ujian'));
 }
 
 public function rekap_manual()
@@ -857,6 +894,230 @@ public function rekap_manual()
                         ->max('student_tests.score');
 
         return view('admin.report.rekap_manual', compact('manual', 'averageScore','maxScore'));
+    }
+
+    public function detail_nilai_akhir($id)
+    {
+        // Ambil data dari berbagai tabel
+    $query = DB::table('student_courses')
+    ->join('students', 'student_courses.student_id', '=', 'students.id')
+    ->join('student_tests', 'student_courses.student_id', '=', 'student_tests.student_id')
+    ->join('course_course_category', 'student_courses.course_id', '=', 'course_course_category.course_id')
+    ->join('course_categories', 'course_course_category.course_category_id', '=', 'course_categories.id')
+    ->join('users', 'students.user_id', '=', 'users.id')
+    ->join('courses','student_courses.course_id','=','courses.id')
+    ->join('admin_course','courses.id','=','admin_course.course_id')
+    ->join('kuesioner_status','users.id','=','kuesioner_status.user_id')
+    ->leftJoin('student_emotion', function($join) {
+        $join->on('student_courses.student_id', '=', 'student_emotion.student_id')
+            ->on('student_courses.course_id', '=', 'student_emotion.course_id');
+    })
+    ->select(
+        'students.id as id',
+        'users.name as student_name',
+        'users.email as nrp', 
+        'course_categories.name as category_name', 
+        'student_tests.score', 
+        'student_courses.student_id', 
+        'student_courses.course_id',
+        'admin_course.admin_id as lecture',
+        'kuesioner_status.status_belajar as gaya_belajar',
+        'student_emotion.emotion as emotion_data' // Ambil data emosi dari tabel student_emotion
+    );
+
+// Filter berdasarkan nama atau email
+if (!empty($filter)) {
+    $query->where(function($tes) use ($filter) {
+        $tes->where('users.name', 'LIKE', "%$filter%")
+            ->orWhere('users.email', 'LIKE', "%$filter%");
+    });
+}
+
+// Cek peran admin
+$role = DB::table('admins')
+            ->where('id', $this->getAdministratorID())
+            ->first();
+$role_id = $role->id;
+
+// Tambahkan kondisi jika role bukan admin (role_id != 1)
+if ($role_id != 1) {
+    $query->where('admin_course.admin_id', $this->getAdministratorID());
+}
+
+// Group by dan order sebelum paginasi
+$query->groupBy('student_courses.student_id', 'course_categories.name')
+    ->orderBy('student_tests.score', 'desc');
+
+// Ambil hasil dengan paginasi
+$hasil = $query->where('students.id', $id)->get();
+
+// Inisialisasi array untuk menyimpan emosi dan skor tertinggi per kategori
+$categoryEmotions = [];
+$categoryScores = [];
+
+// Proses data hasil untuk menghitung emosi tertinggi berdasarkan kategori
+foreach ($hasil as $data) {
+    if (!empty($data->emotion_data)) {
+        // Ubah JSON string menjadi array
+        $emotions = json_decode($data->emotion_data, true);
+
+        // Inisialisasi variabel untuk menyimpan emosi tertinggi
+        $highestEmotion = null;
+        $highestPercentage = 0;
+
+        // Loop untuk mencari emosi tertinggi
+        foreach ($emotions as $emotion) {
+            // Ambil nilai persentase dan konversi ke float, hilangkan simbol "%"
+            $percentage = floatval(rtrim($emotion[1], '%'));
+
+            // Jika persentasenya lebih tinggi, perbarui emosi tertinggi
+            if ($percentage > $highestPercentage) {
+                $highestPercentage = $percentage;
+                $highestEmotion = $emotion[0]; // Nama emosi dengan persentase tertinggi
+            }
+        }
+
+        // Simpan emosi tertinggi ke dalam data hasil
+        $data->highest_emotion = $highestEmotion;
+        $data->highest_percentage = $highestPercentage;
+
+        // Periksa apakah kategori sudah ada di array emosi
+        if (!isset($categoryEmotions[$data->category_name])) {
+            // Jika belum ada, inisialisasi kategori dengan data pertama
+            $categoryEmotions[$data->category_name] = [
+                'emotion' => $highestEmotion,
+                'percentage' => $highestPercentage,
+            ];
+        } else {
+            // Jika sudah ada, periksa apakah persentase baru lebih tinggi
+            if ($highestPercentage > $categoryEmotions[$data->category_name]['percentage']) {
+                $categoryEmotions[$data->category_name] = [
+                    'emotion' => $highestEmotion,
+                    'percentage' => $highestPercentage,
+                ];
+            }
+        }
+
+        // Simpan nilai tertinggi berdasarkan kategori
+        if (!isset($categoryScores[$data->category_name])) {
+            $categoryScores[$data->category_name] = $data->score;
+        } else {
+            if ($data->score > $categoryScores[$data->category_name]) {
+                $categoryScores[$data->category_name] = $data->score;
+            }
+        }
+    } else {
+        // Jika tidak ada data emosi, set default
+        $data->highest_emotion = 'N/A';
+        $data->highest_percentage = 0;
+    }
+}
+
+// Ambil hanya satu data per student_id dengan highest_percentage tertinggi
+$uniqueStudents = [];
+
+foreach ($hasil as $data) {
+    $studentId = $data->student_id;
+
+    if (!isset($uniqueStudents[$studentId])) {
+        $uniqueStudents[$studentId] = $data;
+    } else {
+    if ($data->highest_percentage > $uniqueStudents[$studentId]->highest_percentage) {
+        $uniqueStudents[$studentId] = $data;
+        }
+    }
+}
+
+// Ambil array numerik
+$filteredHasil = array_values($uniqueStudents);
+$nilai_sikap = DB::table('student_sikap')
+                ->get();
+
+$totalTugas = DB::table('assignments')->count();
+
+$data = DB::table('assignment_submissions')
+->select(
+    'student_id',
+    DB::raw('SUM(grade) as total_nilai')
+)
+->groupBy('student_id')
+->get()
+->map(function ($item) use ($totalTugas) {
+    $item->rata_rata = $totalTugas > 0
+        ? round($item->total_nilai / $totalTugas, 2)
+        : 0;
+    $item->bobot_15_persen = round($item->rata_rata * 0.15, 2);
+    return $item;
+});
+
+$total_ujian = DB::table('tests')->count();
+
+$data_ujian = DB::table('student_tests')
+->select(
+    'student_id',
+    DB::raw('SUM(score) as total_nilai')
+)
+->groupBy('student_id')
+->get()
+->map(function ($item) use ($total_ujian) {
+    $item->rata_rata = $total_ujian > 0
+        ? round($item->total_nilai / $total_ujian, 2)
+        : 0;
+    $item->bobot_80_persen = round($item->rata_rata * 0.80, 2);
+    return $item;
+});
+
+    $student = DB::table('students')
+                ->join('users','students.user_id','=','users.id')
+                ->join('kuesioner_status','users.id','=','kuesioner_status.user_id')
+                ->select(
+                        'students.id as id', 
+                        'users.name as student_name',
+                        'users.email as nrp',
+                        'kuesioner_status.status_belajar as gaya_belajar',
+                        'kuesioner_status.audio as audio',
+                        'kuesioner_status.visual as visual',
+                        'kuesioner_status.kinestetik as kinestetik',
+                        )
+                ->where('students.id', $id)
+                ->first();
+    $totalTugas = DB::table('assignments')->count();
+
+    $data_tugas = DB::table('assignment_submissions')
+                ->select(
+                        'student_id',
+                        DB::raw('SUM(grade) as total_nilai')
+                    )
+                ->where('student_id', $id) // ← Tambahkan kondisi untuk siswa tertentu
+                ->groupBy('student_id')
+                ->get()
+                ->map(function ($item) use ($totalTugas) {
+                        $item->rata_rata = $totalTugas > 0
+                            ? round($item->total_nilai / $totalTugas, 2)
+                            : 0;
+                        $item->bobot_15_persen = round($item->rata_rata * 0.15, 2);
+                        return $item;
+                });
+    $data_tugas = $data_tugas->first();
+
+    $data_ujian2 = DB::table('student_tests')
+                ->select(
+                        'student_id',
+                        DB::raw('SUM(score) as total_nilai')
+                    )
+                ->where('student_id', $id)
+                ->groupBy('student_id')
+                ->get()
+                ->map(function ($item) use ($total_ujian) {
+                    $item->rata_rata = $total_ujian > 0
+                        ? round($item->total_nilai / $total_ujian, 2)
+                        : 0;
+                    $item->bobot_80_persen = round($item->rata_rata * 0.80, 2);
+                    return $item;
+                });
+    $data_ujian2 = $data_ujian2->first();
+// Return view dengan data hasil yang sudah diproses dan data emosi per kategori serta nilai tertinggi per kategori
+return view('admin.report.detail_nilai_akhir', compact('filteredHasil', 'categoryEmotions', 'categoryScores','nilai_sikap','data','data_ujian','student','data_tugas','data_ujian2'));
     }
 
 }

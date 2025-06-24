@@ -12,6 +12,7 @@ namespace App\V2\Model;
 use App\Lib\BaseTable;
 use Illuminate\Support\Carbon;
 use Laminas\Db\Sql\Select;
+use Laminas\Db\Sql\Where;
 use Laminas\Paginator\Adapter\DbSelect;
 use Laminas\Paginator\Paginator;
 

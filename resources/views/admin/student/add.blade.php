@@ -4,7 +4,7 @@
     @include('admin.partials.crumb',[
     'crumbs'=>[
             route('admin.dashboard')=>__('default.dashboard'),
-            route('admin.student.index')=>__lang('students'),
+            route('admin.student.index')=>'Perwira Siswa',
             '#'=>isset($pageTitle)?$pageTitle:''
         ]])
 @endsection
@@ -14,7 +14,7 @@
 			<div >
 				<div class="card">
 					<div class="card-header">
-                        <strong> {{ __lang('student') }}  {{ __lang('details') }}</strong>
+                        <strong> Perwira Siswa Detail</strong>
 					</div>
 					<div class="card-body">
 
